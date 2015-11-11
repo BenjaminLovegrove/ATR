@@ -1,0 +1,100 @@
+fileFormatVersion: 2
+guid: cc607439b68bfa44ea7422b86ac16083
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Red_Building_Block_1_A
+    100004: Red_Building_Block_1_B
+    100006: Red_Building_Block_2_A
+    100008: Red_Building_Block_2_B
+    100010: Red_Building_Block_3_A
+    100012: Red_Building_Block_3_B
+    100014: Red_Building_Block_4_A
+    100016: Red_Building_Block_4_B
+    400000: //RootNode
+    400002: Red_Building_Block_1_A
+    400004: Red_Building_Block_1_B
+    400006: Red_Building_Block_2_A
+    400008: Red_Building_Block_2_B
+    400010: Red_Building_Block_3_A
+    400012: Red_Building_Block_3_B
+    400014: Red_Building_Block_4_A
+    400016: Red_Building_Block_4_B
+    2300000: Red_Building_Block_1_A
+    2300002: Red_Building_Block_1_B
+    2300004: Red_Building_Block_2_A
+    2300006: Red_Building_Block_2_B
+    2300008: Red_Building_Block_3_A
+    2300010: Red_Building_Block_3_B
+    2300012: Red_Building_Block_4_A
+    2300014: Red_Building_Block_4_B
+    3300000: Red_Building_Block_1_A
+    3300002: Red_Building_Block_1_B
+    3300004: Red_Building_Block_2_A
+    3300006: Red_Building_Block_2_B
+    3300008: Red_Building_Block_3_A
+    3300010: Red_Building_Block_3_B
+    3300012: Red_Building_Block_4_A
+    3300014: Red_Building_Block_4_B
+    4300000: Red_Building_Block_2_A
+    4300002: Red_Building_Block_2_B
+    4300004: Red_Building_Block_3_A
+    4300006: Red_Building_Block_3_B
+    4300008: Red_Building_Block_1_A
+    4300010: Red_Building_Block_1_B
+    4300012: Red_Building_Block_4_A
+    4300014: Red_Building_Block_4_B
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 
