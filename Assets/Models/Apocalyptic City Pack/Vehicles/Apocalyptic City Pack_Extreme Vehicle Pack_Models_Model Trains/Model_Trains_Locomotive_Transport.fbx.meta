@@ -1,0 +1,277 @@
+fileFormatVersion: 2
+guid: 7186d1f65cc37804991d81e45d199fa7
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Train_Transport_Dubbel_LOD0
+    100004: Train_Transport_Dubbel_LOD1
+    100006: Back_Wheels_LOD0
+    100008: Back_Wheels_LOD1
+    100010: Carriage_LOD0
+    100012: Carriage_LOD1
+    100014: Front_Wheels_LOD0
+    100016: Front_Wheels_LOD1
+    100018: polySurface17
+    100020: polySurface18
+    100022: polySurface19
+    100024: Wheels_Back_LOD0
+    100026: Wheels_Front_LOD0
+    100028: Train_Transport_LOD0
+    100030: Train_Transport_LOD1
+    100032: Wheel_Back_LOD0
+    100034: Wheel_Back_LOD1
+    100036: Wheel_Front_LOD0
+    100038: Wheel_Front_LOD1
+    100040: B_B_L_LOD0
+    100042: B_B_L_LOD1
+    100044: B_B_R_LOD0
+    100046: B_B_R_LOD1
+    100048: B_F_L_LOD0
+    100050: B_F_L_LOD1
+    100052: B_F_R_LOD0
+    100054: B_F_R_LOD1
+    100056: F_B_L_LOD0
+    100058: F_B_L_LOD01
+    100060: F_B_R_LOD0
+    100062: F_B_R_LOD02
+    100064: F_F_L_LOD0
+    100066: F_F_L_LOD01
+    100068: F_F_R_LOD0
+    100070: F_F_R_LOD01
+    100072: Wheel_Back_LOD0 1
+    100074: Wheel_Back_LOD1 1
+    100076: Wheel_Front_LOD0 1
+    100078: Wheel_Front_LOD1 1
+    100080: Wheels_Back_LOD1
+    100082: Wheels_Front_LOD1
+    100084: Axis_Back_LOD0
+    100086: Axis_Back_LOD1
+    100088: Axis_Front_LOD0
+    100090: Axis_Front_LOD1
+    400000: //RootNode
+    400002: Train_Transport_Dubbel_LOD0
+    400004: Train_Transport_Dubbel_LOD1
+    400006: Back_Wheels_LOD0
+    400008: Back_Wheels_LOD1
+    400010: Carriage_LOD0
+    400012: Carriage_LOD1
+    400014: Front_Wheels_LOD0
+    400016: Front_Wheels_LOD1
+    400018: polySurface17
+    400020: polySurface18
+    400022: polySurface19
+    400024: Wheels_Back_LOD0
+    400026: Wheels_Front_LOD0
+    400028: Train_Transport_LOD0
+    400030: Train_Transport_LOD1
+    400032: Wheel_Back_LOD0
+    400034: Wheel_Back_LOD1
+    400036: Wheel_Front_LOD0
+    400038: Wheel_Front_LOD1
+    400040: B_B_L_LOD0
+    400042: B_B_L_LOD1
+    400044: B_B_R_LOD0
+    400046: B_B_R_LOD1
+    400048: B_F_L_LOD0
+    400050: B_F_L_LOD1
+    400052: B_F_R_LOD0
+    400054: B_F_R_LOD1
+    400056: F_B_L_LOD0
+    400058: F_B_L_LOD01
+    400060: F_B_R_LOD0
+    400062: F_B_R_LOD02
+    400064: F_F_L_LOD0
+    400066: F_F_L_LOD01
+    400068: F_F_R_LOD0
+    400070: F_F_R_LOD01
+    400072: Wheel_Back_LOD0 1
+    400074: Wheel_Back_LOD1 1
+    400076: Wheel_Front_LOD0 1
+    400078: Wheel_Front_LOD1 1
+    400080: Wheels_Back_LOD1
+    400082: Wheels_Front_LOD1
+    400084: Axis_Back_LOD0
+    400086: Axis_Back_LOD1
+    400088: Axis_Front_LOD0
+    400090: Axis_Front_LOD1
+    2300000: Train_Transport_Dubbel_LOD0
+    2300002: Train_Transport_Dubbel_LOD1
+    2300004: //RootNode
+    2300006: Back_Wheels_LOD0
+    2300008: Back_Wheels_LOD1
+    2300010: Carriage_LOD0
+    2300012: Carriage_LOD1
+    2300014: Front_Wheels_LOD0
+    2300016: Front_Wheels_LOD1
+    2300018: polySurface17
+    2300020: polySurface18
+    2300022: polySurface19
+    2300024: Wheels_Back_LOD0
+    2300026: Wheels_Front_LOD0
+    2300028: Wheel_Back_LOD0
+    2300030: Wheel_Back_LOD1
+    2300032: Wheel_Front_LOD0
+    2300034: Wheel_Front_LOD1
+    2300036: B_B_L_LOD0
+    2300038: B_B_L_LOD1
+    2300040: B_B_R_LOD0
+    2300042: B_B_R_LOD1
+    2300044: B_F_L_LOD0
+    2300046: B_F_L_LOD1
+    2300048: B_F_R_LOD0
+    2300050: B_F_R_LOD1
+    2300052: F_B_L_LOD0
+    2300054: F_B_L_LOD01
+    2300056: F_B_R_LOD0
+    2300058: F_B_R_LOD02
+    2300060: F_F_L_LOD0
+    2300062: F_F_L_LOD01
+    2300064: F_F_R_LOD0
+    2300066: F_F_R_LOD01
+    2300068: Wheel_Back_LOD0 1
+    2300070: Wheel_Back_LOD1 1
+    2300072: Wheel_Front_LOD0 1
+    2300074: Wheel_Front_LOD1 1
+    2300076: Axis_Back_LOD0
+    2300078: Axis_Back_LOD1
+    2300080: Axis_Front_LOD0
+    2300082: Axis_Front_LOD1
+    3300000: Train_Transport_Dubbel_LOD0
+    3300002: Train_Transport_Dubbel_LOD1
+    3300004: //RootNode
+    3300006: Back_Wheels_LOD0
+    3300008: Back_Wheels_LOD1
+    3300010: Carriage_LOD0
+    3300012: Carriage_LOD1
+    3300014: Front_Wheels_LOD0
+    3300016: Front_Wheels_LOD1
+    3300018: polySurface17
+    3300020: polySurface18
+    3300022: polySurface19
+    3300024: Wheels_Back_LOD0
+    3300026: Wheels_Front_LOD0
+    3300028: Wheel_Back_LOD0
+    3300030: Wheel_Back_LOD1
+    3300032: Wheel_Front_LOD0
+    3300034: Wheel_Front_LOD1
+    3300036: B_B_L_LOD0
+    3300038: B_B_L_LOD1
+    3300040: B_B_R_LOD0
+    3300042: B_B_R_LOD1
+    3300044: B_F_L_LOD0
+    3300046: B_F_L_LOD1
+    3300048: B_F_R_LOD0
+    3300050: B_F_R_LOD1
+    3300052: F_B_L_LOD0
+    3300054: F_B_L_LOD01
+    3300056: F_B_R_LOD0
+    3300058: F_B_R_LOD02
+    3300060: F_F_L_LOD0
+    3300062: F_F_L_LOD01
+    3300064: F_F_R_LOD0
+    3300066: F_F_R_LOD01
+    3300068: Wheel_Back_LOD0 1
+    3300070: Wheel_Back_LOD1 1
+    3300072: Wheel_Front_LOD0 1
+    3300074: Wheel_Front_LOD1 1
+    3300076: Axis_Back_LOD0
+    3300078: Axis_Back_LOD1
+    3300080: Axis_Front_LOD0
+    3300082: Axis_Front_LOD1
+    4300000: Train_Transport_Dubbel_LOD0
+    4300002: Train_Transport_Dubbel_LOD1
+    4300004: Train_Transport_Locomotive_Transport
+    4300006: Front_Wheels_LOD0
+    4300008: Back_Wheels_LOD0
+    4300010: Carriage_LOD0
+    4300012: Carriage_LOD1
+    4300014: Back_Wheels_LOD1
+    4300016: Front_Wheels_LOD1
+    4300018: polySurface17
+    4300020: polySurface18
+    4300022: polySurface19
+    4300024: Wheels_Back_LOD0
+    4300026: Wheels_Front_LOD0
+    4300028: Wheel_Back_LOD1
+    4300030: Wheel_Front_LOD1
+    4300032: Wheel_Back_LOD0
+    4300034: Wheel_Front_LOD0
+    4300036: F_F_R_LOD01
+    4300038: F_B_R_LOD02
+    4300040: F_F_L_LOD01
+    4300042: F_B_L_LOD01
+    4300044: B_B_R_LOD1
+    4300046: B_F_R_LOD1
+    4300048: B_B_L_LOD1
+    4300050: B_F_L_LOD1
+    4300052: B_F_L_LOD0
+    4300054: B_B_R_LOD0
+    4300056: B_F_R_LOD0
+    4300058: B_B_L_LOD0
+    4300060: F_B_L_LOD0
+    4300062: F_F_R_LOD0
+    4300064: F_B_R_LOD0
+    4300066: F_F_L_LOD0
+    4300068: Axis_Front_LOD1
+    4300070: Axis_Back_LOD1
+    4300072: Axis_Back_LOD0
+    4300074: Axis_Front_LOD0
+    9500000: //RootNode
+    11100000: //RootNode
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .00999999978
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  userData: 
