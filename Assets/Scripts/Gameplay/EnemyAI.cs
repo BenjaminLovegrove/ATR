@@ -41,17 +41,18 @@ public class EnemyAI : MonoBehaviour
 
 	void Awake()
 	{
+
+	}
+
+	void Start()
+	{
+		//animator.SetBool ("Move", true);
 		// Set references
 		animator = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 		playerTransform = EventManager.inst.playerTrans;
 		playerHp = EventManager.inst.playerHp;
 		playerCrouch = EventManager.inst.playerCrouch;
-	}
-
-	void Start()
-	{
-		animator.SetBool ("Move", true);
 	}
 
 	void FixedUpdate ()
