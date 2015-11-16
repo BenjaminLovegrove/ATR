@@ -903,6 +903,8 @@ GameObject:
   - 4: {fileID: 462468}
   - 95: {fileID: 9535328}
   - 114: {fileID: 11408862}
+  - 195: {fileID: 19541390}
+  - 136: {fileID: 13661624}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1885,7 +1887,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.82800007, y: -.075000003, z: -2.67000008}
+  m_LocalPosition: {x: 6.07000017, y: 0, z: -1.92999995}
   m_LocalScale: {x: .0149999997, y: .0149999997, z: .0149999997}
   m_Children:
   - {fileID: 470176}
@@ -2497,12 +2499,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c67d75784705044b011ed76e5362c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 2
+  patrolSpeed: 1
   chaseSpeed: 5
   chaseWaitTime: 5
   chaseTimer: 5
   patrolWaitTime: 1
   patrolWayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   patrolTimer: 0
@@ -2512,6 +2516,19 @@ MonoBehaviour:
   personalLastSighting: {x: 0, y: 0, z: 0}
   previousSighting: {x: 0, y: 0, z: 0}
   wayPointIndex: 0
+--- !u!136 &13661624
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 50
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 46.0699997, z: 0}
 --- !u!137 &13705024
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2847,6 +2864,26 @@ SkinnedMeshRenderer:
     m_Center: {x: -5.11732244, y: -.0062571764, z: -5.36441803e-06}
     m_Extent: {x: 5.04679632, y: 1.26366556, z: 1.07310152}
   m_DirtyAABB: 0
+--- !u!195 &19541390
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171966}
+  m_Enabled: 1
+  m_Radius: .5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: .100000001
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
