@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour
 	public float fieldOfViewAngle = 110f;
 	public bool playerInSight;
 	public bool playerInRange;
+	private bool playerDead;
 
 	public Vector3 personalLastSighting;
 	public Vector3 previousSighting;
@@ -22,54 +23,69 @@ public class EnemyAI : MonoBehaviour
 
 	private NavMeshAgent nav;
 	private Transform playerTransform;
-	private Animator animator;
+	private Animator anim;
 	private int playerHp;
 	private bool playerCrouch;
 
+	Vector3 lastPosition = Vector3.zero;
+	public float speed;
 
 	// Death coroutine
 	IEnumerator Death()
 	{
-		// Put shooting, death sounds and other shit in here later
-		
+
 		yield return new WaitForSeconds(2f);
 		
 		Application.LoadLevel (0);
 	}
 
-
 	void Awake()
 	{
-
+		// Set references
+		anim = GetComponent<Animator>();
+		nav = GetComponent<NavMeshAgent>();
 	}
 
 	void Start()
 	{
-		//animator.SetBool ("Move", true);
-		// Set references
-		animator = GetComponent<Animator>();
-		nav = GetComponent<NavMeshAgent>();
-
 		playerHp = EventManager.inst.playerHp;
 		playerCrouch = EventManager.inst.playerCrouch;
-	}
 
+	}
 	void FixedUpdate ()
 	{
         playerTransform = EventManager.inst.playerTrans;
 
 		PlayerDetection ();
 		EnemySight ();
-	}
 
+		speed = (transform.position - lastPosition).magnitude;
+		lastPosition = transform.position;
+
+		if (speed < 0.01f && !playerDead)
+		{
+			anim.Play ("Idle");
+		}
+
+		if (speed > 0.011f && !playerDead)
+		{
+			anim.Play ("Walk");
+		}
+	}
 
 	void PlayerDetection()
 	{
 		// If the player is in range and line of sight and is NOT crouching
 		if (playerInSight && playerInRange && playerCrouch == false)
 		{
-//			StartCoroutine("Death");
-			print ("Firing!");
+			//print ("Firing!");
+			//StartCoroutine("Death");
+			if (!playerDead)
+			{
+				anim.Play("Shoot");
+			}
+			playerDead = true;
+			nav.Stop();
 //			Shooting ();
 		}
 		// If the player has been sighted and isn't dead...
@@ -93,14 +109,13 @@ public class EnemyAI : MonoBehaviour
 		// Set the previous sighting to the be the sighting from this frame.
 		previousSighting = EventManager.inst.lastPlayerSighting;		
 	}
-
 	
 	void Shooting ()
 	{
-		// Stop the enemy where it is.
+
 		nav.Stop();
-		animator.SetBool ("Move", false);
-		animator.SetBool ("Shoot", true);
+		anim.SetBool ("Move", false);
+		anim.SetBool ("Shoot", true);
 	}
 
 	void Chasing ()

@@ -333,6 +333,22 @@ Prefab:
       propertyPath: enemyTrans
       value: 
       objectReference: {fileID: 912174205}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: idleAnim
+      value: 
+      objectReference: {fileID: 7400000, guid: 3db10bf61821ed74ca9132632fc7d155, type: 3}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: walkAnim
+      value: 
+      objectReference: {fileID: 7400000, guid: dfe2a3e6fbbf1664a89eb97314b89a81, type: 3}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: shootAnim
+      value: 
+      objectReference: {fileID: 7400000, guid: 53f603fb2d53f354f884f8c0f0f5169b, type: 3}
+    - target: {fileID: 9535328, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
