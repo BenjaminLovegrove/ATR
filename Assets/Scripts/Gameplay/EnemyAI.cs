@@ -64,12 +64,16 @@ public class EnemyAI : MonoBehaviour
 
 		if (speed < 0.01f && !playerDead)
 		{
-			anim.Play ("Idle");
+			//anim.Play ("Idle");
+            anim.SetBool("stopping", true);
+            anim.SetBool("walking", false);
 		}
 
 		if (speed > 0.011f && !playerDead)
 		{
-			anim.Play ("Walk");
+			//anim.Play ("Walk");
+            anim.SetBool("stopping", false);
+            anim.SetBool("walking", true);
 		}
 	}
 
@@ -82,11 +86,14 @@ public class EnemyAI : MonoBehaviour
 			//StartCoroutine("Death");
 			if (!playerDead)
 			{
-				anim.Play("Shoot");
+				//anim.Play("Shoot");
+                anim.SetBool("stopping", false);
+                anim.SetBool("walking", false);
+                anim.SetBool("shooting", true);
 			}
 			playerDead = true;
 			nav.Stop();
-//			Shooting ();
+			//Shooting ();
 		}
 		// If the player has been sighted and isn't dead...
 		else if(personalLastSighting != EventManager.inst.lastPlayerSighting && playerHp > 0f)
@@ -112,10 +119,9 @@ public class EnemyAI : MonoBehaviour
 	
 	void Shooting ()
 	{
-
-		nav.Stop();
-		anim.SetBool ("Move", false);
-		anim.SetBool ("Shoot", true);
+        anim.SetBool("stopping", false);
+        anim.SetBool("walking", false);
+        anim.SetBool("shooting", false);
 	}
 
 	void Chasing ()
