@@ -3,25 +3,24 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
-	public float patrolSpeed = 2f;
-	public float chaseSpeed = 5f;
-	public float chaseWaitTime = 5f;
+	public float patrolSpeed = 2f;							// The nav mesh agent's speed when patrolling.
+	public float chaseSpeed = 5f;							// The nav mesh agent's speed when chasing.
+	public float chaseWaitTime = 5f;						// The amount of time to wait when the last sighting is reached.
 	public float chaseTimer = 5f;
-	public float patrolWaitTime = 1f;
-	public Transform[] patrolWayPoints;
-	public float patrolTimer = 0f;
+	public float patrolWaitTime = 1f;						// The amount of time to wait when the patrol way point is reached.
+	public Transform[] patrolWayPoints;						// An array of transforms for the patrol route.
+	public float patrolTimer = 0f;							// A timer for the patrolWaitTime.
 
-	public float fieldOfViewAngle = 110f;
-	public bool playerInSight;
-	public bool playerInRange;
+	public float fieldOfViewAngle = 110f;        			// Number of degrees, centred on forward, for the enemy see.
+	public bool playerInSight;                  		    // Is the player in line of sight
+	public bool playerInRange;								// Is the player within max detection range
 
-	public Vector3 personalLastSighting;
-	public Vector3 previousSighting;
+	public Vector3 personalLastSighting;        		    // Last place this enemy spotted the player.
+	public Vector3 previousSighting;						// Last known global position of the player
 
 	public int wayPointIndex;
 
-    public Transform enemyPos;
-
+	// Reference vars
 	private NavMeshAgent nav;
 	private Transform playerTransform;
 	private Animator animator;
@@ -51,54 +50,35 @@ public class EnemyAI : MonoBehaviour
 		// Set references
 		animator = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
-
+		playerTransform = EventManager.inst.playerTrans;
+		playerHp = EventManager.inst.playerHp;
+		playerCrouch = EventManager.inst.playerCrouch;
 	}
 
 	void FixedUpdate ()
 	{
-		//print (playerTransform);
-
-		playerTransform = EventManager.inst.playerTrans;
-		playerHp = EventManager.inst.playerHp;
-		playerCrouch = EventManager.inst.playerCrouch;
-
 		PlayerDetection ();
 		EnemySight ();
 
 		// Create a vector from the enemy to the player and store the angle between it and forward.
-		Vector3 targetDir = playerTransform.position - transform.position;
-
-		float angle = Vector3.Angle(targetDir, transform.forward);
-
-		if(angle < fieldOfViewAngle * 0.5f)
-		{
-			//playerInSight = true;
-			//print ("Player within field of vision");
-
-			RaycastHit hit;
-
-//			if(Physics.Raycast(transform.position + transform.up, enemyPos.forward, out hit))
+//		Vector3 direction = playerTransform - enemyPos;
+//
+//		float angle = Vector3.Angle(direction, transform.forward);
+//
+//		if(angle < fieldOfViewAngle * 0.5f)
+//		{
+//			RaycastHit hit;
+//
+//			if(Physics.Raycast(transform.position + transform.up, direction.normalized, out hit))
 //			{
 //				if(hit.collider.gameObject.tag == "Player")
 //				{
 //					playerInSight = true;
 //					
 //					EventManager.inst.lastPlayerSighting = playerTransform.transform.position;
-//                }
-//            }
-//            else playerInSight = false;
-
-			if(Physics.Raycast(transform.position + transform.up, targetDir.normalized, out hit))
-			{
-				if(hit.collider.gameObject.tag == "Player")
-				{
-					playerInSight = true;
-					
-					EventManager.inst.lastPlayerSighting = playerTransform.transform.position;
-				}
-			}
-			else playerInSight = false;
-		}
+//				}
+//			}
+//		}
 	}
 
 
@@ -108,9 +88,9 @@ public class EnemyAI : MonoBehaviour
 		if (playerInSight && playerInRange && playerCrouch == false)
 		{
 			// ... shoot.
-			//StartCoroutine("Death");
+			StartCoroutine("Death");
 			print ("Firing!");
-			//Shooting ();
+			Shooting ();
 		}
 		// If the player has been sighted and isn't dead...
 		else if(personalLastSighting != EventManager.inst.lastPlayerSighting && playerHp > 0f)
@@ -209,38 +189,37 @@ public class EnemyAI : MonoBehaviour
 		nav.destination = patrolWayPoints[wayPointIndex].position;
 	}
 
-	void OnTriggerStay (Collider col)
+	void OnTriggerEnter (Collider col)
 	{
 		// If the player has entered the trigger sphere
 		if(col.gameObject.tag == "Player")
 		{
-			//print ("Player within detection range");
+			print ("Player within detection range");
 
 			playerInRange = true;
-			//playerInSight = false;
+			playerInSight = false;
 			
 			// Create a vector from the enemy to the player and store the angle between it and forward.
-//			Vector3 targetDir = enemyPos.position - playerTransform.position;
-//			float angle = Vector3.Angle(targetDir, transform.forward);
-//
-//			if(angle < fieldOfViewAngle * 0.5f)
-//			{
-//                print ("Player within field of vision");
-//				RaycastHit hit;
-//
-//				if(Physics.Raycast(transform.position + transform.up, targetDir.normalized, out hit))
-//				{
-//					// ... and if the raycast hits the player...
-//					if(hit.collider.gameObject.tag == "Player")
-//					{
-//
-//						playerInSight = true;
-//						
-//						// Set the last global sighting is the players current position.
-//						EventManager.inst.lastPlayerSighting = playerTransform.transform.position;
-//					}
-//				}
-//			}
+			Vector3 direction = col.transform.position - transform.position;
+			float angle = Vector3.Angle(direction, transform.forward);
+
+			if(angle < fieldOfViewAngle * 0.5f)
+			{
+				RaycastHit hit;
+
+				if(Physics.Raycast(transform.position + transform.up, direction.normalized, out hit))
+				{
+					// ... and if the raycast hits the player...
+					if(hit.collider.gameObject.tag == "Player")
+					{
+
+						playerInSight = true;
+						
+						// Set the last global sighting is the players current position.
+						EventManager.inst.lastPlayerSighting = playerTransform.transform.position;
+					}
+				}
+			}
 		}
 	}
 	
@@ -251,7 +230,7 @@ public class EnemyAI : MonoBehaviour
 		if (other.gameObject.tag == "Player")
 
 			//print ("Player exited enemy collider");
-			playerInRange = false;
+			playerInSight = false;
 	}
 		
 	float CalculatePathLength (Vector3 targetPosition)
