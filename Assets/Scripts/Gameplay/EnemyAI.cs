@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// All enemy AI functions are handled here.
+// Movement, player detection, animation, audio etc
+
 public class EnemyAI : MonoBehaviour
 {
 	public float patrolSpeed = 2f;
@@ -30,134 +33,78 @@ public class EnemyAI : MonoBehaviour
 	Vector3 lastPosition = Vector3.zero;
 	public float speed;
 
-	// Death coroutine
+	// Death co-routine
 	IEnumerator Death()
 	{
-
-		yield return new WaitForSeconds(2f);
-		
+		yield return new WaitForSeconds(2f);		
 		Application.LoadLevel (0);
-	}
+        EventManager.inst.resetLevel = true;
+    }
 
 	void Awake()
 	{
-		// Set references
 		anim = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 	}
 
-	void Start()
-	{
-		playerHp = EventManager.inst.playerHp;
-		playerCrouch = EventManager.inst.playerCrouch;
-
-	}
 	void FixedUpdate ()
 	{
+        // TODO this is dodgey, fix later
         playerTransform = EventManager.inst.playerTrans;
+        playerHp = EventManager.inst.playerHp;
+        playerCrouch = EventManager.inst.playerCrouch;
 
-		PlayerDetection ();
-		EnemySight ();
+		PlayerDetected ();
+        AnimationTriggers();
 
+        // A velocity (sort of) to determine which animation should be played
 		speed = (transform.position - lastPosition).magnitude;
 		lastPosition = transform.position;
-
-		if (speed < 0.01f && !playerDead)
-		{
-			//anim.Play ("Idle");
-            anim.SetBool("stopping", true);
-            anim.SetBool("walking", false);
-		}
-
-		if (speed > 0.011f && !playerDead)
-		{
-			//anim.Play ("Walk");
-            anim.SetBool("stopping", false);
-            anim.SetBool("walking", true);
-		}
 	}
 
-	void PlayerDetection()
+
+    // Toggle bolean  values for the animation controller to trigger animations
+    void AnimationTriggers()
+    {
+        // Idle animation
+        if (speed < 0.01f && !playerDead)
+        {
+            anim.SetBool("stopping", true);
+            anim.SetBool("walking", false);
+        }
+
+        // Walk animation
+        if (speed > 0.011f && !playerDead)
+        {
+            anim.SetBool("stopping", false);
+            anim.SetBool("walking", true);
+        }
+    }
+
+    // If the Enemy has successfully detected the player
+	void PlayerDetected()
 	{
 		// If the player is in range and line of sight and is NOT crouching
 		if (playerInSight && playerInRange && playerCrouch == false)
 		{
 			//print ("Firing!");
 			//StartCoroutine("Death");
+
+            // Shoot animation
 			if (!playerDead)
 			{
-				//anim.Play("Shoot");
                 anim.SetBool("stopping", false);
                 anim.SetBool("walking", false);
                 anim.SetBool("shooting", true);
 			}
 			playerDead = true;
 			nav.Stop();
-			//Shooting ();
 		}
-		// If the player has been sighted and isn't dead...
-		else if(personalLastSighting != EventManager.inst.lastPlayerSighting && playerHp > 0f)
-			// ... chase.
-			Chasing();
-		
-		// Otherwise...
 		else
-			// ... patrol.
 			Patrolling();
 	}
-
-	void EnemySight()
-	{
-		// If the last global sighting of the player has changed...
-		if(EventManager.inst.lastPlayerSighting != previousSighting)
-			// ... then update the personal sighting to be the same as the global sighting.
-			personalLastSighting = EventManager.inst.lastPlayerSighting;
-		
-		// Set the previous sighting to the be the sighting from this frame.
-		previousSighting = EventManager.inst.lastPlayerSighting;		
-	}
 	
-	void Shooting ()
-	{
-        anim.SetBool("stopping", false);
-        anim.SetBool("walking", false);
-        anim.SetBool("shooting", false);
-	}
-
-	void Chasing ()
-	{
-		// Create a vector from the enemy to the last sighting of the player.
-		Vector3 sightingDeltaPos = personalLastSighting - transform.position;
-		
-		// If the the last personal sighting of the player is not close...
-		if(sightingDeltaPos.sqrMagnitude > 4f)
-			// ... set the destination for the NavMeshAgent to the last personal sighting of the player.
-			nav.destination = personalLastSighting;
-		
-		// Set the appropriate speed for the NavMeshAgent.
-		nav.speed = chaseSpeed;
-		
-		// If near the last personal sighting...
-		if(nav.remainingDistance < nav.stoppingDistance)
-		{
-			// ... increment the timer.
-			chaseTimer += Time.deltaTime;
-			
-			// If the timer exceeds the wait time...
-			if(chaseTimer >= chaseWaitTime)
-			{
-				// ... reset last global sighting, the last personal sighting and the timer.
-				//EventManager.inst.lastPlayerSighting = EventManager.inst.lastPlayerSighting;
-				personalLastSighting = EventManager.inst.lastPlayerSighting;
-				chaseTimer = 0f;
-			}
-		}
-		else
-			// If not near the last sighting personal sighting of the player, reset the timer.
-			chaseTimer = 0f;
-	}
-	
-	
+	// Movement of the Enemy model
 	void Patrolling ()
 	{
 		// Set an appropriate speed for the NavMeshAgent.
@@ -189,7 +136,11 @@ public class EnemyAI : MonoBehaviour
 		// Set the destination to the patrolWayPoint.
 		nav.destination = patrolWayPoints[wayPointIndex].position;
 	}
-
+    
+    // Checks for player detection
+    // First checks if the player is within range of the Enemy vision - large trigger collider attached to enemy
+    // Then checks if the player is within the field of view - field of view variable
+    // Lastly checks if the player is in direct line of sight - raycast
 	void OnTriggerStay (Collider col)
 	{
 		// If the player has entered the trigger sphere
@@ -227,18 +178,19 @@ public class EnemyAI : MonoBehaviour
 		}
 
 	}
-	
-	
+
+    // If the player leaves the trigger area
 	void OnTriggerExit (Collider other)
 	{
-		// If the player leaves the trigger area
+		
 		if (other.gameObject.tag == "Player")
         {
 	        //print ("Player exited detection range");
 			playerInRange = false;
         }
 	}
-		
+	
+	// Movement between way points
 	float CalculatePathLength (Vector3 targetPosition)
 	{
 		// Create a path and set it based on a target position.

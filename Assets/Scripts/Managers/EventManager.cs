@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Handle global variables, such as player checkpoints and game states
+
 public class EventManager : MonoBehaviour
 {
-	public static EventManager inst;					// Create singleton of this script
-	public int playerHp = 100;							// Player Health
-	public Vector3 lastPlayerSighting;        		    // Last place an enemy spotted the player
-	public Transform playerTrans;						// Player's position
-	public GameObject playerObj;						// Reference to the player object
-	public bool playerCrouch = false;					// State of player crouching
+	public static EventManager inst;
+	public int playerHp = 100;
+	public Vector3 lastPlayerSighting;
+	public Transform playerTrans;
+	public GameObject playerObj;
+	public bool playerCrouch = false;
+
+    public Transform[] PlayerCheckPoints;
+    public int currentCheckPoint;
+
+    public bool resetLevel = false;
 
 	void Awake ()
 	{
@@ -23,11 +30,20 @@ public class EventManager : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		//playerTrans = playerObj.transform;
+        // Check for external level reset
+        if (resetLevel)
+        {
+            ResetPlayer();
+        }
 	}
-
-	void ResetData ()
+    
+    // Reset the player to the last checkpoint
+    // Place an empty gameobject with the desired world position of the
+    // checkpoint into the corresponding array value.
+    // Use triggers to set the value of the last achieved checkpoint.
+	void ResetPlayer ()
 	{
-		playerHp = 100;
+        playerTrans = PlayerCheckPoints[currentCheckPoint];
+        resetLevel = false;
 	}
 }

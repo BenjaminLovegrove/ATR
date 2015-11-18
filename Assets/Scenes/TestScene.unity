@@ -119,6 +119,9 @@ MonoBehaviour:
   playerTrans: {fileID: 2090484368}
   playerObj: {fileID: 2090484361}
   playerCrouch: 0
+  PlayerCheckPoints: []
+  currentCheckPoint: 0
+  resetLevel: 0
 --- !u!4 &183443537
 Transform:
   m_ObjectHideFlags: 0
