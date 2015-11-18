@@ -37,6 +37,9 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+--- !u!127 &3
+LevelGameManager:
+  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -65,7 +68,6 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
-    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -183,6 +185,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1707599461}
   m_RootOrder: 0
+--- !u!1 &912174204 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 171966, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+  m_PrefabInternal: {fileID: 1013605015}
+--- !u!4 &912174205 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+  m_PrefabInternal: {fileID: 1013605015}
+--- !u!136 &912174210
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 912174204}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 50
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 50, z: 0}
 --- !u!1 &922991813
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,6 +321,18 @@ Prefab:
       propertyPath: patrolWayPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1992570893}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: enemyTrans
+      value: 
+      objectReference: {fileID: 912174205}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -546,6 +581,10 @@ Prefab:
     - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100828, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
