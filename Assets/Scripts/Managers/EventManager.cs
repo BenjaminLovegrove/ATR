@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-//Handle global variables, such as player checkpoints and game states
+// Handle global variables, such as player checkpoints and game states
 
 public class EventManager : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class EventManager : MonoBehaviour
 	public GameObject playerObj;
 	public bool playerCrouch = false;
 
-    public Transform[] PlayerCheckPoints;
+    public Transform[] playerCheckPoints;
     public int currentCheckPoint;
 
     public bool resetLevel = false;
@@ -27,6 +27,11 @@ public class EventManager : MonoBehaviour
 		}
 		else Destroy(this);
 	}
+
+    void Start()
+    {
+        Cursor.visible = false;
+    }
 
 	void FixedUpdate ()
 	{
@@ -43,7 +48,7 @@ public class EventManager : MonoBehaviour
     // Use triggers to set the value of the last achieved checkpoint.
 	void ResetPlayer ()
 	{
-        playerTrans = PlayerCheckPoints[currentCheckPoint];
+        playerTrans = playerCheckPoints[currentCheckPoint];
         resetLevel = false;
 	}
 }

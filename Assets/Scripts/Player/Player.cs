@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
 	public float jumpHeight = 2.0f;
 	private bool grounded = false;
 	public Rigidbody playerRigid;
+    AudioSource audio;
+    //public AudioClip footSteps;
+    private bool walking = false;
+    AudioClip walkingSFX;
 	
 	
 	
@@ -21,6 +25,7 @@ public class Player : MonoBehaviour
 	{
 		playerRigid.freezeRotation = true;
 		playerRigid.useGravity = false;
+        audio = GetComponent<AudioSource>();
 	}
 	
 	void FixedUpdate ()
@@ -46,7 +51,35 @@ public class Player : MonoBehaviour
 				playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 			}
 
-		}
+
+            // Play footsteps sfx
+            //if (Input.GetButton("Vertical") && walking == false)
+            //if (Input.GetButton("Vertical"))
+            //{
+            //    //audio.loop = true;
+            //    //walking = true;
+            //    audio.Play();
+                
+            //}
+            //else audio.Stop();
+
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                audio.loop = true;
+                //audio.clip = walkingSFX;
+                audio.Play();
+                // walking = true;
+                // audio.PlayOneShot(footSteps);
+            }
+            //else audio.Stop();
+            //else walking = false;
+
+            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+            {
+                audio.Stop();
+            }
+
+        }
 		
 		// Manual gravity
 		playerRigid.AddForce(new Vector3 (0, -gravity * playerRigid.mass, 0));
