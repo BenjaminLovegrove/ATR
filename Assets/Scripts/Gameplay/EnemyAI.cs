@@ -14,6 +14,9 @@ public class EnemyAI : MonoBehaviour
 	public Transform[] patrolWayPoints;
 	public float patrolTimer = 0f;
 
+    AudioSource audio;
+    public AudioClip gunShot;
+
 	public float fieldOfViewAngle = 110f;
 	public bool playerInSight;
 	public bool playerInRange;
@@ -43,6 +46,7 @@ public class EnemyAI : MonoBehaviour
 
 	void Awake()
 	{
+        audio = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
 	}
@@ -88,11 +92,13 @@ public class EnemyAI : MonoBehaviour
 		if (playerInSight && playerInRange && playerCrouch == false)
 		{
 			//print ("Firing!");
-			//StartCoroutine("Death");
+			//StartCoroutine("Death");            
 
-            // Shoot animation
+            // Shoot animation and audio
 			if (!playerDead)
 			{
+                transform.LookAt(playerTransform);
+                audio.PlayOneShot(gunShot, 1f);
                 anim.SetBool("stopping", false);
                 anim.SetBool("walking", false);
                 anim.SetBool("shooting", true);
@@ -137,7 +143,7 @@ public class EnemyAI : MonoBehaviour
 		nav.destination = patrolWayPoints[wayPointIndex].position;
 	}
     
-    // Checks for player detection
+    // PLAYER DETECTION
     // First checks if the player is within range of the Enemy vision - large trigger collider attached to enemy
     // Then checks if the player is within the field of view - field of view variable
     // Lastly checks if the player is in direct line of sight - raycast
