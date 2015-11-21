@@ -135,12 +135,54 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 418562, guid: 3a84b64b1ead7cc4d9099b6fcf777af4, type: 2}
   m_PrefabInternal: {fileID: 16140560}
---- !u!1001 &26336020
+--- !u!1001 &24178939
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -68.5400009
+      objectReference: {fileID: 0}
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.26999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -131.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: .537534595
+      objectReference: {fileID: 0}
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .843241751
+      objectReference: {fileID: 0}
+    - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &26336020
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -172,21 +214,29 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &26336021 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 26336020}
 --- !u!1001 &30518495
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 4dbb67c673aa24a4984f1f376c5fa36b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -218,17 +268,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4dbb67c673aa24a4984f1f376c5fa36b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4dbb67c673aa24a4984f1f376c5fa36b, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &30518496 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4dbb67c673aa24a4984f1f376c5fa36b, type: 3}
+  m_PrefabInternal: {fileID: 30518495}
 --- !u!1001 &39948621
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -260,15 +314,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &39948622 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 39948621}
 --- !u!1001 &46927794
 Prefab:
   m_ObjectHideFlags: 0
@@ -793,7 +855,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -825,15 +887,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &243085636 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 243085635}
 --- !u!1001 &251859921
 Prefab:
   m_ObjectHideFlags: 0
@@ -1162,10 +1232,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 246.802444, y: -136.11084, z: 156.83078}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1400307446}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 3
 --- !u!1001 &343736714
 Prefab:
   m_ObjectHideFlags: 0
@@ -1221,7 +1290,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1259,9 +1328,17 @@ Prefab:
       propertyPath: m_Name
       value: Highway_Road_Part_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &348028229 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 348028228}
 --- !u!1001 &405157363
 Prefab:
   m_ObjectHideFlags: 0
@@ -1483,7 +1560,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1515,7 +1592,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_Name
@@ -1949,7 +2026,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1981,15 +2058,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &552296217 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 552296216}
 --- !u!1001 &565701775
 Prefab:
   m_ObjectHideFlags: 0
@@ -2157,7 +2242,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 2836cf9edd2e12d438d77133b4f07e0f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2189,7 +2274,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2836cf9edd2e12d438d77133b4f07e0f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2836cf9edd2e12d438d77133b4f07e0f, type: 3}
@@ -2457,7 +2542,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1740486112}
     m_Modifications:
     - target: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2489,17 +2574,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 19
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &656949083 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
+  m_PrefabInternal: {fileID: 656949082}
 --- !u!1001 &658878871
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2531,7 +2620,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_Name
@@ -2715,7 +2804,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1159143650}
     m_Modifications:
     - target: {fileID: 400000, guid: 3d7864a1741730345add12dcf4e2aae8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2747,11 +2836,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3d7864a1741730345add12dcf4e2aae8, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 76
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d7864a1741730345add12dcf4e2aae8, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &755130643 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 3d7864a1741730345add12dcf4e2aae8, type: 3}
+  m_PrefabInternal: {fileID: 755130642}
 --- !u!1 &764900556
 GameObject:
   m_ObjectHideFlags: 0
@@ -3007,7 +3100,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3039,15 +3132,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &888184659 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 888184658}
 --- !u!1001 &903587338
 Prefab:
   m_ObjectHideFlags: 0
@@ -3307,7 +3408,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3339,15 +3440,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &981535556 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 981535555}
 --- !u!1001 &988487474
 Prefab:
   m_ObjectHideFlags: 0
@@ -3403,7 +3512,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3435,15 +3544,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &993438628 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 993438627}
 --- !u!1 &1001930594
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,8 +3755,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 1
-  m_Color: {r: 1, g: .956862748, b: .839215696, a: 1}
-  m_Intensity: 1
+  m_Color: {r: .632352948, g: .632352948, b: .632352948, a: 1}
+  m_Intensity: .5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3672,7 +3789,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 1
 --- !u!1001 &1035010711
 Prefab:
   m_ObjectHideFlags: 0
@@ -4111,7 +4228,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1740486112}
     m_Modifications:
     - target: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4143,7 +4260,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_Name
@@ -4152,6 +4269,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1136989629 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
+  m_PrefabInternal: {fileID: 1136989628}
 --- !u!1 &1159143649
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,6 +4374,8 @@ Transform:
   - {fileID: 1211543607}
   - {fileID: 922754976}
   - {fileID: 1313727948}
+  - {fileID: 755130643}
+  - {fileID: 1762544775}
   m_Father: {fileID: 1792517062}
   m_RootOrder: 1
 --- !u!1001 &1188834336
@@ -4731,7 +4854,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4763,15 +4886,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1245831526 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 1245831525}
 --- !u!1001 &1245887479
 Prefab:
   m_ObjectHideFlags: 0
@@ -5524,52 +5655,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 4c4b91d425026d64d987b9d3227ba28c, type: 3}
   m_PrefabInternal: {fileID: 1380163545}
---- !u!1001 &1400307445
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 332019137}
-    m_Modifications:
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -345.102448
-      objectReference: {fileID: 0}
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 136.11084
-      objectReference: {fileID: 0}
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -264.530762
-      objectReference: {fileID: 0}
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &1400307446 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-  m_PrefabInternal: {fileID: 1400307445}
 --- !u!1001 &1409411009
 Prefab:
   m_ObjectHideFlags: 0
@@ -5879,7 +5964,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: cb42369641a7d374380b7a6db5a9a1c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5911,7 +5996,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb42369641a7d374380b7a6db5a9a1c6, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: cb42369641a7d374380b7a6db5a9a1c6, type: 3}
       propertyPath: m_Name
@@ -5929,7 +6014,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5961,7 +6046,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
       propertyPath: m_LocalScale.y
@@ -5982,12 +6067,16 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1466463243 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
+  m_PrefabInternal: {fileID: 1466463242}
 --- !u!1001 &1469614981
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6019,11 +6108,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1469614982 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 1469614981}
 --- !u!1 &1478225309
 GameObject:
   m_ObjectHideFlags: 0
@@ -6318,7 +6415,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6350,21 +6447,29 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1611748609 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 1611748608}
 --- !u!1001 &1618566781
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6396,7 +6501,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
@@ -6617,92 +6722,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1b9a1b17954a2e64d8e81cf8d4255254, type: 3}
   m_PrefabInternal: {fileID: 1658010575}
---- !u!1 &1665073121
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1665073126}
-  - 20: {fileID: 1665073125}
-  - 92: {fileID: 1665073124}
-  - 124: {fileID: 1665073123}
-  - 81: {fileID: 1665073122}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &1665073122
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1665073121}
-  m_Enabled: 1
---- !u!124 &1665073123
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1665073121}
-  m_Enabled: 1
---- !u!92 &1665073124
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1665073121}
-  m_Enabled: 1
---- !u!20 &1665073125
-Camera:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1665073121}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: .300000012
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
-  m_StereoMirrorMode: 0
---- !u!4 &1665073126
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1665073121}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -164.199997, y: 8.39999962, z: 142.199997}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 24
 --- !u!1001 &1667364239
 Prefab:
   m_ObjectHideFlags: 0
@@ -7012,7 +7031,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7044,21 +7063,29 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1710313324 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 1710313323}
 --- !u!1001 &1732494861
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1740486112}
     m_Modifications:
     - target: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7090,21 +7117,29 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
       propertyPath: m_Name
       value: Fence (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1732494862 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
+  m_PrefabInternal: {fileID: 1732494861}
 --- !u!1001 &1734815844
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 4dbb67c673aa24a4984f1f376c5fa36b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7136,7 +7171,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4dbb67c673aa24a4984f1f376c5fa36b, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4dbb67c673aa24a4984f1f376c5fa36b, type: 3}
@@ -7174,19 +7209,16 @@ Transform:
   - {fileID: 1500925581}
   - {fileID: 203057349}
   - {fileID: 343736715}
-  - {fileID: 583039227}
-  - {fileID: 1463539475}
-  - {fileID: 2018353527}
-  - {fileID: 658878872}
-  - {fileID: 447823884}
-  - {fileID: 1880456442}
-  - {fileID: 1618566782}
-  - {fileID: 1734815845}
   - {fileID: 1875707370}
   - {fileID: 1792058082}
   - {fileID: 1409411010}
   - {fileID: 1813507312}
   - {fileID: 2085510087}
+  - {fileID: 1136989629}
+  - {fileID: 1732494862}
+  - {fileID: 656949083}
+  - {fileID: 1808158620}
+  - {fileID: 2132497159}
   m_Father: {fileID: 1792517062}
   m_RootOrder: 5
 --- !u!1001 &1762544774
@@ -7194,7 +7226,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1159143650}
     m_Modifications:
     - target: {fileID: 400000, guid: c72c2f5fd97b0e54995eadb2674ce721, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7226,11 +7258,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c72c2f5fd97b0e54995eadb2674ce721, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 77
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c72c2f5fd97b0e54995eadb2674ce721, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1762544775 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: c72c2f5fd97b0e54995eadb2674ce721, type: 3}
+  m_PrefabInternal: {fileID: 1762544774}
 --- !u!1001 &1765863585
 Prefab:
   m_ObjectHideFlags: 0
@@ -7510,7 +7546,44 @@ Transform:
   - {fileID: 1740486112}
   - {fileID: 1947496424}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 2
+--- !u!1 &1808158619
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1808158620}
+  m_Layer: 0
+  m_Name: Alleys
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1808158620
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1808158619}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 583039227}
+  - {fileID: 1463539475}
+  - {fileID: 2018353527}
+  - {fileID: 658878872}
+  - {fileID: 447823884}
+  - {fileID: 1880456442}
+  - {fileID: 1618566782}
+  - {fileID: 1734815845}
+  - {fileID: 30518496}
+  - {fileID: 1947951778}
+  m_Father: {fileID: 1740486112}
+  m_RootOrder: 12
 --- !u!1001 &1813507311
 Prefab:
   m_ObjectHideFlags: 0
@@ -7574,7 +7647,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7606,7 +7679,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
       propertyPath: m_LocalScale.y
@@ -7623,6 +7696,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1826805266 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: bb540ba3c1bc05f4d839187d90bf0a7c, type: 3}
+  m_PrefabInternal: {fileID: 1826805265}
 --- !u!1 &1845513663
 GameObject:
   m_ObjectHideFlags: 0
@@ -7706,7 +7783,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7738,21 +7815,29 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1861508023 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 1861508022}
 --- !u!1001 &1869761547
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7784,15 +7869,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1869761548 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 1869761547}
 --- !u!1001 &1875707369
 Prefab:
   m_ObjectHideFlags: 0
@@ -7848,7 +7941,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: cb42369641a7d374380b7a6db5a9a1c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7880,7 +7973,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb42369641a7d374380b7a6db5a9a1c6, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cb42369641a7d374380b7a6db5a9a1c6, type: 3}
       propertyPath: m_LocalScale.x
@@ -8063,7 +8156,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8095,11 +8188,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &1947951778 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
+  m_PrefabInternal: {fileID: 1947951777}
 --- !u!1 &1966562535
 GameObject:
   m_ObjectHideFlags: 0
@@ -8282,7 +8379,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1740486112}
+    m_TransformParent: {fileID: 1808158620}
     m_Modifications:
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8314,7 +8411,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4a41699f29966aa4f92668b5579ab1ed, type: 3}
       propertyPath: m_Name
@@ -8390,7 +8487,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2132497159}
     m_Modifications:
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8422,15 +8519,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
       propertyPath: m_Name
       value: Highway_Road_Part_01 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &2023051806 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: fc4f0d08829eb0c4781b0ef55c3d3865, type: 3}
+  m_PrefabInternal: {fileID: 2023051805}
 --- !u!1001 &2033860907
 Prefab:
   m_ObjectHideFlags: 0
@@ -8847,3 +8952,47 @@ Transform:
   - {fileID: 1098319074}
   m_Father: {fileID: 1792517062}
   m_RootOrder: 0
+--- !u!1 &2132497158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2132497159}
+  m_Layer: 0
+  m_Name: Highway
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132497159
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132497158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 348028229}
+  - {fileID: 552296217}
+  - {fileID: 1466463243}
+  - {fileID: 1826805266}
+  - {fileID: 1245831526}
+  - {fileID: 1869761548}
+  - {fileID: 2023051806}
+  - {fileID: 39948622}
+  - {fileID: 1611748609}
+  - {fileID: 1710313324}
+  - {fileID: 1861508023}
+  - {fileID: 981535556}
+  - {fileID: 243085636}
+  - {fileID: 888184659}
+  - {fileID: 993438628}
+  - {fileID: 26336021}
+  - {fileID: 1469614982}
+  m_Father: {fileID: 1740486112}
+  m_RootOrder: 13
