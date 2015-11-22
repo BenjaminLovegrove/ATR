@@ -905,6 +905,8 @@ GameObject:
   - 114: {fileID: 11408862}
   - 195: {fileID: 19541390}
   - 136: {fileID: 13661624}
+  - 82: {fileID: 8275414}
+  - 136: {fileID: 13661758}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2471,6 +2473,75 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198644}
   m_Mesh: {fileID: 4300006, guid: c4fac4aaef3a15f4980f3c2cfb339896, type: 3}
+--- !u!82 &8275414
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171966}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5f43052ecc952d845bdf2326b0f09644, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .00200000009
+      value: 1
+      inSlope: 0
+      outSlope: -1.00200403
+      tangentMode: 0
+    - time: .0384615511
+      value: 0
+      inSlope: -1.00200403
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9535328
 Animator:
   serializedVersion: 3
@@ -2483,7 +2554,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 46ed2fa73603d934ab9bf3aad550779e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -2510,13 +2581,28 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   patrolTimer: 0
+  gunShot: {fileID: 8300000, guid: 8dae7ac02a79d794d884c7d54f964fe7, type: 3}
   fieldOfViewAngle: 110
-  playerInSight: 0
-  playerInRange: 0
+  wayPointLooping: 1
+  staticEnemy: 1
   personalLastSighting: {x: 0, y: 0, z: 0}
   previousSighting: {x: 0, y: 0, z: 0}
   wayPointIndex: 0
+  speed: 0
 --- !u!136 &13661624
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 200
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 46.0699997, z: 0}
+--- !u!136 &13661758
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2528,7 +2614,7 @@ CapsuleCollider:
   m_Radius: 50
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 46.0699997, z: 0}
+  m_Center: {x: 0, y: 50, z: 0}
 --- !u!137 &13705024
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

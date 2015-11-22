@@ -22,6 +22,7 @@ public class EnemyAI : MonoBehaviour
     private bool playerInRange;
 	private bool playerDead;
     public bool wayPointLooping = true;
+    public bool staticEnemy;
 
 	public Vector3 personalLastSighting;
 	public Vector3 previousSighting;
@@ -114,42 +115,43 @@ public class EnemyAI : MonoBehaviour
 	// Movement of the Enemy model
 	void Patrolling ()
 	{
-		// Set an appropriate speed for the NavMeshAgent.
-		nav.speed = patrolSpeed;
-		
-		// If near the next waypoint or there is no destination...
-		if(nav.destination == EventManager.inst.lastPlayerSighting || nav.remainingDistance < nav.stoppingDistance)
-		{
-			// ... increment the timer.
-			patrolTimer += Time.deltaTime;
+        if (!staticEnemy)
+        {
+            // Set an appropriate speed for the NavMeshAgent.
+            nav.speed = patrolSpeed;
 
-            // If the timer exceeds the wait time increment the wayPointIndex
-			if(patrolTimer >= patrolWaitTime)
-			{
-                // Waypoint looping
-				if(wayPointIndex == patrolWayPoints.Length - 1 && wayPointLooping)
-					wayPointIndex = 0;
-                else wayPointIndex++;
-                
-                // Non waypoint looping
-                if (wayPointIndex == patrolWayPoints.Length - 1 && !wayPointLooping)
-                    // *** having the belew line commented out may cause future problems
-                    // for now it is necessary to prevent way point looping when desired ***
+            // If near the next waypoint or there is no destination...
+            if (nav.destination == EventManager.inst.lastPlayerSighting || nav.remainingDistance < nav.stoppingDistance)
+            {
+                // ... increment the timer.
+                patrolTimer += Time.deltaTime;
+
+                // If the timer exceeds the wait time increment the wayPointIndex
+                if (patrolTimer >= patrolWaitTime)
                 {
-                    nav.Stop();
+                    // Waypoint looping
+                    if (wayPointIndex == patrolWayPoints.Length - 1 && wayPointLooping)
+                        wayPointIndex = 0;
+                    else wayPointIndex++;
+
+                    // Non waypoint looping
+                    if (wayPointIndex == patrolWayPoints.Length - 1 && !wayPointLooping)
+                    {
+                        nav.Stop();
+                    }
+
+
+                    // Reset the timer.
+                    patrolTimer = 0;
                 }
-					
-				
-				// Reset the timer.
-				patrolTimer = 0;
-			}
-		}
-		else
-			// If not near a destination, reset the timer.
-			patrolTimer = 0;
-		
-		// Set the destination to the patrolWayPoint.
-		nav.destination = patrolWayPoints[wayPointIndex].position;
+            }
+            else
+                // If not near a destination, reset the timer.
+                patrolTimer = 0;
+
+            // Set the destination to the patrolWayPoint.
+            nav.destination = patrolWayPoints[wayPointIndex].position;
+        }
 	}
     
     // PLAYER DETECTION
