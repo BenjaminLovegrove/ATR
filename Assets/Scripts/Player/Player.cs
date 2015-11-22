@@ -1,25 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Player Inputs and SFX
+
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (CapsuleCollider))]
 
 public class Player : MonoBehaviour
-{
-	
+{	
 	public float speed = 10.0f;
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
 	public bool canJump = true;
 	public float jumpHeight = 2.0f;
 	private bool grounded = false;
-	public Rigidbody playerRigid;
+	
+    public Rigidbody playerRigid;
     AudioSource audio;
-    //public AudioClip footSteps;
-    private bool walking = false;
-    AudioClip walkingSFX;
-	
-	
+    
+    public AudioClip walkingSFX;
+    private float footStepTimer;
+    public float footStepInterval = 0.75f;	
 	
 	void Awake ()
 	{
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
 	
 	void FixedUpdate ()
 	{
+        PlayFootStepSFX();
+
 		if (grounded)
 		{
 			// Calculate how fast we should be moving
@@ -51,34 +54,6 @@ public class Player : MonoBehaviour
 				playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
 			}
 
-
-            // Play footsteps sfx
-            //if (Input.GetButton("Vertical") && walking == false)
-            //if (Input.GetButton("Vertical"))
-            //{
-            //    //audio.loop = true;
-            //    //walking = true;
-            //    audio.Play();
-                
-            //}
-            //else audio.Stop();
-
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                audio.loop = true;
-                //audio.clip = walkingSFX;
-                audio.Play();
-                // walking = true;
-                // audio.PlayOneShot(footSteps);
-            }
-            //else audio.Stop();
-            //else walking = false;
-
-            if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-            {
-                audio.Stop();
-            }
-
         }
 		
 		// Manual gravity
@@ -86,6 +61,20 @@ public class Player : MonoBehaviour
 		
 		grounded = false;
 	}
+
+    // Play footsteps using a Vertical input as a scalar
+    // TODO: add a random pool of Footstep SFX to play from, also depending on what area the player is in
+    void PlayFootStepSFX()
+    {
+        footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
+
+        if (footStepTimer > footStepInterval)
+        {
+            print("footstep");
+            audio.PlayOneShot(walkingSFX);
+            footStepTimer = 0;
+        }
+    }
 	
 	void OnCollisionStay ()
 	{
