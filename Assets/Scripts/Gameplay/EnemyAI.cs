@@ -18,9 +18,10 @@ public class EnemyAI : MonoBehaviour
     public AudioClip gunShot;
 
 	public float fieldOfViewAngle = 110f;
-	public bool playerInSight;
-	public bool playerInRange;
+    private bool playerInSight;
+    private bool playerInRange;
 	private bool playerDead;
+    public bool wayPointLooping = true;
 
 	public Vector3 personalLastSighting;
 	public Vector3 previousSighting;
@@ -121,15 +122,23 @@ public class EnemyAI : MonoBehaviour
 		{
 			// ... increment the timer.
 			patrolTimer += Time.deltaTime;
-			
-			// If the timer exceeds the wait time...
+
+            // If the timer exceeds the wait time increment the wayPointIndex
 			if(patrolTimer >= patrolWaitTime)
 			{
-				// ... increment the wayPointIndex.
-				if(wayPointIndex == patrolWayPoints.Length - 1)
+                // Waypoint looping
+				if(wayPointIndex == patrolWayPoints.Length - 1 && wayPointLooping)
 					wayPointIndex = 0;
-				else
-					wayPointIndex++;
+                else wayPointIndex++;
+                
+                // Non waypoint looping
+                if (wayPointIndex == patrolWayPoints.Length - 1 && !wayPointLooping)
+                    // *** having the belew line commented out may cause future problems
+                    // for now it is necessary to prevent way point looping when desired ***
+                {
+                    nav.Stop();
+                }
+					
 				
 				// Reset the timer.
 				patrolTimer = 0;
@@ -166,10 +175,9 @@ public class EnemyAI : MonoBehaviour
 
 				RaycastHit hit;
 
-				//if(Physics.Raycast(transform.position + transform.up, direction.normalized, out hit))
                 if(Physics.Raycast(transform.position, direction.normalized, out hit))
 				{
-					// ... and if the raycast hits the player...
+					// If the raycast hits the player...
 					if(hit.collider.gameObject.tag == "Player")
 					{
                         //print ("Player within line of sight");

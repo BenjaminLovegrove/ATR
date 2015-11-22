@@ -14,7 +14,7 @@ public class PlayerCam : MonoBehaviour
 	public float maximumY = 60F;
 	float rotationY = 0F;
 
-	void Update ()
+	void FixedUpdate ()
 	{
 		if (axes == RotationAxes.MouseXAndY)
 		{

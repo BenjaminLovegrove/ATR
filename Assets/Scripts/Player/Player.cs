@@ -70,7 +70,6 @@ public class Player : MonoBehaviour
 
         if (footStepTimer > footStepInterval)
         {
-            print("footstep");
             audio.PlayOneShot(walkingSFX);
             footStepTimer = 0;
         }
