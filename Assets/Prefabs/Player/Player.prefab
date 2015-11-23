@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11481398}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,8 +58,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
-  m_LocalRotation: {x: 0, y: .537534595, z: 0, w: .843241751}
-  m_LocalPosition: {x: -68.5400009, y: 1.26999998, z: -131.399994}
+  m_LocalRotation: {x: 0, y: .988831222, z: 0, w: .149039626}
+  m_LocalPosition: {x: -167.679993, y: -4.78999996, z: -23.6399994}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 432890}
@@ -142,9 +142,9 @@ MonoBehaviour:
   distanceFog: 0
   useRadialDistance: 1
   heightFog: 1
-  height: 9
-  heightDensity: 3.5
-  startDistance: 50
+  height: 8
+  heightDensity: 3
+  startDistance: 30
   fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
 --- !u!114 &11481398
 MonoBehaviour:
@@ -158,8 +158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 0
-  sensitivityX: 15
-  sensitivityY: 15
+  sensitivityX: 3
+  sensitivityY: 3
   minimumX: -360
   maximumX: 360
   minimumY: -60
@@ -179,15 +179,17 @@ MonoBehaviour:
   gravity: 10
   maxVelocityChange: 10
   canJump: 1
-  jumpHeight: 2
+  jumpHeight: .5
   playerRigid: {fileID: 5430988}
+  walkingSFX: {fileID: 0}
+  footStepInterval: .75
 --- !u!114 &11499014
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 164748}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
   m_Name: 
