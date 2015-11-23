@@ -5,9 +5,8 @@ using System.Collections;
 
 public class EventManager : MonoBehaviour
 {
-	public static EventManager inst;
-	public int playerHp = 100;
-	public Vector3 lastPlayerSighting;
+    public static EventManager inst;
+
 	public Transform playerTrans;
 	public GameObject playerObj;
 	public bool playerCrouch = false;
@@ -43,12 +42,27 @@ public class EventManager : MonoBehaviour
 	}
     
     // Reset the player to the last checkpoint
-    // Place an empty gameobject with the desired world position of the
-    // checkpoint into the corresponding array value.
-    // Use triggers to set the value of the last achieved checkpoint.
+    // Place an empty gameobject named "PlayerCheckPoints" with child objects containing
+    // the desired world positions of checkpoints (in order).
+    // Use triggers to set the value of the last achieved checkpoint - (currentCheckPoint).
 	void ResetPlayer ()
 	{
-        playerTrans = playerCheckPoints[currentCheckPoint];
+        Application.LoadLevel(0);
         resetLevel = false;
+        playerTrans.position = playerCheckPoints[currentCheckPoint].position;
+        //print(currentCheckPoint);
+        
 	}
+
+    // Repopulate EventManager data upon loading a scene
+    void OnLevelWasLoaded()
+    {
+        playerTrans = GameObject.Find("Player").GetComponent<Transform>();
+        playerObj = GameObject.Find("Player");
+
+        for (int i = 0; i < playerCheckPoints.Length; i++)
+        {
+            playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
+        }
+    }
 }

@@ -18,14 +18,13 @@ public class EnemyAI : MonoBehaviour
     public AudioClip gunShot;
 
 	public float fieldOfViewAngle = 110f;
+   
     private bool playerInSight;
     private bool playerInRange;
 	private bool playerDead;
-    public bool wayPointLooping = true;
+    
+    public bool wayPointLooping;
     public bool staticEnemy;
-
-	public Vector3 personalLastSighting;
-	public Vector3 previousSighting;
 
 	public int wayPointIndex;
 
@@ -36,14 +35,13 @@ public class EnemyAI : MonoBehaviour
 	private bool playerCrouch;
 
 	Vector3 lastPosition = Vector3.zero;
-	public float speed;
+	private float speed;
     private float shootAnimTimer;
 
 	// Death co-routine
 	IEnumerator Death()
 	{
-		yield return new WaitForSeconds(2f);		
-		Application.LoadLevel (0);
+        yield return new WaitForSeconds(6f);
         EventManager.inst.resetLevel = true;
     }
 
@@ -52,13 +50,13 @@ public class EnemyAI : MonoBehaviour
         audio = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
+        
 	}
 
 	void FixedUpdate ()
 	{
         // TODO this is dodgey, fix later
         playerTransform = EventManager.inst.playerTrans;
-        playerHp = EventManager.inst.playerHp;
         playerCrouch = EventManager.inst.playerCrouch;
 
 		PlayerDetected ();
@@ -105,7 +103,7 @@ public class EnemyAI : MonoBehaviour
 		if (playerInSight && playerInRange && playerCrouch == false)
 		{
 			//print ("Firing!");
-			//StartCoroutine("Death");            
+			StartCoroutine("Death");            
 
             // Shoot animation and audio
 			if (!playerDead)
@@ -132,7 +130,8 @@ public class EnemyAI : MonoBehaviour
             nav.speed = patrolSpeed;
 
             // If near the next waypoint or there is no destination...
-            if (nav.destination == EventManager.inst.lastPlayerSighting || nav.remainingDistance < nav.stoppingDistance)
+            //if (nav.destination == EventManager.inst.lastPlayerSighting || nav.remainingDistance < nav.stoppingDistance)
+            if (nav.remainingDistance < nav.stoppingDistance)
             {
                 // ... increment the timer.
                 patrolTimer += Time.deltaTime;
@@ -195,9 +194,6 @@ public class EnemyAI : MonoBehaviour
 					{
                         //print ("Player within line of sight");
 						playerInSight = true;
-						
-						// Set the last global sighting is the players current position.
-						EventManager.inst.lastPlayerSighting = playerTransform.transform.position;
 					}
                     else playerInSight = false;
 				}
@@ -217,7 +213,7 @@ public class EnemyAI : MonoBehaviour
 	}
 
     // This is for the inner collider that detects the player
-    // regardless of line of sight and if crouching
+    // regardless if the player is crouching
     void OnTriggerEnter(Collider col)
     {
         if (playerInRange && col.tag == "Player")
@@ -233,9 +229,6 @@ public class EnemyAI : MonoBehaviour
                 {
                     //print ("Player within line of sight");
                     playerInSight = true;
-
-                    // Set the last global sighting is the players current position.
-                    EventManager.inst.lastPlayerSighting = playerTransform.transform.position;
                 }
                 else playerInSight = false;
             }

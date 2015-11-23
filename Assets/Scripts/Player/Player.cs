@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
 	public bool canJump = true;
-	public float jumpHeight = 2.0f;
+	public float jumpHeight = 0.5f;
 	private bool grounded = false;
 	
     public Rigidbody playerRigid;
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
 	}
 
     // Play footsteps using a Vertical input as a scalar
-    // TODO: add a random pool of Footstep SFX to play from, also depending on what area the player is in
+    // TODO: add a random pool of Footstep SFX to play from, also dependant on what area the player is in
     void PlayFootStepSFX()
     {
         footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
