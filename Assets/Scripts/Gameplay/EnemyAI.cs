@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
 
 	Vector3 lastPosition = Vector3.zero;
 	public float speed;
+    private float shootAnimTimer;
 
 	// Death co-routine
 	IEnumerator Death()
@@ -66,6 +67,16 @@ public class EnemyAI : MonoBehaviour
         // A velocity (sort of) to determine which animation should be played
 		speed = (transform.position - lastPosition).magnitude;
 		lastPosition = transform.position;
+
+        if (playerDead)
+        {
+            shootAnimTimer += Time.deltaTime;
+        }
+
+        if (shootAnimTimer > 2)
+        {
+            anim.SetBool("shooting", false);
+        }
 	}
 
 
@@ -197,15 +208,40 @@ public class EnemyAI : MonoBehaviour
 
     // If the player leaves the trigger area
 	void OnTriggerExit (Collider other)
-	{
-		
+	{		
 		if (other.gameObject.tag == "Player")
         {
 	        //print ("Player exited detection range");
 			playerInRange = false;
         }
 	}
-	
+
+    // This is for the inner collider that detects the player
+    // regardless of line of sight and if crouching
+    void OnTriggerEnter(Collider col)
+    {
+        if (playerInRange && col.tag == "Player")
+        {
+            Vector3 direction = col.transform.position - transform.position;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(transform.position, direction.normalized, out hit))
+            {
+                // If the raycast hits the player...
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    //print ("Player within line of sight");
+                    playerInSight = true;
+
+                    // Set the last global sighting is the players current position.
+                    EventManager.inst.lastPlayerSighting = playerTransform.transform.position;
+                }
+                else playerInSight = false;
+            }
+        }
+    }
+
 	// Movement between way points
 	float CalculatePathLength (Vector3 targetPosition)
 	{

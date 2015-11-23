@@ -907,6 +907,7 @@ GameObject:
   - 136: {fileID: 13661624}
   - 82: {fileID: 8275414}
   - 136: {fileID: 13661758}
+  - 136: {fileID: 13641846}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2575,20 +2576,29 @@ MonoBehaviour:
   chaseWaitTime: 5
   chaseTimer: 5
   patrolWaitTime: 1
-  patrolWayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolWayPoints: []
   patrolTimer: 0
   gunShot: {fileID: 8300000, guid: 8dae7ac02a79d794d884c7d54f964fe7, type: 3}
   fieldOfViewAngle: 110
-  wayPointLooping: 1
+  wayPointLooping: 0
   staticEnemy: 1
   personalLastSighting: {x: 0, y: 0, z: 0}
   previousSighting: {x: 0, y: 0, z: 0}
   wayPointIndex: 0
   speed: 0
+--- !u!136 &13641846
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 200
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 32}
 --- !u!136 &13661624
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2598,7 +2608,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 200
+  m_Radius: 300
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 46.0699997, z: 0}
