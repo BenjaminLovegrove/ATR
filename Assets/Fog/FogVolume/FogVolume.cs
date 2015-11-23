@@ -31,6 +31,8 @@ class FogVolume : MonoBehaviour
 
 		void OnEnable ()
 		{			
+
+                
 				if (!FogMaterial)
 						FogMaterial = new Material (Shader.Find ("Hidden/FogVolume"));
 				VolumeObj = this.gameObject;
