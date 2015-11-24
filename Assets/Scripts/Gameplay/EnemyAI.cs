@@ -18,9 +18,9 @@ public class EnemyAI : MonoBehaviour
     public AudioClip gunShot;
 
 	public float fieldOfViewAngle = 110f;
-   
-    private bool playerInSight;
-    private bool playerInRange;
+
+    public bool playerInLineOfSight;
+    public bool playerInRange;
 	private bool playerDead;
     
     public bool wayPointLooping;
@@ -100,7 +100,7 @@ public class EnemyAI : MonoBehaviour
 	void PlayerDetected()
 	{
 		// If the player is in range and line of sight and is NOT crouching
-		if (playerInSight && playerInRange && playerCrouch == false)
+		if (playerInLineOfSight && playerInRange)
 		{
 			//print ("Firing!");
 			StartCoroutine("Death");            
@@ -176,28 +176,32 @@ public class EnemyAI : MonoBehaviour
 			//print ("Player within detection range");
 
 			playerInRange = true;
-			
-			// Create a vector from the enemy to the player and store the angle between it and forward.
-			Vector3 direction = col.transform.position - transform.position;
-			float angle = Vector3.Angle(direction, transform.forward);
 
-			if(angle < fieldOfViewAngle * 0.5f)
-			{
-                //print ("Player within field of view");
+            if (EventManager.inst.playerCrouch == false)
+            {
 
-				RaycastHit hit;
+                // Create a vector from the enemy to the player and store the angle between it and forward.
+                Vector3 direction = col.transform.position - transform.position;
+                float angle = Vector3.Angle(direction, transform.forward);
+                
+                if (angle < fieldOfViewAngle * 0.5f)
+                {
+                    //print ("Player within field of view");
 
-                if(Physics.Raycast(transform.position, direction.normalized, out hit))
-				{
-					// If the raycast hits the player...
-					if(hit.collider.gameObject.tag == "Player")
-					{
-                        //print ("Player within line of sight");
-						playerInSight = true;
-					}
-                    else playerInSight = false;
-				}
-			}
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(transform.position, direction.normalized, out hit))
+                    {
+                        // If the raycast hits the player...
+                        if (hit.collider.gameObject.tag == "Player")
+                        {
+                            //print ("Player within line of sight");
+                            playerInLineOfSight = true;
+                        }
+                        else playerInLineOfSight = false;
+                    }
+                }
+            }
 		}
 
 	}
@@ -228,9 +232,9 @@ public class EnemyAI : MonoBehaviour
                 if (hit.collider.gameObject.tag == "Player")
                 {
                     //print ("Player within line of sight");
-                    playerInSight = true;
+                    playerInLineOfSight = true;
                 }
-                else playerInSight = false;
+                else playerInLineOfSight = false;
             }
         }
     }

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Player Camera
+
 public class PlayerCam : MonoBehaviour
 {
 
@@ -13,9 +15,23 @@ public class PlayerCam : MonoBehaviour
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 	float rotationY = 0F;
+    public float crouch = 2;
+    public Transform cameraPosUpper;
+    public Transform cameraPosLower;
+    public Transform currentPos;
 
 	void FixedUpdate ()
 	{
+
+        if (EventManager.inst.playerCrouch)
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosLower.position, Time.deltaTime * 3);
+        }
+        else
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosUpper.position, Time.deltaTime * 3);
+        }
+
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;

@@ -19,12 +19,23 @@ public class EventManager : MonoBehaviour
 	void Awake ()
 	{
 		// Check for duplicate singletons
-		if(inst == null)
+		if (inst == null)
 		{
 			inst = this;
 			DontDestroyOnLoad(gameObject);
 		}
 		else Destroy(this);
+
+        // Set player references if empty
+        if (playerTrans == null)
+        {
+            playerTrans = GameObject.Find("Player").GetComponent<Transform>();
+        }
+
+        if (playerObj == null)
+        {
+            playerObj = GameObject.Find("Player");
+        }
 	}
 
     void Start()
