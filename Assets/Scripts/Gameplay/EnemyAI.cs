@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour
 	// Death co-routine
 	IEnumerator Death()
 	{
+        EventManager.inst.playerDead = true;
         yield return new WaitForSeconds(6f);
         EventManager.inst.resetLevel = true;
     }
@@ -58,11 +59,12 @@ public class EnemyAI : MonoBehaviour
         // TODO this is dodgey, fix later
         playerTransform = EventManager.inst.playerTrans;
         playerCrouch = EventManager.inst.playerCrouch;
+        //playerDead = EventManager.inst.playerDead;
 
 		PlayerDetected ();
         AnimationTriggers();
 
-        // A velocity (sort of) to determine which animation should be played
+        // A velocity to determine which animation should be played
 		speed = (transform.position - lastPosition).magnitude;
 		lastPosition = transform.position;
 
@@ -99,7 +101,7 @@ public class EnemyAI : MonoBehaviour
     // If the Enemy has successfully detected the player
 	void PlayerDetected()
 	{
-		// If the player is in range and line of sight and is NOT crouching
+		// If the player is in range and line of sight and is NOT dead already
 		if (playerInLineOfSight && playerInRange)
 		{
 			//print ("Firing!");
@@ -108,6 +110,15 @@ public class EnemyAI : MonoBehaviour
             // Shoot animation and audio
 			if (!playerDead)
 			{
+                //Vector3 direction = transform.position - playerTransform.position;
+                //Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
+                //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 0.3f * Time.deltaTime);
+
+                //Vector3 dirToPlayer = transform.position - playerTransform.position;
+                //Transform startPos = transform;
+                //Transform endPos = playerTransform;
+                //transform.rotation = Quaternion.Lerp(startPos.rotation, endPos.rotation, 0.3f);
+                
                 transform.LookAt(playerTransform);
                 audio.PlayOneShot(gunShot, 1f);
                 anim.SetBool("stopping", false);
@@ -129,11 +140,9 @@ public class EnemyAI : MonoBehaviour
             // Set an appropriate speed for the NavMeshAgent.
             nav.speed = patrolSpeed;
 
-            // If near the next waypoint or there is no destination...
-            //if (nav.destination == EventManager.inst.lastPlayerSighting || nav.remainingDistance < nav.stoppingDistance)
+            // If near the next waypoint or there is no destination
             if (nav.remainingDistance < nav.stoppingDistance)
             {
-                // ... increment the timer.
                 patrolTimer += Time.deltaTime;
 
                 // If the timer exceeds the wait time increment the wayPointIndex

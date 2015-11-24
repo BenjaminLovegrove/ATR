@@ -10,9 +10,10 @@ public class EventManager : MonoBehaviour
 	public Transform playerTrans;
 	public GameObject playerObj;
 	public bool playerCrouch = false;
+    public bool playerDead = false;
 
     public Transform[] playerCheckPoints;
-    public int currentCheckPoint;
+    public int currentCheckPoint = 0;
 
     public bool resetLevel = false;
 
@@ -58,6 +59,7 @@ public class EventManager : MonoBehaviour
     // Use triggers to set the value of the last achieved checkpoint - (currentCheckPoint).
 	void ResetPlayer ()
 	{
+        playerDead = false;
         Application.LoadLevel(0);
         resetLevel = false;
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
@@ -68,6 +70,7 @@ public class EventManager : MonoBehaviour
     // Repopulate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
+        playerDead = false;
         playerTrans = GameObject.Find("Player").GetComponent<Transform>();
         playerObj = GameObject.Find("Player");
 

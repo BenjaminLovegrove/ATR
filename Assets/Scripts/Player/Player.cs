@@ -35,39 +35,42 @@ public class Player : MonoBehaviour
 	{
         PlayFootStepSFX();
 
-		if (grounded)
-		{
-			// Calculate how fast we should be moving
-			Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-			targetVelocity = transform.TransformDirection(targetVelocity);
-			targetVelocity *= currentSpeed;
-			
-			// Apply a force that attempts to reach our target velocity
-			Vector3 velocity = playerRigid.velocity;
-			Vector3 velocityChange = (targetVelocity - velocity);
-			velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
-			velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
-			velocityChange.y = 0;
-			playerRigid.AddForce(velocityChange, ForceMode.VelocityChange);
-			
-			// Jump
-			if (canJump && Input.GetButton("Jump"))
-			{
-				playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-			}
-
-            // Crouch
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
+        if (EventManager.inst.playerDead == false)
+        {
+            if (grounded)
             {
-                currentSpeed = crouchSpeed;
-                EventManager.inst.playerCrouch = true;
+                // Calculate how fast we should be moving
+                Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                targetVelocity = transform.TransformDirection(targetVelocity);
+                targetVelocity *= currentSpeed;
+
+                // Apply a force that attempts to reach our target velocity
+                Vector3 velocity = playerRigid.velocity;
+                Vector3 velocityChange = (targetVelocity - velocity);
+                velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
+                velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
+                velocityChange.y = 0;
+                playerRigid.AddForce(velocityChange, ForceMode.VelocityChange);
+
+                // Jump
+                if (canJump && Input.GetButton("Jump"))
+                {
+                    playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+                }
+
+                // Crouch
+                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
+                {
+                    currentSpeed = crouchSpeed;
+                    EventManager.inst.playerCrouch = true;
+                }
+                else
+                {
+                    EventManager.inst.playerCrouch = false;
+                    currentSpeed = walkSpeed;
+                }
+
             }
-            else
-            {
-                EventManager.inst.playerCrouch = false;
-                currentSpeed = walkSpeed;
-            } 
-
         }
 		
 		// Manual gravity

@@ -647,6 +647,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2090484368}
   m_RootOrder: 2
+--- !u!1 &1679898475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1679898476}
+  m_Layer: 0
+  m_Name: CameraPosDead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1679898476
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1679898475}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2090484368}
+  m_RootOrder: 5
 --- !u!1 &1707599460
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +835,18 @@ Prefab:
       propertyPath: currentPos
       value: 
       objectReference: {fileID: 267083530}
+    - target: {fileID: 409352, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 497390, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: cameraDead
+      value: 
+      objectReference: {fileID: 1679898476}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0

@@ -3132,6 +3132,10 @@ Prefab:
       propertyPath: memoryFog
       value: .5
       objectReference: {fileID: 0}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: walkSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0
@@ -4544,7 +4548,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 171966, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Name
@@ -5489,6 +5493,34 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 631fcc29dbbb6c94ab674e23c794bc86, type: 3}
+--- !u!1 &776388705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 776388706}
+  m_Layer: 0
+  m_Name: PlayerCheckPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776388706
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776388705}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -167.679993, y: -4.78999996, z: -23.6399994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1784013554}
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!1001 &779770164
 Prefab:
   m_ObjectHideFlags: 0
@@ -11339,7 +11371,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 461026, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 461026, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: m_LocalScale.y
@@ -11353,6 +11385,14 @@ Prefab:
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 456036162}
+    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
+      propertyPath: currentCheckPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
+      propertyPath: playerCheckPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1784013554}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
   m_IsPrefabParent: 0
@@ -13538,6 +13578,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfdbc322c6b0c3c43ac822e0a96b84b5, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1784013553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1784013554}
+  m_Layer: 0
+  m_Name: CheckPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1784013554
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1784013553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 776388706}
+  m_RootOrder: 0
 --- !u!1 &1785764078
 GameObject:
   m_ObjectHideFlags: 0
