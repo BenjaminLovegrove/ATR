@@ -5,7 +5,6 @@ using System.Collections;
 
 public class PlayerCam : MonoBehaviour
 {
-
 	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
 	public float sensitivityX = 15F;
@@ -32,6 +31,12 @@ public class PlayerCam : MonoBehaviour
         else
         {
             currentPos.position = Vector3.Lerp(currentPos.position, cameraPosUpper.position, Time.deltaTime * 3);
+        }
+
+        // Lerp camera for player death
+        if (EventManager.inst.playerDead)
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraDead.position, Time.deltaTime);
         }
 
         // Move camera to mouse

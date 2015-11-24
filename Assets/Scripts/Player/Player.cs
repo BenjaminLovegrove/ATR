@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
 	public bool canJump = true;
 	public float jumpHeight = 0.5f;
 	private bool grounded = false;
+
+    private float jumpTimer;
+    public float jumpDelay;
+    public float jumpCoolDown;
 	
     public Rigidbody playerRigid;
     AudioSource audio;
@@ -30,10 +34,25 @@ public class Player : MonoBehaviour
 		playerRigid.useGravity = false;
         audio = GetComponent<AudioSource>();
 	}
-	
+
+    // Jump co-routine
+    IEnumerator Jump()
+    {
+        Vector3 velocity = playerRigid.velocity;
+        yield return new WaitForSeconds(jumpDelay);
+        playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+    }
+
 	void FixedUpdate ()
 	{
+
         PlayFootStepSFX();
+
+        // Increment jump cooldown timer
+        if (grounded)
+        {
+            jumpTimer += Time.deltaTime;
+        }
 
         if (EventManager.inst.playerDead == false)
         {
@@ -53,9 +72,13 @@ public class Player : MonoBehaviour
                 playerRigid.AddForce(velocityChange, ForceMode.VelocityChange);
 
                 // Jump
-                if (canJump && Input.GetButton("Jump"))
+                if (jumpTimer > 1.5f)
                 {
-                    playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+                    if (canJump && Input.GetButton("Jump"))
+                    {
+                        jumpTimer = 0;
+                        StartCoroutine("Jump");
+                    }
                 }
 
                 // Crouch
