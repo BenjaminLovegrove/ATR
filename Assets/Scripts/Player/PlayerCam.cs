@@ -16,10 +16,15 @@ public class PlayerCam : MonoBehaviour
 	float rotationY = 0F;
     public float crouch = 2;
    
-    public Transform cameraPosUpper;
-    public Transform cameraPosLower;
+    public Transform cameraPosNeutral;
+    public Transform cameraPosCrouch;
+    public Transform cameraPosHeadBob;
     public Transform currentPos;
     public Transform cameraDead;
+
+    public float headBobInterval;
+    private float headBobTimer;    
+    private bool headBobbed;
 
 	void FixedUpdate ()
 	{
@@ -29,14 +34,42 @@ public class PlayerCam : MonoBehaviour
 
     void CameraLerping()
     {
+        // Head bob
+        headBobTimer += Time.deltaTime;
+
+        if (headBobTimer > headBobInterval)
+        {
+            headBobbed = true;
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+        }
+
+        if (headBobTimer > headBobInterval * 1.5f)
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+            headBobbed = false;
+            headBobTimer = 0;
+        }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
+        }
+        // Return to neutral cam position if movement ceases
+        else
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+            headBobbed = false;
+            headBobTimer = 0;
+        }            
+
         // Lerp camera for player crouch
         if (EventManager.inst.playerCrouch)
         {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosLower.position, Time.deltaTime * 3);
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime * 3);
         }
         else
         {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosUpper.position, Time.deltaTime * 3);
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
         }
 
         // Lerp camera for player death
