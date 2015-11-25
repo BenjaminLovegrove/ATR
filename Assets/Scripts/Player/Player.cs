@@ -26,7 +26,9 @@ public class Player : MonoBehaviour
     
     public AudioClip walkingSFX;
     private float footStepTimer;
-    public float footStepInterval = 0.75f;	
+    public float footStepInterval = 0.75f;
+
+    public GameObject fader;
 	
 	void Awake ()
 	{
@@ -53,8 +55,9 @@ public class Player : MonoBehaviour
         {
             jumpTimer += Time.deltaTime;
         }
-
-        if (EventManager.inst.playerDead == false)
+        
+        // Movement if controls are not disabled and player is not dead
+        if (!EventManager.inst.controlsDisabled && !EventManager.inst.playerDead)
         {
             if (grounded)
             {
@@ -126,4 +129,17 @@ public class Player : MonoBehaviour
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(2 * jumpHeight * gravity);
 	}
+
+    void FadeIn()
+    {
+        //fader.material.renderer.color.a = 0f;
+
+        Color color = GetComponent<Renderer>().material.color;
+        color.a -= 0.1f;
+        GetComponent<Renderer>().material.color = color;
+
+        //Color tempcolor = gameobject.renderer.material.color;
+        //tempcolor.a = Mathf.MoveTowards(0, 1, Time.deltaTime);
+        //gameobject.renderer.material.color = tempcolor;
+    }
 }

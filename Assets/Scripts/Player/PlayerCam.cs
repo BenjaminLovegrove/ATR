@@ -40,7 +40,7 @@ public class PlayerCam : MonoBehaviour
         }
 
         // Move camera to mouse
-        if (EventManager.inst.playerDead == false)
+        if (!EventManager.inst.controlsDisabled)
         {
             if (axes == RotationAxes.MouseXAndY)
             {

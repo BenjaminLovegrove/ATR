@@ -2,6 +2,8 @@
 using UnityStandardAssets.ImageEffects;
 using System.Collections;
 
+// Script for handling in game memory events
+
 public class Memory : MonoBehaviour {
 
     private BloomAndFlares bloom;
@@ -18,6 +20,11 @@ public class Memory : MonoBehaviour {
     private float fadeTimer;
     private float memoryLength = 0f;
 
+    // these vars might overlap with what you already have
+    // I'll leave you to mess with them if you want, otherwise let me know
+    private float delayTimer;
+    private bool delayEnable;
+
     void Start()
     {
         bloom = gameObject.GetComponent<BloomAndFlares>();
@@ -27,7 +34,9 @@ public class Memory : MonoBehaviour {
         startFog = fog.heightDensity;
     }
 
-	void Update () {
+	void FixedUpdate ()
+    {
+        RemoveControls();
 	
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -71,6 +80,23 @@ public class Memory : MonoBehaviour {
         fadeTimer -= Time.deltaTime / fadeTime;
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
+    }
+
+    // Set your duration of delayTimer then set delayEnable to true
+    // delaytimer = 7.43f;
+    // delayEnable = true;
+    void RemoveControls()
+    {
+        if (delayEnable)
+        {
+            EventManager.inst.controlsDisabled = true;
+            delayTimer -= Time.deltaTime;
+        }
+
+        if (delayTimer < 0)
+        {
+            EventManager.inst.controlsDisabled = false;
+        }
     }
 }
 

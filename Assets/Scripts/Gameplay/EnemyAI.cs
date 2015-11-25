@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
 	// Death co-routine
 	IEnumerator Death()
 	{
-        EventManager.inst.playerDead = true;
+        EventManager.inst.controlsDisabled = true;
         yield return new WaitForSeconds(6f);
         EventManager.inst.resetLevel = true;
     }
@@ -105,7 +105,7 @@ public class EnemyAI : MonoBehaviour
 		if (playerInLineOfSight && playerInRange)
 		{
 			//print ("Firing!");
-			StartCoroutine("Death");            
+			StartCoroutine("Death");          
 
             // Shoot animation and audio
 			if (!playerDead)
@@ -118,7 +118,9 @@ public class EnemyAI : MonoBehaviour
                 //Transform startPos = transform;
                 //Transform endPos = playerTransform;
                 //transform.rotation = Quaternion.Lerp(startPos.rotation, endPos.rotation, 0.3f);
-                
+
+                //transform.LookAt(Quaternion.Lerp(Vector3.forward, dirToPlayer));
+
                 transform.LookAt(playerTransform);
                 audio.PlayOneShot(gunShot, 1f);
                 anim.SetBool("stopping", false);
