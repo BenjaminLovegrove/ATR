@@ -53,6 +53,19 @@ public class Player : MonoBehaviour
     // Player movement on horizontal and vertical axis through player inputs
     void PlayerMovement()
     {
+        // Raycast downward from the player to see if touching the ground
+        // this prevents wall climbing
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        {
+            // If the raycast hits the ground
+            if (hit.collider.gameObject.tag == "Ground")
+            {
+                grounded = true;
+            }
+        }
+
         // Movement if controls are not disabled and player is not dead
         if (!EventManager.inst.controlsDisabled && !EventManager.inst.playerDead)
         {
@@ -127,7 +140,7 @@ public class Player : MonoBehaviour
 	
 	void OnCollisionStay ()
 	{
-		grounded = true;    
+		//grounded = true;    
 	}
 	
 	float CalculateJumpVerticalSpeed ()
