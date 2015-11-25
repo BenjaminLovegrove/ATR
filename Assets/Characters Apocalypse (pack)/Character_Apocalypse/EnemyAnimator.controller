@@ -134,7 +134,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: idleTimer
+    m_EventTreshold: 14
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110269162}
   m_Solo: 0
@@ -144,7 +147,7 @@ AnimatorStateTransition:
   m_TransitionDuration: .0877082348
   m_TransitionOffset: 0
   m_ExitTime: .74137938
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -413,7 +416,10 @@ AnimatorStateTransition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: idleTimer
+    m_EventTreshold: 14
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110236860}
   m_Solo: 0
@@ -576,7 +582,7 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 3e7d72d603ddb194fad84f49a18f0d9f, type: 3}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: idleTimer
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
 --- !u!1102 &110284780

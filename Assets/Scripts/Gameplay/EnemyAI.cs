@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour
 	Vector3 lastPosition = Vector3.zero;
 	private float speed;
     private float shootAnimTimer;
+    private float switchIdletimer;
 
 	// Death co-routine
 	IEnumerator Death()
@@ -54,20 +55,59 @@ public class EnemyAI : MonoBehaviour
 		nav = GetComponent<NavMeshAgent>();        
 	}
 
-	void FixedUpdate ()
-	{
+    void Start()
+    {
         // TODO this is dodgey, fix later
         playerTransform = EventManager.inst.playerTrans;
         playerCrouch = EventManager.inst.playerCrouch;
         //playerDead = EventManager.inst.playerDead;
+    }
 
-		PlayerDetected ();
+	void FixedUpdate ()
+	{
+        CalculateVelocity();
+		PlayerDetection ();
         AnimationTriggers();
+	}
 
-        // A velocity to determine which animation should be played
-		speed = (transform.position - lastPosition).magnitude;
-		lastPosition = transform.position;
+    // A velocity to determine which animation should be played
+    void CalculateVelocity()
+    {
+        speed = (transform.position - lastPosition).magnitude;
+        lastPosition = transform.position;
+    }
 
+    // Toggle bolean values for the animation controller to trigger animations
+    void AnimationTriggers()
+    {
+        // Idle state
+        if (speed < 0.01f && !playerDead)
+        {
+            anim.SetBool("stopping", true);
+            anim.SetBool("walking", false);
+
+            // While AI is idling increment transition timer
+            switchIdletimer += Time.deltaTime;
+            // Set the animator timer equal to script timer
+            anim.SetFloat("idleTimer", switchIdletimer);
+        }
+
+        // Transition through idle anims
+        // *** Set the required transition timer between idle
+        // anims to ~1sec less than the value stated in this check
+        if (switchIdletimer > 15)
+        {
+            switchIdletimer = 0;
+        }      
+
+        // Walk state
+        if (speed > 0.011f && !playerDead)
+        {
+            anim.SetBool("stopping", false);
+            anim.SetBool("walking", true);
+        }
+
+        // Shoot state
         if (playerDead)
         {
             shootAnimTimer += Time.deltaTime;
@@ -77,29 +117,10 @@ public class EnemyAI : MonoBehaviour
         {
             anim.SetBool("shooting", false);
         }
-	}
-
-
-    // Toggle bolean  values for the animation controller to trigger animations
-    void AnimationTriggers()
-    {
-        // Idle animation
-        if (speed < 0.01f && !playerDead)
-        {
-            anim.SetBool("stopping", true);
-            anim.SetBool("walking", false);
-        }
-
-        // Walk animation
-        if (speed > 0.011f && !playerDead)
-        {
-            anim.SetBool("stopping", false);
-            anim.SetBool("walking", true);
-        }
     }
 
     // If the Enemy has successfully detected the player
-	void PlayerDetected()
+	void PlayerDetection()
 	{
 		// If the player is in range and line of sight and is NOT dead already
 		if (playerInLineOfSight && playerInRange)
@@ -161,7 +182,6 @@ public class EnemyAI : MonoBehaviour
                         nav.Stop();
                     }
 
-
                     // Reset the timer.
                     patrolTimer = 0;
                 }
@@ -175,7 +195,7 @@ public class EnemyAI : MonoBehaviour
         }
 	}
     
-    // PLAYER DETECTION
+    // 3 POINT PLAYER DETECTION
     // First checks if the player is within range of the Enemy vision - large trigger collider attached to enemy
     // Then checks if the player is within the field of view - field of view variable
     // Lastly checks if the player is in direct line of sight - raycast
@@ -203,7 +223,7 @@ public class EnemyAI : MonoBehaviour
 
                     if (Physics.Raycast(transform.position, direction.normalized, out hit))
                     {
-                        // If the raycast hits the player...
+                        // If the raycast hits the player
                         if (hit.collider.gameObject.tag == "Player")
                         {
                             //print ("Player within line of sight");
@@ -239,7 +259,7 @@ public class EnemyAI : MonoBehaviour
 
             if (Physics.Raycast(transform.position, direction.normalized, out hit))
             {
-                // If the raycast hits the player...
+                // If the raycast hits the player
                 if (hit.collider.gameObject.tag == "Player")
                 {
                     //print ("Player within line of sight");

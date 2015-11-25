@@ -42,17 +42,23 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
+        // Hide cursor
         Cursor.visible = false;
     }
 
 	void FixedUpdate ()
 	{
-        // Check for external level reset
+        LevelResetCheck();
+	}
+
+    // Check for external level reset
+    void LevelResetCheck()
+    {        
         if (resetLevel)
         {
             ResetPlayer();
         }
-	}
+    }
     
     // Reset the player to the last checkpoint
     // Place an empty gameobject named "PlayerCheckPoints" with child objects containing
@@ -67,7 +73,7 @@ public class EventManager : MonoBehaviour
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
 	}
 
-    // Repopulate EventManager data upon loading a scene
+    // Populate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
         controlsDisabled = false;
