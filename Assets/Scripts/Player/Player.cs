@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// Player Inputs and SFX
+// Script for Player Inputs and SFX
 
 [RequireComponent (typeof (Rigidbody))]
 [RequireComponent (typeof (CapsuleCollider))]
@@ -47,15 +47,19 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-
         PlayFootStepSFX();
+        PlayerMovement();
 
         // Increment jump cooldown timer
         if (grounded)
         {
             jumpTimer += Time.deltaTime;
         }
-        
+	}
+
+    // Player movement on horizontal and vertical axis through player inputs
+    void PlayerMovement()
+    {
         // Movement if controls are not disabled and player is not dead
         if (!EventManager.inst.controlsDisabled && !EventManager.inst.playerDead)
         {
@@ -98,12 +102,12 @@ public class Player : MonoBehaviour
 
             }
         }
-		
-		// Manual gravity
-		playerRigid.AddForce(new Vector3 (0, -gravity * playerRigid.mass, 0));
-		
-		grounded = false;
-	}
+
+        // Manual gravity
+        playerRigid.AddForce(new Vector3(0, -gravity * playerRigid.mass, 0));
+
+        grounded = false;
+    }
 
     // Play footsteps using a Vertical input as a scalar
     // TODO: add a random pool of Footstep SFX to play from, also dependant on what area the player is in

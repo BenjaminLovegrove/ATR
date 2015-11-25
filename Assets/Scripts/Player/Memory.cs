@@ -20,7 +20,7 @@ public class Memory : MonoBehaviour {
     private float fadeTimer;
     private float memoryLength = 0f;
 
-    // these vars might overlap with what you already have
+    // these vars might duplicate what you already have
     // I'll leave you to mess with them if you want, otherwise let me know
     private float delayTimer;
     private bool delayEnable;

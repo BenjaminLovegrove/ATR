@@ -23,6 +23,12 @@ public class PlayerCam : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+        CameraLerping();
+        MouseMovement();
+	}
+
+    void CameraLerping()
+    {
         // Lerp camera for player crouch
         if (EventManager.inst.playerCrouch)
         {
@@ -38,8 +44,11 @@ public class PlayerCam : MonoBehaviour
         {
             currentPos.position = Vector3.Lerp(currentPos.position, cameraDead.position, Time.deltaTime);
         }
+    }
 
-        // Move camera to mouse
+    // Move camera to mouse
+    void MouseMovement()
+    {
         if (!EventManager.inst.controlsDisabled)
         {
             if (axes == RotationAxes.MouseXAndY)
@@ -63,5 +72,5 @@ public class PlayerCam : MonoBehaviour
                 transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
             }
         }
-	}
+    }
 }
