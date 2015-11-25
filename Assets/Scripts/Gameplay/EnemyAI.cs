@@ -16,6 +16,9 @@ public class EnemyAI : MonoBehaviour
 
     AudioSource audio;
     public AudioClip gunShot;
+    public AudioClip[] radioChatter;
+    private float audioTimer;
+    private bool audioPlaying;
 
 	public float fieldOfViewAngle = 110f;
 
@@ -65,10 +68,32 @@ public class EnemyAI : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+        RadioChatter();
         CalculateVelocity();
 		PlayerDetection ();
         AnimationTriggers();
 	}
+
+    // Randomly pick an audioclip from radio chatter array to be played
+    void RadioChatter()
+    {
+        if (!audioPlaying && radioChatter.Length > 0)
+        {
+            int rand = Random.Range(0, radioChatter.Length + 1);
+
+            audio.PlayOneShot(radioChatter[rand], 1f);
+
+            audioPlaying = true;
+
+            audioTimer += Time.deltaTime;
+
+            if (audioTimer > radioChatter[rand].length + 0.5f)
+            {
+                audioPlaying = false;
+                audioTimer = 0;
+            }
+        }
+    }
 
     // A velocity to determine which animation should be played
     void CalculateVelocity()
@@ -95,6 +120,7 @@ public class EnemyAI : MonoBehaviour
         // Transition through idle anims
         // *** Set the required transition timer between idle
         // anims to ~1sec less than the value stated in this check
+        // (in the animation controller)
         if (switchIdletimer > 15)
         {
             switchIdletimer = 0;
@@ -122,7 +148,7 @@ public class EnemyAI : MonoBehaviour
     // If the Enemy has successfully detected the player
 	void PlayerDetection()
 	{
-		// If the player is in range and line of sight and is NOT dead already
+		// If the player is in range and line of sight and is not already dead
 		if (playerInLineOfSight && playerInRange)
 		{
 			//print ("Firing!");
