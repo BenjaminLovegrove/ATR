@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
         {
             // If the raycast hits the ground
-            if (hit.collider.gameObject.tag == "Ground")
+            if (hit.distance < 3f)
             {
                 grounded = true;
             }
@@ -137,12 +137,7 @@ public class Player : MonoBehaviour
             footStepTimer = 0;
         }
     }
-	
-	void OnCollisionStay ()
-	{
-		//grounded = true;    
-	}
-	
+		
 	float CalculateJumpVerticalSpeed ()
 	{
 		// From the jump height and gravity we deduce the upwards speed 
