@@ -54,7 +54,6 @@ public class Player : MonoBehaviour
     void PlayerMovement()
     {
         // Raycast downward from the player to see if touching the ground
-        // this prevents wall climbing
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, Vector3.down, out hit))
