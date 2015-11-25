@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 	public float jumpHeight = 0.5f;
 	private bool grounded = false;
 
-    private float jumpTimer;
+    private float jumpTimer = 1.5f;
     public float jumpDelay;
     public float jumpCoolDown;
 	
@@ -27,8 +27,6 @@ public class Player : MonoBehaviour
     public AudioClip walkingSFX;
     private float footStepTimer;
     public float footStepInterval = 0.75f;
-
-    public GameObject fader;
 	
 	void Awake ()
 	{
@@ -49,12 +47,6 @@ public class Player : MonoBehaviour
 	{
         PlayFootStepSFX();
         PlayerMovement();
-
-        // Increment jump cooldown timer
-        if (grounded)
-        {
-            jumpTimer += Time.deltaTime;
-        }
 	}
 
     // Player movement on horizontal and vertical axis through player inputs
@@ -65,6 +57,12 @@ public class Player : MonoBehaviour
         {
             if (grounded)
             {
+                // Increment jump cooldown timer
+                if (grounded)
+                {
+                    jumpTimer += Time.deltaTime;
+                }
+
                 // Calculate how fast we should be moving
                 Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                 targetVelocity = transform.TransformDirection(targetVelocity);
@@ -99,7 +97,6 @@ public class Player : MonoBehaviour
                     EventManager.inst.playerCrouch = false;
                     currentSpeed = walkSpeed;
                 }
-
             }
         }
 

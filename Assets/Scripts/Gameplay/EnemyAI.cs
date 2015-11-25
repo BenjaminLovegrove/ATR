@@ -42,6 +42,7 @@ public class EnemyAI : MonoBehaviour
 	IEnumerator Death()
 	{
         EventManager.inst.controlsDisabled = true;
+        EventManager.inst.playerDead = true;
         yield return new WaitForSeconds(6f);
         EventManager.inst.resetLevel = true;
     }
@@ -50,8 +51,7 @@ public class EnemyAI : MonoBehaviour
 	{
         audio = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
-		nav = GetComponent<NavMeshAgent>();
-        
+		nav = GetComponent<NavMeshAgent>();        
 	}
 
 	void FixedUpdate ()

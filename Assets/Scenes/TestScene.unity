@@ -321,57 +321,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1055669092}
   m_RootOrder: 2
---- !u!1 &987399842
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 987399844}
-  - 114: {fileID: 987399843}
-  m_Layer: 0
-  m_Name: Fade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &987399843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 987399842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b880c9f9b221fc2498b790633fcebe84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeIn: 1
-  fadeTime: 2
-  fadeColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 1
-  fadeMaterial: {fileID: 2100000, guid: e642b458f4453e04ab7e2b711c58db98, type: 2}
-  faded: 0
-  lastFadeIn: 0
-  fadeControls: []
-  player: {fileID: 0}
---- !u!4 &987399844
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 987399842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.52328396, y: -.964322805, z: 9.75512123}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
 --- !u!1001 &1013605015
 Prefab:
   m_ObjectHideFlags: 0

@@ -47,7 +47,6 @@ public class EventManager : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-
         // Check for external level reset
         if (resetLevel)
         {
@@ -62,6 +61,7 @@ public class EventManager : MonoBehaviour
 	void ResetPlayer ()
 	{
         controlsDisabled = false;
+        playerDead = false;
         Application.LoadLevel(0);
         resetLevel = false;
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
