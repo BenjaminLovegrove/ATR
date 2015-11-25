@@ -2483,7 +2483,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5f43052ecc952d845bdf2326b0f09644, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: .5
   m_Pitch: 1
@@ -2576,16 +2576,28 @@ MonoBehaviour:
   chaseWaitTime: 5
   chaseTimer: 5
   patrolWaitTime: 1
-  patrolWayPoints: []
+  patrolWayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   patrolTimer: 0
   gunShot: {fileID: 8300000, guid: 8dae7ac02a79d794d884c7d54f964fe7, type: 3}
+  radioChatter:
+  - {fileID: 8300000, guid: 25b7259ea8c0ff14181dc8d528100f4c, type: 3}
+  - {fileID: 8300000, guid: 7c3ce82b6cbc3df4ba15e154151fb4bb, type: 3}
+  - {fileID: 8300000, guid: 87ad57a5f574dde44a5771628efe04cc, type: 3}
+  - {fileID: 8300000, guid: fdcc1f2b76681494bab5270ec3fb3dac, type: 3}
+  - {fileID: 8300000, guid: ab74bf87f5cc59e4c874cfc800b3780d, type: 3}
+  - {fileID: 8300000, guid: f74b492293d46a44e8b2463ddc05e2e1, type: 3}
+  - {fileID: 8300000, guid: f74b492293d46a44e8b2463ddc05e2e1, type: 3}
+  footSteps: {fileID: 8300000, guid: 1fb5a469a412ba24cae3cda690c9ec81, type: 3}
   fieldOfViewAngle: 110
-  wayPointLooping: 0
-  staticEnemy: 1
-  personalLastSighting: {x: 0, y: 0, z: 0}
-  previousSighting: {x: 0, y: 0, z: 0}
+  playerInLineOfSight: 0
+  playerInRange: 0
+  wayPointLooping: 1
+  staticEnemy: 0
   wayPointIndex: 0
-  speed: 0
 --- !u!136 &13641846
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -2593,7 +2605,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171966}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 200
   m_Height: 1

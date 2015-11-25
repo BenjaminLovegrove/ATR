@@ -17,8 +17,11 @@ public class EnemyAI : MonoBehaviour
     AudioSource audio;
     public AudioClip gunShot;
     public AudioClip[] radioChatter;
-    private float audioTimer;
-    private bool audioPlaying;
+    public AudioClip footSteps;
+    public float audioTimer;
+    public bool audioPlaying;
+    public float audioLength;
+    public float walkTimer;
 
 	public float fieldOfViewAngle = 110f;
 
@@ -68,6 +71,12 @@ public class EnemyAI : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+        if (audioTimer >= audioLength + 1)
+        {
+            audioPlaying = false;
+            audioTimer = 0;
+        }
+
         RadioChatter();
         CalculateVelocity();
 		PlayerDetection ();
@@ -79,20 +88,19 @@ public class EnemyAI : MonoBehaviour
     {
         if (!audioPlaying && radioChatter.Length > 0)
         {
-            int rand = Random.Range(0, radioChatter.Length + 1);
+            int rand = Random.Range(0, radioChatter.Length);
+
+            audioLength = radioChatter[rand].length;
 
             audio.PlayOneShot(radioChatter[rand], 1f);
 
             audioPlaying = true;
-
-            audioTimer += Time.deltaTime;
-
-            if (audioTimer > radioChatter[rand].length + 0.5f)
-            {
-                audioPlaying = false;
-                audioTimer = 0;
-            }
         }
+
+        if (audioPlaying)
+        {
+            audioTimer += Time.deltaTime;
+        }    
     }
 
     // A velocity to determine which animation should be played
@@ -131,6 +139,16 @@ public class EnemyAI : MonoBehaviour
         {
             anim.SetBool("stopping", false);
             anim.SetBool("walking", true);
+
+            walkTimer += Time.deltaTime;
+
+            // Play footsteps SFX
+            if (walkTimer > 1.5f)
+            {
+                audio.PlayOneShot(footSteps, 1f);
+                walkTimer = 0;
+            }
+            
         }
 
         // Shoot state

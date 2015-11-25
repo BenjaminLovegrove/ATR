@@ -328,10 +328,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: patrolWayPoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 6.07000017
@@ -380,18 +376,6 @@ Prefab:
       propertyPath: patrolWayPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1992570893}
-    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: staticEnemy
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
-      propertyPath: wayPointLooping
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -432,6 +416,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: patrolWayPoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 13.3199997
@@ -471,6 +459,18 @@ Prefab:
     - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: footSteps
+      value: 
+      objectReference: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: staticEnemy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: wayPointLooping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -928,6 +928,14 @@ Prefab:
       propertyPath: jumpDelay
       value: .100000001
       objectReference: {fileID: 0}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: standingWalk
+      value: 
+      objectReference: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: crouchingWalk
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ab93585d0d7a2340a2a26499cb4a864, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0

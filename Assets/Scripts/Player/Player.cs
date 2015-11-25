@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
     public Rigidbody playerRigid;
     AudioSource audio;
     
-    public AudioClip walkingSFX;
+    public AudioClip standingWalk;
+    public AudioClip crouchingWalk;
     private float footStepTimer;
     public float footStepInterval = 0.75f;
 	
@@ -114,7 +115,12 @@ public class Player : MonoBehaviour
 
         if (footStepTimer > footStepInterval)
         {
-            audio.PlayOneShot(walkingSFX);
+            if (!EventManager.inst.playerCrouch)
+            {
+                audio.PlayOneShot(standingWalk);
+            }
+            else audio.PlayOneShot(crouchingWalk);
+            
             footStepTimer = 0;
         }
     }
