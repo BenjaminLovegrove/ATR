@@ -37,30 +37,40 @@ public class PlayerCam : MonoBehaviour
         // Head bob
         headBobTimer += Time.deltaTime;
 
-        if (headBobTimer > headBobInterval)
+
+        if (!EventManager.inst.controlsDisabled)
         {
-            headBobbed = true;
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+            if (headBobTimer > headBobInterval)
+            {
+                headBobbed = true;
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+            }
+
+            if (headBobTimer > headBobInterval * 1.5f)
+            {
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+                headBobbed = false;
+                headBobTimer = 0;
+            }
         }
 
-        if (headBobTimer > headBobInterval * 1.5f)
+
+        if (!EventManager.inst.controlsDisabled)
         {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
-            headBobbed = false;
-            headBobTimer = 0;
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            {
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
+            }
+            // Return to neutral cam position if movement ceases
+            else
+            {
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+                headBobbed = false;
+                headBobTimer = 0;
+            }   
         }
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
-        }
-        // Return to neutral cam position if movement ceases
-        else
-        {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
-            headBobbed = false;
-            headBobTimer = 0;
-        }            
+         
 
         // Lerp camera for player crouch
         if (EventManager.inst.playerCrouch)
