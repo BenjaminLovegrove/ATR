@@ -34,9 +34,16 @@ public class PlayerCam : MonoBehaviour
 
     void CameraLerping()
     {
+        // Face enemy that killed the player
+        if (EventManager.inst.playerDead)
+        {
+            transform.LookAt(EventManager.inst.enemyKillPos);
+            //Vector3 lookAtEnemy = new Vector3(currentPos.position.x, EventManager.inst.enemyKillPos.position.y, currentPos.position.z);
+            //currentPos.position = Vector3.Lerp(currentPos.position, lookAtEnemy, Time.deltaTime * 3);
+        }
+
         // Head bob
         headBobTimer += Time.deltaTime;
-
 
         if (!EventManager.inst.controlsDisabled)
         {
@@ -54,23 +61,17 @@ public class PlayerCam : MonoBehaviour
             }
         }
 
-
-        if (!EventManager.inst.controlsDisabled)
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
-            }
-            // Return to neutral cam position if movement ceases
-            else
-            {
-                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
-                headBobbed = false;
-                headBobTimer = 0;
-            }   
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
         }
-
-         
+        // Return to neutral cam position if movement ceases
+        else
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+            headBobbed = false;
+            headBobTimer = 0;
+        }
 
         // Lerp camera for player crouch
         if (EventManager.inst.playerCrouch)

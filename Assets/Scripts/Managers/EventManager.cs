@@ -8,6 +8,7 @@ public class EventManager : MonoBehaviour
     public static EventManager inst;
 
 	public Transform playerTrans;
+    public Transform enemyKillPos;
 	public GameObject playerObj;
 	public bool playerCrouch = false;
     public bool controlsDisabled = false;

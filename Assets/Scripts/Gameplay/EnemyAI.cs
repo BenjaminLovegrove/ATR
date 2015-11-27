@@ -50,6 +50,7 @@ public class EnemyAI : MonoBehaviour
 	{
         EventManager.inst.controlsDisabled = true;
         EventManager.inst.playerDead = true;
+        EventManager.inst.enemyKillPos = this.gameObject.transform;
         yield return new WaitForSeconds(6f);
         EventManager.inst.resetLevel = true;
     }
