@@ -47,6 +47,8 @@ public class EventManager : MonoBehaviour
     {
         // Hide cursor
         Cursor.visible = false;
+
+
     }
 
 	void FixedUpdate ()
@@ -73,7 +75,7 @@ public class EventManager : MonoBehaviour
         playerDead = false;        
         resetLevel = false;
         Application.LoadLevel(0);
-        playerTrans.position = playerCheckPoints[currentCheckPoint].position;
+        
 	}
 
     // Populate EventManager data upon loading a scene
@@ -82,12 +84,26 @@ public class EventManager : MonoBehaviour
         controlsDisabled = false;
         playerDead = false;
         resetLevel = false;
-        playerTrans = GameObject.Find("Player").GetComponent<Transform>();
-        playerObj = GameObject.Find("Player");
 
+        // Set player references if empty
+        if (playerTrans == null)
+        {
+            playerTrans = GameObject.Find("Player").GetComponent<Transform>();
+        }
+
+        if (playerObj == null)
+        {
+            playerObj = GameObject.Find("Player");
+        }
+
+        // Populate checkpoint array
         for (int i = 0; i < playerCheckPoints.Length; i++)
         {
             playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
         }
+       
+        // Move the player to the current checkpoint location
+        playerTrans.position = playerCheckPoints[currentCheckPoint].position;
+
     }
 }
