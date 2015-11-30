@@ -9,12 +9,14 @@ public class EventManager : MonoBehaviour
 
 	public Transform playerTrans;
     public Transform enemyKillPos;
+    public Transform[] playerCheckPoints;
+
 	public GameObject playerObj;
+
 	public bool playerCrouch = false;
     public bool controlsDisabled = false;
     public bool playerDead = false;
-
-    public Transform[] playerCheckPoints;
+    
     public int currentCheckPoint = 0;
 
     public bool resetLevel = false;
@@ -68,9 +70,9 @@ public class EventManager : MonoBehaviour
 	void ResetPlayer ()
 	{
         controlsDisabled = false;
-        playerDead = false;
-        Application.LoadLevel(0);
+        playerDead = false;        
         resetLevel = false;
+        Application.LoadLevel(0);
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
 	}
 
@@ -78,6 +80,8 @@ public class EventManager : MonoBehaviour
     void OnLevelWasLoaded()
     {
         controlsDisabled = false;
+        playerDead = false;
+        resetLevel = false;
         playerTrans = GameObject.Find("Player").GetComponent<Transform>();
         playerObj = GameObject.Find("Player");
 

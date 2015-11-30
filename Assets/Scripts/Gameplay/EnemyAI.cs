@@ -72,6 +72,7 @@ public class EnemyAI : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+        // Reset radio chat status upon completion of play
         if (audioTimer >= audioLength + 1)
         {
             audioPlaying = false;

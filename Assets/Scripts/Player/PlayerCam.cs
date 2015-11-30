@@ -38,7 +38,7 @@ public class PlayerCam : MonoBehaviour
         if (EventManager.inst.playerDead)
         {
             transform.LookAt(EventManager.inst.enemyKillPos);
-            //Vector3 lookAtEnemy = new Vector3(currentPos.position.x, EventManager.inst.enemyKillPos.position.y, currentPos.position.z);
+            //Vector3 lookAtEnemy = new Vector3(EventManager.inst.enemyKillPos.position.x, EventManager.inst.enemyKillPos.position.y, EventManager.inst.enemyKillPos.position.z);
             //currentPos.position = Vector3.Lerp(currentPos.position, lookAtEnemy, Time.deltaTime * 3);
         }
 

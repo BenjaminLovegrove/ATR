@@ -28,6 +28,9 @@ public class Player : MonoBehaviour
     public AudioClip crouchingWalk;
     private float footStepTimer;
     public float footStepInterval = 0.75f;
+
+    public float alphaFadeValue;
+    public Texture fadeTexture;
 	
 	void Awake ()
 	{
@@ -46,6 +49,8 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+
+
         PlayFootStepSFX();
         PlayerMovement();
 	}
@@ -155,5 +160,12 @@ public class Player : MonoBehaviour
         //Color tempcolor = gameobject.renderer.material.color;
         //tempcolor.a = Mathf.MoveTowards(0, 1, Time.deltaTime);
         //gameobject.renderer.material.color = tempcolor;
+    }
+
+    void OnGUI()
+    {
+        alphaFadeValue -= Mathf.Clamp01(Time.deltaTime / 5);
+        GUI.color = new Color(0, 0, 0, alphaFadeValue);
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeTexture);
     }
 }

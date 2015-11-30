@@ -659,6 +659,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: headBobInterval
+      value: .400000006
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: fadeTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 297cf5d47b2096249ab9742ba7f789fc, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0
