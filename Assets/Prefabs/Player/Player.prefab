@@ -176,8 +176,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.9899998, y: .667999983, z: -2.47000003}
+  m_LocalRotation: {x: 0, y: .988831222, z: 0, w: .149039626}
+  m_LocalPosition: {x: -167.679993, y: -4.78999996, z: -23.6399994}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 432890}
@@ -228,7 +228,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: .100000001
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -240,6 +240,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -325,6 +326,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -394,6 +396,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -457,12 +460,13 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5cd4d2d887d43794694f2fb183bf1475, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 82c4d0dc3653d754aaa3fb45b3065a23, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .00999999978
   m_Pitch: 1
   Loop: 0
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -631,6 +635,8 @@ MonoBehaviour:
   standingWalk: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
   crouchingWalk: {fileID: 8300000, guid: 7ab93585d0d7a2340a2a26499cb4a864, type: 3}
   footStepInterval: 1.25
+  alphaFadeValue: 0
+  fadeTexture: {fileID: 0}
 --- !u!114 &11491664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -642,8 +648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ee98743366d6d41af393b29782c436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  memoryBloom: .300000012
-  memoryFog: .300000012
+  memoryBloom: 1
+  memoryFog: .5
   fadeTime: 4
   bufferTime: 0
 --- !u!124 &12457054
@@ -662,8 +668,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .5
-  m_Height: 2.5
+  m_Radius: 1.20000005
+  m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
