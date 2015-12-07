@@ -47,7 +47,7 @@ public class Memory : MonoBehaviour {
 
         if (memoryLength > 0)
         {
-            EnterMemory();
+            MemoryLerp();
         }
 
         if (memoryLength < 0 && bloom.bloomIntensity > startBloom)
@@ -58,6 +58,13 @@ public class Memory : MonoBehaviour {
     }
 
     void EnterMemory ()
+    {
+        fadeTimer = 0;
+        memoryLength = 5f;
+        //memoryLength = clip.length;
+    }
+
+    void MemoryLerp()
     {
         if (fadeTimer < 1)
         {
