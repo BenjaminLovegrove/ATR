@@ -122,7 +122,7 @@ public class EnemyAI : MonoBehaviour
             anim.SetBool("walking", false);
 
             // While AI is idling increment transition timer
-            switchIdletimer += Time.deltaTime;
+            switchIdletimer += (Time.deltaTime * Random.Range(0.1f, 3f));
             // Set the animator timer equal to script timer
             anim.SetFloat("idleTimer", switchIdletimer);
         }

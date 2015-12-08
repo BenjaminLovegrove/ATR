@@ -97,13 +97,13 @@ public class EventManager : MonoBehaviour
         }
 
         // Populate checkpoint array
-        for (int i = 0; i < playerCheckPoints.Length; i++)
-        {
+        //for (int i = 0; i < playerCheckPoints.Length; i++)
+        //{
             playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
-        }
+        //}
        
         // Move the player to the current checkpoint location
-        playerTrans.position = playerCheckPoints[currentCheckPoint].position;
+        playerTrans.position = playerCheckPoints[currentCheckPoint + 2].position;
 
     }
 }
