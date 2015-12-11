@@ -12,8 +12,8 @@ public class TriggerManager : MonoBehaviour
     bool triggered = false;
 
     [Header("Memory Trigger")]
-    public bool Memory;
-    public AudioClip memoryDialogue;
+    public bool memory;
+    public float memoryDuration;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -40,35 +40,36 @@ public class TriggerManager : MonoBehaviour
         {
 			triggered = true;
 
-            //Memory
-            if (Memory)
+            // Memory
+            if (memory)
             {
-                col.BroadcastMessage("EnterMemory");
+                col.BroadcastMessage("EnterMemory", memoryDuration);
             }
 
-            //Checkpoint
-			if (checkpoint){
+            // Checkpoint
+			if (checkpoint)
+            {
 				EventManager.inst.currentCheckPoint ++;
 			}
 
-<<<<<<< HEAD
             if (enemyTrigger)
             {
                 enemy.SetActive(true);
-=======
-            //Fog
+            }
+
+            // Fog
             if (fogChange)
             {
                 startFog = fog.heightDensity;
                 fogLerp = 0;
->>>>>>> 509f493587e67d583204ff87bd0c95d8975f8ea5
+
             }
         }
 	}
 
     void Update()
     {
-        //Change fog
+        // Change fog
         if (fogLerp < 1)
         {
             fogLerp += Time.deltaTime / 2;

@@ -48,8 +48,6 @@ public class EventManager : MonoBehaviour
     {
         // Hide cursor
         Cursor.visible = false;
-
-
     }
 
 	void FixedUpdate ()

@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: AllThatRemains
+  productName: ATR
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -92,7 +92,7 @@ PlayerSettings:
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
-  productGUID: 885e5bda3d22b58409e651e190e9c55e
+  productGUID: 79c7c0bc96332df4d90e5048b80062a0
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
@@ -257,11 +257,8 @@ PlayerSettings:
   ps4ReprojectionSupport: 0
   ps4UseAudio3dBackend: 0
   ps4Audio3dVirtualSpeakerCount: 14
-<<<<<<< HEAD
   ps4attribCpuUsage: 0
   ps4SocialScreenEnabled: 0
-=======
->>>>>>> 509f493587e67d583204ff87bd0c95d8975f8ea5
   ps4attribUserManagement: 0
   ps4attribMoveSupport: 0
   ps4attrib3DSupport: 0
@@ -317,7 +314,7 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols: {}
-  metroPackageName: AllThatRemains
+  metroPackageName: ATR
   metroPackageLogo: 
   metroPackageLogo140: 
   metroPackageLogo180: 
@@ -328,7 +325,7 @@ PlayerSettings:
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: AllThatRemains
+  metroApplicationDescription: ATR
   metroStoreTileLogo80: 
   metroStoreTileLogo: 
   metroStoreTileLogo140: 
@@ -464,7 +461,7 @@ PlayerSettings:
   WebGL::memorySize: 256
   WebPlayer::ScriptingBackend: 0
   iOS::Architecture: 2
-  iOS::EnableIncrementalBuildSupportForIl2cpp: 0
+  iOS::EnableIncrementalBuildSupportForIl2cpp: 1
   iOS::ScriptingBackend: 1
   boolPropertyNames:
   - WebGL::analyzeBuildSize

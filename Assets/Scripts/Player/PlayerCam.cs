@@ -21,6 +21,9 @@ public class PlayerCam : MonoBehaviour
     public Transform cameraPosHeadBob;
     public Transform currentPos;
     public Transform cameraDead;
+    
+    public Transform[] memoryCameraBegin;
+    public Transform[] memoryCameraEnd;
 
     public float headBobInterval;
     private float headBobTimer;    
@@ -29,25 +32,25 @@ public class PlayerCam : MonoBehaviour
     // PreJump cam movement co-routine
     IEnumerator PreJump()
     {
-       currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime * 6);
-       yield return new WaitForSeconds(0.3f);
-       currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
+        currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime * 6);
+        yield return new WaitForSeconds(0.3f);
+        currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
     }
 
 	void FixedUpdate ()
 	{
-         // Pre cam movement
-        if (EventManager.inst.playerJump)
-        {
-            StartCoroutine("PreJump");
-        }
-
         CameraLerping();
         MouseMovement();
 	}
 
     void CameraLerping()
     {
+        // Pre cam movement
+        if (EventManager.inst.playerJump)
+        {
+            StartCoroutine("PreJump");
+        }
+
         // Face enemy that killed the player
         if (EventManager.inst.playerDead)
         {
@@ -77,10 +80,14 @@ public class PlayerCam : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
+            // No movement if controls disabled
+            if (!EventManager.inst.controlsDisabled)
+            {
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
+            }            
         }
         
-            // Return to neutral cam position if movement ceases
+        // Return to neutral cam position if movement ceases
         else
         {
             currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);

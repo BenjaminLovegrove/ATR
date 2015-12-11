@@ -4,8 +4,8 @@ using System.Collections;
 
 // Script for handling in game memory events
 
-public class Memory : MonoBehaviour {
-
+public class Memory : MonoBehaviour
+{
     private BloomAndFlares bloom;
     private GlobalFog fog;
 
@@ -20,10 +20,11 @@ public class Memory : MonoBehaviour {
     private float fadeTimer;
     private float memoryLength = 0f;
 
-    // these vars might duplicate what you already have
-    // I'll leave you to mess with them if you want, otherwise let me know
+    private bool memoryPlaying = false;
+
+    public AudioClip[] memoryDialogue;
+
     private float delayTimer;
-    private bool delayEnable;
 
     void Start()
     {
@@ -36,13 +37,15 @@ public class Memory : MonoBehaviour {
 
 	void FixedUpdate ()
     {
-        RemoveControls();
-	
+        MemoryTimer();
+
+        // Hack to test memories
         if (Input.GetKeyDown(KeyCode.M))
         {
+            print("Memory Triggered");            
+            memoryPlaying = true;
             fadeTimer = 0;
             memoryLength = 5f;
-            //memoryLength = clip.length;
         }
 
         if (memoryLength > 0)
@@ -57,11 +60,13 @@ public class Memory : MonoBehaviour {
 
     }
 
-    void EnterMemory ()
+    void EnterMemory (float duration)
     {
+        transform.LookAt(EventManager.inst.enemyKillPos);
+        EventManager.inst.controlsDisabled = true;
+        memoryPlaying = true;        
         fadeTimer = 0;
-        memoryLength = 5f;
-        //memoryLength = clip.length;
+        memoryLength = duration;
     }
 
     void MemoryLerp()
@@ -71,11 +76,6 @@ public class Memory : MonoBehaviour {
             fadeTimer += Time.deltaTime / fadeTime;
         }
         memoryLength -= Time.deltaTime / (memoryLength + bufferTime);
-
-        // if (fadeTimer < (1 - ((bufferTime/2)/memoryLength)) && !memoryclip.isPlaying)
-        // {
-        //    playclip;
-        // }
 
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
@@ -89,20 +89,20 @@ public class Memory : MonoBehaviour {
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
     }
 
-    // Set your duration of delayTimer then set delayEnable to true
-    // delaytimer = 7.43f;
-    // delayEnable = true;
-    void RemoveControls()
+    // Once the delay timer reaches the value of the memory length, the script will end
+    void MemoryTimer()
     {
-        if (delayEnable)
+        if (memoryPlaying)
         {
             EventManager.inst.controlsDisabled = true;
-            delayTimer -= Time.deltaTime;
+            delayTimer += Time.deltaTime;
         }
 
-        if (delayTimer < 0)
+        if (delayTimer > memoryLength)
         {
             EventManager.inst.controlsDisabled = false;
+            delayTimer = 0;
+            memoryPlaying = false;
         }
     }
 }
