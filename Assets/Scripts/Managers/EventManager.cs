@@ -19,6 +19,7 @@ public class EventManager : MonoBehaviour
     public bool playerJump = false;
     
     public int currentCheckPoint = 0;
+    public int currentMemory;
 
     public bool resetLevel = false;
 

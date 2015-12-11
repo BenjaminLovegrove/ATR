@@ -62,6 +62,7 @@ public class Memory : MonoBehaviour
 
     void EnterMemory (float duration)
     {
+        print("Memory receiver triggered on Memory script");
         transform.LookAt(EventManager.inst.enemyKillPos);
         EventManager.inst.controlsDisabled = true;
         memoryPlaying = true;        

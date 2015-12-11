@@ -141,4 +141,13 @@ public class PlayerCam : MonoBehaviour
             }
         }
     }
+
+    // Sendmessage reciever for entering a memory
+    void EnterMemory()
+    {
+        print("Memory receiver triggered on PlayerCam script");
+        transform.LookAt(memoryCameraBegin[EventManager.inst.currentMemory]);
+        print("Lerping from memory beginning to end");
+        transform.LookAt(memoryCameraEnd[EventManager.inst.currentMemory]);
+    }
 }
