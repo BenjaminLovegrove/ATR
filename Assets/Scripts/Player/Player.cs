@@ -49,8 +49,6 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-
-
         PlayFootStepSFX();
         PlayerMovement();
 	}
@@ -67,6 +65,7 @@ public class Player : MonoBehaviour
             if (hit.distance < 3f)
             {
                 grounded = true;
+                EventManager.inst.playerJump = false;
             }
         }
 
@@ -99,6 +98,7 @@ public class Player : MonoBehaviour
                 {
                     if (canJump && Input.GetButton("Jump"))
                     {
+                        EventManager.inst.playerJump = true;
                         jumpTimer = 0;
                         StartCoroutine("Jump");
                     }

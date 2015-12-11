@@ -16,6 +16,7 @@ public class EventManager : MonoBehaviour
 	public bool playerCrouch = false;
     public bool controlsDisabled = false;
     public bool playerDead = false;
+    public bool playerJump = false;
     
     public int currentCheckPoint = 0;
 

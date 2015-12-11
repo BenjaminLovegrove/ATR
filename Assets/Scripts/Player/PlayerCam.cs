@@ -26,8 +26,22 @@ public class PlayerCam : MonoBehaviour
     private float headBobTimer;    
     private bool headBobbed;
 
+    // PreJump cam movement co-routine
+    IEnumerator PreJump()
+    {
+       currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime * 6);
+       yield return new WaitForSeconds(0.3f);
+       currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
+    }
+
 	void FixedUpdate ()
 	{
+         // Pre cam movement
+        if (EventManager.inst.playerJump)
+        {
+            StartCoroutine("PreJump");
+        }
+
         CameraLerping();
         MouseMovement();
 	}
@@ -65,7 +79,8 @@ public class PlayerCam : MonoBehaviour
         {
             currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
         }
-        // Return to neutral cam position if movement ceases
+        
+            // Return to neutral cam position if movement ceases
         else
         {
             currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
@@ -82,6 +97,8 @@ public class PlayerCam : MonoBehaviour
         {
             currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
         }
+
+
 
         // Lerp camera for player death
         if (EventManager.inst.playerDead)
