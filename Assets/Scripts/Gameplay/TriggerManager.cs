@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 using System.Collections;
 
 // Script to handle trigger events that can occur throughout the game
@@ -14,6 +15,13 @@ public class TriggerManager : MonoBehaviour
     public bool Memory;
     public AudioClip memoryDialogue;
 
+    [Header("Fog Change")]
+    public bool fogChange;
+    public float targFog;
+    private GlobalFog fog;
+    private float startFog;
+    private float fogLerp = 1;
+
     [Header("Enemy Patrol Start Trigger")]
     public bool enemyTrigger;
     public GameObject enemy;
@@ -21,6 +29,10 @@ public class TriggerManager : MonoBehaviour
 	[Header("Checkpoint")]
 	public bool checkpoint;
 
+    void Start()
+    {
+        fog = GameObject.Find("Player").GetComponent<GlobalFog>();
+    }
 
     void OnTriggerEnter (Collider col)
     {
@@ -28,19 +40,40 @@ public class TriggerManager : MonoBehaviour
         {
 			triggered = true;
 
+            //Memory
             if (Memory)
             {
                 col.BroadcastMessage("EnterMemory");
             }
 
+            //Checkpoint
 			if (checkpoint){
 				EventManager.inst.currentCheckPoint ++;
 			}
 
+<<<<<<< HEAD
             if (enemyTrigger)
             {
                 enemy.SetActive(true);
+=======
+            //Fog
+            if (fogChange)
+            {
+                startFog = fog.heightDensity;
+                fogLerp = 0;
+>>>>>>> 509f493587e67d583204ff87bd0c95d8975f8ea5
             }
         }
 	}
+
+    void Update()
+    {
+        //Change fog
+        if (fogLerp < 1)
+        {
+            fogLerp += Time.deltaTime / 2;
+            fog.heightDensity = Mathf.Lerp(startFog, targFog, fogLerp);
+        }
+
+    }
 }

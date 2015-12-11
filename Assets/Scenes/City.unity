@@ -37,9 +37,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -68,6 +65,7 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -1948,6 +1946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Memory: 1
   memoryDialogue: {fileID: 0}
+  fogChange: 0
+  targFog: 0
   enemy: {fileID: 0}
   checkpoint: 0
 --- !u!1 &228809072 stripped
@@ -7273,6 +7273,29 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b17b3ccb269b8ad4a9c499508b8e86d6, type: 3}
   m_PrefabInternal: {fileID: 991249541}
+--- !u!1 &793946464 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 164748, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+  m_PrefabInternal: {fileID: 456036160}
+--- !u!169 &793946467
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 793946464}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: -0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &799973063
 Prefab:
   m_ObjectHideFlags: 0
@@ -16534,6 +16557,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Memory: 1
   memoryDialogue: {fileID: 0}
+  fogChange: 0
+  targFog: 0
   enemy: {fileID: 0}
   checkpoint: 1
 --- !u!1001 &1702585502

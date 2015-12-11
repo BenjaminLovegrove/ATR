@@ -257,8 +257,11 @@ PlayerSettings:
   ps4ReprojectionSupport: 0
   ps4UseAudio3dBackend: 0
   ps4Audio3dVirtualSpeakerCount: 14
+<<<<<<< HEAD
   ps4attribCpuUsage: 0
   ps4SocialScreenEnabled: 0
+=======
+>>>>>>> 509f493587e67d583204ff87bd0c95d8975f8ea5
   ps4attribUserManagement: 0
   ps4attribMoveSupport: 0
   ps4attrib3DSupport: 0
