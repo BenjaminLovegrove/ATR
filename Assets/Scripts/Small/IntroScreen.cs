@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// Splash screen automatic light and transition script
+
 public class IntroScreen : MonoBehaviour
 {
     private float timer;
@@ -14,11 +16,10 @@ public class IntroScreen : MonoBehaviour
 
         if (timer > duration)
         {
-            //Application.LoadLevel("Main Menu");
-            //print("Intro Complete");
+            Application.LoadLevel("MainMenu");
         }
 
-        light.transform.Rotate(Vector3.down * Time.deltaTime * 7);
+        light.transform.Rotate(Vector3.down * Time.deltaTime * 9);
 
 	}
  }

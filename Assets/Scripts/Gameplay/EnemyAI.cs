@@ -7,9 +7,6 @@ using System.Collections;
 public class EnemyAI : MonoBehaviour
 {
 	public float patrolSpeed = 2f;
-	public float chaseSpeed = 5f;
-	public float chaseWaitTime = 5f;
-	public float chaseTimer = 5f;
 	public float patrolWaitTime = 1f;
 	public Transform[] patrolWayPoints;
 	public float patrolTimer = 0f;

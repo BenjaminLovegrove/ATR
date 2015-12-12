@@ -74,7 +74,7 @@ public class EventManager : MonoBehaviour
         controlsDisabled = false;
         playerDead = false;        
         resetLevel = false;
-        Application.LoadLevel(0);
+        Application.LoadLevel("City");
         
 	}
 
@@ -103,7 +103,7 @@ public class EventManager : MonoBehaviour
         //}
        
         // Move the player to the current checkpoint location
-        playerTrans.position = playerCheckPoints[currentCheckPoint + 2].position;
+        playerTrans.position = playerCheckPoints[currentCheckPoint].position;
 
     }
 }

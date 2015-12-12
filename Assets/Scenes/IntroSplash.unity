@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250f7e0684bde334f97d1bd725f05db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0
+  duration: 8
   light: {fileID: 903902882}
 --- !u!82 &1022864398
 AudioSource:
