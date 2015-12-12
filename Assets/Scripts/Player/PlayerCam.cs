@@ -145,9 +145,10 @@ public class PlayerCam : MonoBehaviour
     // Sendmessage reciever for entering a memory
     void EnterMemory()
     {
-        print("Memory receiver triggered on PlayerCam script");
+        // TODO lerp to start transform
         transform.LookAt(memoryCameraBegin[EventManager.inst.currentMemory]);
-        print("Lerping from memory beginning to end");
+        // TODO lerp to end transform
         transform.LookAt(memoryCameraEnd[EventManager.inst.currentMemory]);
+        // TODO lerp to original transform
     }
 }
