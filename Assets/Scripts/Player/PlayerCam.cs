@@ -39,52 +39,45 @@ public class PlayerCam : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-        CameraLerping();
-        MouseMovement();
+        if (EventManager.inst.playerDead)
+        {
+            DeathCamera();
+        }
+
+        if (!EventManager.inst.controlsDisabled)
+        {
+            CameraMovement();
+            MouseMovement();
+        }
 	}
 
-    void CameraLerping()
+    void CameraMovement()
     {
+        headBobTimer += Time.deltaTime;
+
         // Pre cam movement
         if (EventManager.inst.playerJump)
         {
             StartCoroutine("PreJump");
         }
 
-        // Face enemy that killed the player
-        if (EventManager.inst.playerDead)
-        {
-            transform.LookAt(EventManager.inst.enemyKillPos);
-            //Vector3 lookAtEnemy = new Vector3(EventManager.inst.enemyKillPos.position.x, EventManager.inst.enemyKillPos.position.y, EventManager.inst.enemyKillPos.position.z);
-            //currentPos.position = Vector3.Lerp(currentPos.position, lookAtEnemy, Time.deltaTime * 3);
-        }
-
         // Head bob
-        headBobTimer += Time.deltaTime;
-
-        if (!EventManager.inst.controlsDisabled)
+        if (headBobTimer > headBobInterval)
         {
-            if (headBobTimer > headBobInterval)
-            {
-                headBobbed = true;
-                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
-            }
-
-            if (headBobTimer > headBobInterval * 1.5f)
-            {
-                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
-                headBobbed = false;
-                headBobTimer = 0;
-            }
+            headBobbed = true;
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
         }
+
+        if (headBobTimer > headBobInterval * 1.5f)
+        {
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+            headBobbed = false;
+            headBobTimer = 0;
+        }       
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            // No movement if controls disabled
-            if (!EventManager.inst.controlsDisabled)
-            {
-                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);
-            }            
+        {            
+               currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);              
         }
         
         // Return to neutral cam position if movement ceases
@@ -103,14 +96,6 @@ public class PlayerCam : MonoBehaviour
         else
         {
             currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
-        }
-
-
-
-        // Lerp camera for player death
-        if (EventManager.inst.playerDead)
-        {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraDead.position, Time.deltaTime);
         }
     }
 
@@ -140,6 +125,19 @@ public class PlayerCam : MonoBehaviour
                 transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
             }
         }
+    }
+
+    // Face enemy that killed the player
+    void DeathCamera()
+    {     
+        // Lower the camera
+        currentPos.position = Vector3.Lerp(currentPos.position, cameraDead.position, Time.deltaTime * 2);
+        
+        // Face the enemy
+        transform.LookAt(EventManager.inst.enemyKillPos);
+        //Vector3 lookAtEnemy = new Vector3(EventManager.inst.enemyKillPos.position.x, EventManager.inst.enemyKillPos.position.y, EventManager.inst.enemyKillPos.position.z);
+        //currentPos.position = Vector3.Lerp(currentPos.position, lookAtEnemy, Time.deltaTime * 3);
+        // Lerp camera for player death        
     }
 
     // Sendmessage reciever for entering a memory

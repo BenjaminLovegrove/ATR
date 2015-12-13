@@ -343,6 +343,10 @@ Prefab:
       propertyPath: patrolWayPoints.Array.data[3]
       value: 
       objectReference: {fileID: 1992570893}
+    - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: staticEnemy
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -667,6 +671,10 @@ Prefab:
       propertyPath: fadeTexture
       value: 
       objectReference: {fileID: 2800000, guid: 297cf5d47b2096249ab9742ba7f789fc, type: 3}
+    - target: {fileID: 487956, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0
