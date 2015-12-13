@@ -12,16 +12,18 @@ public class EventManager : MonoBehaviour
     public Transform[] playerCheckPoints;
 
 	public GameObject playerObj;
+    public GameObject pauseMenuButtons;
 
 	public bool playerCrouch = false;
     public bool controlsDisabled = false;
     public bool playerDead = false;
     public bool playerJump = false;
+    public bool gamePaused = false;
     
     public int currentCheckPoint = 0;
-    public int currentMemory;
+    public int currentMemory;                   // assign a unique number for each memory interaction for the entire game
 
-    public bool resetLevel = false;
+    public bool resetLevel = false;    
 
 	void Awake ()
 	{
@@ -33,7 +35,7 @@ public class EventManager : MonoBehaviour
 		}
 		else Destroy(this);
 
-        // Set player references if empty
+        // Set variable references if empty
         if (playerTrans == null)
         {
             playerTrans = GameObject.Find("Player").GetComponent<Transform>();
@@ -43,6 +45,11 @@ public class EventManager : MonoBehaviour
         {
             playerObj = GameObject.Find("Player");
         }
+
+        //if (pauseMenuButtons == null)
+        //{
+        //    playerObj = GameObject.Find("PauseMenuObj");
+        //}
 	}
 
     void Start()
@@ -96,12 +103,13 @@ public class EventManager : MonoBehaviour
             playerObj = GameObject.Find("Player");
         }
 
-        // Populate checkpoint array
-        //for (int i = 0; i < playerCheckPoints.Length; i++)
+        //if (pauseMenuButtons == null)
         //{
-            playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
+        //    playerObj = GameObject.Find("PauseMenuObj");
         //}
-       
+
+        playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
+
         // Move the player to the current checkpoint location
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
 

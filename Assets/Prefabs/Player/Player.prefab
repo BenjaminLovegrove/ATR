@@ -177,8 +177,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
-  m_LocalRotation: {x: 0, y: .988831222, z: 0, w: .149039626}
-  m_LocalPosition: {x: -167.679993, y: -4.78999996, z: -23.6399994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.9899998, y: .667999983, z: -2.47000003}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 432890}
@@ -196,7 +196,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440284}
@@ -265,7 +265,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -741,7 +743,9 @@ MonoBehaviour:
   cameraPosHeadBob: {fileID: 409352}
   currentPos: {fileID: 432890}
   cameraDead: {fileID: 487956}
-  headBobInterval: .5
+  memoryCameraBegin: []
+  memoryCameraEnd: []
+  headBobInterval: .400000006
 --- !u!114 &11489152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -766,7 +770,7 @@ MonoBehaviour:
   crouchingWalk: {fileID: 8300000, guid: 7ab93585d0d7a2340a2a26499cb4a864, type: 3}
   footStepInterval: .800000012
   alphaFadeValue: 0
-  fadeTexture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+  fadeTexture: {fileID: 2800000, guid: 297cf5d47b2096249ab9742ba7f789fc, type: 3}
 --- !u!114 &11491664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -782,6 +786,7 @@ MonoBehaviour:
   memoryFog: .5
   fadeTime: 4
   bufferTime: 0
+  memoryDialogue: []
 --- !u!124 &12457054
 Behaviour:
   m_ObjectHideFlags: 1

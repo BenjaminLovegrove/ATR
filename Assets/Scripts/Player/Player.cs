@@ -47,6 +47,11 @@ public class Player : MonoBehaviour
         playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
     }
 
+    void Update()
+    {
+        PauseMenu();
+    }
+
 	void FixedUpdate ()
 	{
         PlayFootStepSFX();
@@ -160,6 +165,19 @@ public class Player : MonoBehaviour
         //Color tempcolor = gameobject.renderer.material.color;
         //tempcolor.a = Mathf.MoveTowards(0, 1, Time.deltaTime);
         //gameobject.renderer.material.color = tempcolor;
+    }
+
+    // In game pause function
+    void PauseMenu()
+    {       
+        if (Input.GetKey(KeyCode.Escape) && !EventManager.inst.gamePaused)
+        {
+            print("Game paused");
+            Cursor.visible = true;
+            Time.timeScale = 0;
+            EventManager.inst.gamePaused = true;
+            EventManager.inst.pauseMenuButtons.SetActive(true);
+        }
     }
 
     void OnGUI()
