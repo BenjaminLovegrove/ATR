@@ -32,7 +32,7 @@ public class PlayerCam : MonoBehaviour
     // PreJump cam movement co-routine
     IEnumerator PreJump()
     {
-        currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime * 6);
+        currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime * 10);
         yield return new WaitForSeconds(0.3f);
         currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
     }
