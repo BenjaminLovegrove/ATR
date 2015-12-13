@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     {
         print("Pressed Play");
         Application.LoadLevel("City");
+        Cursor.visible = false;
     }
 
     public void CreditsButton()

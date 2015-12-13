@@ -15,6 +15,8 @@ public class PauseMenu : MonoBehaviour
     public void MainMenuClicked()
     {
         Time.timeScale = 1;
+        EventManager.inst.gamePaused = false;
+        EventManager.inst.pauseMenuButtons.SetActive(false);
         Application.LoadLevel("MainMenu");
     }
 

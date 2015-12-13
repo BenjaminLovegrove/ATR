@@ -19,11 +19,11 @@ public class EventManager : MonoBehaviour
     public bool playerDead = false;
     public bool playerJump = false;
     public bool gamePaused = false;
+    public bool resetLevel = false;
     
     public int currentCheckPoint = 0;
-    public int currentMemory;                   // assign a unique number for each memory interaction for the entire game
-
-    public bool resetLevel = false;    
+    public int currentMemory;                   // personally assign a unique number for each memory interaction for the entire game
+    public int currentLevel = 0;                // City = 2, Test = 3    
 
 	void Awake ()
 	{
@@ -33,23 +33,7 @@ public class EventManager : MonoBehaviour
 			inst = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		else Destroy(this);
-
-        // Set variable references if empty
-        if (playerTrans == null)
-        {
-            playerTrans = GameObject.Find("Player").GetComponent<Transform>();
-        }
-
-        if (playerObj == null)
-        {
-            playerObj = GameObject.Find("Player");
-        }
-
-        //if (pauseMenuButtons == null)
-        //{
-        //    playerObj = GameObject.Find("PauseMenuObj");
-        //}
+		else Destroy(this.gameObject);
 	}
 
     void Start()
@@ -81,8 +65,7 @@ public class EventManager : MonoBehaviour
         controlsDisabled = false;
         playerDead = false;        
         resetLevel = false;
-        Application.LoadLevel("City");
-        
+        Application.LoadLevel(currentLevel);      
 	}
 
     // Populate EventManager data upon loading a scene
@@ -93,25 +76,12 @@ public class EventManager : MonoBehaviour
         resetLevel = false;
 
         // Set player references if empty
-        if (playerTrans == null)
-        {
-            playerTrans = GameObject.Find("Player").GetComponent<Transform>();
-        }
-
-        if (playerObj == null)
-        {
-            playerObj = GameObject.Find("Player");
-        }
-
-        //if (pauseMenuButtons == null)
-        //{
-        //    playerObj = GameObject.Find("PauseMenuObj");
-        //}
-
+        playerTrans = GameObject.Find("Player").GetComponent<Transform>();
+        playerObj = GameObject.Find("Player");
+        pauseMenuButtons = GameObject.Find("PauseMenuObj");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
 
         // Move the player to the current checkpoint location
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
-
     }
 }

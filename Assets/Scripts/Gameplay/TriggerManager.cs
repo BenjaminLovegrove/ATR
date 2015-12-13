@@ -33,6 +33,10 @@ public class TriggerManager : MonoBehaviour
 	[Header("Checkpoint")]
 	public bool checkpoint;
 
+    [Header("End Level")]
+    public bool endLevel;
+    public int setLevel;
+
     void Start()
     {
         fog = GameObject.Find("Player").GetComponent<GlobalFog>();
@@ -72,7 +76,14 @@ public class TriggerManager : MonoBehaviour
                 print("Fog Triggered");
                 startFog = fog.heightDensity;
                 fogLerp = 0;
+            }
 
+            // End Level
+            if (endLevel)
+            {
+                print("Level Complete");
+                EventManager.inst.currentLevel = setLevel;
+                Application.LoadLevel(EventManager.inst.currentLevel);
             }
         }
 	}
