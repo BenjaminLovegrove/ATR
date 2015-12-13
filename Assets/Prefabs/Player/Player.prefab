@@ -83,6 +83,7 @@ GameObject:
   - 114: {fileID: 11420322}
   - 114: {fileID: 11491664}
   - 114: {fileID: 11404758}
+  - 169: {fileID: 16920770}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -177,8 +178,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.9899998, y: .667999983, z: -2.47000003}
+  m_LocalRotation: {x: 0, y: .988831222, z: 0, w: .149039626}
+  m_LocalPosition: {x: -167.679993, y: -4.78999996, z: -23.6399994}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 432890}
@@ -265,9 +266,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -393,11 +392,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5cd4d2d887d43794694f2fb183bf1475, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: c9162f241badc8a4582e645237de1be4, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: .800000012
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -465,7 +464,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 82c4d0dc3653d754aaa3fb45b3065a23, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .00999999978
+  m_Volume: .00749999983
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -743,8 +742,10 @@ MonoBehaviour:
   cameraPosHeadBob: {fileID: 409352}
   currentPos: {fileID: 432890}
   cameraDead: {fileID: 487956}
-  memoryCameraBegin: []
-  memoryCameraEnd: []
+  memoryCameraBegin:
+  - {fileID: 0}
+  memoryCameraEnd:
+  - {fileID: 0}
   headBobInterval: .400000006
 --- !u!114 &11489152
 MonoBehaviour:
@@ -757,8 +758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86e4faf433f0924a821040a0f725888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 2.5
-  crouchSpeed: 1.5
+  walkSpeed: 2
+  crouchSpeed: 1
   gravity: 7
   maxVelocityChange: 10
   canJump: 1
@@ -807,6 +808,25 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!169 &16920770
+AudioLowPassFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164748}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: -0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

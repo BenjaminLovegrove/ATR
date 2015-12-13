@@ -2489,10 +2489,11 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 20
+  MaxDistance: 15
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -2501,15 +2502,15 @@ AudioSource:
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: .0500000007
+    - time: .123394489
       value: 1
       inSlope: 0
       outSlope: -1.05263162
       tangentMode: 0
-    - time: .527522922
-      value: .0611111186
-      inSlope: -1.05263162
-      outSlope: 0
+    - time: .995412827
+      value: 0
+      inSlope: -.237896442
+      outSlope: -.237896442
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -2572,9 +2573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 1
-  chaseSpeed: 5
-  chaseWaitTime: 5
-  chaseTimer: 5
   patrolWaitTime: 1
   patrolWayPoints:
   - {fileID: 0}
@@ -3006,6 +3004,34 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Radius
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MaxDistance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: .123394489
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
+      value: -1.05263162
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
+      value: .995412827
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
+      value: -.237896442
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
+      value: -.237896442
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
