@@ -45,6 +45,12 @@ public class EventManager : MonoBehaviour
 	void FixedUpdate ()
 	{
         LevelResetCheck();
+
+        // TODO - this is hacky and throwing nulls like a mofo - FIX!
+        if (!gamePaused)
+        {
+            pauseMenuButtons.SetActive(false);
+        }
 	}
 
     // Check for external level reset
@@ -78,7 +84,7 @@ public class EventManager : MonoBehaviour
         // Set player references if empty
         playerTrans = GameObject.Find("Player").GetComponent<Transform>();
         playerObj = GameObject.Find("Player");
-        pauseMenuButtons = GameObject.Find("PauseMenuObj");
+        pauseMenuButtons = GameObject.FindWithTag("PauseMenuObj");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
 
         // Move the player to the current checkpoint location

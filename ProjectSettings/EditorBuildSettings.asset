@@ -11,5 +11,5 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
   - enabled: 1
     path: Assets/Scenes/City.unity
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/TestScene.unity
