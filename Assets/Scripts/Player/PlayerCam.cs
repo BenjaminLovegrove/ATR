@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 using System.Collections;
 
 // Player Camera
@@ -15,7 +16,8 @@ public class PlayerCam : MonoBehaviour
 	public float maximumY = 60F;
 	float rotationY = 0F;
     public float crouch = 2;
-   
+    private GlobalFog fog;
+
     public Transform cameraPosNeutral;
     public Transform cameraPosCrouch;
     public Transform cameraPosHeadBob;
@@ -28,6 +30,11 @@ public class PlayerCam : MonoBehaviour
     public float headBobInterval;
     private float headBobTimer;    
     private bool headBobbed;
+
+    void Awake()
+    {
+        fog = gameObject.GetComponentInChildren<GlobalFog>();
+    }
 
     // PreJump cam movement co-routine
     IEnumerator PreJump()
@@ -132,7 +139,9 @@ public class PlayerCam : MonoBehaviour
     {     
         // Lower the camera
         currentPos.position = Vector3.Lerp(currentPos.position, cameraDead.position, Time.deltaTime * 2);
-        
+
+        fog.heightDensity = Mathf.Lerp(fog.heightDensity, 5, Time.deltaTime);
+
         // Face the enemy
         transform.LookAt(EventManager.inst.enemyKillPos);
         //Vector3 lookAtEnemy = new Vector3(EventManager.inst.enemyKillPos.position.x, EventManager.inst.enemyKillPos.position.y, EventManager.inst.enemyKillPos.position.z);
