@@ -47,7 +47,7 @@ public class EventManager : MonoBehaviour
         LevelResetCheck();
 
         // TODO - this is hacky and throwing nulls like a mofo - FIX!
-        if (!gamePaused)
+        if (!gamePaused && pauseMenuButtons != null)
         {
             pauseMenuButtons.SetActive(false);
         }
