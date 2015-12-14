@@ -16,9 +16,13 @@ public class Credits : MonoBehaviour
         Application.LoadLevel("MainMenu");
     }
 
-    void FixedUpdate()
+    void Start()
     {
-        Cursor.visible = true;
+        Cursor.visible = false;
+    }
+
+    void FixedUpdate()
+    {        
         creditsText.transform.position += Vector3.up * Time.deltaTime * textScrollSpeed;
         timer += Time.deltaTime;
 

@@ -80,7 +80,6 @@ public class EventManager : MonoBehaviour
         playerDead = false;
         resetLevel = false;
 
-        // Set player references if empty
         playerTrans = GameObject.Find("Player").GetComponent<Transform>();
         playerObj = GameObject.Find("Player");
         pauseMenuButtons = GameObject.FindWithTag("PauseMenuObj");

@@ -4504,6 +4504,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: standingWalk.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: crouchingWalk.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: m_LocalPosition.x
       value: -167.679993
@@ -4564,6 +4572,22 @@ Prefab:
       propertyPath: m_Radius
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: standingWalk.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: standingWalk.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ab93585d0d7a2340a2a26499cb4a864, type: 3}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: crouchingWalk.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ecae2f93ed443894688abdcb94fea5e4, type: 3}
+    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: crouchingWalk.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9f72fe6cf969564408d4e6aa92320bfa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0

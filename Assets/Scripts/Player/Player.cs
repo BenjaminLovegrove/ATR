@@ -24,9 +24,11 @@ public class Player : MonoBehaviour
     public Rigidbody playerRigid;
     AudioSource audio;
     
-    public AudioClip standingWalk;
-    public AudioClip crouchingWalk;
+    public AudioClip[] standingWalk;
+    public AudioClip[] crouchingWalk;
     private float footStepTimer;
+    public int currentWalkSFX;
+    public int currentCrouchSFX;
     public float footStepInterval = 0.75f;
 
     public float alphaFadeValue;
@@ -132,16 +134,35 @@ public class Player : MonoBehaviour
     // Play footsteps using a Vertical input as a scalar
     // TODO: add a random pool of Footstep SFX to play from, also dependant on what area the player is in
     void PlayFootStepSFX()
-    {
+    {        
         footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
 
+        // Reset walk array when you reach the end
+        if (currentWalkSFX == (standingWalk.Length))
+        {
+            currentWalkSFX = 0;
+        }
+
+        // Reset crouch array when you reach the end
+        if (currentCrouchSFX == (crouchingWalk.Length))
+        {
+            currentCrouchSFX = 0;
+        }
+
+        // Play footstep if timer is achieved
         if (footStepTimer > footStepInterval)
         {
             if (!EventManager.inst.playerCrouch)
             {
-                audio.PlayOneShot(standingWalk);
+                audio.PlayOneShot(standingWalk[currentWalkSFX]);
+                currentWalkSFX++;
             }
-            else audio.PlayOneShot(crouchingWalk);
+            // Play crouching footstep
+            else
+            {
+                audio.PlayOneShot(crouchingWalk[currentCrouchSFX]);
+                currentCrouchSFX++;
+            }
             
             footStepTimer = 0;
         }
