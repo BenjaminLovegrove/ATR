@@ -266,7 +266,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -396,7 +398,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: .400000006
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   Priority: 128
@@ -732,11 +734,6 @@ MonoBehaviour:
   axes: 0
   sensitivityX: 3
   sensitivityY: 3
-  minimumX: -360
-  maximumX: 360
-  minimumY: -60
-  maximumY: 60
-  crouch: 2
   cameraPosNeutral: {fileID: 435674}
   cameraPosCrouch: {fileID: 497860}
   cameraPosHeadBob: {fileID: 409352}
@@ -806,7 +803,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.20000005
+  m_Radius: 1
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
