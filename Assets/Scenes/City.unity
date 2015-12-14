@@ -4491,14 +4491,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraEnd.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraBegin.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: m_LocalPosition.x
       value: -167.679993
@@ -4536,13 +4528,13 @@ Prefab:
       value: 
       objectReference: {fileID: 920208890}
     - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraEnd.Array.data[0]
-      value: 
-      objectReference: {fileID: 117257320}
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: memoryCameraBegin.Array.data[1]
       value: 
       objectReference: {fileID: 413820492}
+    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: memoryCameraEnd.Array.data[0]
+      value: 
+      objectReference: {fileID: 117257320}
     - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: memoryCameraEnd.Array.data[1]
       value: 
@@ -5584,7 +5576,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 568619193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 92.0699997, y: -7.56000042, z: -55.1300011}
+  m_LocalPosition: {x: 100.720001, y: -7.56000042, z: -55.1300011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1493108524}

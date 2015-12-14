@@ -322,9 +322,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5cd4d2d887d43794694f2fb183bf1475, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ca2ed3429306d8949837f672f5af3dbf, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -392,9 +392,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c9162f241badc8a4582e645237de1be4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 040cb312d031c6749be6d5a0d11732d7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .800000012
+  m_Volume: .400000006
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -464,7 +464,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 82c4d0dc3653d754aaa3fb45b3065a23, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .00749999983
+  m_Volume: .00400000019
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -744,7 +744,9 @@ MonoBehaviour:
   cameraDead: {fileID: 487956}
   memoryCameraBegin:
   - {fileID: 0}
+  - {fileID: 0}
   memoryCameraEnd:
+  - {fileID: 0}
   - {fileID: 0}
   headBobInterval: .400000006
 --- !u!114 &11489152
