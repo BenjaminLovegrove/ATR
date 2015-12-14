@@ -766,8 +766,12 @@ MonoBehaviour:
   jumpDelay: .100000001
   jumpCoolDown: .75
   playerRigid: {fileID: 5430988}
-  standingWalk: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
-  crouchingWalk: {fileID: 8300000, guid: 7ab93585d0d7a2340a2a26499cb4a864, type: 3}
+  standingWalkSFX:
+  - {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
+  - {fileID: 8300000, guid: 7ab93585d0d7a2340a2a26499cb4a864, type: 3}
+  crouchingWalkSFX:
+  - {fileID: 8300000, guid: ecae2f93ed443894688abdcb94fea5e4, type: 3}
+  - {fileID: 8300000, guid: 9f72fe6cf969564408d4e6aa92320bfa, type: 3}
   footStepInterval: .800000012
   alphaFadeValue: 0
   fadeTexture: {fileID: 2800000, guid: 297cf5d47b2096249ab9742ba7f789fc, type: 3}

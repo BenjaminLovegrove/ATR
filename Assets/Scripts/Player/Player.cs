@@ -24,11 +24,11 @@ public class Player : MonoBehaviour
     public Rigidbody playerRigid;
     AudioSource audio;
     
-    public AudioClip[] standingWalk;
-    public AudioClip[] crouchingWalk;
+    public AudioClip[] standingWalkSFX;
+    public AudioClip[] crouchingWalkSFX;
     private float footStepTimer;
-    public int currentWalkSFX;
-    public int currentCrouchSFX;
+    private int currentWalkVal;
+    private int currentCrouchVal;
     public float footStepInterval = 0.75f;
 
     public float alphaFadeValue;
@@ -131,22 +131,21 @@ public class Player : MonoBehaviour
         grounded = false;
     }
 
-    // Play footsteps using a Vertical input as a scalar
-    // TODO: add a random pool of Footstep SFX to play from, also dependant on what area the player is in
+    // Play footsteps using a Vertical input to determine if moving
     void PlayFootStepSFX()
     {        
         footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
 
         // Reset walk array when you reach the end
-        if (currentWalkSFX == (standingWalk.Length))
+        if (currentWalkVal == (standingWalkSFX.Length))
         {
-            currentWalkSFX = 0;
+            currentWalkVal = 0;
         }
 
         // Reset crouch array when you reach the end
-        if (currentCrouchSFX == (crouchingWalk.Length))
+        if (currentCrouchVal == (crouchingWalkSFX.Length))
         {
-            currentCrouchSFX = 0;
+            currentCrouchVal = 0;
         }
 
         // Play footstep if timer is achieved
@@ -154,14 +153,14 @@ public class Player : MonoBehaviour
         {
             if (!EventManager.inst.playerCrouch)
             {
-                audio.PlayOneShot(standingWalk[currentWalkSFX]);
-                currentWalkSFX++;
+                audio.PlayOneShot(standingWalkSFX[currentWalkVal]);
+                currentWalkVal++;
             }
-            // Play crouching footstep
+            // Play crouching footstep if not standing
             else
             {
-                audio.PlayOneShot(crouchingWalk[currentCrouchSFX]);
-                currentCrouchSFX++;
+                audio.PlayOneShot(crouchingWalkSFX[currentCrouchVal]);
+                currentCrouchVal++;
             }
             
             footStepTimer = 0;
