@@ -9,10 +9,21 @@ public class IntroScreen : MonoBehaviour
     public float duration;
 
     public GameObject light;
+    public GameObject light2;
+
+    void Start()
+    {
+        Cursor.visible = false;
+    }
 
 	void FixedUpdate ()
     {
         timer += Time.deltaTime;
+
+        if (timer > (duration - 1.5f))
+        {
+            light2.SetActive(true);
+        }
 
         if (timer > duration)
         {

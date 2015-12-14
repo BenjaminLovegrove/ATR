@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     public void CreditsButton()
     {
         print("Pressed Credits");
+        Application.LoadLevel("Credits");
     }
 
     public void ExitButton()
@@ -25,6 +26,7 @@ public class MainMenu : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Dodgey
         Cursor.visible = true;
     }
 }
