@@ -26,5 +26,10 @@ public class Credits : MonoBehaviour
         {
             Application.LoadLevel("MainMenu");
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+        {
+            Application.LoadLevel("MainMenu");
+        }
     }
 }

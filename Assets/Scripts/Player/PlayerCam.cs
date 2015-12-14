@@ -10,12 +10,12 @@ public class PlayerCam : MonoBehaviour
 	public RotationAxes axes = RotationAxes.MouseXAndY;
 	public float sensitivityX = 15F;
 	public float sensitivityY = 15F;
-	public float minimumX = -360F;
-	public float maximumX = 360F;
-	public float minimumY = -60F;
-	public float maximumY = 60F;
-	float rotationY = 0F;
-    public float crouch = 2;
+    private float minimumX = -360F;
+    private float maximumX = 360F;
+    private float minimumY = -60F;
+    private float maximumY = 60F;
+    private float rotationY = 0F;
+    private float crouch = 2;
     private GlobalFog fog;
 
     public Transform cameraPosNeutral;
@@ -152,10 +152,8 @@ public class PlayerCam : MonoBehaviour
     // Sendmessage reciever for entering a memory
     void EnterMemory()
     {
-        // TODO lerp to start transform
+        // TODO lerp
         transform.LookAt(memoryCameraBegin[EventManager.inst.currentMemory]);
-        // TODO lerp to end transform
         transform.LookAt(memoryCameraEnd[EventManager.inst.currentMemory]);
-        // TODO lerp to original transform
     }
 }

@@ -7,17 +7,20 @@ using System.Collections;
 
 public class TriggerManager : MonoBehaviour
 {
+    public AudioSource audio;
 
     [Header("Trigger Settings")]
     bool triggered = false;
 
-    // The duration in which the memory lasts is set via this float
-    // The unique memory encounter is set via the int
-    // The int values will be unique to each scene
+    // The duration in which the memory lasts is equal...
+    // ...to the length of the corresponding dialogue audio.
+    // The unique memory encounter is set via the int.
+    // The int values will be unique to each scene.
     [Header("Memory Trigger")]
     public bool memory;
-    public float memoryDuration;
+    private float memoryDuration;
     public int memoryEventNumber;
+    public AudioClip[] memoryDialogue;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -52,8 +55,10 @@ public class TriggerManager : MonoBehaviour
             if (memory)
             {
                 print("Memory Triggered");
+                audio.PlayOneShot(memoryDialogue[memoryEventNumber]);
+                memoryDuration = memoryDialogue[memoryEventNumber].length;
                 col.BroadcastMessage("EnterMemory", memoryDuration);
-                EventManager.inst.currentMemory = memoryEventNumber;
+                EventManager.inst.currentMemory = memoryEventNumber;                
             }
 
             // Checkpoint

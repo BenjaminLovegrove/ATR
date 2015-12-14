@@ -22,8 +22,8 @@ public class EventManager : MonoBehaviour
     public bool resetLevel = false;
     
     public int currentCheckPoint = 0;
-    public int currentMemory;                   // personally assign a unique number for each memory interaction for the entire game
-    public int currentLevel = 0;                // City = 2, Test = 3    
+    public int currentMemory;                   // This value is automatically assigned when a memory is triggered
+    public int currentLevel = 0;                // City = 2, Test = 3, Credits = 4  
 
 	void Awake ()
 	{
@@ -38,7 +38,6 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        // Hide cursor
         Cursor.visible = false;
     }
 

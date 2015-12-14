@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: .610294104, g: .121161334, b: .121161334, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -256,7 +256,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -2, y: -997}
+  m_AnchoredPosition: {x: -2, y: -1186}
   m_SizeDelta: {x: 500, y: 1310}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &903902882
@@ -641,12 +641,12 @@ GameObject:
   - 114: {fileID: 1595048801}
   - 114: {fileID: 1595048800}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Main Menu Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1595048799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creditsText: {fileID: 698776663}
-  autoExit: 21.5
+  autoExit: 23
   textScrollSpeed: 100
 --- !u!4 &1861319204
 Transform:

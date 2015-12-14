@@ -2049,9 +2049,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 456036164}
   memory: 1
-  memoryDuration: 5
   memoryEventNumber: 0
+  memoryDialogue:
+  - {fileID: 8300000, guid: 47556dad74231544b95f3ce683652512, type: 3}
+  - {fileID: 8300000, guid: 83dc845d3c56b124fbd9813fb40d7dcc, type: 3}
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -4549,6 +4552,10 @@ Prefab:
       propertyPath: memoryCameraEnd.Array.data[1]
       value: 
       objectReference: {fileID: 568619194}
+    - target: {fileID: 8270340, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0
@@ -4559,6 +4566,11 @@ Transform:
 --- !u!1 &456036162 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100828, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+  m_PrefabInternal: {fileID: 456036160}
+--- !u!82 &456036164 stripped
+AudioSource:
+  m_PrefabParentObject: {fileID: 8270340, guid: f22d72e0b7d09c4468441b2a2213b5f7,
+    type: 2}
   m_PrefabInternal: {fileID: 456036160}
 --- !u!1001 &459356366
 Prefab:
@@ -13027,9 +13039,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 0}
   memory: 0
-  memoryDuration: 0
   memoryEventNumber: 0
+  memoryDialogue: []
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -17705,9 +17718,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: {fileID: 456036164}
   memory: 1
-  memoryDuration: 5
   memoryEventNumber: 1
+  memoryDialogue:
+  - {fileID: 8300000, guid: 47556dad74231544b95f3ce683652512, type: 3}
+  - {fileID: 8300000, guid: 83dc845d3c56b124fbd9813fb40d7dcc, type: 3}
   fogChange: 1
   targFog: 2
   enemyTrigger: 0
