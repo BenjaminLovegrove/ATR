@@ -825,9 +825,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -1020,7 +1018,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c60ef6a9a43824c4eae1814fa77f3e67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .109999895
+      value: -.0540000014
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c60ef6a9a43824c4eae1814fa77f3e67, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1265,7 +1263,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 117257319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 38.1199989, y: 3.11999989, z: 6.13999987}
+  m_LocalPosition: {x: 38.1199989, y: 3.11999989, z: -4.01999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1493108524}
@@ -1597,9 +1595,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -2032,8 +2028,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 225464805}
-  m_LocalRotation: {x: 0, y: -.514882743, z: 0, w: .857260644}
-  m_LocalPosition: {x: -137.929993, y: 76.0400009, z: 24.2999992}
+  m_LocalRotation: {x: 0, y: -.343414605, z: 0, w: .93918395}
+  m_LocalPosition: {x: -137.550003, y: 76.0400009, z: 25.5400009}
   m_LocalScale: {x: 38.2109566, y: 5.99663496, z: 5.99663496}
   m_Children: []
   m_Father: {fileID: 1790116271}
@@ -2050,7 +2046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
-  memoryDuration: 8
+  memoryDuration: 5
   memoryEventNumber: 0
   fogChange: 0
   targFog: 0
@@ -2427,9 +2423,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -2588,9 +2582,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -3207,11 +3199,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: MaxDistance
@@ -3248,6 +3240,18 @@ Prefab:
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Volume
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -3790,6 +3794,33 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f0697d063c5fd3e45a9d31abcd6f1da4, type: 3}
   m_PrefabInternal: {fileID: 409193271}
+--- !u!1 &413820491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 413820492}
+  m_Layer: 0
+  m_Name: MemoryBegin1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413820492
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 413820491}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 90.4100037, y: -7.55999994, z: -71.9000015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1493108524}
+  m_RootOrder: 2
 --- !u!1001 &415447239
 Prefab:
   m_ObjectHideFlags: 0
@@ -3954,9 +3985,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -4462,6 +4491,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: memoryCameraEnd.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: memoryCameraBegin.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: m_LocalPosition.x
       value: -167.679993
@@ -4502,6 +4539,14 @@ Prefab:
       propertyPath: memoryCameraEnd.Array.data[0]
       value: 
       objectReference: {fileID: 117257320}
+    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: memoryCameraBegin.Array.data[1]
+      value: 
+      objectReference: {fileID: 413820492}
+    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: memoryCameraEnd.Array.data[1]
+      value: 
+      objectReference: {fileID: 568619194}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0
@@ -4848,7 +4893,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 418562, guid: 3a84b64b1ead7cc4d9099b6fcf777af4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -.00100000005
       objectReference: {fileID: 0}
     - target: {fileID: 418562, guid: 3a84b64b1ead7cc4d9099b6fcf777af4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5517,6 +5562,33 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 418562, guid: 3a84b64b1ead7cc4d9099b6fcf777af4, type: 2}
   m_PrefabInternal: {fileID: 565701775}
+--- !u!1 &568619193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 568619194}
+  m_Layer: 0
+  m_Name: MemoryEnd1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &568619194
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 568619193}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 92.0699997, y: -7.56000042, z: -55.1300011}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1493108524}
+  m_RootOrder: 3
 --- !u!1001 &572072457
 Prefab:
   m_ObjectHideFlags: 0
@@ -7258,9 +7330,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -8106,9 +8176,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -8169,9 +8237,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -8416,7 +8482,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba6645b2cc06a724bb6ee46b69fa3281, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.1999998
+      value: -10.2550001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba6645b2cc06a724bb6ee46b69fa3281, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8483,8 +8549,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25.1000004, y: 25.9814911, z: 7.30999994}
-  m_Center: {x: 12.5, y: 12.9907455, z: 3.22000003}
+  m_Size: {x: 25.1000004, y: 26.1499996, z: 10.8699999}
+  m_Center: {x: 12.5, y: 12.9907455, z: 5.34000015}
 --- !u!1001 &860775613
 Prefab:
   m_ObjectHideFlags: 0
@@ -8534,11 +8600,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: MaxDistance
@@ -8575,6 +8641,18 @@ Prefab:
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Volume
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -8636,11 +8714,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: MaxDistance
@@ -8677,6 +8755,18 @@ Prefab:
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Volume
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -9897,9 +9987,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -10565,9 +10653,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -11268,31 +11354,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -82.0299988
+      value: -82.0230026
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .293808401
+      value: .135000005
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -133.940002
+      value: -133.942993
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: .00350089977
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: .210980505
+      value: .210951447
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: .0162199587
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: .977490306
+      value: .977355719
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_RootOrder
@@ -12268,9 +12354,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -12844,11 +12928,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: MaxDistance
@@ -12885,6 +12969,18 @@ Prefab:
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Volume
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -12934,7 +13030,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1276482877}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.07999992, y: 5.88999987, z: 18.3999996}
@@ -12999,9 +13095,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -13226,9 +13320,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -13348,9 +13440,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -13640,9 +13730,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -13910,11 +13998,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: MaxDistance
@@ -13951,6 +14039,18 @@ Prefab:
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Volume
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -14076,9 +14176,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -14226,6 +14324,30 @@ Prefab:
     - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Volume
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 171966, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -15148,7 +15270,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba6645b2cc06a724bb6ee46b69fa3281, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .127388537
+      value: -.0799999982
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ba6645b2cc06a724bb6ee46b69fa3281, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15286,6 +15408,8 @@ Transform:
   m_Children:
   - {fileID: 920208890}
   - {fileID: 117257320}
+  - {fileID: 413820492}
+  - {fileID: 568619194}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!1001 &1500925580
@@ -15878,9 +16002,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -17092,7 +17214,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: .108929113
+      value: -.0799999982
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17558,10 +17680,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
-  memoryDuration: 0
+  memoryDuration: 5
   memoryEventNumber: 1
   fogChange: 1
-  targFog: 2.5
+  targFog: 2
   enemyTrigger: 0
   enemy: {fileID: 0}
   checkpoint: 1
@@ -18683,9 +18805,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -20175,9 +20295,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -20899,9 +21017,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -21051,11 +21167,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 400
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_Radius
-      value: 300
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: MaxDistance
@@ -21092,6 +21208,18 @@ Prefab:
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Volume
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263374, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}

@@ -39,7 +39,7 @@ public class TriggerManager : MonoBehaviour
 
     void Start()
     {
-        fog = GameObject.Find("Player").GetComponent<GlobalFog>();
+        fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
     }
 
     void OnTriggerEnter (Collider col)
