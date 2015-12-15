@@ -62,6 +62,9 @@ public class Memory : MonoBehaviour
 
     void EnterMemory (float duration)
     {
+        startFog = fog.heightDensity;
+        memoryFog = fog.heightDensity / 7.5f;
+
         print("Memory receiver triggered on Memory script");
         EventManager.inst.controlsDisabled = true;
         memoryPlaying = true;        
@@ -75,7 +78,7 @@ public class Memory : MonoBehaviour
         {
             fadeTimer += Time.deltaTime / fadeTime;
         }
-        memoryLength -= Time.deltaTime / (memoryLength + bufferTime);
+        memoryLength -= Time.deltaTime * 0.75f;
 
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);

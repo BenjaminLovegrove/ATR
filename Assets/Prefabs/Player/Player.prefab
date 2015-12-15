@@ -266,9 +266,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -326,7 +324,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ca2ed3429306d8949837f672f5af3dbf, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .400000006
+  m_Volume: .600000024
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -466,7 +464,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 82c4d0dc3653d754aaa3fb45b3065a23, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .00400000019
+  m_Volume: .00200000009
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -677,7 +675,7 @@ MonoBehaviour:
   hdr: 0
   sepBlurSpread: 1
   useSrcAlphaAsMask: .5
-  bloomIntensity: 0
+  bloomIntensity: .100000001
   bloomThreshold: .5
   bloomBlurIterations: 1
   lensflares: 0

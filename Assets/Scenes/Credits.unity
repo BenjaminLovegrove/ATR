@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .610294104, g: .121161334, b: .121161334, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -415,7 +415,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ca016f3010417d743abcb6908c533ab3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 040cb312d031c6749be6d5a0d11732d7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .699999988
   m_Pitch: 1
@@ -590,9 +590,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -625,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 1542859968}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: -.0719999969, y: .935000002, z: -9.9489994}
-  m_LocalScale: {x: .100000016, y: 2.20000005, z: 2.20000005}
+  m_LocalScale: {x: .100000016, y: 20.18153, z: 30.1749554}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2

@@ -66,7 +66,20 @@ public class Player : MonoBehaviour
         // Raycast downward from the player to see if touching the ground
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit))
+        Vector3 ray1 = new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z);
+        Vector3 ray2 = new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z);
+        Debug.DrawRay(ray1, Vector3.down);
+        Debug.DrawRay(ray2, Vector3.down);
+
+        if (Physics.Raycast(ray1, Vector3.down, out hit))
+        {
+            // If the raycast hits the ground
+            if (hit.distance < 3f)
+            {
+                grounded = true;
+                EventManager.inst.playerJump = false;
+            }
+        } else if (Physics.Raycast(ray2, Vector3.down, out hit))
         {
             // If the raycast hits the ground
             if (hit.distance < 3f)

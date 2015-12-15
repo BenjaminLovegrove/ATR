@@ -54,11 +54,11 @@ public class TriggerManager : MonoBehaviour
             // Memory
             if (memory)
             {
+                EventManager.inst.currentMemory = memoryEventNumber;
                 print("Memory Triggered");
                 audio.PlayOneShot(memoryDialogue[memoryEventNumber]);
                 memoryDuration = memoryDialogue[memoryEventNumber].length;
-                col.BroadcastMessage("EnterMemory", memoryDuration);
-                EventManager.inst.currentMemory = memoryEventNumber;                
+                col.BroadcastMessage("EnterMemory", memoryDuration / 2f);           
             }
 
             // Checkpoint
