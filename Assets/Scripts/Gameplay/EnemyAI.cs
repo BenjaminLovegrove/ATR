@@ -78,8 +78,12 @@ public class EnemyAI : MonoBehaviour
 
         RadioChatter();
         CalculateVelocity();
-		PlayerDetection ();
         AnimationTriggers();
+        PlayerDetection();
+        //if (EventManager.inst.invisMode)
+        //{
+        //    PlayerDetection();
+        //}
 	}
 
     // Randomly pick an audioclip from radio chatter array to be played
@@ -166,7 +170,7 @@ public class EnemyAI : MonoBehaviour
 	void PlayerDetection()
 	{
 		// If the player is in range and line of sight and is not already dead
-		if (playerInLineOfSight && playerInRange)
+		if (playerInLineOfSight && playerInRange && !EventManager.inst.invisMode)
 		{
 			//print ("Firing!");
 			StartCoroutine("Death");          

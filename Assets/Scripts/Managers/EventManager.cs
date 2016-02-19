@@ -20,6 +20,10 @@ public class EventManager : MonoBehaviour
     public bool playerJump = false;
     public bool gamePaused = false;
     public bool resetLevel = false;
+
+    // Hacks
+    public bool invisMode = false;
+    public bool increaseSpeed = false;
     
     public int currentCheckPoint = 0;
     public int currentMemory;                   // This value is automatically assigned when a memory is triggered

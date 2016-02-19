@@ -58,7 +58,41 @@ public class Player : MonoBehaviour
 	{
         PlayFootStepSFX();
         PlayerMovement();
+        Hacks();
 	}
+
+    // Hacks for testing
+    void Hacks()
+    {
+        // increase player speed
+        if (Input.GetKeyDown(KeyCode.O) && !EventManager.inst.increaseSpeed)
+        {
+            print("Player speed increased");
+            EventManager.inst.increaseSpeed = true;
+            walkSpeed = 9f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.P) && EventManager.inst.increaseSpeed)
+        {
+            print("Player speed set to normal");
+            EventManager.inst.increaseSpeed = false;
+            walkSpeed = 3f;
+        }
+
+        // make player invisible to enemies
+        if (Input.GetKeyDown(KeyCode.U) && !EventManager.inst.invisMode)
+        {
+            print("Player invisible to enemies");
+            EventManager.inst.invisMode = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.I) && EventManager.inst.invisMode)
+        {
+            print("Player visible to enemies");
+            EventManager.inst.invisMode = false;
+        }
+            
+    }
 
     // Player movement on horizontal and vertical axis through player inputs
     void PlayerMovement()
