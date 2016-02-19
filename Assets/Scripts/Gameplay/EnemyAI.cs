@@ -178,17 +178,6 @@ public class EnemyAI : MonoBehaviour
             // Shoot animation and audio
 			if (!playerDead)
 			{
-                //Vector3 direction = transform.position - playerTransform.position;
-                //Quaternion toRotation = Quaternion.FromToRotation(transform.forward, direction);
-                //transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 0.3f * Time.deltaTime);
-
-                //Vector3 dirToPlayer = transform.position - playerTransform.position;
-                //Transform startPos = transform;
-                //Transform endPos = playerTransform;
-                //transform.rotation = Quaternion.Lerp(startPos.rotation, endPos.rotation, 0.3f);
-
-                //transform.LookAt(Quaternion.Lerp(Vector3.forward, dirToPlayer));
-
                 transform.LookAt(playerTransform);
                 audio.PlayOneShot(gunShot, 1f);
                 anim.SetBool("stopping", false);

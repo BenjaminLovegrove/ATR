@@ -180,37 +180,40 @@ public class Player : MonoBehaviour
 
     // Play footsteps using a Vertical input to determine if moving
     void PlayFootStepSFX()
-    {        
-        footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
-
-        // Reset walk array when you reach the end
-        if (currentWalkVal == (standingWalkSFX.Length))
+    {
+        if (!EventManager.inst.playerDead)
         {
-            currentWalkVal = 0;
-        }
+            footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
 
-        // Reset crouch array when you reach the end
-        if (currentCrouchVal == (crouchingWalkSFX.Length))
-        {
-            currentCrouchVal = 0;
-        }
-
-        // Play footstep if timer is achieved
-        if (footStepTimer > footStepInterval)
-        {
-            if (!EventManager.inst.playerCrouch)
+            // Reset walk array when you reach the end
+            if (currentWalkVal == (standingWalkSFX.Length))
             {
-                audio.PlayOneShot(standingWalkSFX[currentWalkVal]);
-                currentWalkVal++;
+                currentWalkVal = 0;
             }
-            // Play crouching footstep if not standing
-            else
+
+            // Reset crouch array when you reach the end
+            if (currentCrouchVal == (crouchingWalkSFX.Length))
             {
-                audio.PlayOneShot(crouchingWalkSFX[currentCrouchVal]);
-                currentCrouchVal++;
+                currentCrouchVal = 0;
             }
-            
-            footStepTimer = 0;
+
+            // Play footstep if timer is achieved
+            if (footStepTimer > footStepInterval)
+            {
+                if (!EventManager.inst.playerCrouch)
+                {
+                    audio.PlayOneShot(standingWalkSFX[currentWalkVal]);
+                    currentWalkVal++;
+                }
+                // Play crouching footstep if not standing
+                else
+                {
+                    audio.PlayOneShot(crouchingWalkSFX[currentCrouchVal]);
+                    currentCrouchVal++;
+                }
+
+                footStepTimer = 0;
+            }
         }
     }
 		
