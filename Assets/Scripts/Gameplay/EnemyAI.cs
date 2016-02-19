@@ -109,7 +109,7 @@ public class EnemyAI : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    // Toggle bolean values for the animation controller to trigger animations
+    // Toggle boolean values for the animation controller to trigger animations
     void AnimationTriggers()
     {
         // Idle state

@@ -24,7 +24,6 @@ public class PlayerCam : MonoBehaviour
     public Transform currentPos;
     public Transform cameraDead;
     
-    public Transform[] memoryCameraBegin;
     public Transform[] memoryCameraEnd;
 
     public float headBobInterval;
@@ -142,18 +141,14 @@ public class PlayerCam : MonoBehaviour
 
         fog.heightDensity = Mathf.Lerp(fog.heightDensity, 5, Time.deltaTime);
 
-        // Face the enemy
-        transform.LookAt(EventManager.inst.enemyKillPos);
-        //Vector3 lookAtEnemy = new Vector3(EventManager.inst.enemyKillPos.position.x, EventManager.inst.enemyKillPos.position.y, EventManager.inst.enemyKillPos.position.z);
-        //currentPos.position = Vector3.Lerp(currentPos.position, lookAtEnemy, Time.deltaTime * 3);
-        // Lerp camera for player death        
+        // Face the enemy that killed the player
+        Vector3 enemyDirection = EventManager.inst.enemyKillPos.position - transform.position;
+        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(enemyDirection), Time.deltaTime * 1.5f);    
     }
 
     // Sendmessage reciever for entering a memory
     void EnterMemory()
     {
-        // TODO lerp
-        transform.LookAt(memoryCameraBegin[EventManager.inst.currentMemory]);
-        transform.LookAt(memoryCameraEnd[EventManager.inst.currentMemory]);
+        transform.rotation = Quaternion.Lerp(currentPos.rotation, memoryCameraEnd[EventManager.inst.currentMemory].rotation, Time.deltaTime * 1f);
     }
 }

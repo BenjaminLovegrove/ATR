@@ -332,7 +332,7 @@ Prefab:
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerCheckPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 2111458940}
+      objectReference: {fileID: 479484666}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerCheckPoints.Array.data[1]
       value: 
