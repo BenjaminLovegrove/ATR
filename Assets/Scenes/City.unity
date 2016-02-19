@@ -1357,7 +1357,7 @@ MonoBehaviour:
   targFog: 2
   enemyTrigger: 0
   enemy: {fileID: 0}
-  checkpoint: 1
+  checkpoint: 0
   endLevel: 0
   setLevel: 0
 --- !u!65 &133178118
@@ -8438,7 +8438,6 @@ Transform:
   m_LocalPosition: {x: -167.679993, y: -4.78999996, z: -23.6399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1784013554}
   - {fileID: 1616656701}
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -16875,7 +16874,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerCheckPoints.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 461026, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: m_LocalPosition.x
@@ -16928,11 +16927,11 @@ Prefab:
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerCheckPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 1784013554}
+      objectReference: {fileID: 776388706}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerCheckPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 1616656701}
+      objectReference: {fileID: 0}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: pauseMenuButtons
       value: 
@@ -16941,6 +16940,10 @@ Prefab:
       propertyPath: currentLevel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
+      propertyPath: playerCheckPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1616656701}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
   m_IsPrefabParent: 0
@@ -17881,7 +17884,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1616656701}
   m_Layer: 0
-  m_Name: CheckPoint2
+  m_Name: CheckPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17898,7 +17901,7 @@ Transform:
   m_LocalScale: {x: .00999999978, y: .0100000026, z: .00999999885}
   m_Children: []
   m_Father: {fileID: 776388706}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1001 &1618566781
 Prefab:
   m_ObjectHideFlags: 0
@@ -19918,33 +19921,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dfdbc322c6b0c3c43ac822e0a96b84b5, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &1784013553
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1784013554}
-  m_Layer: 0
-  m_Name: CheckPoint1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1784013554
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1784013553}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 776388706}
-  m_RootOrder: 0
 --- !u!1 &1785764078
 GameObject:
   m_ObjectHideFlags: 0

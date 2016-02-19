@@ -89,7 +89,12 @@ public class EventManager : MonoBehaviour
         pauseMenuButtons = GameObject.FindWithTag("PauseMenuObj");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
 
-        // Move the player to the current checkpoint location
+        Invoke("MovePlayer", 0.05f);
+    }
+
+    // Move the player to the current checkpoint location
+    void MovePlayer()
+    {        
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
     }
 }
