@@ -1353,6 +1353,8 @@ MonoBehaviour:
   memoryDialogue:
   - {fileID: 8300000, guid: 47556dad74231544b95f3ce683652512, type: 3}
   - {fileID: 8300000, guid: 83dc845d3c56b124fbd9813fb40d7dcc, type: 3}
+  memoryObj: {fileID: 0}
+  objFadeTimer: 0
   fogChange: 1
   targFog: 2
   enemyTrigger: 0
@@ -2250,6 +2252,8 @@ MonoBehaviour:
   memoryDialogue:
   - {fileID: 8300000, guid: 47556dad74231544b95f3ce683652512, type: 3}
   - {fileID: 8300000, guid: 83dc845d3c56b124fbd9813fb40d7dcc, type: 3}
+  memoryObj: {fileID: 0}
+  objFadeTimer: 2
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -13963,6 +13967,8 @@ MonoBehaviour:
   memory: 0
   memoryEventNumber: 0
   memoryDialogue: []
+  memoryObj: {fileID: 0}
+  objFadeTimer: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 1
@@ -14202,6 +14208,8 @@ MonoBehaviour:
   memory: 0
   memoryEventNumber: 0
   memoryDialogue: []
+  memoryObj: {fileID: 0}
+  objFadeTimer: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -19176,6 +19184,8 @@ MonoBehaviour:
   memoryDialogue:
   - {fileID: 8300000, guid: 47556dad74231544b95f3ce683652512, type: 3}
   - {fileID: 8300000, guid: 83dc845d3c56b124fbd9813fb40d7dcc, type: 3}
+  memoryObj: {fileID: 0}
+  objFadeTimer: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -20054,7 +20064,7 @@ Transform:
   - {fileID: 1699776849}
   - {fileID: 133178116}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!4 &1792469165 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}

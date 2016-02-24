@@ -21,6 +21,9 @@ public class TriggerManager : MonoBehaviour
     private float memoryDuration;
     public int memoryEventNumber;
     public AudioClip[] memoryDialogue;
+    public GameObject memoryObj;
+    public float objFadeTimer;
+    private bool startTimer = false;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -58,8 +61,13 @@ public class TriggerManager : MonoBehaviour
                 print("Memory Triggered");
                 audio.PlayOneShot(memoryDialogue[memoryEventNumber]);
                 memoryDuration = memoryDialogue[memoryEventNumber].length;
-                col.BroadcastMessage("EnterMemory", memoryDuration / 2f);           
-            }
+                col.BroadcastMessage("EnterMemory", memoryDuration / 2f);
+                if (memoryObj != null)
+                {
+                    memoryObj.SetActive(true);
+                    startTimer = true;
+                }
+             }
 
             // Checkpoint
 			if (checkpoint)
@@ -100,6 +108,17 @@ public class TriggerManager : MonoBehaviour
         {
             fogLerp += Time.deltaTime / 2;
             fog.heightDensity = Mathf.Lerp(startFog, targFog, fogLerp);
+        }
+        
+        // Countdown the fade timer on memory objects
+        if (startTimer)
+        {
+            objFadeTimer -= Time.deltaTime;
+
+            if (objFadeTimer <= 0f)
+            {
+                memoryObj.SendMessage("FadeOutReceiver");
+            }
         }
 
     }
