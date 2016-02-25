@@ -15,21 +15,21 @@ public class EnemyAI : MonoBehaviour
     public AudioClip gunShot;
     public AudioClip[] radioChatter;
     public AudioClip footSteps;
-    public float audioTimer;
-    public bool audioPlaying;
-    public float audioLength;
-    public float walkTimer;
+    private float audioTimer;
+    private bool audioPlaying;
+    private float audioLength;
+    private float walkTimer;
 
 	public float fieldOfViewAngle = 110f;
 
-    public bool playerInLineOfSight;
-    public bool playerInRange;
+    private bool playerInLineOfSight;
+    private bool playerInRange;
 	private bool playerDead;
     
     public bool wayPointLooping;
     public bool staticEnemy;
 
-	public int wayPointIndex;
+    private int wayPointIndex;
 
 	private NavMeshAgent nav;
 	private Transform playerTransform;

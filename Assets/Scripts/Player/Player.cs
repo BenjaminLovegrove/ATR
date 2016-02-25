@@ -31,8 +31,12 @@ public class Player : MonoBehaviour
     private int currentCrouchVal;
     public float footStepInterval = 0.75f;
 
-    public float alphaFadeValue;
-    public Texture fadeTexture;
+    public AudioClip heartBeatSFX;
+    public GameObject[] enemyList;
+    public AudioSource heartBeatSource;
+    public float[] enemyDistances;
+    public bool heartBeat;
+    public float nearestEnemyDistance;
 	
 	void Awake ()
 	{
@@ -58,13 +62,32 @@ public class Player : MonoBehaviour
 	{
         PlayFootStepSFX();
         PlayerMovement();
-        Hacks();
+        PlayHeartBeatSFX();
+        Hacks(); // Comment this out for release builds
 	}
 
-    // Hacks for testing
+    // Play the heartbeat SFX based on distance of the nearest enemy
+    void PlayHeartBeatSFX()
+    {
+        nearestEnemyDistance = float.MaxValue;
+
+        for (int i = 0; i < enemyList.Length; i++)
+        {
+            enemyDistances[i] = Vector3.Distance(playerRigid.position, enemyList[i].transform.position);
+
+            if (enemyDistances[i] < nearestEnemyDistance)
+            {
+                nearestEnemyDistance = enemyDistances[i];
+            }
+        }
+
+        heartBeatSource.volume = (1f / (nearestEnemyDistance * 7));
+    }
+
+    // Hacks for testing *** Comment these out for release builds ***
     void Hacks()
     {
-        // increase player speed
+        // Increase player speed
         if (Input.GetKeyDown(KeyCode.O) && !EventManager.inst.increaseSpeed)
         {
             print("Player speed increased");
@@ -79,7 +102,7 @@ public class Player : MonoBehaviour
             walkSpeed = 3f;
         }
 
-        // make player invisible to enemies
+        // Make player invisible to enemies
         if (Input.GetKeyDown(KeyCode.U) && !EventManager.inst.invisMode)
         {
             print("Player invisible to enemies");
@@ -224,19 +247,6 @@ public class Player : MonoBehaviour
 		return Mathf.Sqrt(2 * jumpHeight * gravity);
 	}
 
-    void FadeIn()
-    {
-        //fader.material.renderer.color.a = 0f;
-
-        Color color = GetComponent<Renderer>().material.color;
-        color.a -= 0.1f;
-        GetComponent<Renderer>().material.color = color;
-
-        //Color tempcolor = gameobject.renderer.material.color;
-        //tempcolor.a = Mathf.MoveTowards(0, 1, Time.deltaTime);
-        //gameobject.renderer.material.color = tempcolor;
-    }
-
     // In game pause function
     void PauseMenu()
     {       
@@ -248,12 +258,5 @@ public class Player : MonoBehaviour
             EventManager.inst.gamePaused = true;
             EventManager.inst.pauseMenuButtons.SetActive(true);
         }
-    }
-
-    void OnGUI()
-    {
-        alphaFadeValue -= Mathf.Clamp01(Time.deltaTime / 5);
-        GUI.color = new Color(0, 0, 0, alphaFadeValue);
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeTexture);
     }
 }
