@@ -143,6 +143,7 @@ public class FadeObjectInOut : MonoBehaviour
     {
         FadeOut();
     }
+
     // Hacks for testing
     void FixedUpdate()
     {

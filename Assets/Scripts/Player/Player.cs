@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float jumpTimer = 1.5f;
     public float jumpDelay;
     public float jumpCoolDown;
-	
+    	
     public Rigidbody playerRigid;
     AudioSource audio;
     
@@ -32,8 +32,13 @@ public class Player : MonoBehaviour
     public float footStepInterval = 0.75f;
 
     public GameObject[] enemyList;
-    public AudioSource heartBeatSource;
+    public AudioSource heartBeatSFX;
+    public AudioSource backGroundMusic;
     public float nearestEnemyDistance;
+
+    public Transform fadeToBlackSpawn;
+    public GameObject fadeToBlackObj;
+    public bool setActiveFade = false;
 	
 	void Awake ()
 	{
@@ -61,7 +66,17 @@ public class Player : MonoBehaviour
     }
 
 	void FixedUpdate ()
-	{
+	{        
+        if (EventManager.inst.playerDead == true)
+        {            
+            if (!setActiveFade)
+            {
+                setActiveFade = true;
+                fadeToBlackObj.SetActive(true);
+                fadeToBlackObj.SendMessage("FadeOutReceiver");                
+            }
+        }
+
         PlayFootStepSFX();
         PlayerMovement();
         PlayHeartBeatSFX();
@@ -86,9 +101,11 @@ public class Player : MonoBehaviour
             }
 
             float distanceMod = (((nearestEnemyDistance - 12) / 5) * -1);
-            heartBeatSource.volume = Mathf.Lerp(0, 1, distanceMod);
+            heartBeatSFX.volume = Mathf.Lerp(0, 1, distanceMod);
+            float bgmMod = (((nearestEnemyDistance - 12) / 8) * -1);
+            backGroundMusic.volume = Mathf.Lerp(1, 0, bgmMod);
         }
-        else heartBeatSource.volume = 0;
+        else heartBeatSFX.volume = 0;
     }
 
     // Hacks for testing *** Comment these out for release builds ***

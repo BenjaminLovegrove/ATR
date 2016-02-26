@@ -17,11 +17,13 @@ public class EventManager : MonoBehaviour
     public Material enemyMaterial;              // enemyMaterial.SetFloat("_Mode", 2.0f) 0 = Opaque, 1 = Cutout, 2 = Transparent
 
 	public bool playerCrouch = false;
-    public bool controlsDisabled = false;
     public bool playerDead = false;
     public bool playerJump = false;
     public bool gamePaused = false;
     public bool resetLevel = false;
+    public bool controlsDisabled = false;
+    private bool controlDisableDelay = false;
+    public float controlDelay = 3f;
 
     // Hacks
     public bool invisMode = false;
@@ -45,11 +47,13 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
+        controlDisableDelay = true;
         Cursor.visible = false;
     }
 
 	void FixedUpdate ()
 	{
+        ControlsDisabledDelay();
         LevelResetCheck();
 
         // TODO - this is hacky and throwing nulls like a mofo - FIX!
@@ -58,6 +62,21 @@ public class EventManager : MonoBehaviour
             pauseMenuButtons.SetActive(false);
         }
 	}
+    
+    // Set a small delay before the player is granted control of the character at start
+    void ControlsDisabledDelay()
+    {
+        if (controlDisableDelay)
+        {
+            controlDelay -= Time.deltaTime;
+
+            if (controlDelay < 0f)
+            {
+                controlsDisabled = false;
+                controlDisableDelay = false;
+            }
+        }
+    }   
 
     // Check for external level reset
     void LevelResetCheck()
@@ -74,6 +93,7 @@ public class EventManager : MonoBehaviour
     // Use triggers to set the value of the last achieved checkpoint - (currentCheckPoint).
 	void ResetPlayer ()
 	{
+        controlDisableDelay = true;
         controlsDisabled = false;
         playerDead = false;        
         resetLevel = false;
@@ -83,6 +103,7 @@ public class EventManager : MonoBehaviour
     // Populate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
+        controlDisableDelay = true;
         controlsDisabled = false;
         playerDead = false;
         resetLevel = false;
