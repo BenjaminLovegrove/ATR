@@ -14,6 +14,8 @@ public class EventManager : MonoBehaviour
 	public GameObject playerObj;
     public GameObject pauseMenuButtons;
 
+    public Material enemyMaterial;              // enemyMaterial.SetFloat("_Mode", 2.0f) 0 = Opaque, 1 = Cutout, 2 = Transparent
+
 	public bool playerCrouch = false;
     public bool controlsDisabled = false;
     public bool playerDead = false;
@@ -31,6 +33,7 @@ public class EventManager : MonoBehaviour
 
 	void Awake ()
 	{
+        //enemyMaterial.SetFloat("_Mode", 2.0f);
 		// Check for duplicate singletons
 		if (inst == null)
 		{

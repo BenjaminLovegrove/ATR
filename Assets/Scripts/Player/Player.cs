@@ -31,11 +31,8 @@ public class Player : MonoBehaviour
     private int currentCrouchVal;
     public float footStepInterval = 0.75f;
 
-    public AudioClip heartBeatSFX;
     public GameObject[] enemyList;
     public AudioSource heartBeatSource;
-    public float[] enemyDistances;
-    public bool heartBeat;
     public float nearestEnemyDistance;
 	
 	void Awake ()
@@ -44,6 +41,11 @@ public class Player : MonoBehaviour
 		playerRigid.useGravity = false;
         audio = GetComponent<AudioSource>();
 	}
+
+    void Start()
+    {
+        enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+    }
 
     // Jump co-routine
     IEnumerator Jump()
@@ -69,19 +71,24 @@ public class Player : MonoBehaviour
     // Play the heartbeat SFX based on distance of the nearest enemy
     void PlayHeartBeatSFX()
     {
-        nearestEnemyDistance = float.MaxValue;
-
-        for (int i = 0; i < enemyList.Length; i++)
+        if (!EventManager.inst.playerDead)
         {
-            enemyDistances[i] = Vector3.Distance(playerRigid.position, enemyList[i].transform.position);
+            nearestEnemyDistance = float.MaxValue;
 
-            if (enemyDistances[i] < nearestEnemyDistance)
+            for (int i = 0; i < enemyList.Length; i++)
             {
-                nearestEnemyDistance = enemyDistances[i];
-            }
-        }
+                float thisEnemyDistance = Vector3.Distance(playerRigid.position, enemyList[i].transform.position);
 
-        heartBeatSource.volume = (1f / (nearestEnemyDistance * 7));
+                if (thisEnemyDistance < nearestEnemyDistance)
+                {
+                    nearestEnemyDistance = thisEnemyDistance;
+                }
+            }
+
+            float distanceMod = (((nearestEnemyDistance - 12) / 5) * -1);
+            heartBeatSource.volume = Mathf.Lerp(0, 1, distanceMod);
+        }
+        else heartBeatSource.volume = 0;
     }
 
     // Hacks for testing *** Comment these out for release builds ***
@@ -258,5 +265,10 @@ public class Player : MonoBehaviour
             EventManager.inst.gamePaused = true;
             EventManager.inst.pauseMenuButtons.SetActive(true);
         }
+    }
+
+    void OnLevelWasLoaded()
+    {
+        enemyList = GameObject.FindGameObjectsWithTag("Enemy");
     }
 }

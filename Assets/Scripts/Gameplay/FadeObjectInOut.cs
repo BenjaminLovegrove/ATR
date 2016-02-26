@@ -144,17 +144,17 @@ public class FadeObjectInOut : MonoBehaviour
         FadeOut();
     }
     // Hacks for testing
-    //void FixedUpdate()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.L))
-    //    {
-    //        print("Fade in activated");
-    //        FadeIn();
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        print("Fade out activated");
-    //        FadeOut();
-    //    }
-    //}
+    void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            print("Fade in activated");
+            FadeIn();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            print("Fade out activated");
+            FadeOut();
+        }
+    }
 }

@@ -122,7 +122,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3929618c09ac8c24aae7af33938ee076, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b6a2e354b55adda418c3a6ae0faffca3, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -455,6 +455,10 @@ Prefab:
       propertyPath: currentCheckPoint
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
+      propertyPath: enemyMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: c50fac40c3b6c964fa712382db6318a6, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
   m_IsPrefabParent: 0
@@ -741,7 +745,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 419202, guid: ae0fc8b3a9d4c604fa0a1119a69951bf, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 12.6199999
+      value: 16.5699997
       objectReference: {fileID: 0}
     - target: {fileID: 419202, guid: ae0fc8b3a9d4c604fa0a1119a69951bf, type: 2}
       propertyPath: m_LocalPosition.y
@@ -905,7 +909,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: enemyList.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: enemyDistances.Array.size
@@ -979,13 +983,33 @@ Prefab:
       propertyPath: heartBeatSource
       value: 
       objectReference: {fileID: 25192093}
-    m_RemovedComponents: []
+    - target: {fileID: 2021404, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_RenderingPath
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8270340, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1820849593 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 171966, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_PrefabInternal: {fileID: 1070337379}
+--- !u!114 &1820849595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1820849593}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab7c2b63cc37b0468c13c0329c7f753, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDelay: 0
+  fadeTime: 6
+  fadeInOnStart: 0
+  fadeOutOnStart: 0
 --- !u!1 &1849771905 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: cc093a076b3dcf747abde15060c90f1b, type: 3}
