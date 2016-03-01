@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
 	public float patrolWaitTime = 1f;
 	public Transform[] patrolWayPoints;
 	public float patrolTimer = 0f;
+    public bool patrollingEnemy;
 
     AudioSource audio;
     public AudioClip gunShot;
@@ -25,10 +26,6 @@ public class EnemyAI : MonoBehaviour
     private bool playerInLineOfSight;
     private bool playerInRange;
 	private bool playerDead;
-    
-    public bool wayPointLooping;
-    public bool staticEnemy;
-
     private int wayPointIndex;
 
 	private NavMeshAgent nav;
@@ -61,15 +58,19 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        // TODO this is dodgey, fix later
+        // Fallback if the Enemy isn't assigned any waypoints
+        if (patrolWayPoints[0] == null)
+        {
+            patrollingEnemy = false;
+        }
+
         playerTransform = EventManager.inst.playerTrans;
         playerCrouch = EventManager.inst.playerCrouch;
-        //playerDead = EventManager.inst.playerDead;
     }
 
 	void FixedUpdate ()
 	{
-        // Reset radio chat status upon completion of play
+        // Reset radio chat status upon completion
         if (audioTimer >= audioLength + 1)
         {
             audioPlaying = false;
@@ -80,10 +81,6 @@ public class EnemyAI : MonoBehaviour
         CalculateVelocity();
         AnimationTriggers();
         PlayerDetection();
-        //if (EventManager.inst.invisMode)
-        //{
-        //    PlayerDetection();
-        //}
 	}
 
     // Randomly pick an audioclip from radio chatter array to be played
@@ -194,7 +191,7 @@ public class EnemyAI : MonoBehaviour
 	// Movement of the Enemy model
 	void Patrolling ()
 	{
-        if (!staticEnemy)
+        if (patrollingEnemy)
         {
             // Set an appropriate speed for the NavMeshAgent.
             nav.speed = patrolSpeed;
@@ -208,12 +205,12 @@ public class EnemyAI : MonoBehaviour
                 if (patrolTimer >= patrolWaitTime)
                 {
                     // Waypoint looping
-                    if (wayPointIndex == patrolWayPoints.Length - 1 && wayPointLooping)
+                    if (wayPointIndex == patrolWayPoints.Length - 1 && patrollingEnemy)
                         wayPointIndex = 0;
                     else wayPointIndex++;
 
                     // Non waypoint looping
-                    if (wayPointIndex == patrolWayPoints.Length - 1 && !wayPointLooping)
+                    if (wayPointIndex == patrolWayPoints.Length - 1 && !patrollingEnemy)
                     {
                         nav.Stop();
                     }
