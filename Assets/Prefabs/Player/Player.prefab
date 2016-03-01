@@ -204,6 +204,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &187630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 414652}
+  m_Layer: 0
+  m_Name: MemoryFlashSpawn
+  m_TagString: FlashSpawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &409254
 Transform:
   m_ObjectHideFlags: 1
@@ -232,6 +247,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 409254}
   m_RootOrder: 2
+--- !u!4 &414652
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 440284}
+  m_RootOrder: 7
 --- !u!4 &430718
 Transform:
   m_ObjectHideFlags: 1
@@ -297,6 +324,7 @@ Transform:
   - {fileID: 430718}
   - {fileID: 431760}
   - {fileID: 459234}
+  - {fileID: 414652}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &443852
@@ -1040,7 +1068,6 @@ MonoBehaviour:
   heartBeatSFX: {fileID: 8232434}
   backGroundMusic: {fileID: 8201066}
   nearestEnemyDistance: 1e+09
-  fadeToBlackSpawn: {fileID: 431760}
   fadeToBlackObj: {fileID: 134878}
   setActiveFade: 0
 --- !u!114 &11490778
@@ -1071,6 +1098,9 @@ MonoBehaviour:
   fadeTime: 4
   bufferTime: 0
   memoryDialogue: []
+  memoryFlash: {fileID: 193460, guid: dd9ab9dfd685a9c42b53522ccba6e4c6, type: 2}
+  activateFade: 0
+  singleFade: 0
 --- !u!124 &12457054
 Behaviour:
   m_ObjectHideFlags: 1

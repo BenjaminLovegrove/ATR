@@ -26,8 +26,13 @@ public class Memory : MonoBehaviour
 
     private float delayTimer;
 
+    public GameObject memoryFlash;
+    public bool activateFade;
+    public bool singleFade = true;
+
     void Start()
     {
+        singleFade = true;
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
 
@@ -37,12 +42,35 @@ public class Memory : MonoBehaviour
 
 	void FixedUpdate ()
     {
+        MemoryFlash();
         MemoryTimer();
+        MemoryTest(); // *** Comment this out of release builds ***
+    }
 
-        // Hack to test memories
+    // Create a white flash effect on the player when activateFade is set to true
+    void MemoryFlash()
+    {
+        if (activateFade)
+        {
+            if (singleFade)
+            {
+                print("flash");
+                EventManager.inst.playerTrans.rotation = Quaternion.identity;
+                Instantiate(memoryFlash, EventManager.inst.flashSpawn.position, Quaternion.identity);
+                singleFade = false;
+                activateFade = false;
+            }
+        }
+    }
+
+    // Hack to test memories
+    void MemoryTest()
+    {        
         if (Input.GetKeyDown(KeyCode.M))
         {
-            print("Memory Triggered");            
+            singleFade = true;
+            activateFade = true;
+            print("Memory Triggered");
             memoryPlaying = true;
             fadeTimer = 0;
             memoryLength = 5f;
@@ -55,13 +83,18 @@ public class Memory : MonoBehaviour
 
         if (memoryLength < 0 && bloom.bloomIntensity > startBloom)
         {
+            singleFade = true;
+            activateFade = true;
             ExitMemory();
         }
-
     }
 
+    // Sendmessage receiver to externally activate a memory
+    // The float will determine the length of the memory
     void EnterMemory (float duration)
     {
+        singleFade = true;
+        activateFade = true;
         startFog = fog.heightDensity;
         memoryFog = fog.heightDensity / 7.5f;
 
@@ -82,7 +115,6 @@ public class Memory : MonoBehaviour
 
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
-
     }
 
     void ExitMemory()

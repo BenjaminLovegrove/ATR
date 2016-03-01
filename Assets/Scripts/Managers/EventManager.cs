@@ -10,9 +10,10 @@ public class EventManager : MonoBehaviour
 	public Transform playerTrans;
     public Transform enemyKillPos;
     public Transform[] playerCheckPoints;
+    public Transform flashSpawn;
 
 	public GameObject playerObj;
-    public GameObject pauseMenuButtons;
+    public GameObject pauseMenuButtons;    
 
     public Material enemyMaterial;              // enemyMaterial.SetFloat("_Mode", 2.0f) 0 = Opaque, 1 = Cutout, 2 = Transparent
 
@@ -47,6 +48,7 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
+        flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
         controlDisableDelay = true;
         Cursor.visible = false;
     }
@@ -112,7 +114,7 @@ public class EventManager : MonoBehaviour
         playerObj = GameObject.Find("Player");
         pauseMenuButtons = GameObject.FindWithTag("PauseMenuObj");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
-
+        flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
         Invoke("MovePlayer", 0.05f);
     }
 

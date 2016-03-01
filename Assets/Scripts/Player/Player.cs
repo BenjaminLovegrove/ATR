@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     public AudioSource backGroundMusic;
     public float nearestEnemyDistance;
 
-    public Transform fadeToBlackSpawn;
     public GameObject fadeToBlackObj;
     public bool setActiveFade = false;
 	

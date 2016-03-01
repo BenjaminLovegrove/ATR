@@ -46,6 +46,7 @@ public class TriggerManager : MonoBehaviour
     void Start()
     {
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
+        audio = GameObject.Find("Player").GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter (Collider col)
