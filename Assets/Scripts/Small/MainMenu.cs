@@ -9,16 +9,14 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator LoadScene()
     {
-        //yield return new WaitForSeconds(0.1f);
-
-        // Start an asynchronous operation to load the scene that was passed to the LoadNewScene coroutine.
+        
         AsyncOperation async = Application.LoadLevelAsync("City");
 
-        // While the asynchronous operation to load the new scene is not yet complete, continue waiting until it's done.
         while (!async.isDone)
         {
             yield return null;
         }
+        yield return new WaitForSeconds(0.1f);
     }
 
     public void PlayButton()
