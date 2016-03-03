@@ -25,6 +25,11 @@ public class EventManager : MonoBehaviour
     public bool controlsDisabled = false;
     private bool controlDisableDelay = false;
     public float controlDelay = 3f;
+    
+    // Option Settings
+    public float mouseSensitivty;
+    public float masterVolume;
+    public bool invertY;
 
     // Hacks
     public bool invisMode = false;
