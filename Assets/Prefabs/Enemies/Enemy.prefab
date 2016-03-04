@@ -2590,7 +2590,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   patrolTimer: 0
-  gunShot: {fileID: 8300000, guid: 6204cdc25eefbbb47accf4c36aa03d71, type: 3}
+  patrollingEnemy: 1
+  gunShot: {fileID: 8300000, guid: afd1f095e1140c54da2bc7f51c7e310c, type: 3}
   radioChatter:
   - {fileID: 8300000, guid: 25b7259ea8c0ff14181dc8d528100f4c, type: 3}
   - {fileID: 8300000, guid: 7c3ce82b6cbc3df4ba15e154151fb4bb, type: 3}
@@ -2601,8 +2602,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f74b492293d46a44e8b2463ddc05e2e1, type: 3}
   footSteps: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
   fieldOfViewAngle: 110
-  wayPointLooping: 1
-  staticEnemy: 0
 --- !u!136 &13641846
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3058,6 +3057,10 @@ Prefab:
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
       value: 1.00390077
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gunShot
+      value: 
+      objectReference: {fileID: 8300000, guid: afd1f095e1140c54da2bc7f51c7e310c, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 171966}

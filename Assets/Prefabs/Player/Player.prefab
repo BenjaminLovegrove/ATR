@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 473084}
   - 82: {fileID: 8232434}
   m_Layer: 0
-  m_Name: Heartbeat
+  m_Name: HeartbeatSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,6 @@ GameObject:
   - 92: {fileID: 9219108}
   - 81: {fileID: 8182862}
   - 114: {fileID: 11470952}
-  - 82: {fileID: 8292374}
   - 114: {fileID: 11420322}
   - 114: {fileID: 11491664}
   - 114: {fileID: 11404758}
@@ -183,12 +182,12 @@ GameObject:
   - 4: {fileID: 443852}
   - 82: {fileID: 8201066}
   m_Layer: 0
-  m_Name: BackGroundMusic
+  m_Name: BackGroundMusicSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &186386
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +214,22 @@ GameObject:
   m_Layer: 0
   m_Name: MemoryFlashSpawn
   m_TagString: FlashSpawn
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &193680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 423028}
+  - 82: {fileID: 8243876}
+  m_Layer: 0
+  m_Name: FootstepSFX
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,6 +274,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 440284}
   m_RootOrder: 7
+--- !u!4 &423028
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193680}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 440284}
+  m_RootOrder: 8
 --- !u!4 &430718
 Transform:
   m_ObjectHideFlags: 1
@@ -325,6 +352,7 @@ Transform:
   - {fileID: 431760}
   - {fileID: 459234}
   - {fileID: 414652}
+  - {fileID: 423028}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &443852
@@ -719,18 +747,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!82 &8292374
+--- !u!82 &8243876
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 164748}
+  m_GameObject: {fileID: 193680}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 82c4d0dc3653d754aaa3fb45b3065a23, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: .00200000009
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1022,20 +1050,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 100828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 609a4eb435117f846b2a13e6838bb173, type: 3}
+  m_Script: {fileID: 11500000, guid: a24fbee910bb47948a02dbd6a735114d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 0
-  sensitivityX: 3
-  sensitivityY: 3
+  sensitivityX: 15
+  sensitivityY: 15
   cameraPosNeutral: {fileID: 435674}
   cameraPosCrouch: {fileID: 497860}
   cameraPosHeadBob: {fileID: 409352}
   currentPos: {fileID: 432890}
   cameraDead: {fileID: 487956}
-  memoryCameraEnd:
-  - {fileID: 0}
-  - {fileID: 0}
+  memoryCameraEnd: []
   headBobInterval: .400000006
 --- !u!114 &11489152
 MonoBehaviour:
@@ -1057,13 +1083,22 @@ MonoBehaviour:
   jumpDelay: .100000001
   jumpCoolDown: .75
   playerRigid: {fileID: 5430988}
-  standingWalkSFX:
-  - {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
-  - {fileID: 8300000, guid: 7ab93585d0d7a2340a2a26499cb4a864, type: 3}
-  crouchingWalkSFX:
-  - {fileID: 8300000, guid: ecae2f93ed443894688abdcb94fea5e4, type: 3}
-  - {fileID: 8300000, guid: 9f72fe6cf969564408d4e6aa92320bfa, type: 3}
-  footStepInterval: .800000012
+  standingWalkLeftSFX:
+  - {fileID: 8300000, guid: 8872a5f56ba73ab4d83990a6cd643ed5, type: 3}
+  - {fileID: 8300000, guid: 7ced8cdb29ab2e94a8ff55f876e89a10, type: 3}
+  standingWalkRightSFX:
+  - {fileID: 8300000, guid: 355246596f608ff45a48d088e1783e6b, type: 3}
+  - {fileID: 8300000, guid: f2aba91d48a2efa48991efe4ec767287, type: 3}
+  crouchWalkLeftSFX:
+  - {fileID: 8300000, guid: e5e046340abcad34c99ec3b925dd0687, type: 3}
+  - {fileID: 8300000, guid: 93b298127c0775542a8a4117b0266e8b, type: 3}
+  crouchWalkRightSFX:
+  - {fileID: 8300000, guid: 7d46f6c8d0299c64cbc74e71d81a692b, type: 3}
+  - {fileID: 8300000, guid: b999de3f8ec13624c864e17878073e2b, type: 3}
+  crouchSFX: {fileID: 8300000, guid: 37bd740edaedf644bbc2991d67fb7470, type: 3}
+  standSFX: {fileID: 8300000, guid: 73bc5f328d0162749b2d25037face7fb, type: 3}
+  footStepSFXSource: {fileID: 8243876}
+  footStepInterval: .600000024
   enemyList: []
   heartBeatSFX: {fileID: 8232434}
   backGroundMusic: {fileID: 8201066}
@@ -1100,7 +1135,7 @@ MonoBehaviour:
   memoryDialogue: []
   memoryFlash: {fileID: 193460, guid: dd9ab9dfd685a9c42b53522ccba6e4c6, type: 2}
   activateFade: 0
-  singleFade: 0
+  singleFade: 1
 --- !u!124 &12457054
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1146,7 +1181,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: crouchWalkLeftSFX.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: crouchWalkRightSFX.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100828}

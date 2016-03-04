@@ -21,14 +21,16 @@ public class MainMenu : MonoBehaviour
 
     // Load game async coroutine
     IEnumerator LoadScene()
-    {        
+    {
+        yield return new WaitForSeconds(2f);
+
         AsyncOperation async = Application.LoadLevelAsync("City");
 
         while (!async.isDone)
         {
             yield return null;
         }
-        yield return new WaitForSeconds(0.1f);
+        
     }
     
     // Play Button
@@ -36,6 +38,7 @@ public class MainMenu : MonoBehaviour
     {
         print("Pressed Play");
         Cursor.visible = false;
+        HideMenuButtons();
         for (int i = 0; i < loadingScreenUI.Length; i++)
         {
             loadingScreenUI[i].SetActive(true);

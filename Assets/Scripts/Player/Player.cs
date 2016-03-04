@@ -24,12 +24,19 @@ public class Player : MonoBehaviour
     public Rigidbody playerRigid;
     AudioSource audio;
     
-    public AudioClip[] standingWalkSFX;
-    public AudioClip[] crouchingWalkSFX;
+    public AudioClip[] standingWalkLeftSFX;
+    public AudioClip[] standingWalkRightSFX;
+    public AudioClip[] crouchWalkLeftSFX;
+    public AudioClip[] crouchWalkRightSFX;
+    //public AudioClip[] crouchingWalkSFX;
+    public AudioClip crouchSFX;
+    public AudioClip standSFX;
+    public AudioSource footStepSFXSource;
     private float footStepTimer;
     private int currentWalkVal;
     private int currentCrouchVal;
-    public float footStepInterval = 0.75f;
+    public float footStepInterval = 0.4f;
+    private int footStepCount = 2;
 
     public GameObject[] enemyList;
     public AudioSource heartBeatSFX;
@@ -216,6 +223,19 @@ public class Player : MonoBehaviour
                     EventManager.inst.playerCrouch = false;
                     currentSpeed = walkSpeed;
                 }
+                
+                // Play Crouch SFX
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    audio.PlayOneShot(crouchSFX);
+                }
+
+                // Play Crouch SFX
+                if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
+                {
+                    audio.PlayOneShot(standSFX);
+                }
+
             }
         }
 
@@ -233,13 +253,23 @@ public class Player : MonoBehaviour
             footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
 
             // Reset walk array when you reach the end
-            if (currentWalkVal == (standingWalkSFX.Length))
+            if (currentWalkVal == (standingWalkLeftSFX.Length))
+            {
+                currentWalkVal = 0;
+            }
+
+            if (currentWalkVal == (standingWalkRightSFX.Length))
             {
                 currentWalkVal = 0;
             }
 
             // Reset crouch array when you reach the end
-            if (currentCrouchVal == (crouchingWalkSFX.Length))
+            if (currentCrouchVal == (crouchWalkLeftSFX.Length))
+            {
+                currentCrouchVal = 0;
+            }
+
+            if (currentCrouchVal == (crouchWalkRightSFX.Length))
             {
                 currentCrouchVal = 0;
             }
@@ -249,14 +279,38 @@ public class Player : MonoBehaviour
             {
                 if (!EventManager.inst.playerCrouch)
                 {
-                    audio.PlayOneShot(standingWalkSFX[currentWalkVal]);
+                    if (footStepCount % 2 == 0)
+                    {
+                        footStepSFXSource.clip = standingWalkLeftSFX[currentWalkVal];
+                        footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
+                        footStepSFXSource.Play();
+                    }
+                    else
+                    {
+                        footStepSFXSource.clip = standingWalkRightSFX[currentWalkVal];
+                        footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
+                        footStepSFXSource.Play();
+                    }
                     currentWalkVal++;
+                    footStepCount++;
                 }
                 // Play crouching footstep if not standing
                 else
                 {
-                    audio.PlayOneShot(crouchingWalkSFX[currentCrouchVal]);
-                    currentCrouchVal++;
+                    if (footStepCount % 2 == 0)
+                    {
+                        footStepSFXSource.clip = crouchWalkLeftSFX[currentWalkVal];
+                        footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
+                        footStepSFXSource.Play();
+                    }
+                    else
+                    {
+                        footStepSFXSource.clip = crouchWalkRightSFX[currentWalkVal];
+                        footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
+                        footStepSFXSource.Play();
+                    }
+                    currentWalkVal++;
+                    footStepCount++;
                 }
 
                 footStepTimer = 0;
