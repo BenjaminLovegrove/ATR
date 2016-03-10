@@ -22,8 +22,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179960}
-  m_LocalRotation: {x: 0, y: 0, z: -.777667999, w: .628675282}
-  m_LocalPosition: {x: -102.453835, y: .750379324, z: -126.045685}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.33764648, y: -7.85322809, z: 4.98431206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,14 +44,22 @@ MonoBehaviour:
   playerCheckPoints:
   - {fileID: 0}
   - {fileID: 0}
+  flashSpawn: {fileID: 0}
   playerObj: {fileID: 0}
   pauseMenuButtons: {fileID: 0}
+  enemyMaterial: {fileID: 0}
   playerCrouch: 0
-  controlsDisabled: 0
   playerDead: 0
   playerJump: 0
   gamePaused: 0
   resetLevel: 0
+  controlsDisabled: 0
+  controlDelay: 3
+  mouseSensitivty: 15
+  masterVolume: 1
+  invertY: 0
+  invisMode: 0
+  increaseSpeed: 0
   currentCheckPoint: 0
   currentMemory: 0
   currentLevel: 2

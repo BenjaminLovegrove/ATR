@@ -1031,11 +1031,25 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: 1024 x 768
       m_Image: {fileID: 0}
-    - m_Text: Option B
+    - m_Text: 1280 x 720
       m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: 1280 x 768
+      m_Image: {fileID: 0}
+    - m_Text: 1280 x 800
+      m_Image: {fileID: 0}
+    - m_Text: 1280 x 1024
+      m_Image: {fileID: 0}
+    - m_Text: 1360 x 768
+      m_Image: {fileID: 0}
+    - m_Text: 1366 x 768
+      m_Image: {fileID: 0}
+    - m_Text: 1680 x 1050
+      m_Image: {fileID: 0}
+    - m_Text: 1920 x 1080
+      m_Image: {fileID: 0}
+    - m_Text: 2175 x 1527
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2049,7 +2063,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &679682162
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2456,7 +2470,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &770113461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2500,10 +2514,23 @@ MonoBehaviour:
   volSlider: {fileID: 1862250413}
   sensSlider: {fileID: 1894038389}
   invertToggle: {fileID: 1720951960}
-  fullscreenToggle: {fileID: 0}
+  fullscreenToggle: {fileID: 1648489722}
+  screenDrop: {fileID: 416286825}
+  speakerDrop: {fileID: 2080188181}
+  screenResY: 0
+  screenResX: 0
+  screenResKey: 0
+  screenResXtemp: 0
+  screenResYtemp: 0
+  fullScreen: 0
+  fullScreenTemp: 0
+  fullScreenKey: 0
   volumeLevel: 0
   mouseSensitivity: 0
   invertY: 0
+  speakerKey: 0
+  speakerTemp: 0
+  speakerInit: 0
 --- !u!4 &792103448
 Transform:
   m_ObjectHideFlags: 0
@@ -3440,6 +3467,7 @@ GameObject:
   - 81: {fileID: 1097478754}
   - 82: {fileID: 1097478753}
   - 114: {fileID: 1097478759}
+  - 114: {fileID: 1097478760}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3602,6 +3630,18 @@ MonoBehaviour:
   heightDensity: 3.5
   startDistance: 60
   fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
+--- !u!114 &1097478760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1097478752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d7ddd5b9c13024f92268a0351da22f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: []
 --- !u!1 &1115520930
 GameObject:
   m_ObjectHideFlags: 0
@@ -7731,29 +7771,9 @@ Prefab:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: pauseMenuButtons
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: currentCheckPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 1479041222}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: invertY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: mouseSensitivty
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: masterVolume
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
   m_IsPrefabParent: 0
@@ -8183,7 +8203,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: 2.1
+    - m_Text: Headphones
+      m_Image: {fileID: 0}
+    - m_Text: Stereo
       m_Image: {fileID: 0}
     - m_Text: 5.1
       m_Image: {fileID: 0}
@@ -8191,7 +8213,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792103446}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2080188182
