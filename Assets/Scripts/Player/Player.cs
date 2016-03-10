@@ -72,7 +72,9 @@ public class Player : MonoBehaviour
     }
 
 	void FixedUpdate ()
-	{        
+	{
+        audio.volume = EventManager.inst.masterVolume;
+
         if (EventManager.inst.playerDead == true)
         {            
             if (!setActiveFade)
@@ -107,10 +109,10 @@ public class Player : MonoBehaviour
             }
 
             float distanceMod = (((nearestEnemyDistance - 12) / 5) * -1);
-            heartBeatSFX.volume = Mathf.Lerp(0, 1, distanceMod);
+            heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod) * EventManager.inst.masterVolume);
             heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
             float bgmMod = (((nearestEnemyDistance - 12) / 8) * -1);
-            backGroundMusic.volume = Mathf.Lerp(1, 0, bgmMod);
+            backGroundMusic.volume = (Mathf.Lerp(1, 0, bgmMod) * EventManager.inst.masterVolume);
         }
         else heartBeatSFX.volume = 0;
     }

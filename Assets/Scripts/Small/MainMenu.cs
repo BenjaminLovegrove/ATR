@@ -72,6 +72,8 @@ public class MainMenu : MonoBehaviour
         EventManager.inst.masterVolume = volumeLevel;
         EventManager.inst.mouseSensitivty = mouseSensitivity;
         EventManager.inst.invertY = invertY;
+        PlayerPrefs.SetFloat("Master Volume", volumeLevel);
+        PlayerPrefs.SetFloat("Mouse Sensitivity", mouseSensitivity);
     }
 
     // Accept Button
@@ -81,6 +83,8 @@ public class MainMenu : MonoBehaviour
         EventManager.inst.masterVolume = volumeLevel;
         EventManager.inst.mouseSensitivty = mouseSensitivity;
         EventManager.inst.invertY = invertY;
+        PlayerPrefs.SetFloat("Master Volume", volumeLevel);
+        PlayerPrefs.SetFloat("Mouse Sensitivity", mouseSensitivity);
         ShowMenuButtons();
         HideOptionsButtons();
     }

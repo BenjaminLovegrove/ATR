@@ -53,6 +53,10 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
+        // Load option settings
+        masterVolume = PlayerPrefs.GetFloat("Master Volume");
+        mouseSensitivty = PlayerPrefs.GetFloat("Mouse Sensitivity");
+
         flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
         controlDisableDelay = true;
         Cursor.visible = false;

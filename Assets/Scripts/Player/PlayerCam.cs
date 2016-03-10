@@ -45,6 +45,9 @@ public class PlayerCam : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+        sensitivityX = EventManager.inst.mouseSensitivty;
+        sensitivityY = EventManager.inst.mouseSensitivty;
+
         if (EventManager.inst.playerDead)
         {
             DeathCamera();
