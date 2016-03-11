@@ -2513,8 +2513,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 0}
   memory: 1
-  memoryEventNumber: 0
-  memoryDialogue: []
+  memoryEventNumber: 1
+  memoryDialogue:
+  - {fileID: 8300000, guid: c1e441e7865dd164e83a1c7e502e0b33, type: 3}
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   fogChange: 0
@@ -6001,7 +6002,8 @@ MonoBehaviour:
   audio: {fileID: 0}
   memory: 1
   memoryEventNumber: 0
-  memoryDialogue: []
+  memoryDialogue:
+  - {fileID: 8300000, guid: 79f2bef4f18909942b12f4d236ae6c00, type: 3}
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   fogChange: 0
@@ -6456,8 +6458,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 0}
   memory: 1
-  memoryEventNumber: 0
-  memoryDialogue: []
+  memoryEventNumber: 3
+  memoryDialogue:
+  - {fileID: 8300000, guid: 8006568d2248e724a876c34a9b11b878, type: 3}
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   fogChange: 0
@@ -7241,8 +7244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 0}
   memory: 1
-  memoryEventNumber: 0
-  memoryDialogue: []
+  memoryEventNumber: 2
+  memoryDialogue:
+  - {fileID: 8300000, guid: 0a46854b2e3bf384b86e146c9fcefbfe, type: 3}
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   fogChange: 0
