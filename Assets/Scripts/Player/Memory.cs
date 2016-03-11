@@ -26,13 +26,26 @@ public class Memory : MonoBehaviour
 
     private float delayTimer;
 
-    public GameObject memoryFlash;
-    public bool activateFade;
-    public bool singleFade = true;
+    public GameObject memoryFlashIn;
+    public GameObject memoryFlashOut;
+    public float flashDelay;
+
+    // Spawn memory flash game obj co-routine
+    IEnumerator InstantiateMemFlash()
+    {
+        GameObject flashObjIn = (GameObject)Instantiate(memoryFlashIn, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
+        flashObjIn.transform.parent = this.gameObject.transform;
+        GameObject flashObjOut = (GameObject)Instantiate(memoryFlashOut, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
+        flashObjOut.transform.parent = this.gameObject.transform;   
+        yield return new WaitForSeconds(flashDelay);
+        GameObject flashObjIn2 = (GameObject)Instantiate(memoryFlashIn, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
+        flashObjIn2.transform.parent = this.gameObject.transform;
+        GameObject flashObjOut2 = (GameObject)Instantiate(memoryFlashOut, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
+        flashObjOut2.transform.parent = this.gameObject.transform;  
+    }
 
     void Start()
     {
-        singleFade = true;
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
 
@@ -42,25 +55,8 @@ public class Memory : MonoBehaviour
 
 	void FixedUpdate ()
     {
-        MemoryFlash();
         MemoryTimer();
         MemoryTest(); // *** Comment this out of release builds ***
-    }
-
-    // Create a white flash effect on the player when activateFade is set to true
-    void MemoryFlash()
-    {
-        if (activateFade)
-        {
-            if (singleFade)
-            {
-                print("flash");
-                EventManager.inst.playerTrans.rotation = Quaternion.identity;
-                Instantiate(memoryFlash, EventManager.inst.flashSpawn.position, Quaternion.identity);
-                singleFade = false;
-                activateFade = false;
-            }
-        }
     }
 
     // Hack to test memories
@@ -68,12 +64,12 @@ public class Memory : MonoBehaviour
     {        
         if (Input.GetKeyDown(KeyCode.M))
         {
-            singleFade = true;
-            activateFade = true;
             print("Memory Triggered");
             memoryPlaying = true;
             fadeTimer = 0;
             memoryLength = 5f;
+            flashDelay = memoryLength;
+            StartCoroutine("InstantiateMemFlash");
         }
 
         if (memoryLength > 0)
@@ -81,10 +77,9 @@ public class Memory : MonoBehaviour
             MemoryLerp();
         }
 
+        // Exit memory
         if (memoryLength < 0 && bloom.bloomIntensity > startBloom)
         {
-            singleFade = true;
-            activateFade = true;
             ExitMemory();
         }
     }
@@ -93,8 +88,9 @@ public class Memory : MonoBehaviour
     // The float will determine the length of the memory
     void EnterMemory (float duration)
     {
-        singleFade = true;
-        activateFade = true;
+        flashDelay = duration;
+        StartCoroutine("InstantiateMemFlash");
+        
         startFog = fog.heightDensity;
         memoryFog = fog.heightDensity / 7.5f;
 
@@ -117,6 +113,7 @@ public class Memory : MonoBehaviour
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
     }
 
+    // Exit memory
     void ExitMemory()
     {
         fadeTimer -= Time.deltaTime / fadeTime;

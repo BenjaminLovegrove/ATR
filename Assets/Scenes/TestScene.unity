@@ -1254,22 +1254,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 181126, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: crouchSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: b9e4af86d38f70d4dba078211fde1b60, type: 3}
-    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: standSFX
-      value: 
-      objectReference: {fileID: 8300000, guid: fd7050fc403430642819c288cdc10a52, type: 3}
-    - target: {fileID: 8201066, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: bac6dfdc1c63d8546bea65bbbaa10ac0, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0

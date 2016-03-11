@@ -11,7 +11,7 @@ public class AutoDestroy : MonoBehaviour
 
         if (destroyTimer <= 0)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 	}
 }
