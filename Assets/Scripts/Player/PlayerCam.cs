@@ -123,7 +123,10 @@ public class PlayerCam : MonoBehaviour
                     rotationY += Input.GetAxis("Mouse Y") * sensitivityY * -1;
                 }
                 // Otherwise Y is normal
-                else rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                if ((!EventManager.inst.invertY))
+                {
+                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                }                    
 
                 rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 

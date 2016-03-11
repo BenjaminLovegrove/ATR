@@ -62,6 +62,7 @@ public class MainMenu : MonoBehaviour
         screenResKey = PlayerPrefs.GetInt("Screen Res");
         speakerKey = PlayerPrefs.GetInt("Speaker Config");
         fullScreenKey = PlayerPrefs.GetInt("Fullscreen");
+        invertYKey = PlayerPrefs.GetInt("Invert Toggle");
 
         // Set default values if there are no settings yet
         if (!PlayerPrefs.HasKey("Speaker Config"))
@@ -179,10 +180,16 @@ public class MainMenu : MonoBehaviour
         // Apply invert Y toggle
         if (invertToggle.isOn == false)
         {
-            EventManager.inst.invertY = true;
+            EventManager.inst.invertY = false;
             PlayerPrefs.SetInt("Invert Toggle", 0);
         }
-        else PlayerPrefs.SetInt("Invert Toggle", 1);
+
+        // Remove invert Y toggle
+        if (invertToggle.isOn == true)
+        {
+            EventManager.inst.invertY = true;
+            PlayerPrefs.SetInt("Invert Toggle", 1);
+        }
         
         // Adjust screen res if there are changes
         if (screenResX != screenResXtemp || screenResY != screenResYtemp || fullScreen != fullScreenTemp)
@@ -299,9 +306,9 @@ public class MainMenu : MonoBehaviour
         // Invert Y val
         if (invertYKey == 0)
         {
-            fullscreenToggle.isOn = false;
+            invertToggle.isOn = false;
         }
-        else fullscreenToggle.isOn = true;
+        else invertToggle.isOn = true;
     }
 
     void UpdateUIvalues()
