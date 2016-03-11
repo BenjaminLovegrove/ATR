@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
     public AudioClip[] standingWalkRightSFX;
     public AudioClip[] crouchWalkLeftSFX;
     public AudioClip[] crouchWalkRightSFX;
-    //public AudioClip[] crouchingWalkSFX;
     public AudioClip crouchSFX;
     public AudioClip standSFX;
     public AudioSource footStepSFXSource;

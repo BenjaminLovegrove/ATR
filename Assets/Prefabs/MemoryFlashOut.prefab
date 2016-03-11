@@ -87,8 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab7c2b63cc37b0468c13c0329c7f753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDelay: 1
-  fadeTime: 1
+  fadeDelay: 1.5
+  fadeTime: 2.5
   fadeInOnStart: 0
   fadeOutOnStart: 1
 --- !u!1001 &100100000
@@ -108,7 +108,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fadeDelay
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fadeTime
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled

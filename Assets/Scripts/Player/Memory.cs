@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.ImageEffects;
 using System.Collections;
+using UnityEngine.UI;
 
 // Script for handling in game memory events
 
@@ -25,27 +26,24 @@ public class Memory : MonoBehaviour
     public AudioClip[] memoryDialogue;
 
     private float delayTimer;
-
-    public GameObject memoryFlashIn;
-    public GameObject memoryFlashOut;
+    public Image memoryFlashObj;
     public float flashDelay;
 
     // Spawn memory flash game obj co-routine
     IEnumerator InstantiateMemFlash()
     {
-        GameObject flashObjIn = (GameObject)Instantiate(memoryFlashIn, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
-        flashObjIn.transform.parent = this.gameObject.transform;
-        GameObject flashObjOut = (GameObject)Instantiate(memoryFlashOut, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
-        flashObjOut.transform.parent = this.gameObject.transform;   
+        memoryFlashObj.CrossFadeAlpha(255, 1, false);
+        yield return new WaitForSeconds(1.25f);
+        memoryFlashObj.CrossFadeAlpha(0, 1, false);
         yield return new WaitForSeconds(flashDelay);
-        GameObject flashObjIn2 = (GameObject)Instantiate(memoryFlashIn, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
-        flashObjIn2.transform.parent = this.gameObject.transform;
-        GameObject flashObjOut2 = (GameObject)Instantiate(memoryFlashOut, EventManager.inst.flashSpawn.position, EventManager.inst.flashSpawn.rotation);
-        flashObjOut2.transform.parent = this.gameObject.transform;  
+        memoryFlashObj.CrossFadeAlpha(255, 1, false);
+        yield return new WaitForSeconds(1.25f);
+        memoryFlashObj.CrossFadeAlpha(0, 1, false);
     }
 
     void Start()
     {
+        memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
 

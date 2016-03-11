@@ -41,7 +41,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 86b1670b93422b14bab9f3604d087138, type: 2}
+  - {fileID: 2100000, guid: 6bc7b08c2b26c8e459d8250199c90a45, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDelay: 0
-  fadeTime: 1
+  fadeTime: 1.5
   fadeInOnStart: 1
   fadeOutOnStart: 0
 --- !u!1001 &100100000
@@ -113,7 +113,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 86b1670b93422b14bab9f3604d087138, type: 2}
+      objectReference: {fileID: 2100000, guid: 6bc7b08c2b26c8e459d8250199c90a45, type: 2}
     - target: {fileID: 0}
       propertyPath: destroyTimer
       value: 1
@@ -124,7 +124,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fadeTime
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
