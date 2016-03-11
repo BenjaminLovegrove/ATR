@@ -28,6 +28,7 @@ GameObject:
   - 114: {fileID: 11489152}
   - 114: {fileID: 11481398}
   - 82: {fileID: 8226212}
+  - 114: {fileID: 11486618}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -340,8 +341,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.9899998, y: .667999983, z: -7.11999989}
+  m_LocalRotation: {x: 0, y: .988831222, z: 0, w: .149039626}
+  m_LocalPosition: {x: -13.8900003, y: -6.61000013, z: 366.140015}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 409254}
@@ -410,7 +411,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .100000024, z: 0}
+  m_LocalPosition: {x: 0, y: -.709999979, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 409254}
@@ -467,9 +468,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -493,9 +492,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -552,7 +549,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -622,7 +618,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -692,7 +687,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -762,7 +756,6 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
-  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -1039,7 +1032,7 @@ MonoBehaviour:
   useRadialDistance: 1
   heightFog: 1
   height: 8
-  heightDensity: 3.5
+  heightDensity: .75
   startDistance: 60
   fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
 --- !u!114 &11481398
@@ -1061,8 +1054,24 @@ MonoBehaviour:
   cameraPosHeadBob: {fileID: 409352}
   currentPos: {fileID: 432890}
   cameraDead: {fileID: 487956}
-  memoryCameraEnd: []
+  memoryCameraEnd:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   headBobInterval: .400000006
+--- !u!114 &11486618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be9102d0085d6194194353c17eda40aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportLoc: {fileID: 0}
 --- !u!114 &11489152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1074,13 +1083,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86e4faf433f0924a821040a0f725888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 2
+  walkSpeed: 2.29999995
   crouchSpeed: 1
   gravity: 7
   maxVelocityChange: 10
   canJump: 1
-  jumpHeight: .5
-  jumpDelay: .100000001
+  jumpHeight: .699999988
+  jumpDelay: .300000012
   jumpCoolDown: .75
   playerRigid: {fileID: 5430988}
   standingWalkLeftSFX:
@@ -1130,11 +1139,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memoryBloom: 1
   memoryFog: .5
-  fadeTime: 4
-  bufferTime: 0
+  fadeTime: 2
   memoryDialogue: []
-  memoryFlashIn: {fileID: 193460, guid: dd9ab9dfd685a9c42b53522ccba6e4c6, type: 2}
-  memoryFlashOut: {fileID: 193460, guid: 599939b15647a4747a56bd44e3c5ce95, type: 2}
+  memoryFlashObj: {fileID: 0}
   flashDelay: 0
 --- !u!124 &12457054
 Behaviour:
@@ -1164,6 +1171,7 @@ AudioLowPassFilter:
   m_GameObject: {fileID: 164748}
   m_Enabled: 1
   serializedVersion: 3
+  m_CutoffFrequency: 5000
   m_LowpassResonanceQ: 1
   lowpassLevelCustomCurve:
     serializedVersion: 2

@@ -16,12 +16,12 @@ public class Memory : MonoBehaviour
     public float memoryFog = 0.5f;
 
     public float fadeTime = 4f;
-    public float bufferTime;
 
     private float fadeTimer;
     private float memoryLength = 0f;
 
     private bool memoryPlaying = false;
+	private GameObject[] switchMe;
 
     public AudioClip[] memoryDialogue;
 
@@ -34,10 +34,20 @@ public class Memory : MonoBehaviour
     {
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
+
+		foreach (GameObject obj in switchMe) {
+			gameObject.SetActive(false);
+		}
+
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         yield return new WaitForSeconds(flashDelay);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
+
+		foreach (GameObject obj in switchMe) {
+			gameObject.SetActive(true);
+		}
+
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
     }
 
@@ -92,12 +102,16 @@ public class Memory : MonoBehaviour
         startFog = fog.heightDensity;
         memoryFog = fog.heightDensity / 7.5f;
 
-        print("Memory receiver triggered on Memory script");
+
         EventManager.inst.controlsDisabled = true;
         memoryPlaying = true;        
         fadeTimer = 0;
         memoryLength = duration;
     }
+
+	void SetSwitches(GameObject[] switchObjects){
+		switchMe = switchObjects;
+	}
 
     void MemoryLerp()
     {
@@ -105,7 +119,7 @@ public class Memory : MonoBehaviour
         {
             fadeTimer += Time.deltaTime / fadeTime;
         }
-        memoryLength -= Time.deltaTime * 0.75f;
+        memoryLength -= Time.deltaTime;
 
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);

@@ -23,6 +23,7 @@ public class TriggerManager : MonoBehaviour
     public AudioClip[] memoryDialogue;
     public GameObject memoryObj;
     public float objFadeTimer;
+	public GameObject[] switchObjects;
     private bool startTimer = false;
 
     [Header("Fog Change")]
@@ -59,10 +60,10 @@ public class TriggerManager : MonoBehaviour
             if (memory)
             {
                 EventManager.inst.currentMemory = memoryEventNumber;
-                print("Memory Triggered");
+
                 audio.PlayOneShot(memoryDialogue[memoryEventNumber]);
                 memoryDuration = memoryDialogue[memoryEventNumber].length;
-                col.BroadcastMessage("EnterMemory", memoryDuration / 2f);
+                col.BroadcastMessage("EnterMemory", memoryDuration);
                 if (memoryObj != null)
                 {
                     memoryObj.SetActive(true);
