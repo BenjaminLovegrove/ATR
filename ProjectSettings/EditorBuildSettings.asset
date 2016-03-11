@@ -15,3 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScene.unity
   - enabled: 1
     path: Assets/Scenes/Credits.unity
+  - enabled: 1
+    path: Assets/Scenes/City Outskirts.unity
+  - enabled: 1
+    path: Assets/Scenes/Coast Ending.unity

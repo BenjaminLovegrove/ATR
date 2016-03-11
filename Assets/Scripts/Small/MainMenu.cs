@@ -19,30 +19,35 @@ public class MainMenu : MonoBehaviour
     public Dropdown screenDrop;
     public Dropdown speakerDrop;
 
-    public int screenResY;
-    public int screenResX;
-    public int screenResKey;
-    public int screenResXtemp;
-    public int screenResYtemp;
-    public bool fullScreen;
-    public bool fullScreenTemp;
-    public int fullScreenKey;
+    private int screenResY;
+    private int screenResX;
+    private int screenResKey;
+    private int screenResXtemp;
+    private int screenResYtemp;
 
-    public float volumeLevel;
-    public float mouseSensitivity;
-    public bool invertY;
+    private bool fullScreen;
+    private bool fullScreenTemp;
+    private int fullScreenKey;
+
+    private float volumeLevel;
+    private float mouseSensitivity;
+    
+    private bool invertY;
+    private bool invertYTemp;
+    private int invertYKey;
 
     AudioConfiguration speakerConfig;
-    public int speakerKey;
-    public int speakerTemp;
-    public int speakerInit;
+    private int speakerKey;
+    private int speakerTemp;
+    private int speakerInit;
+    public AudioSource[] resumeAudio;
 
     // Load game async coroutine
     IEnumerator LoadScene()
     {
         yield return new WaitForSeconds(2f);
 
-        AsyncOperation async = Application.LoadLevelAsync("City");
+        AsyncOperation async = Application.LoadLevelAsync("City Outskirts");
 
         while (!async.isDone)
         {
@@ -52,10 +57,31 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
+        // Load current settings
         speakerConfig = AudioSettings.GetConfiguration();
         screenResKey = PlayerPrefs.GetInt("Screen Res");
         speakerKey = PlayerPrefs.GetInt("Speaker Config");
         fullScreenKey = PlayerPrefs.GetInt("Fullscreen");
+
+        // Set default values if there are no settings yet
+        if (!PlayerPrefs.HasKey("Speaker Config"))
+        {
+            speakerInit = 0;
+        }
+
+        if (!PlayerPrefs.HasKey("Mouse Sensitivity"))
+        {
+            EventManager.inst.mouseSensitivty = 5;
+            PlayerPrefs.SetFloat("Mouse Sensitivity", 5);
+            mouseSensitivity = 5;
+        }
+
+        if (!PlayerPrefs.HasKey("Master Volume"))
+        {
+            EventManager.inst.masterVolume = 1;
+            PlayerPrefs.SetFloat("Master Volume", 1);
+            volumeLevel = 1;
+        }
     }
 
     void Start()
@@ -132,27 +158,48 @@ public class MainMenu : MonoBehaviour
 
     void ApplySettings()
     {
+        // Assign global variables
         EventManager.inst.masterVolume = volumeLevel;
         EventManager.inst.mouseSensitivty = mouseSensitivity;
         EventManager.inst.invertY = invertY;
+
+        // Save values to player prefs
         PlayerPrefs.SetFloat("Master Volume", volumeLevel);
         PlayerPrefs.SetFloat("Mouse Sensitivity", mouseSensitivity);
         PlayerPrefs.SetInt("Screen Res", screenDrop.value);
         PlayerPrefs.SetInt("Speaker Config", speakerDrop.value);
 
+        // Switch between windowed and full screen mode
         if (fullscreenToggle.isOn == false)
         {
             PlayerPrefs.SetInt("Fullscreen", 0);
         }
         else PlayerPrefs.SetInt("Fullscreen", 1);
 
+        // Apply invert Y toggle
+        if (invertToggle.isOn == false)
+        {
+            EventManager.inst.invertY = true;
+            PlayerPrefs.SetInt("Invert Toggle", 0);
+        }
+        else PlayerPrefs.SetInt("Invert Toggle", 1);
+        
+        // Adjust screen res if there are changes
         if (screenResX != screenResXtemp || screenResY != screenResYtemp || fullScreen != fullScreenTemp)
         {
             Screen.SetResolution(screenResXtemp, screenResYtemp, fullScreenTemp);
         }
 
-        AudioSettings.Reset(speakerConfig);
-        print(AudioSettings.speakerMode);
+        // Reset audio config if there are any changes
+        if (speakerKey != speakerTemp)
+        {
+            AudioSettings.Reset(speakerConfig);
+            // Set all audio sources in the scene to play after restarting
+            for (int i = 0; i < resumeAudio.Length; i++)
+            {
+                resumeAudio[i].Play();
+            }
+        }
     }
 
     void InitialiseValues()
@@ -248,6 +295,13 @@ public class MainMenu : MonoBehaviour
             fullscreenToggle.isOn = false;
         }
         else fullscreenToggle.isOn = true;
+
+        // Invert Y val
+        if (invertYKey == 0)
+        {
+            fullscreenToggle.isOn = false;
+        }
+        else fullscreenToggle.isOn = true;
     }
 
     void UpdateUIvalues()
@@ -257,6 +311,12 @@ public class MainMenu : MonoBehaviour
             fullScreenTemp = true;
         }
         else fullScreenTemp = false;
+
+        if (invertToggle.isOn)
+        {
+            invertYTemp = true;
+        }
+        else invertYTemp = false;
 
         // TODO: these should be states
         if (screenDrop.value == 0)
@@ -322,21 +382,25 @@ public class MainMenu : MonoBehaviour
         // Speaker vals
         if (speakerDrop.value == 0)
         {
+            speakerTemp = 0;
             speakerConfig.speakerMode = AudioSpeakerMode.Stereo;
         }
 
         if (speakerDrop.value == 1)
         {
+            speakerTemp = 1;
             speakerConfig.speakerMode = AudioSpeakerMode.Stereo;
         }
 
         if (speakerDrop.value == 2)
         {
+            speakerTemp = 2;
             speakerConfig.speakerMode = AudioSpeakerMode.Mode5point1;
         }
 
         if (speakerDrop.value == 3)
         {
+            speakerTemp = 3;
             speakerConfig.speakerMode = AudioSpeakerMode.Mode7point1;
         }
 
@@ -345,6 +409,7 @@ public class MainMenu : MonoBehaviour
         invertY = invertToggle;
     }
 
+    // Functions to show/hude UI groups
     #region simple functions
     void ShowOptionsButtons()
     {

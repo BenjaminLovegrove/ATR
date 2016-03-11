@@ -64,6 +64,7 @@ public class EventManager : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+        AudioListener.volume = masterVolume;
         ControlsDisabledDelay();
         LevelResetCheck();
 
