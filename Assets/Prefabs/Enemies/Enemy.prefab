@@ -908,7 +908,6 @@ GameObject:
   - 82: {fileID: 8275414}
   - 136: {fileID: 13661758}
   - 136: {fileID: 13641846}
-  - 114: {fileID: 11498144}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1891,7 +1890,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.07000017, y: 0, z: -1.92999995}
+  m_LocalPosition: {x: 2.85968208, y: 3.19298792, z: -10.921319}
   m_LocalScale: {x: .0149999997, y: .0149999997, z: .0150000006}
   m_Children:
   - {fileID: 470176}
@@ -2496,7 +2495,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: .300000012
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2584,10 +2583,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 1
-  patrolWaitTime: 1
+  patrolWaitTime: 5
   patrolWayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   patrolTimer: 0
@@ -2603,18 +2600,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f74b492293d46a44e8b2463ddc05e2e1, type: 3}
   footSteps: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
   fieldOfViewAngle: 110
---- !u!114 &11498144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d7ddd5b9c13024f92268a0351da22f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: []
 --- !u!136 &13641846
 CapsuleCollider:
   m_ObjectHideFlags: 1

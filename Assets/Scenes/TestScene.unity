@@ -151,7 +151,6 @@ GameObject:
   - 65: {fileID: 151754840}
   - 23: {fileID: 151754839}
   - 82: {fileID: 151754838}
-  - 114: {fileID: 151754842}
   m_Layer: 0
   m_Name: WindCube2
   m_TagString: Untagged
@@ -286,18 +285,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 151754836}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &151754842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 151754836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d7ddd5b9c13024f92268a0351da22f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: []
 --- !u!1 &287141115
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +297,6 @@ GameObject:
   - 65: {fileID: 287141119}
   - 23: {fileID: 287141118}
   - 82: {fileID: 287141117}
-  - 114: {fileID: 287141121}
   m_Layer: 0
   m_Name: WindCube3
   m_TagString: Untagged
@@ -445,18 +431,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 287141115}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &287141121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 287141115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d7ddd5b9c13024f92268a0351da22f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: []
 --- !u!1 &297504459
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +970,6 @@ GameObject:
   - 65: {fileID: 1139226128}
   - 23: {fileID: 1139226127}
   - 82: {fileID: 1139226126}
-  - 114: {fileID: 1139226130}
   m_Layer: 0
   m_Name: WindCube1
   m_TagString: Untagged
@@ -1131,18 +1104,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1139226124}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1139226130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1139226124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d7ddd5b9c13024f92268a0351da22f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio: []
 --- !u!1001 &1207513569
 Prefab:
   m_ObjectHideFlags: 0

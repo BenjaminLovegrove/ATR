@@ -37,9 +37,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1815326064}
---- !u!127 &3
-LevelGameManager:
-  m_ObjectHideFlags: 0
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -68,6 +65,7 @@ LightmapSettings:
     m_TextureCompression: 1
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
+    m_ReflectionCompression: 2
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
@@ -382,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 1997211142, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AllowActivationOnStandalone: 0
+  m_ForceModuleActive: 0
 --- !u!114 &74322350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,7 +398,7 @@ MonoBehaviour:
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: .5
-  m_AllowActivationOnMobileDevice: 0
+  m_ForceModuleActive: 0
 --- !u!114 &74322351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,7 +991,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -1489,10 +1489,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraEnd.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: m_LocalPosition.x
       value: -13.8900003
@@ -1526,14 +1522,6 @@ Prefab:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraBegin.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraBegin.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: memoryCameraEnd.Array.data[0]
       value: 
       objectReference: {fileID: 1972779068}
@@ -1541,28 +1529,12 @@ Prefab:
       propertyPath: memoryCameraEnd.Array.data[1]
       value: 
       objectReference: {fileID: 1167760841}
-    - target: {fileID: 11470952, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: height
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 11470952, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: heightDensity
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: memoryCameraEnd.Array.data[2]
       value: 
       objectReference: {fileID: 1170325856}
     - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: memoryCameraEnd.Array.data[3]
-      value: 
-      objectReference: {fileID: 1724793272}
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraEnd.Array.data[4]
-      value: 
-      objectReference: {fileID: 1170325856}
-    - target: {fileID: 11481398, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: memoryCameraEnd.Array.data[5]
       value: 
       objectReference: {fileID: 1724793272}
     m_RemovedComponents: []
@@ -1576,18 +1548,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100828, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_PrefabInternal: {fileID: 456036160}
---- !u!114 &456036163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 456036162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be9102d0085d6194194353c17eda40aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportLoc: {fileID: 0}
 --- !u!1001 &464623332
 Prefab:
   m_ObjectHideFlags: 0
@@ -4081,7 +4041,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -5591,7 +5553,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -5722,7 +5686,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -9097,7 +9063,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

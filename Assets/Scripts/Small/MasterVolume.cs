@@ -9,7 +9,7 @@ using System.Collections;
 public class MasterVolume : MonoBehaviour
 {
     public AudioSource[] audio;
-    private float tempVolume;
+    public float tempVolume;
 
 	void Start ()
     {

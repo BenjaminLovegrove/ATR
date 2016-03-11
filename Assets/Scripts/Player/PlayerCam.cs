@@ -117,7 +117,14 @@ public class PlayerCam : MonoBehaviour
             {
                 float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
 
-                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                // Invert Y if set to do so
+                if (EventManager.inst.invertY)
+                {
+                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY * -1;
+                }
+                // Otherwise Y is normal
+                else rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+
                 rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
                 transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
