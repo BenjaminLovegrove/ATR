@@ -132,7 +132,6 @@ public class MainMenu : MonoBehaviour
 
     void ApplySettings()
     {
-        //AudioSettings.Reset(speakerConfig);
         EventManager.inst.masterVolume = volumeLevel;
         EventManager.inst.mouseSensitivty = mouseSensitivity;
         EventManager.inst.invertY = invertY;
@@ -152,7 +151,8 @@ public class MainMenu : MonoBehaviour
             Screen.SetResolution(screenResXtemp, screenResYtemp, fullScreenTemp);
         }
 
-        //AudioSettings.Reset(speakerConfig);
+        AudioSettings.Reset(speakerConfig);
+        print(AudioSettings.speakerMode);
     }
 
     void InitialiseValues()
@@ -320,25 +320,25 @@ public class MainMenu : MonoBehaviour
         }
         
         // Speaker vals
-        //if (speakerDrop.value == 0)
-        //{
-        //    AudioSettings.speakerMode = AudioSpeakerMode.Stereo;
-        //}
+        if (speakerDrop.value == 0)
+        {
+            speakerConfig.speakerMode = AudioSpeakerMode.Stereo;
+        }
 
-        //if (speakerDrop.value == 1)
-        //{
-        //    AudioSettings.speakerMode = AudioSpeakerMode.Stereo;
-        //}
+        if (speakerDrop.value == 1)
+        {
+            speakerConfig.speakerMode = AudioSpeakerMode.Stereo;
+        }
 
-        //if (speakerDrop.value == 2)
-        //{
-        //    AudioSettings.speakerMode = AudioSpeakerMode.Mode5point1;
-        //}
+        if (speakerDrop.value == 2)
+        {
+            speakerConfig.speakerMode = AudioSpeakerMode.Mode5point1;
+        }
 
-        //if (speakerDrop.value == 3)
-        //{
-        //    AudioSettings.speakerMode = AudioSpeakerMode.Mode7point1;
-        //}
+        if (speakerDrop.value == 3)
+        {
+            speakerConfig.speakerMode = AudioSpeakerMode.Mode7point1;
+        }
 
         volumeLevel = volSlider.value;
         mouseSensitivity = sensSlider.value;
