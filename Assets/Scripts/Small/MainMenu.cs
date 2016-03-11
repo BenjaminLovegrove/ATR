@@ -106,14 +106,12 @@ public class MainMenu : MonoBehaviour
     // Credits Button
     public void CreditsButton()
     {
-        //print("Pressed Credits");
         Application.LoadLevel("Credits");
     }
 
     // Options Button
     public void OptionsButton()
     {
-        //print("Pressed Options");
         // Set initial values
         volSlider.value = EventManager.inst.masterVolume;
         sensSlider.value = EventManager.inst.mouseSensitivty;
@@ -139,7 +137,6 @@ public class MainMenu : MonoBehaviour
     // Cancel Button
     public void CancelButton()
     {
-        //print("Pressed Cancel");
         ShowMenuButtons();
         HideOptionsButtons();
     }
@@ -147,7 +144,6 @@ public class MainMenu : MonoBehaviour
     // Exit Button
     public void ExitButton()
     {
-        //print("Pressed Exit");
         Application.Quit();
     }
 
@@ -201,6 +197,7 @@ public class MainMenu : MonoBehaviour
         if (speakerKey != speakerTemp)
         {
             AudioSettings.Reset(speakerConfig);
+            speakerKey = speakerTemp;
             // Set all audio sources in the scene to play after restarting
             for (int i = 0; i < resumeAudio.Length; i++)
             {
