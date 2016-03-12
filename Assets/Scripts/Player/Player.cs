@@ -72,8 +72,6 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-        audio.volume = EventManager.inst.masterVolume;
-
         if (EventManager.inst.playerDead == true)
         {            
             if (!setActiveFade)
@@ -252,6 +250,7 @@ public class Player : MonoBehaviour
         if (!EventManager.inst.playerDead)
         {
             footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
+            footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Horizontal"));
 
             // Reset walk array when you reach the end
             if (currentWalkVal == (standingWalkLeftSFX.Length))
