@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: wooden and concrete fence 1
+  m_Shader: {fileID: 4800000, guid: 7792a3cffd002fc409bf3c27523f65ce, type: 3}
+  m_ShaderKeywords: DIFFCUBE_ON LUX_AO_OFF SPECCUBE_ON
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 23031ec6222f3f1439cae4e08de3d994, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 0870a965b571bd84bad016dea040ee54, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ParallaxMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 1915bf2ae251aef4db06c49b156a6d0e, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 1915bf2ae251aef4db06c49b156a6d0e, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _DiffCubeIBL
+        second:
+          m_Texture: {fileID: 8900000, guid: 4579ea1a287d4465587006d5739747fb, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecCubeIBL
+        second:
+          m_Texture: {fileID: 8900000, guid: 1b2b3cd737a4d4d51aef34132186b19b, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _AO
+        second:
+          m_Texture: {fileID: 2800000, guid: 1915bf2ae251aef4db06c49b156a6d0e, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _RoughTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 1915bf2ae251aef4db06c49b156a6d0e, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Cutoff
+        second: 0.5
+      data:
+        first:
+          name: _Shininess
+        second: 1
+      data:
+        first:
+          name: _Parallax
+        second: 0.005
+      data:
+        first:
+          name: _RoughnessFactor
+        second: 0.21428575
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: 0.058823526, g: 0.058823526, b: 0.058823526, a: 1}
+      data:
+        first:
+          name: _SpecColMult
+        second: {r: 1, g: 1, b: 1, a: 1}

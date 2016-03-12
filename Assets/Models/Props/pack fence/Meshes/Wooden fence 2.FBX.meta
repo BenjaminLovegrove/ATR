@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: 530aa7b0199121347a37b1b02bc74304
+labels:
+- packfence
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Wood_f_1
+    100002: Wood_f_10
+    100004: Wood_f_11
+    100006: Wood_f_12
+    100008: Wood_f_13
+    100010: Wood_f_14
+    100012: Wood_f_15
+    100014: Wood_f_16
+    100016: Wood_f_17
+    100018: Wood_f_2
+    100020: Wood_f_3
+    100022: Wood_f_4
+    100024: Wood_f_5
+    100026: Wood_f_6
+    100028: Wood_f_7
+    100030: Wood_f_8
+    100032: Wood_f_9
+    100034: //RootNode
+    100036: Wooden_Door
+    100038: Wooden_fence
+    100040: Wooden_fence---gate_1_Metal
+    100042: Wooden_fence---gate_2_Metal
+    100044: Wooden_fence_st1
+    100046: Wooden_fence_st2
+    400000: Wood_f_1
+    400002: Wood_f_10
+    400004: Wood_f_11
+    400006: Wood_f_12
+    400008: Wood_f_13
+    400010: Wood_f_14
+    400012: Wood_f_15
+    400014: Wood_f_16
+    400016: Wood_f_17
+    400018: Wood_f_2
+    400020: Wood_f_3
+    400022: Wood_f_4
+    400024: Wood_f_5
+    400026: Wood_f_6
+    400028: Wood_f_7
+    400030: Wood_f_8
+    400032: Wood_f_9
+    400034: //RootNode
+    400036: Wooden_Door
+    400038: Wooden_fence
+    400040: Wooden_fence---gate_1_Metal
+    400042: Wooden_fence---gate_2_Metal
+    400044: Wooden_fence_st1
+    400046: Wooden_fence_st2
+    2300000: Wood_f_1
+    2300002: Wood_f_10
+    2300004: Wood_f_11
+    2300006: Wood_f_12
+    2300008: Wood_f_13
+    2300010: Wood_f_14
+    2300012: Wood_f_15
+    2300014: Wood_f_16
+    2300016: Wood_f_17
+    2300018: Wood_f_2
+    2300020: Wood_f_3
+    2300022: Wood_f_4
+    2300024: Wood_f_5
+    2300026: Wood_f_6
+    2300028: Wood_f_7
+    2300030: Wood_f_8
+    2300032: Wood_f_9
+    2300034: Wooden_Door
+    2300036: Wooden_fence
+    2300038: Wooden_fence---gate_1_Metal
+    2300040: Wooden_fence---gate_2_Metal
+    2300042: Wooden_fence_st1
+    2300044: Wooden_fence_st2
+    3300000: Wood_f_1
+    3300002: Wood_f_10
+    3300004: Wood_f_11
+    3300006: Wood_f_12
+    3300008: Wood_f_13
+    3300010: Wood_f_14
+    3300012: Wood_f_15
+    3300014: Wood_f_16
+    3300016: Wood_f_17
+    3300018: Wood_f_2
+    3300020: Wood_f_3
+    3300022: Wood_f_4
+    3300024: Wood_f_5
+    3300026: Wood_f_6
+    3300028: Wood_f_7
+    3300030: Wood_f_8
+    3300032: Wood_f_9
+    3300034: Wooden_Door
+    3300036: Wooden_fence
+    3300038: Wooden_fence---gate_1_Metal
+    3300040: Wooden_fence---gate_2_Metal
+    3300042: Wooden_fence_st1
+    3300044: Wooden_fence_st2
+    4300000: Wooden_fence
+    4300002: Wood_f_2
+    4300004: Wood_f_3
+    4300006: Wood_f_4
+    4300008: Wood_f_5
+    4300010: Wood_f_7
+    4300012: Wood_f_8
+    4300014: Wood_f_9
+    4300016: Wood_f_10
+    4300018: Wood_f_11
+    4300020: Wood_f_12
+    4300022: Wood_f_14
+    4300024: Wood_f_15
+    4300026: Wood_f_16
+    4300028: Wood_f_17
+    4300030: Wooden_fence---gate_2_Metal
+    4300032: Wood_f_6
+    4300034: Wooden_fence_st1
+    4300036: Wooden_fence_st2
+    4300038: Wood_f_1
+    4300040: Wood_f_13
+    4300042: Wooden_Door
+    4300044: Wooden_fence---gate_1_Metal
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

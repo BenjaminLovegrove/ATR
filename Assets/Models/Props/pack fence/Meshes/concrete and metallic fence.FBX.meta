@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: d9f88fcfeded3f54fbca3e363c9cb539
+labels:
+- packfence
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Colones
+    100002: Colones_metal
+    100004: //RootNode
+    100006: concrete_Wall
+    100008: Metal_wall
+    100010: Metal_wall_grid
+    100012: Colones_1
+    100014: Colones_2
+    100016: Colones_metal_1
+    100018: Colones_metal_2
+    100020: concrete_Wall_1
+    100022: Metal_wall_1
+    100024: Metal_wall_grid_1
+    400000: Colones
+    400002: Colones_metal
+    400004: //RootNode
+    400006: concrete_Wall
+    400008: Metal_wall
+    400010: Metal_wall_grid
+    400012: Colones_1
+    400014: Colones_2
+    400016: Colones_metal_1
+    400018: Colones_metal_2
+    400020: concrete_Wall_1
+    400022: Metal_wall_1
+    400024: Metal_wall_grid_1
+    2300000: Colones
+    2300002: Colones_metal
+    2300004: concrete_Wall
+    2300006: Metal_wall
+    2300008: Metal_wall_grid
+    2300010: Colones_1
+    2300012: Colones_2
+    2300014: Colones_metal_1
+    2300016: Colones_metal_2
+    2300018: concrete_Wall_1
+    2300020: Metal_wall_1
+    2300022: Metal_wall_grid_1
+    3300000: Colones
+    3300002: Colones_metal
+    3300004: concrete_Wall
+    3300006: Metal_wall
+    3300008: Metal_wall_grid
+    3300010: Colones_1
+    3300012: Colones_2
+    3300014: Colones_metal_1
+    3300016: Colones_metal_2
+    3300018: concrete_Wall_1
+    3300020: Metal_wall_1
+    3300022: Metal_wall_grid_1
+    4300000: concrete_Wall
+    4300002: Metal_wall
+    4300004: Metal_wall_grid
+    4300006: Colones
+    4300008: Colones_metal
+    4300010: Colones_1
+    4300012: Colones_metal_1
+    4300014: Colones_2
+    4300016: Colones_metal_2
+    4300018: concrete_Wall_1
+    4300020: Metal_wall_1
+    4300022: Metal_wall_grid_1
+    6400000: Colones_1
+    6400002: Colones_2
+    6400004: Colones_metal_1
+    6400006: Colones_metal_2
+    6400008: concrete_Wall
+    6400010: concrete_Wall_1
+    6400012: Metal_wall
+    6400014: Metal_wall_1
+    6400016: Metal_wall_grid
+    6400018: Metal_wall_grid_1
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 1
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

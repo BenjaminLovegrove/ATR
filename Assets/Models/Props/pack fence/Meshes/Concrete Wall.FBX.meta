@@ -1,0 +1,98 @@
+fileFormatVersion: 2
+guid: 787a33383afff084598e54ae942aa3b5
+labels:
+- packfence
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Concrete_wall_broken
+    100004: Concrete_wall_broken_metal
+    100006: Concrete_wall_colones
+    100008: Concrete_wall_whole
+    400000: //RootNode
+    400002: Concrete_wall_broken
+    400004: Concrete_wall_broken_metal
+    400006: Concrete_wall_colones
+    400008: Concrete_wall_whole
+    2300000: Concrete_wall_broken
+    2300002: Concrete_wall_broken_metal
+    2300004: Concrete_wall_colones
+    2300006: Concrete_wall_whole
+    3300000: Concrete_wall_broken
+    3300002: Concrete_wall_broken_metal
+    3300004: Concrete_wall_colones
+    3300006: Concrete_wall_whole
+    4300000: Concrete_wall_whole
+    4300002: Concrete_wall_broken
+    4300004: Concrete_wall_broken_metal
+    4300006: Concrete_wall_colones
+    6400000: Concrete_wall_broken
+    6400002: Concrete_wall_broken_metal
+    6400004: Concrete_wall_colones
+    6400006: Concrete_wall_whole
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

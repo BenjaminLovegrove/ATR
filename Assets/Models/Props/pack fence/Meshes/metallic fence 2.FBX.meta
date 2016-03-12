@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: c27eaf8ea8a1bc34188d24917483ab0d
+labels:
+- packfence
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: metallic_fence_1
+    100004: metallic_fence_1_grid
+    100006: metallic_fence_2
+    100008: metallic_fence_2_grid
+    100010: metallic_fence_3
+    100012: metallic_fence_3_grid
+    100014: metallic_fence_4
+    100016: metallic_fence_4_grid
+    400000: //RootNode
+    400002: metallic_fence_1
+    400004: metallic_fence_1_grid
+    400006: metallic_fence_2
+    400008: metallic_fence_2_grid
+    400010: metallic_fence_3
+    400012: metallic_fence_3_grid
+    400014: metallic_fence_4
+    400016: metallic_fence_4_grid
+    2300000: metallic_fence_1
+    2300002: metallic_fence_1_grid
+    2300004: metallic_fence_2
+    2300006: metallic_fence_2_grid
+    2300008: metallic_fence_3
+    2300010: metallic_fence_3_grid
+    2300012: metallic_fence_4
+    2300014: metallic_fence_4_grid
+    3300000: metallic_fence_1
+    3300002: metallic_fence_1_grid
+    3300004: metallic_fence_2
+    3300006: metallic_fence_2_grid
+    3300008: metallic_fence_3
+    3300010: metallic_fence_3_grid
+    3300012: metallic_fence_4
+    3300014: metallic_fence_4_grid
+    4300000: metallic_fence_1
+    4300002: metallic_fence_1_grid
+    4300004: metallic_fence_2
+    4300006: metallic_fence_2_grid
+    4300008: metallic_fence_3
+    4300010: metallic_fence_3_grid
+    4300012: metallic_fence_4
+    4300014: metallic_fence_4_grid
+    6400000: metallic_fence_1
+    6400002: metallic_fence_1_grid
+    6400004: metallic_fence_2
+    6400006: metallic_fence_2_grid
+    6400008: metallic_fence_3
+    6400010: metallic_fence_3_grid
+    6400012: metallic_fence_4
+    6400014: metallic_fence_4_grid
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

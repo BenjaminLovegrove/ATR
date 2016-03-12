@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: da98913ad5e48a742b359f163720a0da
+labels:
+- packfence
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: wooden_concrete_fence---colones
+    100004: wooden_concrete_fence---gate
+    100006: wooden_concrete_fence---gate_b
+    100008: wooden_concrete_fence---gate_b_Metal
+    100010: wooden_concrete_fence---gate_Metal
+    100012: wooden_concrete_fence---gate_ts
+    100014: wooden_concrete_fence---wall
+    100016: wooden_concrete_fence---wood
+    400000: //RootNode
+    400002: wooden_concrete_fence---colones
+    400004: wooden_concrete_fence---gate
+    400006: wooden_concrete_fence---gate_b
+    400008: wooden_concrete_fence---gate_b_Metal
+    400010: wooden_concrete_fence---gate_Metal
+    400012: wooden_concrete_fence---gate_ts
+    400014: wooden_concrete_fence---wall
+    400016: wooden_concrete_fence---wood
+    2300000: wooden_concrete_fence---colones
+    2300002: wooden_concrete_fence---gate
+    2300004: wooden_concrete_fence---gate_b
+    2300006: wooden_concrete_fence---gate_b_Metal
+    2300008: wooden_concrete_fence---gate_Metal
+    2300010: wooden_concrete_fence---gate_ts
+    2300012: wooden_concrete_fence---wall
+    2300014: wooden_concrete_fence---wood
+    3300000: wooden_concrete_fence---colones
+    3300002: wooden_concrete_fence---gate
+    3300004: wooden_concrete_fence---gate_b
+    3300006: wooden_concrete_fence---gate_b_Metal
+    3300008: wooden_concrete_fence---gate_Metal
+    3300010: wooden_concrete_fence---gate_ts
+    3300012: wooden_concrete_fence---wall
+    3300014: wooden_concrete_fence---wood
+    4300000: wooden_concrete_fence---wall
+    4300002: wooden_concrete_fence---wood
+    4300004: wooden_concrete_fence---gate_b
+    4300006: wooden_concrete_fence---gate
+    4300008: wooden_concrete_fence---gate_Metal
+    4300010: wooden_concrete_fence---gate_ts
+    4300012: wooden_concrete_fence---gate_b_Metal
+    4300014: wooden_concrete_fence---colones
+    6400000: wooden_concrete_fence---colones
+    6400002: wooden_concrete_fence---gate
+    6400004: wooden_concrete_fence---gate_b
+    6400006: wooden_concrete_fence---gate_b_Metal
+    6400008: wooden_concrete_fence---gate_Metal
+    6400010: wooden_concrete_fence---gate_ts
+    6400012: wooden_concrete_fence---wall
+    6400014: wooden_concrete_fence---wood
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
