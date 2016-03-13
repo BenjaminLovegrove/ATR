@@ -10,6 +10,13 @@ public class MainMenu : MonoBehaviour
     public GameObject[] mainMenuUI;
     public GameObject[] optionMenuUI;
 
+    public Transform currentCamPos;
+    public Transform mainMenuPos;
+    public Transform optionMenuPos;
+    public float cameraPanSpeed;
+    private float cameraPanIncrement;
+    private bool menuToggle;
+
     public Slider volSlider;
     public Slider sensSlider;
 
@@ -41,6 +48,12 @@ public class MainMenu : MonoBehaviour
     private int speakerTemp;
     private int speakerInit;
     public AudioSource[] resumeAudio;
+
+    IEnumerator CameraTransition()
+    {
+        cameraPanIncrement = 0;
+        yield return new WaitForSeconds(1);
+    }
 
     // Load game async coroutine
     IEnumerator LoadScene()
@@ -89,6 +102,24 @@ public class MainMenu : MonoBehaviour
     {
         InitialiseValues();
     }
+
+    void FixedUpdate()
+    {
+        cameraPanIncrement += Time.deltaTime * cameraPanSpeed;
+
+        if (!menuToggle)
+        {
+            currentCamPos.position = Vector3.MoveTowards(optionMenuPos.position, mainMenuPos.position, cameraPanIncrement);
+        }
+
+        if (menuToggle)
+        {
+            currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, optionMenuPos.position, cameraPanIncrement);
+        }
+
+        UpdateUIvalues();
+        Cursor.visible = true; // Dodgey over ride?
+    }
     
     // Play Button
     public void PlayButton()
@@ -112,6 +143,8 @@ public class MainMenu : MonoBehaviour
     // Options Button
     public void OptionsButton()
     {
+        StartCoroutine("CameraTransition");
+        menuToggle = true;
         // Set initial values
         volSlider.value = EventManager.inst.masterVolume;
         sensSlider.value = EventManager.inst.mouseSensitivty;
@@ -129,6 +162,8 @@ public class MainMenu : MonoBehaviour
     // Accept Button
     public void AcceptButton()
     {
+        StartCoroutine("CameraTransition");
+        menuToggle = false;
         ApplySettings();
         ShowMenuButtons();
         HideOptionsButtons();
@@ -147,11 +182,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    void FixedUpdate()
-    {
-        UpdateUIvalues();
-        Cursor.visible = true; // Dodgey over ride?
-    }
+
 
     void ApplySettings()
     {

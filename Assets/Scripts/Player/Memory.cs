@@ -35,7 +35,8 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
 
-		foreach (GameObject obj in switchMe) {
+		foreach (GameObject obj in switchMe)
+        {
 			gameObject.SetActive(false);
 		}
 
@@ -44,7 +45,8 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
 
-		foreach (GameObject obj in switchMe) {
+		foreach (GameObject obj in switchMe)
+        {
 			gameObject.SetActive(true);
 		}
 

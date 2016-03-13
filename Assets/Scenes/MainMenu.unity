@@ -1931,6 +1931,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: .5, y: 1}
+--- !u!1 &664388922
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 664388923}
+  m_Layer: 0
+  m_Name: OptionMenuPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &664388923
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 664388922}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.00399995, y: 2.36999989, z: 13.8190002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
 --- !u!1 &672920722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,6 +2538,10 @@ MonoBehaviour:
   - {fileID: 1385092114}
   optionMenuUI:
   - {fileID: 1353354380}
+  currentCamPos: {fileID: 1097478758}
+  mainMenuPos: {fileID: 2132646924}
+  optionMenuPos: {fileID: 664388923}
+  cameraPanSpeed: 50
   volSlider: {fileID: 1862250413}
   sensSlider: {fileID: 1894038389}
   invertToggle: {fileID: 1720951960}
@@ -7317,6 +7348,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2128740712}
+--- !u!1 &2132646923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2132646924}
+  m_Layer: 0
+  m_Name: MainMenuPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2132646924
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2132646923}
+  m_LocalRotation: {x: 0, y: .197542429, z: 0, w: -.980294347}
+  m_LocalPosition: {x: 1.40999997, y: 1.13, z: -9.94999981}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1001 &2133390418
 Prefab:
   m_ObjectHideFlags: 0
