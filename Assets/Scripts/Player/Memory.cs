@@ -21,7 +21,7 @@ public class Memory : MonoBehaviour
     private float memoryLength = 0f;
 
     private bool memoryPlaying = false;
-	private GameObject[] switchMe;
+    private GameObject[] switchMe = new GameObject[30];
 
     public AudioClip[] memoryDialogue;
 
@@ -35,18 +35,32 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
 
-		foreach (GameObject obj in switchMe) {
-			gameObject.SetActive(false);
-		}
+        if (switchMe != null && switchMe.Length > 0)
+        {
+            foreach (GameObject obj in switchMe)
+            {
+                if (obj != null && obj.activeSelf)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         yield return new WaitForSeconds(flashDelay);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
 
-		foreach (GameObject obj in switchMe) {
-			gameObject.SetActive(true);
-		}
+        if (switchMe != null && switchMe.Length > 0)
+        {
+            foreach (GameObject obj in switchMe)
+            {
+                if (obj != null && !obj.activeSelf)
+                {
+                    obj.SetActive(true);
+                }
+            }
+        }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
     }

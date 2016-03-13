@@ -64,6 +64,7 @@ public class TriggerManager : MonoBehaviour
                 audio.PlayOneShot(memoryDialogue[memoryEventNumber]);
                 memoryDuration = memoryDialogue[memoryEventNumber].length;
                 col.BroadcastMessage("EnterMemory", memoryDuration);
+                col.BroadcastMessage("SetSwitches", switchObjects);
                 if (memoryObj != null)
                 {
                     memoryObj.SetActive(true);
