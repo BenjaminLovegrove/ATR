@@ -61,6 +61,20 @@ public class MainMenu : MonoBehaviour
     private int speakerInit;
     public AudioSource[] resumeAudio; // Place any objects with audio sources (within the scene) into this array
 
+    IEnumerator OptionsCoRoutine()
+    {
+        HideMenuButtons();
+        yield return new WaitForSeconds(cameraPanSpeed / 100);        
+        ShowOptionsButtons();
+    }
+
+    IEnumerator MenuCoRoutine()
+    {
+        HideOptionsButtons();
+        yield return new WaitForSeconds(cameraPanSpeed / 100);
+        ShowMenuButtons();
+    }
+
     // Load game async coroutine
     IEnumerator LoadScene()
     {        
@@ -117,12 +131,12 @@ public class MainMenu : MonoBehaviour
     {
         cameraPanIncrement = 0;
         menuToggle = MenuToggle.OPTIONS;
-        
+
         // Set initial values
         volSlider.value = EventManager.inst.masterVolume;
         sensSlider.value = EventManager.inst.mouseSensitivty;
         invertY = EventManager.inst.invertY;
-        
+
         if (PlayerPrefs.GetInt("Fullscreen") == 0)
         {
             fullscreenToggle.isOn = false;
@@ -131,8 +145,7 @@ public class MainMenu : MonoBehaviour
 
         speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
         screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
-        HideMenuButtons();
-        ShowOptionsButtons();
+        StartCoroutine("OptionsCoRoutine");
     }
 
     // Apply Button
@@ -147,8 +160,7 @@ public class MainMenu : MonoBehaviour
         cameraPanIncrement = 0;
         menuToggle = MenuToggle.MAIN;
         ApplySettings();
-        ShowMenuButtons();
-        HideOptionsButtons();
+        StartCoroutine("MenuCoRoutine");
     }
 
     // Cancel Button
