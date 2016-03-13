@@ -15,8 +15,6 @@ public class EventManager : MonoBehaviour
 	public GameObject playerObj;
     public GameObject pauseMenuButtons;    
 
-    public Material enemyMaterial;              // enemyMaterial.SetFloat("_Mode", 2.0f) 0 = Opaque, 1 = Cutout, 2 = Transparent
-
 	public bool playerCrouch = false;
     public bool playerDead = false;
     public bool playerJump = false;
@@ -59,7 +57,7 @@ public class EventManager : MonoBehaviour
 
         flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
         controlDisableDelay = true;
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 
 	void FixedUpdate ()
@@ -68,7 +66,6 @@ public class EventManager : MonoBehaviour
         ControlsDisabledDelay();
         LevelResetCheck();
 
-        // TODO - this is hacky and throwing nulls like a mofo - FIX!
         if (!gamePaused && pauseMenuButtons != null)
         {
             pauseMenuButtons.SetActive(false);

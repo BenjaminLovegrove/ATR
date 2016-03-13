@@ -1,11 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System.Collections.Generic;
 
 // Script for the UI buttons used in the main menu
 
 public class MainMenu : MonoBehaviour
 {
+    public enum MenuToggle
+    {
+        MAIN, OPTIONS, NONE
+    }
+
+    public MenuToggle menuToggle;
+
+    public List<int> screenResXlist = new List<int>();
+    public List<int> screenResYlist = new List<int>();
+    public List<AudioSpeakerMode> speakerConfigList = new List<AudioSpeakerMode>();
+
     public GameObject[] loadingScreenUI;
     public GameObject[] mainMenuUI;
     public GameObject[] optionMenuUI;
@@ -15,7 +28,6 @@ public class MainMenu : MonoBehaviour
     public Transform optionMenuPos;
     public float cameraPanSpeed;
     private float cameraPanIncrement;
-    private bool menuToggle;
 
     public Slider volSlider;
     public Slider sensSlider;
@@ -23,8 +35,8 @@ public class MainMenu : MonoBehaviour
     public Toggle invertToggle;
     public Toggle fullscreenToggle;
 
-    public Dropdown screenDrop;
-    public Dropdown speakerDrop;
+    public Dropdown screenDropdown;
+    public Dropdown speakerDropdown;
 
     private int screenResY;
     private int screenResX;
@@ -43,25 +55,17 @@ public class MainMenu : MonoBehaviour
     private bool invertYTemp;
     private int invertYKey;
 
-    AudioConfiguration speakerConfig;
+    private AudioConfiguration speakerConfig;
     private int speakerKey;
     private int speakerTemp;
     private int speakerInit;
-    public AudioSource[] resumeAudio;
-
-    IEnumerator CameraTransition()
-    {
-        cameraPanIncrement = 0;
-        yield return new WaitForSeconds(1);
-    }
+    public AudioSource[] resumeAudio; // Place any objects with audio sources (within the scene) into this array
 
     // Load game async coroutine
     IEnumerator LoadScene()
-    {
-        yield return new WaitForSeconds(2f);
-
+    {        
+        yield return new WaitForSeconds(1f);
         AsyncOperation async = Application.LoadLevelAsync("City Outskirts");
-
         while (!async.isDone)
         {
             yield return null;
@@ -70,7 +74,118 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
-        // Load current settings
+        InitialiseSettings();
+
+        // Assign listeners for drop down UI menus
+        screenDropdown.onValueChanged.AddListener(delegate { ScreenResListener(screenDropdown); });
+        speakerDropdown.onValueChanged.AddListener(delegate { SpeakerConfigListener(speakerDropdown); });
+        LoadSettings();
+    }
+
+    void FixedUpdate()
+    {
+        // Function Calls
+        UpdateUIvalues();
+        MenuTransitioning();
+    }
+
+    #region UI Buttons
+    // Play Button
+    public void PlayButton()
+    {
+        Cursor.visible = false;
+        HideMenuButtons();
+        for (int i = 0; i < loadingScreenUI.Length; i++)
+        {
+            loadingScreenUI[i].SetActive(true);
+        }
+        screenDropdown.onValueChanged.RemoveAllListeners();
+        speakerDropdown.onValueChanged.RemoveAllListeners();
+        StartCoroutine("LoadScene");
+    }
+
+    // Credits Button
+    public void CreditsButton()
+    {
+        screenDropdown.onValueChanged.RemoveAllListeners();
+        speakerDropdown.onValueChanged.RemoveAllListeners();
+        Application.LoadLevel("Credits");
+    }
+
+    // Options Button
+    public void OptionsButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.OPTIONS;
+        
+        // Set initial values
+        volSlider.value = EventManager.inst.masterVolume;
+        sensSlider.value = EventManager.inst.mouseSensitivty;
+        invertY = EventManager.inst.invertY;
+        
+        if (PlayerPrefs.GetInt("Fullscreen") == 0)
+        {
+            fullscreenToggle.isOn = false;
+        }
+        else fullscreenToggle.isOn = true;
+
+        speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
+        screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
+        HideMenuButtons();
+        ShowOptionsButtons();
+    }
+
+    // Apply Button
+    public void ApplyButton()
+    {
+        ApplySettings();      
+    }
+
+    // Accept Button
+    public void AcceptButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.MAIN;
+        ApplySettings();
+        ShowMenuButtons();
+        HideOptionsButtons();
+    }
+
+    // Cancel Button
+    public void CancelButton()
+    {
+        ShowMenuButtons();
+        HideOptionsButtons();
+    }
+
+    // Exit Button
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
+    #endregion
+
+    void MenuTransitioning()
+    {
+        // Increment camera movement between target positions
+        cameraPanIncrement += Time.deltaTime * cameraPanSpeed;
+
+        // Move the camera between target locations
+        switch (menuToggle)
+        {
+            case MenuToggle.MAIN:
+                currentCamPos.position = Vector3.MoveTowards(optionMenuPos.position, mainMenuPos.position, cameraPanIncrement);
+                break;
+
+            case MenuToggle.OPTIONS:
+                currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, optionMenuPos.position, cameraPanIncrement);
+                break;
+        } 
+    }
+
+    void LoadSettings()
+    {
+        // Load saved settings
         speakerConfig = AudioSettings.GetConfiguration();
         screenResKey = PlayerPrefs.GetInt("Screen Res");
         speakerKey = PlayerPrefs.GetInt("Speaker Config");
@@ -98,92 +213,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        InitialiseValues();
-    }
-
-    void FixedUpdate()
-    {
-        cameraPanIncrement += Time.deltaTime * cameraPanSpeed;
-
-        if (!menuToggle)
-        {
-            currentCamPos.position = Vector3.MoveTowards(optionMenuPos.position, mainMenuPos.position, cameraPanIncrement);
-        }
-
-        if (menuToggle)
-        {
-            currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, optionMenuPos.position, cameraPanIncrement);
-        }
-
-        UpdateUIvalues();
-        Cursor.visible = true; // Dodgey over ride?
-    }
-    
-    // Play Button
-    public void PlayButton()
-    {
-        //print("Pressed Play");
-        Cursor.visible = false;
-        HideMenuButtons();
-        for (int i = 0; i < loadingScreenUI.Length; i++)
-        {
-            loadingScreenUI[i].SetActive(true);
-        }
-        StartCoroutine("LoadScene");
-    }
-
-    // Credits Button
-    public void CreditsButton()
-    {
-        Application.LoadLevel("Credits");
-    }
-
-    // Options Button
-    public void OptionsButton()
-    {
-        StartCoroutine("CameraTransition");
-        menuToggle = true;
-        // Set initial values
-        volSlider.value = EventManager.inst.masterVolume;
-        sensSlider.value = EventManager.inst.mouseSensitivty;
-        invertY = EventManager.inst.invertY;
-        HideMenuButtons();
-        ShowOptionsButtons();
-    }
-
-    // Apply Button
-    public void ApplyButton()
-    {
-        ApplySettings();      
-    }
-
-    // Accept Button
-    public void AcceptButton()
-    {
-        StartCoroutine("CameraTransition");
-        menuToggle = false;
-        ApplySettings();
-        ShowMenuButtons();
-        HideOptionsButtons();
-    }
-
-    // Cancel Button
-    public void CancelButton()
-    {
-        ShowMenuButtons();
-        HideOptionsButtons();
-    }
-
-    // Exit Button
-    public void ExitButton()
-    {
-        Application.Quit();
-    }
-
-
-
     void ApplySettings()
     {
         // Assign global variables
@@ -194,8 +223,8 @@ public class MainMenu : MonoBehaviour
         // Save values to player prefs
         PlayerPrefs.SetFloat("Master Volume", volumeLevel);
         PlayerPrefs.SetFloat("Mouse Sensitivity", mouseSensitivity);
-        PlayerPrefs.SetInt("Screen Res", screenDrop.value);
-        PlayerPrefs.SetInt("Speaker Config", speakerDrop.value);
+        PlayerPrefs.SetInt("Screen Res", screenDropdown.value);
+        PlayerPrefs.SetInt("Speaker Config", speakerDropdown.value);
 
         // Switch between windowed and full screen mode
         if (fullscreenToggle.isOn == false)
@@ -237,92 +266,41 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    void InitialiseValues()
+    void InitialiseSettings()
     {
-        screenDrop.value = screenResKey;
-        speakerDrop.value = speakerKey;
+        // Populate screen X resolutions list
+        screenResXlist.Add(1024);
+        screenResXlist.Add(1280);
+        screenResXlist.Add(1280);
+        screenResXlist.Add(1280);
+        screenResXlist.Add(1280);
+        screenResXlist.Add(1360);
+        screenResXlist.Add(1366);
+        screenResXlist.Add(1680);
+        screenResXlist.Add(1920);
+        screenResXlist.Add(2175);
+        //screenResXlist.Add(PlayerPrefs.GetInt("Default X"));
 
-        // Screen res vals
-        if (screenResKey == 0)
-        {
-            screenResX = 1024;
-            screenResY = 768;
-        }
+        // Populate screen Y resolutions list
+        screenResYlist.Add(768);
+        screenResYlist.Add(720);
+        screenResYlist.Add(768);
+        screenResYlist.Add(800);
+        screenResYlist.Add(1024);
+        screenResYlist.Add(768);
+        screenResYlist.Add(768);
+        screenResYlist.Add(1050);
+        screenResYlist.Add(1080);
+        screenResYlist.Add(1527);
+        //screenResYlist.Add(PlayerPrefs.GetInt("Default Y"));
 
-        if (screenResKey == 1)
-        {
-            screenResX = 1280;
-            screenResY = 720;
-        }
+        // Populate speaker config modes
+        speakerConfigList.Add(AudioSpeakerMode.Stereo);
+        speakerConfigList.Add(AudioSpeakerMode.Stereo);
+        speakerConfigList.Add(AudioSpeakerMode.Mode5point1);
+        speakerConfigList.Add(AudioSpeakerMode.Mode7point1);
 
-        if (screenResKey == 2)
-        {
-            screenResX = 1280;
-            screenResY = 768;
-        }
-
-        if (screenResKey == 3)
-        {
-            screenResX = 1280;
-            screenResY = 800;
-        }
-
-        if (screenResKey == 4)
-        {
-            screenResX = 1280;
-            screenResY = 1024;
-        }
-
-        if (screenResKey == 5)
-        {
-            screenResX = 1360;
-            screenResY = 768;
-        }
-
-        if (screenResKey == 6)
-        {
-            screenResX = 1366;
-            screenResY = 768;
-        }
-
-        if (screenResKey == 7)
-        {
-            screenResX = 1680;
-            screenResY = 1050;
-        }
-
-        if (screenResKey == 8)
-        {
-            screenResX = 1920;
-            screenResY = 1080;
-        }
-
-        if (screenResKey == 9)
-        {
-            screenResX = 2175;
-            screenResY = 1527;
-        }
-
-        // Speaker vals
-        if (speakerKey == 0)
-        {
-            speakerInit = 0;
-        }
-
-        if (speakerKey == 1)
-        {
-            speakerInit = 1;
-        }
-
-        if (speakerKey == 2)
-        {
-            speakerInit = 2;
-        }
-
-        if (speakerKey == 3)
-        {
-            speakerInit = 3;
-        }
+        //screenDrop.options.Add(new Dropdown.OptionData((PlayerPrefs.GetInt("Default X") +  (PlayerPrefs.GetInt("Default Y")"));
 
         // Fullscreen val
         if (fullScreenKey == 0)
@@ -337,115 +315,49 @@ public class MainMenu : MonoBehaviour
             invertToggle.isOn = false;
         }
         else invertToggle.isOn = true;
+
+        menuToggle = MenuToggle.NONE;
+        Cursor.visible = true;
+        screenDropdown.value = screenResKey;
+        speakerDropdown.value = speakerKey;
     }
 
     void UpdateUIvalues()
     {
+        volumeLevel = volSlider.value;
+        mouseSensitivity = sensSlider.value;
+        invertY = invertToggle;
+
+        // Full screen value
         if (fullscreenToggle.isOn)
         {
             fullScreenTemp = true;
         }
         else fullScreenTemp = false;
 
+        // Invert Y value
         if (invertToggle.isOn)
         {
             invertYTemp = true;
         }
         else invertYTemp = false;
+    }
 
-        // TODO: these should be states
-        if (screenDrop.value == 0)
-        {
-            screenResXtemp = 1024;
-            screenResYtemp = 768;
-        }
+    void ScreenResListener(Dropdown val)
+    {
+        screenResKey = val.value;
+        screenResXtemp = screenResXlist[val.value];
+        screenResYtemp = screenResYlist[val.value];
+    }
 
-        if (screenDrop.value == 1)
-        {
-            screenResXtemp = 1280;
-            screenResYtemp = 720;
-        }
-
-        if (screenDrop.value == 2)
-        {
-            screenResXtemp = 1280;
-            screenResYtemp = 768;
-        }
-
-        if (screenDrop.value == 3)
-        {
-            screenResXtemp = 1280;
-            screenResYtemp = 800;
-        }
-
-        if (screenDrop.value == 4)
-        {
-            screenResXtemp = 1280;
-            screenResYtemp = 1024;
-        }
-
-        if (screenDrop.value == 5)
-        {
-            screenResXtemp = 1360;
-            screenResYtemp = 768;
-        }
-
-        if (screenDrop.value == 6)
-        {
-            screenResXtemp = 1366;
-            screenResYtemp = 768;
-        }
-
-        if (screenDrop.value == 7)
-        {
-            screenResXtemp = 1680;
-            screenResYtemp = 1050;
-        }
-
-        if (screenDrop.value == 8)
-        {
-            screenResXtemp = 1920;
-            screenResYtemp = 1080;
-        }
-
-        if (screenDrop.value == 9)
-        {
-            screenResXtemp = 2175;
-            screenResYtemp = 1527;
-        }
-        
-        // Speaker vals
-        if (speakerDrop.value == 0)
-        {
-            speakerTemp = 0;
-            speakerConfig.speakerMode = AudioSpeakerMode.Stereo;
-        }
-
-        if (speakerDrop.value == 1)
-        {
-            speakerTemp = 1;
-            speakerConfig.speakerMode = AudioSpeakerMode.Stereo;
-        }
-
-        if (speakerDrop.value == 2)
-        {
-            speakerTemp = 2;
-            speakerConfig.speakerMode = AudioSpeakerMode.Mode5point1;
-        }
-
-        if (speakerDrop.value == 3)
-        {
-            speakerTemp = 3;
-            speakerConfig.speakerMode = AudioSpeakerMode.Mode7point1;
-        }
-
-        volumeLevel = volSlider.value;
-        mouseSensitivity = sensSlider.value;
-        invertY = invertToggle;
+    void SpeakerConfigListener(Dropdown val)
+    {
+        speakerTemp = val.value;
+        speakerConfig.speakerMode = speakerConfigList[val.value];
     }
 
     // Functions to show/hude UI groups
-    #region simple functions
+    #region simple UI functions
     void ShowOptionsButtons()
     {
         for (int i = 0; i < optionMenuUI.Length; i++)

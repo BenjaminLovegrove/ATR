@@ -2531,6 +2531,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfd616fc534abe478b3bff06d9766f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuToggle: 0
+  screenResXlist: 
+  screenResYlist: 
+  speakerConfigList: 
   loadingScreenUI:
   - {fileID: 591368910}
   - {fileID: 457263637}
@@ -2546,8 +2550,8 @@ MonoBehaviour:
   sensSlider: {fileID: 1894038389}
   invertToggle: {fileID: 1720951960}
   fullscreenToggle: {fileID: 1648489722}
-  screenDrop: {fileID: 416286825}
-  speakerDrop: {fileID: 2080188181}
+  screenDropdown: {fileID: 416286825}
+  speakerDropdown: {fileID: 2080188181}
   resumeAudio:
   - {fileID: 1097478753}
 --- !u!4 &792103448
