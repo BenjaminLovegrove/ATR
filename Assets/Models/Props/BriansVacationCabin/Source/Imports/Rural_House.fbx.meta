@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: 4d41d3e862eb3b34cbfa7feb4a98f61e
+timeCreated: 1446426726
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Door1
+    100002: Door2
+    100004: Doorframe
+    100006: Doorframe1
+    100008: //RootNode
+    100010: Rural_House
+    100012: Backup
+    100014: backupdoor
+    100016: Door
+    100018: Rural_House_LOD0
+    100020: Rural_House_LOD1
+    400000: Door1
+    400002: Door2
+    400004: Doorframe
+    400006: Doorframe1
+    400008: //RootNode
+    400010: Rural_House
+    400012: Backup
+    400014: backupdoor
+    400016: Door
+    400018: Rural_House_LOD0
+    400020: Rural_House_LOD1
+    2300000: Door1
+    2300002: Door2
+    2300004: Doorframe
+    2300006: Doorframe1
+    2300008: Rural_House
+    2300010: Backup
+    2300012: backupdoor
+    2300014: //RootNode
+    2300016: Door
+    2300018: Rural_House_LOD0
+    2300020: Rural_House_LOD1
+    3300000: Door1
+    3300002: Door2
+    3300004: Doorframe
+    3300006: Doorframe1
+    3300008: Rural_House
+    3300010: Backup
+    3300012: backupdoor
+    3300014: //RootNode
+    3300016: Door
+    3300018: Rural_House_LOD0
+    3300020: Rural_House_LOD1
+    4300000: Doorframe
+    4300002: Door2
+    4300004: Doorframe1
+    4300006: Door1
+    4300008: Rural_House
+    4300010: Backup
+    4300012: backupdoor
+    4300014: Door
+    4300016: Rural_House_LOD1
+    4300018: Rural_House_LOD0
+    6400000: Door1
+    6400002: Door2
+    6400004: Doorframe
+    6400006: Doorframe1
+    6400008: Rural_House
+    6400010: Backup
+    6400012: backupdoor
+    6400014: //RootNode
+    6400016: Door
+    6400018: Rural_House_LOD0
+    6400020: Rural_House_LOD1
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .52016151
+    - .0424651355
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

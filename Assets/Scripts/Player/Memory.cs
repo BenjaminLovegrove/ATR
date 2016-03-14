@@ -35,20 +35,26 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
 
-		foreach (GameObject obj in switchMe)
+        if (switchMe != null)
         {
-			gameObject.SetActive(false);
-		}
+            foreach (GameObject obj in switchMe)
+            {
+                obj.SetActive(false);
+            }
+        }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         yield return new WaitForSeconds(flashDelay);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.25f);
 
-		foreach (GameObject obj in switchMe)
+        if (switchMe != null)
         {
-			gameObject.SetActive(true);
-		}
+            foreach (GameObject obj in switchMe)
+            {
+                obj.SetActive(true);
+            }
+        }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
     }
