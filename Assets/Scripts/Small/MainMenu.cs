@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 {
     public enum MenuToggle
     {
-        MAIN, OPTIONS, NONE
+        MAIN, OPTIONS, PLAY, NONE
     }
 
     public MenuToggle menuToggle;
@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     public Transform currentCamPos;
     public Transform mainMenuPos;
     public Transform optionMenuPos;
+    public Transform playPos;
     public float cameraPanSpeed;
     private float cameraPanIncrement;
 
@@ -75,15 +76,18 @@ public class MainMenu : MonoBehaviour
         ShowMenuButtons();
     }
 
-    // Load game async coroutine
-    IEnumerator LoadScene()
-    {        
-        yield return new WaitForSeconds(1f);
+    IEnumerator PlayCoRoutine()
+    {
+        yield return new WaitForSeconds(cameraPanSpeed / 100);
+        for (int i = 0; i < loadingScreenUI.Length; i++)
+        {
+            loadingScreenUI[i].SetActive(true);
+        }
         AsyncOperation async = Application.LoadLevelAsync("City Outskirts");
         while (!async.isDone)
         {
             yield return null;
-        }        
+        }   
     }
 
     void Awake()
@@ -107,15 +111,13 @@ public class MainMenu : MonoBehaviour
     // Play Button
     public void PlayButton()
     {
+        cameraPanIncrement = 0;
         Cursor.visible = false;
         HideMenuButtons();
-        for (int i = 0; i < loadingScreenUI.Length; i++)
-        {
-            loadingScreenUI[i].SetActive(true);
-        }
+        menuToggle = MenuToggle.PLAY;
+        StartCoroutine("PlayCoRoutine");
         screenDropdown.onValueChanged.RemoveAllListeners();
         speakerDropdown.onValueChanged.RemoveAllListeners();
-        StartCoroutine("LoadScene");
     }
 
     // Credits Button
@@ -191,6 +193,10 @@ public class MainMenu : MonoBehaviour
 
             case MenuToggle.OPTIONS:
                 currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, optionMenuPos.position, cameraPanIncrement);
+                break;
+
+            case MenuToggle.PLAY:
+                currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, playPos.position, cameraPanIncrement);
                 break;
         } 
     }
