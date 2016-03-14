@@ -131,6 +131,7 @@ public class MainMenu : MonoBehaviour
     // Options Button
     public void OptionsButton()
     {
+        print(PlayerPrefs.GetInt("Speaker Config"));
         cameraPanIncrement = 0;
         menuToggle = MenuToggle.OPTIONS;
 
@@ -138,6 +139,8 @@ public class MainMenu : MonoBehaviour
         volSlider.value = EventManager.inst.masterVolume;
         sensSlider.value = EventManager.inst.mouseSensitivty;
         invertY = EventManager.inst.invertY;
+        speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
+        screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
 
         if (PlayerPrefs.GetInt("Fullscreen") == 0)
         {
@@ -145,8 +148,6 @@ public class MainMenu : MonoBehaviour
         }
         else fullscreenToggle.isOn = true;
 
-        speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
-        screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
         StartCoroutine("OptionsCoRoutine");
     }
 
