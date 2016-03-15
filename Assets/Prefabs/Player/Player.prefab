@@ -341,8 +341,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
-  m_LocalRotation: {x: 0, y: .988831222, z: 0, w: .149039626}
-  m_LocalPosition: {x: -13.8900003, y: -6.61000013, z: 366.140015}
+  m_LocalRotation: {x: 0, y: .945236802, z: 0, w: -.326385349}
+  m_LocalPosition: {x: -19.9200001, y: -6.61000013, z: 363.549988}
   m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children:
   - {fileID: 409254}
@@ -549,6 +549,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -618,6 +619,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -687,6 +689,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -756,6 +759,7 @@ AudioSource:
   m_Pitch: 1
   Loop: 0
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -1032,7 +1036,7 @@ MonoBehaviour:
   useRadialDistance: 1
   heightFog: 1
   height: 8
-  heightDensity: .75
+  heightDensity: .850000024
   startDistance: 60
   fogShader: {fileID: 4800000, guid: 70d8568987ac0499f952b54c7c13e265, type: 3}
 --- !u!114 &11481398
@@ -1138,7 +1142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memoryBloom: 1
-  memoryFog: .5
+  fogDiminishAmount: .119999997
   fadeTime: 2
   memoryDialogue: []
   memoryFlashObj: {fileID: 0}
@@ -1171,7 +1175,6 @@ AudioLowPassFilter:
   m_GameObject: {fileID: 164748}
   m_Enabled: 1
   serializedVersion: 3
-  m_CutoffFrequency: 5000
   m_LowpassResonanceQ: 1
   lowpassLevelCustomCurve:
     serializedVersion: 2

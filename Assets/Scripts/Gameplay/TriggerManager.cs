@@ -108,7 +108,7 @@ public class TriggerManager : MonoBehaviour
         // Change fog
         if (fogLerp < 1)
         {
-            fogLerp += Time.deltaTime / 2;
+            fogLerp += Time.deltaTime / 4;
             fog.heightDensity = Mathf.Lerp(startFog, targFog, fogLerp);
         }
         

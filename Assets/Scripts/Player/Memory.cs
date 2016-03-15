@@ -13,7 +13,8 @@ public class Memory : MonoBehaviour
     private float startBloom;
     public float memoryBloom = 1f;
     private float startFog;
-    public float memoryFog = 0.5f;
+    float memoryFog;
+    public float fogDiminishAmount = 0.1f;
 
     public float fadeTime = 4f;
 
@@ -108,7 +109,7 @@ public class Memory : MonoBehaviour
         StartCoroutine("InstantiateMemFlash");
         
         startFog = fog.heightDensity;
-        memoryFog = fog.heightDensity / 7.5f;
+        memoryFog = fog.heightDensity * fogDiminishAmount;
 
 
         EventManager.inst.controlsDisabled = true;
