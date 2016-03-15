@@ -25,6 +25,7 @@ public class TriggerManager : MonoBehaviour
     public float objFadeTimer;
 	public GameObject[] switchObjects;
     private bool startTimer = false;
+    public bool nightTime = false;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -64,6 +65,8 @@ public class TriggerManager : MonoBehaviour
                 audio.PlayOneShot(memoryDialogue[memoryEventNumber]);
                 memoryDuration = memoryDialogue[memoryEventNumber].length;
                 col.BroadcastMessage("EnterMemory", memoryDuration);
+                col.BroadcastMessage("NightCheck", nightTime);
+
                 if (memoryObj != null)
                 {
                     memoryObj.SetActive(true);

@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 5aab239cac7fe8a4c931693a7535da5c, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1261,6 +1261,7 @@ MonoBehaviour:
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   switchObjects: []
+  nightTime: 0
   fogChange: 1
   targFog: 1.5
   enemyTrigger: 0
@@ -3510,6 +3511,7 @@ MonoBehaviour:
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   switchObjects: []
+  nightTime: 1
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -6048,6 +6050,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 7a726773a13c9f04284f38e20293a020, type: 2}
+    - target: {fileID: 100000, guid: 18ab611cbaea32949a7231501fb64273, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18ab611cbaea32949a7231501fb64273, type: 3}
   m_IsPrefabParent: 0
@@ -7056,6 +7062,7 @@ MonoBehaviour:
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   switchObjects: []
+  nightTime: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -8158,6 +8165,7 @@ MonoBehaviour:
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   switchObjects: []
+  nightTime: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -8911,6 +8919,7 @@ MonoBehaviour:
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   switchObjects: []
+  nightTime: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -9816,6 +9825,7 @@ MonoBehaviour:
   memoryObj: {fileID: 0}
   objFadeTimer: 0
   switchObjects: []
+  nightTime: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0

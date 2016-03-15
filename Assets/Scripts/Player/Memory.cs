@@ -30,6 +30,11 @@ public class Memory : MonoBehaviour
     public Image memoryFlashObj;
     public float flashDelay;
 
+    bool nightTime = false;
+    GameObject skySphere;
+    Light sceneLighting;
+
+
     // Spawn memory flash game obj co-routine
     IEnumerator InstantiateMemFlash()
     {
@@ -42,6 +47,12 @@ public class Memory : MonoBehaviour
             {
                 obj.SetActive(false);
             }
+        }
+        if (nightTime)
+        {
+            sceneLighting.intensity = sceneLighting.intensity * 0.1f;
+            RenderSettings.fog = false;
+            skySphere.SetActive(false);
         }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
@@ -56,18 +67,32 @@ public class Memory : MonoBehaviour
                 obj.SetActive(true);
             }
         }
+        if (nightTime)
+        {
+            sceneLighting.intensity = sceneLighting.intensity / 0.1f;
+            RenderSettings.fog = true;
+            skySphere.SetActive(true);
+        }
+
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
     }
 
     void Start()
     {
+        sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
+        skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
 
         startBloom = bloom.bloomIntensity;
         startFog = fog.heightDensity;
+    }
+
+    void NightCheck(bool check)
+    {
+        nightTime = check;
     }
 
 	void FixedUpdate ()
