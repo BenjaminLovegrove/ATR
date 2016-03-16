@@ -120,8 +120,7 @@ public class MainMenu : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        levelText.text = levelSelect;
+    {        
         // Function Calls
         UpdateUIvalues();
         MenuTransitioning();
@@ -136,6 +135,7 @@ public class MainMenu : MonoBehaviour
         Level2Highlight.SetActive(false);
         Level3Highlight.SetActive(false);
         levelSelect = "City Outskirts";
+        levelText.text = levelSelect;
     }
 
     // Level 2 Select
@@ -145,6 +145,7 @@ public class MainMenu : MonoBehaviour
         Level2Highlight.SetActive(true);
         Level3Highlight.SetActive(false);
         levelSelect = "City";
+        levelText.text = levelSelect;
     }
 
     // Level 1 Select
@@ -154,6 +155,7 @@ public class MainMenu : MonoBehaviour
         Level2Highlight.SetActive(false);
         Level3Highlight.SetActive(true);
         levelSelect = "Coast Ending";
+        levelText.text = levelSelect;
     }
 
     // Play Main Menu Button
@@ -404,6 +406,8 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         screenDropdown.value = screenResKey;
         speakerDropdown.value = speakerKey;
+        levelSelect = "Coast Ending";
+        levelText.text = levelSelect;
     }
 
     void UpdateUIvalues()
