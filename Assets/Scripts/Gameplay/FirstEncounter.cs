@@ -25,22 +25,23 @@ public class FirstEncounter : MonoBehaviour
         {
             EventManager.inst.controlsDisabled = true;
             playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
-            encounterDuration -= Time.deltaTime;            
-        }
+            encounterDuration -= Time.deltaTime;
 
-        // Delay before guard is activated
-        if (encounterDuration < spawnObjectsDelay)
-        {
-            for (int i = 0; i < setActiveObjects.Length; i++)
+            // Delay before guard is activated
+            if (encounterDuration < spawnObjectsDelay)
             {
-                setActiveObjects[i].SetActive(true);
+                for (int i = 0; i < setActiveObjects.Length; i++)
+                {
+                    setActiveObjects[i].SetActive(true);
+                }
             }
         }
 
         // When timer expires
         if (encounterDuration <= 0)
         {
-            triggered = false;            
+            triggered = false;
+            setActiveObjects[0].SetActive(false);
         }
 
         // When sequence ends

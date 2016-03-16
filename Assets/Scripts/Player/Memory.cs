@@ -22,7 +22,7 @@ public class Memory : MonoBehaviour
     private float memoryLength = 0f;
 
     private bool memoryPlaying = false;
-	private GameObject[] switchMe;
+	public GameObject[] switchMe;
 
     public AudioClip[] memoryDialogue;
 
@@ -39,18 +39,24 @@ public class Memory : MonoBehaviour
     IEnumerator InstantiateMemFlash()
     {
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1.5f);
 
         if (switchMe != null)
         {
             foreach (GameObject obj in switchMe)
             {
-                obj.SetActive(false);
+                if (obj.activeSelf)
+                {
+                    obj.SetActive(false);
+                } else
+                {
+                    obj.SetActive(true);
+                }
             }
         }
         if (nightTime)
         {
-            sceneLighting.intensity = sceneLighting.intensity * 0.1f;
+            sceneLighting.intensity = sceneLighting.intensity * 0.25f;
             RenderSettings.fog = false;
             skySphere.SetActive(false);
         }
@@ -58,18 +64,25 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         yield return new WaitForSeconds(flashDelay);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1.5f);
 
         if (switchMe != null)
         {
             foreach (GameObject obj in switchMe)
             {
-                obj.SetActive(true);
+                if (obj.activeSelf)
+                {
+                    obj.SetActive(false);
+                }
+                else
+                {
+                    obj.SetActive(true);
+                }
             }
         }
         if (nightTime)
         {
-            sceneLighting.intensity = sceneLighting.intensity / 0.1f;
+            sceneLighting.intensity = sceneLighting.intensity / 0.25f;
             RenderSettings.fog = true;
             skySphere.SetActive(true);
         }
@@ -182,6 +195,11 @@ public class Memory : MonoBehaviour
             delayTimer = 0;
             memoryPlaying = false;
         }
+    }
+
+    void SetSwitch(GameObject[] switches)
+    {
+        switchMe = switches;
     }
 }
 

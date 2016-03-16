@@ -66,6 +66,7 @@ public class TriggerManager : MonoBehaviour
                 memoryDuration = memoryDialogue[memoryEventNumber].length;
                 col.BroadcastMessage("EnterMemory", memoryDuration);
                 col.BroadcastMessage("NightCheck", nightTime);
+                col.BroadcastMessage("SetSwitch", switchObjects);
 
                 if (memoryObj != null)
                 {
