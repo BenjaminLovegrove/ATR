@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 {
     public enum MenuToggle
     {
-        MAIN, OPTIONS, PLAY, NONE
+        MAIN, OPTIONS, PLAY, CANCEL, NONE
     }
 
     public MenuToggle menuToggle;
@@ -19,9 +19,10 @@ public class MainMenu : MonoBehaviour
     public List<int> screenResYlist = new List<int>();
     public List<AudioSpeakerMode> speakerConfigList = new List<AudioSpeakerMode>();
 
-    public GameObject[] loadingScreenUI;
+    public GameObject loadingScreenUI;
     public GameObject[] mainMenuUI;
     public GameObject[] optionMenuUI;
+    public GameObject[] playMenuUI;
 
     public Transform currentCamPos;
     public Transform mainMenuPos;
@@ -62,6 +63,12 @@ public class MainMenu : MonoBehaviour
     private int speakerInit;
     public AudioSource[] resumeAudio; // Place any objects with audio sources (within the scene) into this array
 
+    public GameObject Level1Highlight;
+    public GameObject Level2Highlight;
+    public GameObject Level3Highlight;
+    public Text levelText;
+    private string levelSelect;
+
     IEnumerator OptionsCoRoutine()
     {
         HideMenuButtons();
@@ -78,16 +85,27 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator PlayCoRoutine()
     {
+        HideMenuButtons();
         yield return new WaitForSeconds(cameraPanSpeed / 100);
-        for (int i = 0; i < loadingScreenUI.Length; i++)
-        {
-            loadingScreenUI[i].SetActive(true);
-        }
-        AsyncOperation async = Application.LoadLevelAsync("City Outskirts");
+        ShowPlayButtons();
+    }
+
+    IEnumerator CancelCoRoutine()
+    {
+        HidePlayButtons();
+        yield return new WaitForSeconds(cameraPanSpeed / 100);
+        ShowMenuButtons();
+    }
+
+    IEnumerator LoadScreen()
+    {
+        loadingScreenUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        AsyncOperation async = Application.LoadLevelAsync(levelSelect);
         while (!async.isDone)
         {
             yield return null;
-        }   
+        } 
     }
 
     void Awake()
@@ -98,24 +116,59 @@ public class MainMenu : MonoBehaviour
         screenDropdown.onValueChanged.AddListener(delegate { ScreenResListener(screenDropdown); });
         speakerDropdown.onValueChanged.AddListener(delegate { SpeakerConfigListener(speakerDropdown); });
         LoadSettings();
+        levelSelect = "City Outskirts";
     }
 
     void FixedUpdate()
     {
+        levelText.text = levelSelect;
         // Function Calls
         UpdateUIvalues();
         MenuTransitioning();
     }
 
     #region UI Buttons
+
+    // Level 1 Select
+    public void LevelOneButton()
+    {
+        Level1Highlight.SetActive(true);
+        Level2Highlight.SetActive(false);
+        Level3Highlight.SetActive(false);
+        levelSelect = "City Outskirts";
+    }
+
+    // Level 2 Select
+    public void LevelTwoButton()
+    {
+        Level1Highlight.SetActive(false);
+        Level2Highlight.SetActive(true);
+        Level3Highlight.SetActive(false);
+        levelSelect = "City";
+    }
+
+    // Level 1 Select
+    public void LevelThreeButton()
+    {
+        Level1Highlight.SetActive(false);
+        Level2Highlight.SetActive(false);
+        Level3Highlight.SetActive(true);
+        levelSelect = "Coast Ending";
+    }
+
+    // Play Main Menu Button
+    public void PlayMainButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.PLAY;
+        StartCoroutine("PlayCoRoutine");        
+    }
+
     // Play Button
     public void PlayButton()
     {
-        cameraPanIncrement = 0;
         Cursor.visible = false;
-        HideMenuButtons();
-        menuToggle = MenuToggle.PLAY;
-        StartCoroutine("PlayCoRoutine");
+        StartCoroutine("LoadScreen");
         screenDropdown.onValueChanged.RemoveAllListeners();
         speakerDropdown.onValueChanged.RemoveAllListeners();
     }
@@ -131,7 +184,6 @@ public class MainMenu : MonoBehaviour
     // Options Button
     public void OptionsButton()
     {
-        print(PlayerPrefs.GetInt("Speaker Config"));
         cameraPanIncrement = 0;
         menuToggle = MenuToggle.OPTIONS;
 
@@ -139,8 +191,6 @@ public class MainMenu : MonoBehaviour
         volSlider.value = EventManager.inst.masterVolume;
         sensSlider.value = EventManager.inst.mouseSensitivty;
         invertY = EventManager.inst.invertY;
-        speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
-        screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
 
         if (PlayerPrefs.GetInt("Fullscreen") == 0)
         {
@@ -148,6 +198,8 @@ public class MainMenu : MonoBehaviour
         }
         else fullscreenToggle.isOn = true;
 
+        speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
+        screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
         StartCoroutine("OptionsCoRoutine");
     }
 
@@ -166,11 +218,20 @@ public class MainMenu : MonoBehaviour
         StartCoroutine("MenuCoRoutine");
     }
 
-    // Cancel Button
-    public void CancelButton()
+    // Cancel Options Button
+    public void CancelOptionsButton()
     {
-        ShowMenuButtons();
-        HideOptionsButtons();
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.MAIN;        
+        StartCoroutine("MenuCoRoutine");
+    }
+
+    // Cancel Play Button
+    public void CancelPlayButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.CANCEL;
+        StartCoroutine("CancelCoRoutine");
     }
 
     // Exit Button
@@ -198,6 +259,10 @@ public class MainMenu : MonoBehaviour
 
             case MenuToggle.PLAY:
                 currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, playPos.position, cameraPanIncrement);
+                break;
+
+            case MenuToggle.CANCEL:
+                currentCamPos.position = Vector3.MoveTowards(playPos.position, mainMenuPos.position, cameraPanIncrement);
                 break;
         } 
     }
@@ -406,6 +471,22 @@ public class MainMenu : MonoBehaviour
         for (int i = 0; i < mainMenuUI.Length; i++)
         {
             mainMenuUI[i].SetActive(false);
+        }
+    }
+
+    void ShowPlayButtons()
+    {
+        for (int i = 0; i < playMenuUI.Length; i++)
+        {
+            playMenuUI[i].SetActive(true);
+        }
+    }
+
+    void HidePlayButtons()
+    {
+        for (int i = 0; i < playMenuUI.Length; i++)
+        {
+            playMenuUI[i].SetActive(false);
         }
     }
     #endregion
