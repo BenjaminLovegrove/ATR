@@ -2,11 +2,14 @@
 using UnityStandardAssets.ImageEffects;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets.Water;
 
 // Script for handling in game memory events
 
 public class Memory : MonoBehaviour
 {
+    private GameObject[] waterObjs;
+    private Water[] water;
     private BloomAndFlares bloom;
     private GlobalFog fog;
     public Terrain myTerrain;
@@ -42,6 +45,13 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
+        if (waterObjs[0] != null)
+        {
+            foreach (Water w in water)
+            {
+                w.WaterReflections(true);
+            }
+        }
         myTerrain.treeDistance = 150;
         if (switchMe != null)
         {
@@ -68,6 +78,13 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
+        if (waterObjs[0] != null)
+        {
+            foreach (Water w in water)
+            {
+                w.WaterReflections(false);
+            }
+        }
         myTerrain.treeDistance = 100;
         if (switchMe != null)
         {
@@ -96,6 +113,15 @@ public class Memory : MonoBehaviour
 
     void Start()
     {
+        waterObjs = GameObject.FindGameObjectsWithTag("Water");
+        if (waterObjs[0] != null)
+        {
+            water = new Water[waterObjs.Length];
+            for (int i = 0; i < waterObjs.Length; i++)
+            {
+                water[i] = waterObjs[i].GetComponent<Water>();
+            }
+        }
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();

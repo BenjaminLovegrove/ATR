@@ -8,6 +8,10 @@ TagManager:
   - Ground
   - Enemy
   - FlashSpawn
+  - Metal
+  - Concrete
+  - Wood
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - 
   - 
   - Locked
-  - 
+  - Terrain
   - 
   - 
   - 

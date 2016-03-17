@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     public GameObject[] enemyList;
     public AudioSource heartBeatSFX;
     public AudioSource backGroundMusic;
+    private float backgroundMaxVol;
     public float nearestEnemyDistance;
 
     public GameObject fadeToBlackObj;
@@ -47,7 +48,8 @@ public class Player : MonoBehaviour
 	
 	void Awake ()
 	{
-		playerRigid.freezeRotation = true;
+        backgroundMaxVol = backGroundMusic.volume;
+        playerRigid.freezeRotation = true;
         audio = GetComponent<AudioSource>();
 	}
 
@@ -108,7 +110,7 @@ public class Player : MonoBehaviour
             heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod) * EventManager.inst.masterVolume);
             heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
             float bgmMod = (((nearestEnemyDistance - 12) / 8) * -1);
-            backGroundMusic.volume = (Mathf.Lerp(1, 0, bgmMod) * EventManager.inst.masterVolume);
+            backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod) * EventManager.inst.masterVolume);
         }
         else heartBeatSFX.volume = 0;
     }
