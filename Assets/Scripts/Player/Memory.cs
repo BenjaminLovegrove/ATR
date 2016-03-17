@@ -9,6 +9,7 @@ public class Memory : MonoBehaviour
 {
     private BloomAndFlares bloom;
     private GlobalFog fog;
+    public Terrain myTerrain;
 
     private float startBloom;
     public float memoryBloom = 1f;
@@ -41,6 +42,7 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
+        myTerrain.treeDistance = 150;
         if (switchMe != null)
         {
             foreach (GameObject obj in switchMe)
@@ -66,6 +68,7 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
+        myTerrain.treeDistance = 100;
         if (switchMe != null)
         {
             foreach (GameObject obj in switchMe)
