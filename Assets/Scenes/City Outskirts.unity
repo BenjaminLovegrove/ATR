@@ -7399,7 +7399,7 @@ MonoBehaviour:
   audio: {fileID: 1503609360}
   setActiveObjects:
   - {fileID: 1855450679}
-  playersTrans: {fileID: 0}
+  playersTrans: {fileID: 456036161}
 --- !u!23 &1013322450
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15076,7 +15076,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: patrolWayPoints.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_LocalPosition.x
@@ -15129,7 +15129,7 @@ Prefab:
     - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: patrolWayPoints.Array.data[0]
       value: 
-      objectReference: {fileID: 1516658752}
+      objectReference: {fileID: 1433232104}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: panLevelCustomCurve.m_RotationOrder
       value: 0
@@ -15145,7 +15145,7 @@ Prefab:
     - target: {fileID: 11408862, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: patrolWayPoints.Array.data[1]
       value: 
-      objectReference: {fileID: 1829826507}
+      objectReference: {fileID: 1433232104}
     - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: MaxDistance
       value: 35
