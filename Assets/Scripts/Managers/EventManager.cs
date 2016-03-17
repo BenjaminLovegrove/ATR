@@ -107,7 +107,7 @@ public class EventManager : MonoBehaviour
         controlsDisabled = false;
         playerDead = false;        
         resetLevel = false;
-        Application.LoadLevel(currentLevel);      
+        Application.LoadLevel(currentLevel);
 	}
 
     // Populate EventManager data upon loading a scene

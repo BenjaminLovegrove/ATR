@@ -255,7 +255,6 @@ public class EnemyAI : MonoBehaviour
 
             if (EventManager.inst.playerCrouch == false)
             {
-
                 // Create a vector from the enemy to the player and store the angle between it and forward.
                 Vector3 direction = col.transform.position - transform.position;
                 float angle = Vector3.Angle(direction, transform.forward);
