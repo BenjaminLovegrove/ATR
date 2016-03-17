@@ -406,7 +406,7 @@ public class MainMenu : MonoBehaviour
         Cursor.visible = true;
         screenDropdown.value = screenResKey;
         speakerDropdown.value = speakerKey;
-        levelSelect = "Coast Ending";
+        levelSelect = "City Outskirts";
         levelText.text = levelSelect;
     }
 
