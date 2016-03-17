@@ -65,6 +65,11 @@ public class EnemyAI : MonoBehaviour
             patrollingEnemy = false;
         }
 
+        if (patrolWayPoints[0] != null)
+        {
+            patrollingEnemy = true;
+        }
+
         playerTransform = EventManager.inst.playerTrans;
         playerCrouch = EventManager.inst.playerCrouch;
     }
