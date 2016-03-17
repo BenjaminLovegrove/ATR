@@ -20,8 +20,8 @@ public class EventManager : MonoBehaviour
     public bool playerJump = false;
     public bool gamePaused = false;
     public bool resetLevel = false;
-    public bool controlsDisabled = false;
-    private bool controlDisableDelay = false;
+    public bool controlsDisabled = true;
+    public bool controlDisableDelay = true;
     public float controlDelay = 3f;
     
     // Option Settings
@@ -77,6 +77,7 @@ public class EventManager : MonoBehaviour
     {
         if (controlDisableDelay)
         {
+            controlsDisabled = true;
             controlDelay -= Time.deltaTime;
 
             if (controlDelay < 0f)

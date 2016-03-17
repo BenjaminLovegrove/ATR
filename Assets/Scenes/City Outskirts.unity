@@ -559,7 +559,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
 --- !u!1001 &84910935
 Prefab:
   m_ObjectHideFlags: 0
@@ -1249,6 +1249,22 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.0150000015
       objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -1937,6 +1953,18 @@ Prefab:
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -2456,7 +2484,7 @@ Transform:
   m_Children:
   - {fileID: 1516658752}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!4 &358363928 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 38a815740e56cba4782306e78494dfd7, type: 3}
@@ -5833,6 +5861,22 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.015
       objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -8563,6 +8607,22 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.014999999
       objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -8672,6 +8732,18 @@ Prefab:
     - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_LocalScale.x
       value: 0.015000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
@@ -13442,6 +13514,18 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.015
       objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -15077,6 +15161,18 @@ Prefab:
       propertyPath: patrolWayPoints.Array.data[1]
       value: 
       objectReference: {fileID: 1829826507}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
   m_IsPrefabParent: 0
@@ -15770,6 +15866,22 @@ Prefab:
     - target: {fileID: 462468, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.0150000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275414, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: MaxDistance
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 13641846, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 13661624, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}
+      propertyPath: m_Radius
+      value: 550
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d26d5104768e96b4090b67b8320e28a8, type: 2}

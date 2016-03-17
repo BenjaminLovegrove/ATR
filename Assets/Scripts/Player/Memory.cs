@@ -23,6 +23,7 @@ public class Memory : MonoBehaviour
     public float fadeTime = 4f;
 
     private float fadeTimer;
+    private float memoryTotalLength = 0f;
     private float memoryLength = 0f;
 
     private bool memoryPlaying = false;
@@ -45,14 +46,18 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
-        if (waterObjs[0] != null)
+        if (waterObjs != null)
         {
             foreach (Water w in water)
             {
                 w.WaterReflections(true);
             }
         }
-        myTerrain.treeDistance = 150;
+
+        if (myTerrain != null)
+        {
+            myTerrain.treeDistance = 150;
+        }
         if (switchMe != null)
         {
             foreach (GameObject obj in switchMe)
@@ -74,18 +79,21 @@ public class Memory : MonoBehaviour
         }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
-        yield return new WaitForSeconds(flashDelay);
+        yield return new WaitForSeconds(flashDelay - 1.5f);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
-        if (waterObjs[0] != null)
+        if (waterObjs != null)
         {
             foreach (Water w in water)
             {
                 w.WaterReflections(false);
             }
         }
-        myTerrain.treeDistance = 100;
+        if (myTerrain != null)
+        {
+            myTerrain.treeDistance = 100;
+        }
         if (switchMe != null)
         {
             foreach (GameObject obj in switchMe)
@@ -114,7 +122,7 @@ public class Memory : MonoBehaviour
     void Start()
     {
         waterObjs = GameObject.FindGameObjectsWithTag("Water");
-        if (waterObjs[0] != null)
+        if (waterObjs != null)
         {
             water = new Water[waterObjs.Length];
             for (int i = 0; i < waterObjs.Length; i++)
@@ -135,6 +143,11 @@ public class Memory : MonoBehaviour
     void NightCheck(bool check)
     {
         nightTime = check;
+    }
+    
+    void Update()
+    {
+
     }
 
 	void FixedUpdate ()
@@ -183,6 +196,7 @@ public class Memory : MonoBehaviour
         memoryPlaying = true;        
         fadeTimer = 0;
         memoryLength = duration;
+        memoryTotalLength = duration;
     }
 
 	void SetSwitches(GameObject[] switchObjects){
@@ -215,10 +229,10 @@ public class Memory : MonoBehaviour
         if (memoryPlaying)
         {
             EventManager.inst.controlsDisabled = true;
-            delayTimer += Time.deltaTime;
+            delayTimer += Time.fixedDeltaTime;
         }
 
-        if (delayTimer > memoryLength)
+        if (delayTimer > memoryTotalLength)
         {
             EventManager.inst.controlsDisabled = false;
             delayTimer = 0;

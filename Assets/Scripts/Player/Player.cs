@@ -106,11 +106,14 @@ public class Player : MonoBehaviour
                 }
             }
 
-            float distanceMod = (((nearestEnemyDistance - 12) / 5) * -1);
-            heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod) * EventManager.inst.masterVolume);
+
+            float distanceMod = (10 / nearestEnemyDistance);
+
+            //float distanceMod = (((nearestEnemyDistance - 12) / 2) * -1);
+            heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
             heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
-            float bgmMod = (((nearestEnemyDistance - 12) / 8) * -1);
-            backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod) * EventManager.inst.masterVolume);
+            float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
+            backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
         }
         else heartBeatSFX.volume = 0;
     }

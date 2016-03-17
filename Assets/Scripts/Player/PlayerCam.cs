@@ -29,6 +29,7 @@ public class PlayerCam : MonoBehaviour
     public float headBobInterval;
     private float headBobTimer;    
     private bool headBobbed;
+    private bool inMemory = false;
 
     void Awake()
     {
@@ -47,6 +48,11 @@ public class PlayerCam : MonoBehaviour
 	{
         sensitivityX = EventManager.inst.mouseSensitivty;
         sensitivityY = EventManager.inst.mouseSensitivty;
+
+        if (inMemory)
+        {
+            MemoryCam();
+        }
 
         if (EventManager.inst.playerDead)
         {
@@ -160,8 +166,19 @@ public class PlayerCam : MonoBehaviour
     }
 
     // Sendmessage reciever for entering a memory
-    void EnterMemory()
+    void EnterMemory(float duration)
     {
-        transform.rotation = Quaternion.Lerp(currentPos.rotation, memoryCameraEnd[EventManager.inst.currentMemory].rotation, Time.deltaTime * 1f);
+        inMemory = true;
+        Invoke("EndMemory", duration);
+    }
+
+    void MemoryCam()
+    {
+        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+    }
+
+    void EndMemory()
+    {
+        inMemory = false;
     }
 }
