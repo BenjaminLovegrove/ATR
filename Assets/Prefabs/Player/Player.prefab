@@ -523,9 +523,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 80
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   gravity: 7
   maxVelocityChange: 10
   canJump: 1
-  jumpHeight: 0.7
+  jumpHeight: 3.5
   jumpDelay: 0.3
   jumpCoolDown: 0.75
   playerRigid: {fileID: 5430988}

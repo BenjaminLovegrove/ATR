@@ -48,7 +48,6 @@ public class Player : MonoBehaviour
 	void Awake ()
 	{
 		playerRigid.freezeRotation = true;
-		playerRigid.useGravity = false;
         audio = GetComponent<AudioSource>();
 	}
 
