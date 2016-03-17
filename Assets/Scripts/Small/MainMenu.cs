@@ -170,6 +170,8 @@ public class MainMenu : MonoBehaviour
     public void PlayButton()
     {
         Cursor.visible = false;
+        EventManager.inst.currentLevel = levelSelect;
+        EventManager.inst.currentCheckPoint = 0;
         StartCoroutine("LoadScreen");
         screenDropdown.onValueChanged.RemoveAllListeners();
         speakerDropdown.onValueChanged.RemoveAllListeners();

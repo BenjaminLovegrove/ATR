@@ -7,6 +7,11 @@ using System.Collections;
 
 public class TriggerManager : MonoBehaviour
 {
+    public enum LevelSelect
+    {
+        ONE, TWO, THREE
+    }
+
     public AudioSource audio;
 
     [Header("Trigger Settings")]
@@ -43,12 +48,29 @@ public class TriggerManager : MonoBehaviour
 
     [Header("End Level")]
     public bool endLevel;
-    public int setLevel;
+    public LevelSelect levelSelect;    
+    private string setLevel;
 
     void Start()
     {
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
         audio = GameObject.Find("Player").GetComponent<AudioSource>();
+        
+        // Assign string value for each level
+        switch (levelSelect)
+        {
+            case LevelSelect.ONE:
+                setLevel = "City Outskirts";
+                break;
+
+            case LevelSelect.TWO:
+                setLevel = "City";
+                break;
+
+            case LevelSelect.THREE:
+                setLevel = "Coast Ending";
+                break;
+        }
     }
 
     void OnTriggerEnter (Collider col)
@@ -102,6 +124,7 @@ public class TriggerManager : MonoBehaviour
             {
                 print("Level Complete");
                 EventManager.inst.currentLevel = setLevel;
+                EventManager.inst.currentCheckPoint = 0;
                 Application.LoadLevel(EventManager.inst.currentLevel);
             }
         }

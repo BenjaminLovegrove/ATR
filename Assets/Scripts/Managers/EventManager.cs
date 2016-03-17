@@ -33,9 +33,9 @@ public class EventManager : MonoBehaviour
     public bool invisMode = false;
     public bool increaseSpeed = false;
     
-    public int currentCheckPoint = 0;
+    public int currentCheckPoint;
     public int currentMemory;                   // This value is automatically assigned when a memory is triggered
-    public int currentLevel = 0;                // City = 2, Test = 3, Credits = 4  
+    public string currentLevel;                // City = 2, Test = 3, Credits = 4  
 
 	void Awake ()
 	{
