@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: weapons_diffuse
-  m_Shader: {fileID: 4, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 2, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -54,11 +54,11 @@ Material:
       data:
         first:
           name: _Shininess
-        second: .078125
+        second: 0.078125
       data:
         first:
           name: _specular_power
-        second: 21.4285698
+        second: 21.42857
       data:
         first:
           name: _rim_power
@@ -66,7 +66,7 @@ Material:
       data:
         first:
           name: _glossiness_power
-        second: .714285731
+        second: 0.71428573
     m_Colors:
       data:
         first:
@@ -75,16 +75,16 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: .235294104, g: .235294104, b: .235294104, a: 1}
+        second: {r: 0.2352941, g: 0.2352941, b: 0.2352941, a: 1}
       data:
         first:
           name: _diffuse_color
-        second: {r: 1, g: .970149279, b: .970149279, a: 1}
+        second: {r: 1, g: 0.9701493, b: 0.9701493, a: 1}
       data:
         first:
           name: _specular_color
-        second: {r: .0661764741, g: .0661764741, b: .0661764741, a: 1}
+        second: {r: 0.066176474, g: 0.066176474, b: 0.066176474, a: 1}
       data:
         first:
           name: _rim_color
-        second: {r: .0671641827, g: .0671641827, b: .0671641827, a: 1}
+        second: {r: 0.06716418, g: 0.06716418, b: 0.06716418, a: 1}

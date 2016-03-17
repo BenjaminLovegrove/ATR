@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
 	private bool playerCrouch;
 
 	Vector3 lastPosition = Vector3.zero;
-	private float speed;
+	public float speed;
     private float shootAnimTimer;
     private float switchIdletimer;
 
@@ -79,10 +79,14 @@ public class EnemyAI : MonoBehaviour
         }
 
         RadioChatter();
-        CalculateVelocity();
         AnimationTriggers();
         PlayerDetection();
 	}
+
+    void Update()
+    {
+        CalculateVelocity();
+    }
 
     // Randomly pick an audioclip from radio chatter array to be played
     void RadioChatter()
@@ -108,14 +112,17 @@ public class EnemyAI : MonoBehaviour
     void CalculateVelocity()
     {
         speed = (transform.position - lastPosition).magnitude;
-        lastPosition = transform.position;
+        if (Time.frameCount % 5 == 0)
+        {
+            lastPosition = transform.position;
+        }
     }
 
     // Toggle boolean values for the animation controller to trigger animations
     void AnimationTriggers()
     {
         // Idle state
-        if (speed < 0.01f && !playerDead)
+        if (speed < 0.011f && !playerDead)
         {
             anim.SetBool("stopping", true);
             anim.SetBool("walking", false);
@@ -133,13 +140,17 @@ public class EnemyAI : MonoBehaviour
         if (switchIdletimer > 15)
         {
             switchIdletimer = 0;
-        }      
+        }
 
         // Walk state
         if (speed > 0.011f && !playerDead)
         {
+
             anim.SetBool("stopping", false);
-            anim.SetBool("walking", true);
+            if (anim.GetBool("walking") == false)
+            {
+                anim.SetBool("walking", true);
+            }
 
             walkTimer += Time.deltaTime;
 
