@@ -48,8 +48,20 @@ public class TriggerManager : MonoBehaviour
 
     [Header("End Level")]
     public bool endLevel;
-    public LevelSelect levelSelect;    
+    public LevelSelect levelSelect;
+    public GameObject loadScreenUI;
     private string setLevel;
+
+    IEnumerator LoadNextScene()
+    {
+        loadScreenUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        AsyncOperation async = Application.LoadLevelAsync(EventManager.inst.currentLevel);
+        while (!async.isDone)
+        {
+            yield return null;
+        }
+    }
 
     void Start()
     {
@@ -125,7 +137,11 @@ public class TriggerManager : MonoBehaviour
                 print("Level Complete");
                 EventManager.inst.currentLevel = setLevel;
                 EventManager.inst.currentCheckPoint = 0;
-                Application.LoadLevel(EventManager.inst.currentLevel);
+                if (loadScreenUI != null)
+                {
+                    loadScreenUI.SetActive(true);
+                }
+                StartCoroutine("LoadNextScene");
             }
         }
 	}
