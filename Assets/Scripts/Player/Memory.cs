@@ -19,6 +19,7 @@ public class Memory : MonoBehaviour
     private float startFog;
     float memoryFog;
     public float fogDiminishAmount = 0.1f;
+    private bool extraDiminish = false;
 
     public float fadeTime = 4f;
 
@@ -32,6 +33,8 @@ public class Memory : MonoBehaviour
     public AudioClip[] memoryDialogue;
     private AudioSource bgmSource;
     private AudioClip newBGM;
+    private float bgmMaxVol;
+    private float bgmLerp = 0;
 
     private float delayTimer;
     public Image memoryFlashObj;
@@ -48,7 +51,7 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
-        bgmSource.Pause();
+
         if (waterObjs != null)
         {
             foreach (Water w in water)
@@ -86,12 +89,14 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
+        bgmSource.Play();
+        bgmLerp = 1;
         if (newBGM != null)
         {
             bgmSource.clip = newBGM;
             newBGM = null;
         }
-        bgmSource.Play();
+
         if (waterObjs != null)
         {
             foreach (Water w in water)
@@ -143,6 +148,7 @@ public class Memory : MonoBehaviour
 
         //Get stuff
         bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
+        bgmMaxVol = bgmSource.volume;
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
@@ -160,7 +166,15 @@ public class Memory : MonoBehaviour
     
     void Update()
     {
-
+        if (memoryLength > 0 && bgmLerp < 1)
+        {
+            bgmLerp += Time.deltaTime;
+            bgmSource.volume = Mathf.Lerp(bgmMaxVol, 0, bgmLerp / 1.5f);
+        } else if (bgmLerp > 0 && memoryLength < 0)
+        {
+            bgmLerp -= Time.deltaTime;
+            bgmSource.volume = Mathf.Lerp(0, bgmMaxVol, bgmLerp / 1.5f);
+        }
     }
 
 	void FixedUpdate ()
@@ -202,7 +216,15 @@ public class Memory : MonoBehaviour
         StartCoroutine("InstantiateMemFlash");
         
         startFog = fog.heightDensity;
-        memoryFog = fog.heightDensity * fogDiminishAmount;
+
+        if (!extraDiminish)
+        {
+            memoryFog = fog.heightDensity * fogDiminishAmount;
+        } else
+        {
+            memoryFog = fog.heightDensity * (fogDiminishAmount * 1.5f) ;
+            extraDiminish = false;
+        }
 
 
         EventManager.inst.controlsDisabled = true;
@@ -261,6 +283,11 @@ public class Memory : MonoBehaviour
     void SetBGM(AudioClip passBGM)
     {
         newBGM = passBGM;
+    }
+
+    void ExtraDim(bool check)
+    {
+        extraDiminish = true;
     }
 }
 

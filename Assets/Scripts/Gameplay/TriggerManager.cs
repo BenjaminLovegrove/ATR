@@ -32,6 +32,7 @@ public class TriggerManager : MonoBehaviour
     private bool startTimer = false;
     public bool nightTime = false;
     public AudioClip newBGM;
+    public bool extraDiminish = false;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -69,6 +70,12 @@ public class TriggerManager : MonoBehaviour
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
         audio = GameObject.Find("Player").GetComponent<AudioSource>();
         
+        //Disable enemies to be later enabled
+        if (enemy != null)
+        {
+            enemy.SetActive(false);
+        }
+
         // Assign string value for each level
         switch (levelSelect)
         {
@@ -102,6 +109,7 @@ public class TriggerManager : MonoBehaviour
                 col.BroadcastMessage("EnterMemory", memoryDuration);
                 col.BroadcastMessage("NightCheck", nightTime);
                 col.BroadcastMessage("SetSwitch", switchObjects);
+                col.BroadcastMessage("ExtraDim", extraDiminish);
                 if (newBGM != null)
                 {
                     col.BroadcastMessage("SetBGM", newBGM);
