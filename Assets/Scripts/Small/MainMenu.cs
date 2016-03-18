@@ -121,7 +121,6 @@ public class MainMenu : MonoBehaviour
 
     void FixedUpdate()
     {        
-        // Function Calls
         UpdateUIvalues();
         MenuTransitioning();
     }
@@ -148,7 +147,7 @@ public class MainMenu : MonoBehaviour
         levelText.text = levelSelect;
     }
 
-    // Level 1 Select
+    // Level 3 Select
     public void LevelThreeButton()
     {
         Level1Highlight.SetActive(false);
@@ -192,8 +191,8 @@ public class MainMenu : MonoBehaviour
         menuToggle = MenuToggle.OPTIONS;
 
         // Set initial values
-        volSlider.value = EventManager.inst.masterVolume;
-        sensSlider.value = EventManager.inst.mouseSensitivty;
+        volSlider.value = PlayerPrefs.GetFloat("Master Volume");
+        sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
         invertY = EventManager.inst.invertY;
 
         if (PlayerPrefs.GetInt("Fullscreen") == 0)
@@ -226,7 +225,9 @@ public class MainMenu : MonoBehaviour
     public void CancelOptionsButton()
     {
         cameraPanIncrement = 0;
-        menuToggle = MenuToggle.MAIN;        
+        PlayerPrefs.SetFloat("Master Volume", volSlider.value);
+        PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
+        menuToggle = MenuToggle.MAIN;     
         StartCoroutine("MenuCoRoutine");
     }
 
@@ -279,6 +280,8 @@ public class MainMenu : MonoBehaviour
         speakerKey = PlayerPrefs.GetInt("Speaker Config");
         fullScreenKey = PlayerPrefs.GetInt("Fullscreen");
         invertYKey = PlayerPrefs.GetInt("Invert Toggle");
+        volSlider.value = PlayerPrefs.GetFloat("Master Volume");
+        sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
 
         // Set default values if there are no settings yet
         if (!PlayerPrefs.HasKey("Speaker Config"))
@@ -288,7 +291,7 @@ public class MainMenu : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Mouse Sensitivity"))
         {
-            EventManager.inst.mouseSensitivty = 5;
+            EventManager.inst.lookSensitivity = 5;
             PlayerPrefs.SetFloat("Mouse Sensitivity", 5);
             lookSensitivity = 5;
         }
@@ -311,6 +314,8 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetFloat("Mouse Sensitivity", lookSensitivity);
         PlayerPrefs.SetInt("Screen Res", screenDropdown.value);
         PlayerPrefs.SetInt("Speaker Config", speakerDropdown.value);
+        PlayerPrefs.SetFloat("Master Volume", volSlider.value);
+        PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
 
         // Switch between windowed and full screen mode
         if (fullscreenToggle.isOn == false)
@@ -418,7 +423,7 @@ public class MainMenu : MonoBehaviour
 
         //Real time update sens and volume
         EventManager.inst.masterVolume = volumeLevel;
-        EventManager.inst.mouseSensitivty = lookSensitivity;
+        EventManager.inst.lookSensitivity = lookSensitivity;
 
         // Full screen value
         if (fullscreenToggle.isOn)

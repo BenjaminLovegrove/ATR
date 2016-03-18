@@ -7,41 +7,57 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager inst;
 
+    [Header("Player Positions/Objects")]
 	public Transform playerTrans;
     public Transform enemyKillPos;
     public Transform[] playerCheckPoints;
     public Transform flashSpawn;
-
 	public GameObject playerObj;
-    public GameObject pauseMenuButtons;    
+    public GameObject pauseMenuButtons;
 
-	public bool playerCrouch = false;
-    public bool playerDead = false;
-    public bool playerJump = false;
-    public bool gamePaused = false;
-    public bool resetLevel = false;
-    public bool controlsDisabled = true;
-    public bool controlDisableDelay = true;
-    public float controlDelay = 3f;
+    [Header("Player States")]
+	public bool playerCrouch;
+    public bool playerDead;
+    public bool playerJump;
+    
+    public bool resetLevel;
+    public bool controlsDisabled;
     public bool memoryPlaying;
     
-    // Option Settings
-    public float mouseSensitivty;
+    [Header("Settings")]
+    public float lookSensitivity;
     public float masterVolume;
     public bool invertY;
+    public float memoryLookScalar;
+    public float memoryMoveScalar;
 
-    // Hacks
-    public bool invisMode = false;
-    public bool increaseSpeed = false;
-    
+    [Header("Hacks")]
+    public bool developerMode; // Toggle this to enable/disable cheats
+    public bool invisMode;
+    public bool increaseSpeed;
+
+    [Header("Games States")]
+    public bool gamePaused;
     public int currentCheckPoint;
-    public int currentMemory;                   // This value is automatically assigned when a memory is triggered
-    public string currentLevel;                // City = 2, Test = 3, Credits = 4  
+    public int currentMemory;   // This value is automatically assigned when a memory is triggered
+    public string currentLevel;
+
+    // Temp vals and keys
+    private float lookSensTemp;
+
+    // Set a small delay before the player is granted control
+    IEnumerator ControlDisableCoRoutine()
+    {
+        yield return new WaitForSeconds (3f);
+        controlsDisabled = false;
+    }
 
 	void Awake ()
 	{
-        //enemyMaterial.SetFloat("_Mode", 2.0f);
-		// Check for duplicate singletons
+        developerMode = true; // *** Disable for release builds ***
+        //developerMode = false;
+        
+        // Check singleton status
 		if (inst == null)
 		{
 			inst = this;
@@ -52,46 +68,51 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
+        //StartCoroutine("ControlDisableCoRoutine");
+
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
-        mouseSensitivty = PlayerPrefs.GetFloat("Mouse Sensitivity");
+        lookSensitivity = PlayerPrefs.GetFloat("Mouse Sensitivity");
 
         flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
-        controlDisableDelay = true;
         Cursor.visible = true;
+
+        lookSensTemp = PlayerPrefs.GetFloat("Mouse Sensitivity") * 0.2f;
+        //float moveScalar = 0.2f;
+    }
+
+    void Update()
+    {
+        if (playerDead)
+        {
+            controlsDisabled = true;
+        }
+
+        // Scale look sensitivity during memories
+        if (memoryPlaying)
+        {
+            lookSensitivity = lookSensTemp * memoryLookScalar;
+        }
+        else lookSensitivity = lookSensTemp;
     }
 
 	void FixedUpdate ()
 	{
-        AudioListener.volume = masterVolume;
-        ControlsDisabledDelay();
+
+
         LevelResetCheck();
+
+        AudioListener.volume = masterVolume;
 
         if (!gamePaused && pauseMenuButtons != null)
         {
             pauseMenuButtons.SetActive(false);
         }
 	}
-    
-    // Set a small delay before the player is granted control of the character at start
-    void ControlsDisabledDelay()
-    {
-        if (controlDisableDelay)
-        {
-            controlsDisabled = true;
-            controlDelay -= Time.deltaTime;
-
-            if (controlDelay < 0f)
-            {
-                controlsDisabled = false;
-                controlDisableDelay = false;
-            }
-        }
-    }   
 
     // Check for external level reset
     void LevelResetCheck()
-    {        
+    {
         if (resetLevel)
         {
             ResetPlayer();
@@ -102,20 +123,31 @@ public class EventManager : MonoBehaviour
     // Place an empty gameobject named "PlayerCheckPoints" with child objects containing
     // the desired world positions of checkpoints (in order).
     // Use triggers to set the value of the last achieved checkpoint - (currentCheckPoint).
-	void ResetPlayer ()
-	{
-        controlDisableDelay = true;
+    void ResetPlayer()
+    {
         controlsDisabled = false;
-        playerDead = false;        
+        playerDead = false;
         resetLevel = false;
         Application.LoadLevel(currentLevel);
-	}
+    }
 
     // Populate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
-        controlDisableDelay = true;
-        controlsDisabled = false;
+        //StartCoroutine("ControlDisableCoRoutine");
+
+        InitialiseValues();
+        Invoke("MovePlayer", 0.05f); // This delay is required so the way point data can be fetched first
+    }
+
+    // Move the player to the current checkpoint location
+    void MovePlayer()
+    {        
+        playerTrans.position = playerCheckPoints[currentCheckPoint].position;
+    }
+
+    void InitialiseValues()
+    {
         playerDead = false;
         resetLevel = false;
 
@@ -124,12 +156,5 @@ public class EventManager : MonoBehaviour
         pauseMenuButtons = GameObject.FindWithTag("PauseMenuObj");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
         flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
-        Invoke("MovePlayer", 0.05f);
-    }
-
-    // Move the player to the current checkpoint location
-    void MovePlayer()
-    {        
-        playerTrans.position = playerCheckPoints[currentCheckPoint].position;
     }
 }

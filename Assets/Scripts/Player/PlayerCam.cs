@@ -46,8 +46,8 @@ public class PlayerCam : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-        sensitivityX = EventManager.inst.mouseSensitivty;
-        sensitivityY = EventManager.inst.mouseSensitivty;
+        sensitivityX = EventManager.inst.lookSensitivity;
+        sensitivityY = EventManager.inst.lookSensitivity;
 
         if (EventManager.inst.memoryPlaying)
         {
@@ -77,18 +77,21 @@ public class PlayerCam : MonoBehaviour
         }
 
         // Head bob
-        if (headBobTimer > headBobInterval)
+        if (!EventManager.inst.memoryPlaying && !EventManager.inst.playerDead)
         {
-            headBobbed = true;
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
-        }
+            if (headBobTimer > headBobInterval)
+            {
+                headBobbed = true;
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+            }
 
-        if (headBobTimer > headBobInterval * 1.5f)
-        {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
-            headBobbed = false;
-            headBobTimer = 0;
-        }       
+            if (headBobTimer > headBobInterval * 1.5f)
+            {
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 6);
+                headBobbed = false;
+                headBobTimer = 0;
+            }  
+        }     
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {            

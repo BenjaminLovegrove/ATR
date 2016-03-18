@@ -215,7 +215,7 @@ public class Memory : MonoBehaviour
     // Hack to test memories
     void MemoryTest()
     {        
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && EventManager.inst.developerMode)
         {
             print("Memory Triggered");
             memoryPlaying = true;
@@ -298,7 +298,7 @@ public class Memory : MonoBehaviour
 
         if (delayTimer > memoryTotalLength)
         {
-            EventManager.inst.controlsDisabled = false;
+            //EventManager.inst.controlsDisabled = false;
             delayTimer = 0;
             memoryPlaying = false;
         }

@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
     private int currentCrouchVal;
     public float footStepInterval = 0.4f;
     private int footStepCount = 2;
+    private float tempWalkSpeed;
+    private float hackMoveSpeed;
 
     public GameObject[] enemyList;
     public AudioSource heartBeatSFX;
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
 	
 	void Awake ()
 	{
+        hackMoveSpeed = 1f;
         backgroundMaxVol = backGroundMusic.volume;
         playerRigid.freezeRotation = true;
         audio = GetComponent<AudioSource>();
@@ -61,17 +64,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        tempWalkSpeed = walkSpeed * EventManager.inst.memoryMoveScalar;
     }
 
     // Jump co-routine
     IEnumerator Jump()
     {
-        //// Play jump SFX
-        //if (touchingTerrain)
-        //{
-        //    footStepSFXSource.clip = jumpSFX[0];
-        //}
-        //else footStepSFXSource.clip = jumpSFX[1];
         Vector3 velocity = playerRigid.velocity;
         yield return new WaitForSeconds(jumpDelay);
         playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
@@ -79,7 +77,16 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // Scale walk speed during a memory
+        if (EventManager.inst.memoryPlaying)
+        {
+            walkSpeed = tempWalkSpeed;
+        }
+        else walkSpeed = 3f * hackMoveSpeed;
+
         PauseMenu();
+        // *** Disable this out for release builds ***
+        Hacks();
     }
 
 	void FixedUpdate ()
@@ -97,13 +104,13 @@ public class Player : MonoBehaviour
         PlayFootStepSFX();
         PlayerMovement();
         PlayHeartBeatSFX();
-        Hacks(); // Comment this out for release builds
 	}
 
     // Play the heartbeat SFX based on distance of the nearest enemy
     void PlayHeartBeatSFX()
     {
-        if (!EventManager.inst.controlsDisabled){
+        if (!EventManager.inst.controlsDisabled)
+        {
             if (!EventManager.inst.playerDead)
             {
                 nearestEnemyDistance = float.MaxValue;
@@ -118,9 +125,7 @@ public class Player : MonoBehaviour
                     }
                 }
 
-
                 float distanceMod = (10 / nearestEnemyDistance);
-
                 //float distanceMod = (((nearestEnemyDistance - 12) / 2) * -1);
                 heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
                 heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
@@ -131,37 +136,39 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Hacks for testing *** Comment these out for release builds ***
+    // Hacks for testing *** disable these out for release builds ***
     void Hacks()
-    {
-        // Increase player speed
-        if (Input.GetKeyDown(KeyCode.O) && !EventManager.inst.increaseSpeed)
+    {        
+        if (EventManager.inst.developerMode)
         {
-            print("Player speed increased");
-            EventManager.inst.increaseSpeed = true;
-            walkSpeed = 9f;
-        }
+            // Increase player speed
+            if (Input.GetKeyDown(KeyCode.O))
+            {
+                print("Player speed increased");
+                EventManager.inst.increaseSpeed = true;
+                hackMoveSpeed = 3f;
+            }
 
-        if (Input.GetKeyDown(KeyCode.P) && EventManager.inst.increaseSpeed)
-        {
-            print("Player speed set to normal");
-            EventManager.inst.increaseSpeed = false;
-            walkSpeed = 3f;
-        }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                print("Player speed set to normal");
+                EventManager.inst.increaseSpeed = false;
+                hackMoveSpeed = 1f;
+            }
 
-        // Make player invisible to enemies
-        if (Input.GetKeyDown(KeyCode.U) && !EventManager.inst.invisMode)
-        {
-            print("Player invisible to enemies");
-            EventManager.inst.invisMode = true;
-        }
+            // Make player invisible to enemies
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                print("Player invisible to enemies");
+                EventManager.inst.invisMode = true;
+            }
 
-        if (Input.GetKeyDown(KeyCode.I) && EventManager.inst.invisMode)
-        {
-            print("Player visible to enemies");
-            EventManager.inst.invisMode = false;
-        }
-            
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                print("Player visible to enemies");
+                EventManager.inst.invisMode = false;
+            }
+        }            
     }
 
     // Player movement on horizontal and vertical axis through player inputs
@@ -234,7 +241,6 @@ public class Player : MonoBehaviour
                 {
                     if (canJump && Input.GetButton("Jump"))
                     {
-
                         footStepSFXSource.Play();
                         EventManager.inst.playerJump = true;
                         jumpTimer = 0;
@@ -375,7 +381,6 @@ public class Player : MonoBehaviour
                     currentWalkVal++;
                     footStepCount++;
                 }
-
                 footStepTimer = 0;
             }
         }

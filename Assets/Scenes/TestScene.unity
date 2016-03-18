@@ -830,10 +830,6 @@ Prefab:
       value: 
       objectReference: {fileID: 2090484368}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: playerObj
-      value: 
-      objectReference: {fileID: 2090484361}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerCheckPoints.Array.data[0]
       value: 
       objectReference: {fileID: 479484666}
@@ -842,37 +838,13 @@ Prefab:
       value: 
       objectReference: {fileID: 2012032736}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: playerCheckPoints.Array.data[2]
+      propertyPath: playerObj
       value: 
-      objectReference: {fileID: 479484666}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: pauseMenu
-      value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2090484361}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: pauseMenuButtons
       value: 
       objectReference: {fileID: 1635223201}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: currentLevel
-      value: TestScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: currentCheckPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: enemyMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: c50fac40c3b6c964fa712382db6318a6, type: 2}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: controlDelay
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
-      propertyPath: controlsDisabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
   m_IsPrefabParent: 0
@@ -1647,6 +1619,10 @@ Prefab:
       propertyPath: memoryFlashObj
       value: 
       objectReference: {fileID: 245535396}
+    - target: {fileID: 134878, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0

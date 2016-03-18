@@ -47,22 +47,24 @@ MonoBehaviour:
   flashSpawn: {fileID: 0}
   playerObj: {fileID: 0}
   pauseMenuButtons: {fileID: 0}
-  enemyMaterial: {fileID: 0}
   playerCrouch: 0
   playerDead: 0
   playerJump: 0
-  gamePaused: 0
   resetLevel: 0
-  controlsDisabled: 0
-  controlDelay: 3
-  mouseSensitivty: 15
+  controlsDisabled: 1
+  memoryPlaying: 0
+  lookSensitivity: 0
   masterVolume: 1
   invertY: 0
+  memoryLookScalar: .0500000007
+  memoryMoveScalar: .25
+  developerMode: 0
   invisMode: 0
   increaseSpeed: 0
+  gamePaused: 0
   currentCheckPoint: 0
   currentMemory: 0
-  currentLevel: 2
+  currentLevel: TestScene
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
