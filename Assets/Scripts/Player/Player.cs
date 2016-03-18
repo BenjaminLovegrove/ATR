@@ -24,13 +24,18 @@ public class Player : MonoBehaviour
     public Rigidbody playerRigid;
     AudioSource audio;
     
-    public AudioClip[] standingWalkLeftSFX;
-    public AudioClip[] standingWalkRightSFX;
+    public AudioClip[] standingWalkLeftHardSFX;
+    public AudioClip[] standingWalkRightHardSFX;
+    public AudioClip[] standingWalkLeftSoftSFX;
+    public AudioClip[] standingWalkRightSoftSFX;
     public AudioClip[] crouchWalkLeftSFX;
     public AudioClip[] crouchWalkRightSFX;
+    public AudioClip[] jumpSFX;
     public AudioClip crouchSFX;
     public AudioClip standSFX;
     public AudioSource footStepSFXSource;
+
+    public bool touchingTerrain;
     private float footStepTimer;
     private int currentWalkVal;
     private int currentCrouchVal;
@@ -61,6 +66,12 @@ public class Player : MonoBehaviour
     // Jump co-routine
     IEnumerator Jump()
     {
+        //// Play jump SFX
+        //if (touchingTerrain)
+        //{
+        //    footStepSFXSource.clip = jumpSFX[0];
+        //}
+        //else footStepSFXSource.clip = jumpSFX[1];
         Vector3 velocity = playerRigid.velocity;
         yield return new WaitForSeconds(jumpDelay);
         playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
@@ -164,6 +175,13 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(ray1, Vector3.down, out hit))
         {
+            // Check which footstep array SFX should be used
+            if (hit.collider.tag == "Terrain")
+            {
+                touchingTerrain = true;
+            }
+            else touchingTerrain = false;
+
             // If the raycast hits the ground
             if (hit.distance < 3f)
             {
@@ -209,10 +227,24 @@ public class Player : MonoBehaviour
                 {
                     if (canJump && Input.GetButton("Jump"))
                     {
+
+                        footStepSFXSource.Play();
                         EventManager.inst.playerJump = true;
                         jumpTimer = 0;
                         StartCoroutine("Jump");
                     }
+                }
+
+                // Play jump SFX
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    print("pressed space");
+                    if (touchingTerrain)
+                    {
+
+                        audio.PlayOneShot(jumpSFX[0]);
+                    }
+                    else audio.PlayOneShot(jumpSFX[1]);                  
                 }
 
                 // Crouch
@@ -257,12 +289,12 @@ public class Player : MonoBehaviour
             footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Horizontal"));
 
             // Reset walk array when you reach the end
-            if (currentWalkVal == (standingWalkLeftSFX.Length))
+            if (currentWalkVal == (standingWalkLeftHardSFX.Length))
             {
                 currentWalkVal = 0;
             }
 
-            if (currentWalkVal == (standingWalkRightSFX.Length))
+            if (currentWalkVal == (standingWalkRightHardSFX.Length))
             {
                 currentWalkVal = 0;
             }
@@ -283,15 +315,36 @@ public class Player : MonoBehaviour
             {
                 if (!EventManager.inst.playerCrouch)
                 {
+                    // Cycle between left and right footstep SFX arrays
                     if (footStepCount % 2 == 0)
                     {
-                        footStepSFXSource.clip = standingWalkLeftSFX[currentWalkVal];
+                        // Left step
+                        if (!touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkLeftHardSFX[currentWalkVal];
+                        }
+                        
+                        if (touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkLeftSoftSFX[currentWalkVal];
+                        }
+                        
                         footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
                         footStepSFXSource.Play();
                     }
                     else
                     {
-                        footStepSFXSource.clip = standingWalkRightSFX[currentWalkVal];
+                        // Right step
+                        if (!touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkRightHardSFX[currentWalkVal];
+                        }
+
+                        if (touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkRightSoftSFX[currentWalkVal];
+                        }
+
                         footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
                         footStepSFXSource.Play();
                     }

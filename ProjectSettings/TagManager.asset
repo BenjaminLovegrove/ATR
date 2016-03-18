@@ -12,6 +12,7 @@ TagManager:
   - Concrete
   - Wood
   - Water
+  - Terrain
   layers:
   - Default
   - TransparentFX
