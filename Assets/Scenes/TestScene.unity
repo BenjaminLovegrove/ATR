@@ -1611,10 +1611,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: jumpSFX.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 440284, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 12.9499998
@@ -1651,14 +1647,6 @@ Prefab:
       propertyPath: memoryFlashObj
       value: 
       objectReference: {fileID: 245535396}
-    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: jumpSFX.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 8bf5c5512c259234fa9bb5942d5263fb, type: 3}
-    - target: {fileID: 11489152, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
-      propertyPath: jumpSFX.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: b99b699b7f0056341bc1109713dc2868, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f22d72e0b7d09c4468441b2a2213b5f7, type: 2}
   m_IsPrefabParent: 0

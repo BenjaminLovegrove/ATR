@@ -238,7 +238,6 @@ public class Player : MonoBehaviour
                 // Play jump SFX
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    print("pressed space");
                     if (touchingTerrain)
                     {
 
