@@ -227,17 +227,24 @@ public class Player : MonoBehaviour
                 {
                     if (canJump && Input.GetButton("Jump"))
                     {
-                        // Play jump SFX
-                        if (touchingTerrain)
-                        {
-                            footStepSFXSource.clip = jumpSFX[0];
-                        }
-                        else footStepSFXSource.clip = jumpSFX[1];
+
                         footStepSFXSource.Play();
                         EventManager.inst.playerJump = true;
                         jumpTimer = 0;
                         StartCoroutine("Jump");
                     }
+                }
+
+                // Play jump SFX
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    print("pressed space");
+                    if (touchingTerrain)
+                    {
+
+                        audio.PlayOneShot(jumpSFX[0]);
+                    }
+                    else audio.PlayOneShot(jumpSFX[1]);                  
                 }
 
                 // Crouch
