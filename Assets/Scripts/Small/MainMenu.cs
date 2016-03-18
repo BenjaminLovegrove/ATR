@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
     private int fullScreenKey;
 
     private float volumeLevel;
-    private float mouseSensitivity;
+    private float lookSensitivity;
     
     private bool invertY;
     private bool invertYTemp;
@@ -290,7 +290,7 @@ public class MainMenu : MonoBehaviour
         {
             EventManager.inst.mouseSensitivty = 5;
             PlayerPrefs.SetFloat("Mouse Sensitivity", 5);
-            mouseSensitivity = 5;
+            lookSensitivity = 5;
         }
 
         if (!PlayerPrefs.HasKey("Master Volume"))
@@ -304,13 +304,11 @@ public class MainMenu : MonoBehaviour
     void ApplySettings()
     {
         // Assign global variables
-        EventManager.inst.masterVolume = volumeLevel;
-        EventManager.inst.mouseSensitivty = mouseSensitivity;
         EventManager.inst.invertY = invertY;
 
         // Save values to player prefs
         PlayerPrefs.SetFloat("Master Volume", volumeLevel);
-        PlayerPrefs.SetFloat("Mouse Sensitivity", mouseSensitivity);
+        PlayerPrefs.SetFloat("Mouse Sensitivity", lookSensitivity);
         PlayerPrefs.SetInt("Screen Res", screenDropdown.value);
         PlayerPrefs.SetInt("Speaker Config", speakerDropdown.value);
 
@@ -415,8 +413,12 @@ public class MainMenu : MonoBehaviour
     void UpdateUIvalues()
     {
         volumeLevel = volSlider.value;
-        mouseSensitivity = sensSlider.value;
+        lookSensitivity = sensSlider.value;
         invertY = invertToggle;
+
+        //Real time update sens and volume
+        EventManager.inst.masterVolume = volumeLevel;
+        EventManager.inst.mouseSensitivty = lookSensitivity;
 
         // Full screen value
         if (fullscreenToggle.isOn)

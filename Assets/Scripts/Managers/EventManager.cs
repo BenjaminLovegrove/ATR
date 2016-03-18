@@ -23,6 +23,7 @@ public class EventManager : MonoBehaviour
     public bool controlsDisabled = true;
     public bool controlDisableDelay = true;
     public float controlDelay = 3f;
+    public bool memoryPlaying;
     
     // Option Settings
     public float mouseSensitivty;

@@ -13,6 +13,7 @@ public class Memory : MonoBehaviour
     private BloomAndFlares bloom;
     private GlobalFog fog;
     public Terrain myTerrain;
+    private AudioSource dialogueAudio;
 
     private float startBloom;
     public float memoryBloom = 1f;
@@ -48,10 +49,28 @@ public class Memory : MonoBehaviour
     // Spawn memory flash game obj co-routine
     IEnumerator InstantiateMemFlash()
     {
+        EventManager.inst.memoryPlaying = true;
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
+        StartMemory();
+        yield return new WaitForSeconds(flashDelay - 1.5f);
+        memoryFlashObj.CrossFadeAlpha(255, 1, false);
+        yield return new WaitForSeconds(2);
+        EndMemory();
+    }
 
+    IEnumerator SkipMemory()
+    {
+        memoryPlaying = false;
+        memoryLength = 2;
+        dialogueAudio.Stop();
+        memoryFlashObj.CrossFadeAlpha(255, 1, false);
+        yield return new WaitForSeconds(2);
+        EndMemory();
+    }
 
+    void StartMemory()
+    {
         if (waterObjs != null)
         {
             foreach (Water w in water)
@@ -71,7 +90,8 @@ public class Memory : MonoBehaviour
                 if (obj.activeSelf)
                 {
                     obj.SetActive(false);
-                } else
+                }
+                else
                 {
                     obj.SetActive(true);
                 }
@@ -85,10 +105,11 @@ public class Memory : MonoBehaviour
         }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
-        yield return new WaitForSeconds(flashDelay - 1.5f);
-        memoryFlashObj.CrossFadeAlpha(255, 1, false);
-        yield return new WaitForSeconds(1.5f);
+    }
 
+    void EndMemory()
+    {
+        EventManager.inst.memoryPlaying = false;
         bgmSource.Play();
         bgmLerp = 1;
         if (newBGM != null)
@@ -147,6 +168,7 @@ public class Memory : MonoBehaviour
         }
 
         //Get stuff
+        dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
         bgmMaxVol = bgmSource.volume;
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
@@ -166,21 +188,28 @@ public class Memory : MonoBehaviour
     
     void Update()
     {
-        if (memoryLength > 0 && bgmLerp < 1)
-        {
-            bgmLerp += Time.deltaTime;
-            bgmSource.volume = Mathf.Lerp(bgmMaxVol, 0, bgmLerp / 1.5f);
-        } else if (bgmLerp > 0 && memoryLength < 0)
-        {
-            bgmLerp -= Time.deltaTime;
-            bgmSource.volume = Mathf.Lerp(0, bgmMaxVol, bgmLerp / 1.5f);
-        }
+        //if (memoryLength > 0 && bgmLerp < 1)
+        //{
+        //    bgmLerp += Time.deltaTime;
+        //    bgmSource.volume = Mathf.Lerp(bgmMaxVol, 0, bgmLerp / 1.5f);
+        //} else if (bgmLerp > 0 && memoryLength < 0)
+        //{
+        //    bgmLerp -= Time.deltaTime;
+        //    bgmSource.volume = Mathf.Lerp(0, bgmMaxVol, bgmLerp / 1.5f);
+        //}
     }
 
 	void FixedUpdate ()
     {
         MemoryTimer();
         MemoryTest(); // *** Comment this out of release builds ***
+
+        //Skip memory
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            StopCoroutine("InstantiateMemFlash");
+            StartCoroutine("SkipMemory");
+        }
     }
 
     // Hack to test memories

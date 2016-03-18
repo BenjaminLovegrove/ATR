@@ -2950,7 +2950,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Headphones
 --- !u!222 &679682162
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3437,7 +3437,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 1024 x 768
 --- !u!222 &770113461
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7331,8 +7331,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -177.339996, y: -23.2200012}
-  m_SizeDelta: {x: 184.070007, y: 30}
+  m_AnchoredPosition: {x: -168, y: -23.2200012}
+  m_SizeDelta: {x: 157.899994, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1632571048
 MonoBehaviour:
@@ -7365,7 +7365,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mouse Sensitivity
+  m_Text: Look Sensitivity
 --- !u!222 &1632571049
 CanvasRenderer:
   m_ObjectHideFlags: 0

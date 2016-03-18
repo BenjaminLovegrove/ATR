@@ -103,30 +103,32 @@ public class Player : MonoBehaviour
     // Play the heartbeat SFX based on distance of the nearest enemy
     void PlayHeartBeatSFX()
     {
-        if (!EventManager.inst.playerDead)
-        {
-            nearestEnemyDistance = float.MaxValue;
-
-            for (int i = 0; i < enemyList.Length; i++)
+        if (!EventManager.inst.controlsDisabled){
+            if (!EventManager.inst.playerDead)
             {
-                float thisEnemyDistance = Vector3.Distance(playerRigid.position, enemyList[i].transform.position);
+                nearestEnemyDistance = float.MaxValue;
 
-                if (thisEnemyDistance < nearestEnemyDistance)
+                for (int i = 0; i < enemyList.Length; i++)
                 {
-                    nearestEnemyDistance = thisEnemyDistance;
+                    float thisEnemyDistance = Vector3.Distance(playerRigid.position, enemyList[i].transform.position);
+
+                    if (thisEnemyDistance < nearestEnemyDistance)
+                    {
+                        nearestEnemyDistance = thisEnemyDistance;
+                    }
                 }
+
+
+                float distanceMod = (10 / nearestEnemyDistance);
+
+                //float distanceMod = (((nearestEnemyDistance - 12) / 2) * -1);
+                heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
+                heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
+                float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
+                backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
             }
-
-
-            float distanceMod = (10 / nearestEnemyDistance);
-
-            //float distanceMod = (((nearestEnemyDistance - 12) / 2) * -1);
-            heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
-            heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
-            float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
-            backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
+            else heartBeatSFX.volume = 0;
         }
-        else heartBeatSFX.volume = 0;
     }
 
     // Hacks for testing *** Comment these out for release builds ***
@@ -170,10 +172,11 @@ public class Player : MonoBehaviour
 
         Vector3 ray1 = new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z);
         Vector3 ray2 = new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z);
+        Vector3 rayGround = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Debug.DrawRay(ray1, Vector3.down);
         Debug.DrawRay(ray2, Vector3.down);
 
-        if (Physics.Raycast(ray1, Vector3.down, out hit))
+        if (Physics.Raycast(rayGround, Vector3.down, out hit))
         {
             // Check which footstep array SFX should be used
             if (hit.collider.tag == "Terrain")
@@ -181,7 +184,11 @@ public class Player : MonoBehaviour
                 touchingTerrain = true;
             }
             else touchingTerrain = false;
+        }
 
+        //Grounded raycasts
+        if (Physics.Raycast(ray1, Vector3.down, out hit))
+        {
             // If the raycast hits the ground
             if (hit.distance < 3f)
             {
@@ -384,7 +391,7 @@ public class Player : MonoBehaviour
     // In game pause function
     void PauseMenu()
     {       
-        if (Input.GetKey(KeyCode.Escape) && !EventManager.inst.gamePaused)
+        if (Input.GetKey(KeyCode.Escape) && !EventManager.inst.gamePaused && !EventManager.inst.memoryPlaying)
         {
             print("Game paused");
             Cursor.visible = true;

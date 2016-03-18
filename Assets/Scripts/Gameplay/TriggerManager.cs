@@ -12,8 +12,6 @@ public class TriggerManager : MonoBehaviour
         ONE, TWO, THREE
     }
 
-    public AudioSource audio;
-
     [Header("Trigger Settings")]
     bool triggered = false;
 
@@ -33,6 +31,7 @@ public class TriggerManager : MonoBehaviour
     public bool nightTime = false;
     public AudioClip newBGM;
     public bool extraDiminish = false;
+    private AudioSource dialogueAudio;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -47,6 +46,7 @@ public class TriggerManager : MonoBehaviour
 
 	[Header("Checkpoint")]
 	public bool checkpoint;
+    public int checkpointNo;
 
     [Header("End Level")]
     public bool endLevel;
@@ -67,8 +67,8 @@ public class TriggerManager : MonoBehaviour
 
     void Start()
     {
+        dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
-        audio = GameObject.Find("Player").GetComponent<AudioSource>();
         
         //Disable enemies to be later enabled
         if (enemy != null)
@@ -104,7 +104,8 @@ public class TriggerManager : MonoBehaviour
             {
                 EventManager.inst.currentMemory = memoryEventNumber;
 
-                audio.PlayOneShot(memoryDialogue[memoryEventNumber]);
+                dialogueAudio.clip = memoryDialogue[memoryEventNumber];
+                dialogueAudio.Play();
                 memoryDuration = memoryDialogue[memoryEventNumber].length;
                 col.BroadcastMessage("EnterMemory", memoryDuration);
                 col.BroadcastMessage("NightCheck", nightTime);
@@ -126,7 +127,7 @@ public class TriggerManager : MonoBehaviour
 			if (checkpoint)
             {
                 print("Checkpoint Triggered");
-				EventManager.inst.currentCheckPoint ++;
+				EventManager.inst.currentCheckPoint = checkpointNo;
 			}
 
             // Enemy

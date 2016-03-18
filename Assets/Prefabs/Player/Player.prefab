@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 487956}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPosDead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11481398}
   - 82: {fileID: 8226212}
   - 114: {fileID: 11486618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -45,8 +45,24 @@ GameObject:
   m_Component:
   - 4: {fileID: 473084}
   - 82: {fileID: 8232434}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: HeartbeatSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &126534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455312}
+  - 82: {fileID: 8232342}
+  m_Layer: 10
+  m_Name: MemoryDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +76,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 435674}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPosNeautral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +94,7 @@ GameObject:
   - 33: {fileID: 3328986}
   - 23: {fileID: 2347942}
   - 114: {fileID: 11448334}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BlackFadeIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +113,7 @@ GameObject:
   - 23: {fileID: 2389124}
   - 114: {fileID: 11417844}
   - 114: {fileID: 11490778}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BlackFadeOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +128,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 409352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPosHeadBob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +143,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431760}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FadeToBlackTargetTrans
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +167,7 @@ GameObject:
   - 114: {fileID: 11491664}
   - 114: {fileID: 11404758}
   - 169: {fileID: 16920770}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +182,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 497860}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPosCrouch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +198,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 443852}
   - 82: {fileID: 8284662}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BackGroundMusicSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +213,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 409254}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPositions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,7 +228,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 414652}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MemoryFlashSpawn
   m_TagString: FlashSpawn
   m_Icon: {fileID: 0}
@@ -228,7 +244,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 423028}
   - 82: {fileID: 8243876}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FootstepSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,8 +357,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100828}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.9499998, y: .667999983, z: -12.3800001}
+  m_LocalRotation: {x: .0170336012, y: .972435355, z: -.0040237708, w: -.232515037}
+  m_LocalPosition: {x: -23.2990112, y: -6.47762299, z: 357.30304}
   m_LocalScale: {x: -.0168846659, y: .498250693, z: 8.07719771e-05}
   m_Children:
   - {fileID: 409254}
@@ -354,6 +370,7 @@ Transform:
   - {fileID: 459234}
   - {fileID: 414652}
   - {fileID: 423028}
+  - {fileID: 455312}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &443852
@@ -368,6 +385,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 440284}
   m_RootOrder: 3
+--- !u!4 &455312
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 440284}
+  m_RootOrder: 9
 --- !u!4 &459234
 Transform:
   m_ObjectHideFlags: 1
@@ -608,6 +637,76 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8232342
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126534}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!82 &8232434
 AudioSource:
   m_ObjectHideFlags: 1
@@ -619,7 +718,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b6a2e354b55adda418c3a6ae0faffca3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -758,8 +857,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bac6dfdc1c63d8546bea65bbbaa10ac0, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: .5
+  m_PlayOnAwake: 0
+  m_Volume: .349999994
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1187,7 +1286,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 20
+  m_Radius: 15
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -1224,6 +1323,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: crouchWalkRightSFX.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Radius
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

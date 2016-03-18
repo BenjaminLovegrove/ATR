@@ -49,7 +49,7 @@ public class PlayerCam : MonoBehaviour
         sensitivityX = EventManager.inst.mouseSensitivty;
         sensitivityY = EventManager.inst.mouseSensitivty;
 
-        if (inMemory)
+        if (EventManager.inst.memoryPlaying)
         {
             MemoryCam();
         }
@@ -165,20 +165,8 @@ public class PlayerCam : MonoBehaviour
         transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(enemyDirection), Time.deltaTime * 1.5f);    
     }
 
-    // Sendmessage reciever for entering a memory
-    void EnterMemory(float duration)
-    {
-        inMemory = true;
-        Invoke("EndMemory", duration);
-    }
-
     void MemoryCam()
     {
         transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
-    }
-
-    void EndMemory()
-    {
-        inMemory = false;
     }
 }
