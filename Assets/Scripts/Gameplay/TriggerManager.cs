@@ -31,6 +31,7 @@ public class TriggerManager : MonoBehaviour
 	public GameObject[] switchObjects;
     private bool startTimer = false;
     public bool nightTime = false;
+    public AudioClip newBGM;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -101,6 +102,10 @@ public class TriggerManager : MonoBehaviour
                 col.BroadcastMessage("EnterMemory", memoryDuration);
                 col.BroadcastMessage("NightCheck", nightTime);
                 col.BroadcastMessage("SetSwitch", switchObjects);
+                if (newBGM != null)
+                {
+                    col.BroadcastMessage("SetBGM", newBGM);
+                }
 
                 if (memoryObj != null)
                 {

@@ -30,6 +30,8 @@ public class Memory : MonoBehaviour
 	public GameObject[] switchMe;
 
     public AudioClip[] memoryDialogue;
+    private AudioSource bgmSource;
+    private AudioClip newBGM;
 
     private float delayTimer;
     public Image memoryFlashObj;
@@ -46,6 +48,7 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
+        bgmSource.Pause();
         if (waterObjs != null)
         {
             foreach (Water w in water)
@@ -83,6 +86,12 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1.5f);
 
+        if (newBGM != null)
+        {
+            bgmSource.clip = newBGM;
+            newBGM = null;
+        }
+        bgmSource.Play();
         if (waterObjs != null)
         {
             foreach (Water w in water)
@@ -121,6 +130,7 @@ public class Memory : MonoBehaviour
 
     void Start()
     {
+        //Get all water objects
         waterObjs = GameObject.FindGameObjectsWithTag("Water");
         if (waterObjs != null)
         {
@@ -130,6 +140,9 @@ public class Memory : MonoBehaviour
                 water[i] = waterObjs[i].GetComponent<Water>();
             }
         }
+
+        //Get stuff
+        bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
@@ -243,6 +256,11 @@ public class Memory : MonoBehaviour
     void SetSwitch(GameObject[] switches)
     {
         switchMe = switches;
+    }
+
+    void SetBGM(AudioClip passBGM)
+    {
+        newBGM = passBGM;
     }
 }
 
