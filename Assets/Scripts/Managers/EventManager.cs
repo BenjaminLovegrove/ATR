@@ -12,7 +12,6 @@ public class EventManager : MonoBehaviour
 	public Transform playerTrans;
     public Transform enemyKillPos;
     public Transform[] playerCheckPoints;
-    public Transform flashSpawn;
 	public GameObject playerObj;
     public GameObject pauseMenuButtons;    
 
@@ -78,11 +77,8 @@ public class EventManager : MonoBehaviour
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
         lookSensitivity = PlayerPrefs.GetFloat("Mouse Sensitivity");
-
-        flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
-        Cursor.visible = true;
-
         lookSensTemp = PlayerPrefs.GetFloat("Mouse Sensitivity") * 0.2f;
+        Cursor.visible = true;        
     }
 
     void Update()
@@ -151,11 +147,9 @@ public class EventManager : MonoBehaviour
     {
         playerDead = false;
         resetLevel = false;
-
         playerTrans = GameObject.Find("Player").GetComponent<Transform>();
         playerObj = GameObject.Find("Player");
         pauseMenuButtons = GameObject.FindWithTag("PauseMenuObj");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
-        flashSpawn = GameObject.FindGameObjectWithTag("FlashSpawn").transform;
     }
 }

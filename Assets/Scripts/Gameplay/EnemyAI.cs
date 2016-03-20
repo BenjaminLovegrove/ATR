@@ -19,12 +19,12 @@ public class EnemyAI : MonoBehaviour
     public AudioClip gunShot;
     public AudioClip[] radioChatter;
     public AudioClip[] footSteps;
-    public float audioTimer;
-    public bool audioPlaying;
-    public float audioLength;
-    public int stepCount = 0;
-    public float footStepTimer;
-    public float footStepInterval;
+    private float audioTimer;
+    private bool audioPlaying;
+    private float audioLength;
+    private int stepCount = 0;
+    private float footStepTimer;
+    private float footStepInterval;
 
     // Calculations
     Vector3 lastPosition = Vector3.zero;
