@@ -10,16 +10,19 @@ public class EnemyAI : MonoBehaviour
 	public float patrolWaitTime = 1f;
 	public Transform[] patrolWayPoints;
 	public float patrolTimer = 0f;
-    public bool patrollingEnemy;
+    private bool patrollingEnemy;
 
     AudioSource audio;
     public AudioClip gunShot;
     public AudioClip[] radioChatter;
-    public AudioClip footSteps;
+    public AudioClip[] footSteps;
     private float audioTimer;
     private bool audioPlaying;
     private float audioLength;
     private float walkTimer;
+    public int stepCount = 0;
+    public float footStepTimer;
+    public float footStepInterval;
 
 	public float fieldOfViewAngle = 110f;
 
@@ -85,11 +88,33 @@ public class EnemyAI : MonoBehaviour
         RadioChatter();
         AnimationTriggers();
         PlayerDetection();
+        PlayFootStepSFX();
 	}
 
     void Update()
     {
         CalculateVelocity();
+    }
+
+    // Play footsteps SFX
+    void PlayFootStepSFX()
+    {
+        footStepTimer += Time.deltaTime * speed;
+        
+        if (footStepTimer > footStepInterval)
+        {
+            if (footSteps.Length > 0)
+            {
+                audio.clip = footSteps[stepCount];
+                audio.Play();
+                stepCount++;
+                footStepTimer = 0;
+                if (stepCount == footSteps.Length)
+                {
+                    stepCount = 0;
+                }
+            }
+        }
     }
 
     // Randomly pick an audioclip from radio chatter array to be played
@@ -156,15 +181,7 @@ public class EnemyAI : MonoBehaviour
                 anim.SetBool("walking", true);
             }
 
-            walkTimer += Time.deltaTime;
-
-            // Play footsteps SFX
-            if (walkTimer > 1.5f)
-            {
-                audio.PlayOneShot(footSteps, 1f);
-                walkTimer = 0;
-            }
-            
+            walkTimer += Time.deltaTime;     
         }
 
         // Shoot state

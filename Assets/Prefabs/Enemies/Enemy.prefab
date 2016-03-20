@@ -2588,7 +2588,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   patrolTimer: 0
-  patrollingEnemy: 0
   gunShot: {fileID: 8300000, guid: afd1f095e1140c54da2bc7f51c7e310c, type: 3}
   radioChatter:
   - {fileID: 8300000, guid: 25b7259ea8c0ff14181dc8d528100f4c, type: 3}
@@ -2598,7 +2597,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ab74bf87f5cc59e4c874cfc800b3780d, type: 3}
   - {fileID: 8300000, guid: f74b492293d46a44e8b2463ddc05e2e1, type: 3}
   - {fileID: 8300000, guid: f74b492293d46a44e8b2463ddc05e2e1, type: 3}
-  footSteps: {fileID: 8300000, guid: ec4391c71f5d82b4ea01b91ba0937d85, type: 3}
+  footSteps:
+  - {fileID: 8300000, guid: 14c9ab5ab35e1c948bcb49889fd27d04, type: 3}
+  - {fileID: 8300000, guid: 2de43297807a47b4f9faf037c4b724a6, type: 3}
+  - {fileID: 8300000, guid: 43814c9cf30a1d04fb8b6822dfc38484, type: 3}
+  - {fileID: 8300000, guid: 3dfc10d463624b044a104b514c3eaecf, type: 3}
+  stepCount: 0
+  footStepTimer: 0
+  footStepInterval: 1.35000002
   fieldOfViewAngle: 110
   speed: 0
 --- !u!136 &13641846
@@ -3017,6 +3023,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: footSteps.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_Radius
       value: 550
       objectReference: {fileID: 0}
@@ -3071,6 +3081,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: footStepInterval
+      value: 1.35000002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

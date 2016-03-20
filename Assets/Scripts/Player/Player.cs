@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         else walkSpeed = 3f * hackMoveSpeed;
 
         PauseMenu();
-        // *** Disable this out for release builds ***
+        // *** Disable this for release builds ***
         Hacks();
     }
 
@@ -126,7 +126,6 @@ public class Player : MonoBehaviour
                 }
 
                 float distanceMod = (10 / nearestEnemyDistance);
-                //float distanceMod = (((nearestEnemyDistance - 12) / 2) * -1);
                 heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
                 heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
                 float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
