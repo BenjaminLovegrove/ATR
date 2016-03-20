@@ -94,8 +94,11 @@ public class PlayerCam : MonoBehaviour
         }     
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {            
-               currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);              
+        {
+            if (!EventManager.inst.memoryPlaying && !EventManager.inst.playerDead && !EventManager.inst.controlsDisabled)
+            {
+                currentPos.position = Vector3.Lerp(currentPos.position, cameraPosHeadBob.position, Time.deltaTime * 3);   
+            }                       
         }
         
         // Return to neutral cam position if movement ceases
@@ -122,35 +125,38 @@ public class PlayerCam : MonoBehaviour
     {
         if (!EventManager.inst.controlsDisabled)
         {
-            if (axes == RotationAxes.MouseXAndY)
+            if (!EventManager.inst.playerDead)
             {
-                float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
-
-                // Invert Y if set to do so
-                if (EventManager.inst.invertY)
+                if (axes == RotationAxes.MouseXAndY)
                 {
-                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY * -1;
+                    float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
+
+                    // Invert Y if set to do so
+                    if (EventManager.inst.invertY)
+                    {
+                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * -1;
+                    }
+                    // Otherwise Y is normal
+                    if ((!EventManager.inst.invertY))
+                    {
+                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                    }
+
+                    rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
+
+                    transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
                 }
-                // Otherwise Y is normal
-                if ((!EventManager.inst.invertY))
+                else if (axes == RotationAxes.MouseX)
+                {
+                    transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+                }
+                else
                 {
                     rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-                }                    
+                    rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
-                rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-
-                transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
-            }
-            else if (axes == RotationAxes.MouseX)
-            {
-                transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
-            }
-            else
-            {
-                rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-                rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-
-                transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+                    transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+                }
             }
         }
     }

@@ -50,7 +50,6 @@ public class EventManager : MonoBehaviour
     // Set a small delay before the player is granted control
     IEnumerator FadeInCoRoutine()
     {
-        print("Fade In");
         controlsDisabled = true;
         fadeToBlack.CrossFadeAlpha(0, 3, false);
         yield return new WaitForSeconds (1f);
