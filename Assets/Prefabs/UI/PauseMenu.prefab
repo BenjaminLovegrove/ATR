@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400646}
   - 114: {fileID: 11447146}
   m_Layer: 0
-  m_Name: PauseMenuGUIscriptObject
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

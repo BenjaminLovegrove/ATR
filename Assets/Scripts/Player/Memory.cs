@@ -186,19 +186,6 @@ public class Memory : MonoBehaviour
         nightTime = check;
     }
     
-    void Update()
-    {
-        //if (memoryLength > 0 && bgmLerp < 1)
-        //{
-        //    bgmLerp += Time.deltaTime;
-        //    bgmSource.volume = Mathf.Lerp(bgmMaxVol, 0, bgmLerp / 1.5f);
-        //} else if (bgmLerp > 0 && memoryLength < 0)
-        //{
-        //    bgmLerp -= Time.deltaTime;
-        //    bgmSource.volume = Mathf.Lerp(0, bgmMaxVol, bgmLerp / 1.5f);
-        //}
-    }
-
 	void FixedUpdate ()
     {
         MemoryTimer();
@@ -255,8 +242,6 @@ public class Memory : MonoBehaviour
             extraDiminish = false;
         }
 
-
-        EventManager.inst.controlsDisabled = true;
         memoryPlaying = true;        
         fadeTimer = 0;
         memoryLength = duration;
@@ -292,13 +277,11 @@ public class Memory : MonoBehaviour
     {
         if (memoryPlaying)
         {
-            EventManager.inst.controlsDisabled = true;
             delayTimer += Time.fixedDeltaTime;
         }
 
         if (delayTimer > memoryTotalLength)
         {
-            //EventManager.inst.controlsDisabled = false;
             delayTimer = 0;
             memoryPlaying = false;
         }

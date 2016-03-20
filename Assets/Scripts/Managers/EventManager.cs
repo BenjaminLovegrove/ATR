@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 // Handle global variables, such as player checkpoints and game states
 
@@ -14,6 +15,7 @@ public class EventManager : MonoBehaviour
     public Transform flashSpawn;
 	public GameObject playerObj;
     public GameObject pauseMenuButtons;
+    public RawImage fadeToBlack;
 
     [Header("Player States")]
 	public bool playerCrouch;
@@ -48,7 +50,9 @@ public class EventManager : MonoBehaviour
     // Set a small delay before the player is granted control
     IEnumerator ControlDisableCoRoutine()
     {
-        yield return new WaitForSeconds (3f);
+        controlsDisabled = true;
+        fadeToBlack.CrossFadeAlpha(0, 3, false);
+        yield return new WaitForSeconds (1f);
         controlsDisabled = false;
     }
 
@@ -68,7 +72,7 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine("ControlDisableCoRoutine");
+        //StartCoroutine("ControlDisableCoRoutine"); // Uncomment this when playing a level directly in the editor, or manually untoggle controlsDisabled in the inspector
 
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
@@ -78,7 +82,6 @@ public class EventManager : MonoBehaviour
         Cursor.visible = true;
 
         lookSensTemp = PlayerPrefs.GetFloat("Mouse Sensitivity") * 0.2f;
-        //float moveScalar = 0.2f;
     }
 
     void Update()
@@ -125,7 +128,6 @@ public class EventManager : MonoBehaviour
     // Use triggers to set the value of the last achieved checkpoint - (currentCheckPoint).
     void ResetPlayer()
     {
-        controlsDisabled = false;
         playerDead = false;
         resetLevel = false;
         Application.LoadLevel(currentLevel);
@@ -134,8 +136,7 @@ public class EventManager : MonoBehaviour
     // Populate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
-        //StartCoroutine("ControlDisableCoRoutine");
-
+        StartCoroutine("ControlDisableCoRoutine");
         InitialiseValues();
         Invoke("MovePlayer", 0.05f); // This delay is required so the way point data can be fetched first
     }

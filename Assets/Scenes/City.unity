@@ -1469,7 +1469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
   memory: 0
   memoryEventNumber: 0
   memoryDialogue:
@@ -2467,7 +2466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 456036164}
   memory: 1
   memoryEventNumber: 0
   memoryDialogue:
@@ -5185,11 +5183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportLoc: {fileID: 739515064}
---- !u!82 &456036164 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 8226212, guid: f22d72e0b7d09c4468441b2a2213b5f7,
-    type: 2}
-  m_PrefabInternal: {fileID: 456036160}
 --- !u!1001 &459356366
 Prefab:
   m_ObjectHideFlags: 0
@@ -6239,6 +6232,14 @@ Prefab:
     - target: {fileID: 11452662, guid: 289303eab4e3976488f4a5eaa1d90034, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 466114, guid: 289303eab4e3976488f4a5eaa1d90034, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22442802, guid: 289303eab4e3976488f4a5eaa1d90034, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 289303eab4e3976488f4a5eaa1d90034, type: 2}
@@ -12958,6 +12959,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 923634}
+  - {fileID: 1310687630}
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_AnchorMin: {x: 0, y: 0}
@@ -14512,7 +14514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
   memory: 0
   memoryEventNumber: 0
   memoryDialogue: []
@@ -14779,7 +14780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
   memory: 0
   memoryEventNumber: 0
   memoryDialogue: []
@@ -15156,6 +15156,99 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 21.3799992, y: 11, z: 4.69999981}
   m_Center: {x: 4.01000023, y: 5.634233, z: 2.37242174}
+--- !u!1001 &1310687629
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1145064482}
+    m_Modifications:
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_Pivot.x
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+      propertyPath: m_Pivot.y
+      value: .5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 284f4410716c3fa4c9406e6389ab27ac, type: 2}
+  m_IsPrefabParent: 0
+--- !u!224 &1310687630 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 22402006, guid: 284f4410716c3fa4c9406e6389ab27ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1310687629}
+--- !u!114 &1310687631 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11431004, guid: 284f4410716c3fa4c9406e6389ab27ac,
+    type: 2}
+  m_PrefabInternal: {fileID: 1310687629}
+  m_Script: {fileID: -98529514, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1313727947
 GameObject:
   m_ObjectHideFlags: 0
@@ -17521,12 +17614,20 @@ Prefab:
       objectReference: {fileID: 565497272}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: currentLevel
-      value: 2
+      value: City
       objectReference: {fileID: 0}
     - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
       propertyPath: playerCheckPoints.Array.data[2]
       value: 
       objectReference: {fileID: 1616656701}
+    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
+      propertyPath: controlsDisabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
+      propertyPath: fadeToBlack
+      value: 
+      objectReference: {fileID: 1310687631}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
   m_IsPrefabParent: 0
@@ -19601,7 +19702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
   memory: 1
   memoryEventNumber: 1
   memoryDialogue:
@@ -22083,7 +22183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
   memory: 0
   memoryEventNumber: 0
   memoryDialogue:
@@ -23613,7 +23712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5a5cf83283808c4c9654a1171175cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 0}
   memory: 0
   memoryEventNumber: 0
   memoryDialogue:
