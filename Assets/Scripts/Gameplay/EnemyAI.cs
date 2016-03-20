@@ -6,41 +6,42 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Customise AI Behaviour")]
+    public Transform[] patrolWayPoints;
 	public float patrolSpeed = 2f;
-	public float patrolWaitTime = 1f;
-	public Transform[] patrolWayPoints;
-	public float patrolTimer = 0f;
-    private bool patrollingEnemy;
+	public float patrolWaitTime = 1f;	
+	public float patrolTimer = 0f;    
+    public float fieldOfViewAngle = 110f;    
 
-    AudioSource audio;
+    // SFX
+    private AudioSource audio;
+    public AudioSource footStepsSource;
     public AudioClip gunShot;
     public AudioClip[] radioChatter;
     public AudioClip[] footSteps;
-    private float audioTimer;
-    private bool audioPlaying;
-    private float audioLength;
-    private float walkTimer;
+    public float audioTimer;
+    public bool audioPlaying;
+    public float audioLength;
     public int stepCount = 0;
     public float footStepTimer;
     public float footStepInterval;
 
-	public float fieldOfViewAngle = 110f;
-
+    // Calculations
+    Vector3 lastPosition = Vector3.zero;
+    private bool patrollingEnemy;    
+    private float speed;
+    private float shootAnimTimer;
+    private float switchIdletimer;
     private bool playerInLineOfSight;
     private bool playerInRange;
 	private bool playerDead;
     private int wayPointIndex;
-
+    private bool playerCrouch;
+    
+    // Components
 	private NavMeshAgent nav;
 	private Transform playerTransform;
-	private Animator anim;
-	private int playerHp;
-	private bool playerCrouch;
-
-	Vector3 lastPosition = Vector3.zero;
-	public float speed;
-    private float shootAnimTimer;
-    private float switchIdletimer;
+	private Animator anim;	
 
 	// Death co-routine
 	IEnumerator Death()
@@ -63,7 +64,7 @@ public class EnemyAI : MonoBehaviour
         // Fallback if the Enemy isn't assigned any waypoints
         if (patrolWayPoints[0] == null && patrollingEnemy)
         {
-            print("Enemy AI reassigned to 'static'");
+            print("Enemy AI assigned to static");
             patrollingEnemy = false;
         }
 
@@ -78,13 +79,6 @@ public class EnemyAI : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-        // Reset radio chat status upon completion
-        if (audioTimer >= audioLength + 1)
-        {
-            audioPlaying = false;
-            audioTimer = 0;
-        }
-
         RadioChatter();
         AnimationTriggers();
         PlayerDetection();
@@ -99,14 +93,14 @@ public class EnemyAI : MonoBehaviour
     // Play footsteps SFX
     void PlayFootStepSFX()
     {
-        footStepTimer += Time.deltaTime * speed;
+        footStepTimer += Time.deltaTime * speed * 50;
         
         if (footStepTimer > footStepInterval)
         {
             if (footSteps.Length > 0)
             {
-                audio.clip = footSteps[stepCount];
-                audio.Play();
+                footStepsSource.clip = footSteps[stepCount];
+                footStepsSource.Play();
                 stepCount++;
                 footStepTimer = 0;
                 if (stepCount == footSteps.Length)
@@ -116,10 +110,17 @@ public class EnemyAI : MonoBehaviour
             }
         }
     }
-
-    // Randomly pick an audioclip from radio chatter array to be played
+    
     void RadioChatter()
     {
+        // Reset radio chat status upon completion
+        if (audioTimer >= audioLength + 1)
+        {
+            audioPlaying = false;
+            audioTimer = 0;
+        }
+
+        // Randomly pick an audioclip from radio chatter array to be played
         if (!audioPlaying && radioChatter.Length > 0)
         {
             int rand = Random.Range(0, radioChatter.Length);
@@ -174,14 +175,11 @@ public class EnemyAI : MonoBehaviour
         // Walk state
         if (speed > 0.011f && !playerDead)
         {
-
             anim.SetBool("stopping", false);
             if (anim.GetBool("walking") == false)
             {
                 anim.SetBool("walking", true);
-            }
-
-            walkTimer += Time.deltaTime;     
+            }   
         }
 
         // Shoot state

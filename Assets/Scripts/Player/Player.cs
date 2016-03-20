@@ -8,22 +8,40 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    private float currentSpeed;
+    [Header("Movement")]
+    public float footStepInterval = 0.4f; // To determine when SFX is played
 	public float walkSpeed = 3.0f;
     public float crouchSpeed = 2.0f;
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
-	public bool canJump = true;
-	public float jumpHeight = 0.5f;
-	private bool grounded = false;
-
-    private float jumpTimer = 1.5f;
-    public float jumpDelay;
-    public float jumpCoolDown;
-    	
-    public Rigidbody playerRigid;
-    AudioSource audio;
     
+    [Header("Jump")]
+	public float jumpHeight = 0.5f;
+    public float jumpDelay;
+    public float jumpCoolDown;	
+
+    // Calculations
+    private float currentSpeed;
+    private float jumpTimer = 1.5f;
+    private float nearestEnemyDistance;
+    private bool grounded = false;
+    private bool touchingTerrain;
+
+    // SFX
+    private GameObject[] enemyList;
+    private float backgroundMaxVol;
+    private int footStepCount = 2;
+    private float tempWalkSpeed;
+    private float hackMoveSpeed;
+    private float footStepTimer;
+    private int currentWalkVal;
+    private int currentCrouchVal;
+
+    // Components
+    private AudioSource audio;
+    public AudioSource footStepSFXSource;
+    public AudioSource heartBeatSFX;
+    public AudioSource backGroundMusic;
     public AudioClip[] standingWalkLeftHardSFX;
     public AudioClip[] standingWalkRightHardSFX;
     public AudioClip[] standingWalkLeftSoftSFX;
@@ -33,32 +51,15 @@ public class Player : MonoBehaviour
     public AudioClip[] jumpSFX;
     public AudioClip crouchSFX;
     public AudioClip standSFX;
-    public AudioSource footStepSFXSource;
+    private Rigidbody playerRigid;
 
-    public bool touchingTerrain;
-    private float footStepTimer;
-    private int currentWalkVal;
-    private int currentCrouchVal;
-    public float footStepInterval = 0.4f;
-    private int footStepCount = 2;
-    private float tempWalkSpeed;
-    private float hackMoveSpeed;
-
-    public GameObject[] enemyList;
-    public AudioSource heartBeatSFX;
-    public AudioSource backGroundMusic;
-    private float backgroundMaxVol;
-    public float nearestEnemyDistance;
-
-    public GameObject fadeToBlackObj;
-    public bool setActiveFade = false;
-	
 	void Awake ()
 	{
+        playerRigid = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();    
         hackMoveSpeed = 1f;
         backgroundMaxVol = backGroundMusic.volume;
-        playerRigid.freezeRotation = true;
-        audio = GetComponent<AudioSource>();
+        playerRigid.freezeRotation = true;            
 	}
 
     void Start()
@@ -91,16 +92,6 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-        if (EventManager.inst.playerDead == true)
-        {            
-            if (!setActiveFade)
-            {
-                setActiveFade = true;
-                fadeToBlackObj.SetActive(true);
-                fadeToBlackObj.SendMessage("FadeOutReceiver");                
-            }
-        }
-
         PlayFootStepSFX();
         PlayerMovement();
         PlayHeartBeatSFX();
@@ -238,7 +229,8 @@ public class Player : MonoBehaviour
                 // Jump
                 if (jumpTimer > 1.5f)
                 {
-                    if (canJump && Input.GetButton("Jump"))
+                    //if (canJump && Input.GetButton("Jump"))
+                    if (Input.GetButton("Jump"))
                     {
                         footStepSFXSource.Play();
                         EventManager.inst.playerJump = true;

@@ -90,6 +90,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &104598
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 426050}
+  - 82: {fileID: 8297292}
+  m_Layer: 0
+  m_Name: FootStepsSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &106544
 GameObject:
   m_ObjectHideFlags: 1
@@ -908,6 +924,7 @@ GameObject:
   - 82: {fileID: 8275414}
   - 136: {fileID: 13661758}
   - 136: {fileID: 13641846}
+  - 82: {fileID: 8265714}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1416,6 +1433,18 @@ Transform:
   - {fileID: 405724}
   m_Father: {fileID: 438866}
   m_RootOrder: 0
+--- !u!4 &426050
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104598}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 462468}
+  m_RootOrder: 7
 --- !u!4 &428626
 Transform:
   m_ObjectHideFlags: 1
@@ -1889,8 +1918,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 171966}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.3199997, y: 1.43967826e-19, z: 1.55999994}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  m_LocalPosition: {x: -2.83549309, y: 3.27298784, z: -9.75419426}
   m_LocalScale: {x: .0149999997, y: .0149999997, z: .0150000006}
   m_Children:
   - {fileID: 470176}
@@ -1900,6 +1929,7 @@ Transform:
   - {fileID: 460292}
   - {fileID: 445096}
   - {fileID: 486492}
+  - {fileID: 426050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &464252
@@ -2484,6 +2514,76 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 198644}
   m_Mesh: {fileID: 4300006, guid: c4fac4aaef3a15f4980f3c2cfb339896, type: 3}
+--- !u!82 &8265714
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171966}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!82 &8275414
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2554,6 +2654,76 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!82 &8297292
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104598}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9535328
 Animator:
   serializedVersion: 3
@@ -2582,12 +2752,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c67d75784705044b011ed76e5362c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolSpeed: 1
-  patrolWaitTime: 5
   patrolWayPoints:
   - {fileID: 0}
   - {fileID: 0}
+  patrolSpeed: 1
+  patrolWaitTime: 4
   patrolTimer: 0
+  fieldOfViewAngle: 110
+  footStepsSource: {fileID: 8297292}
   gunShot: {fileID: 8300000, guid: afd1f095e1140c54da2bc7f51c7e310c, type: 3}
   radioChatter:
   - {fileID: 8300000, guid: 25b7259ea8c0ff14181dc8d528100f4c, type: 3}
@@ -2602,11 +2774,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2de43297807a47b4f9faf037c4b724a6, type: 3}
   - {fileID: 8300000, guid: 43814c9cf30a1d04fb8b6822dfc38484, type: 3}
   - {fileID: 8300000, guid: 3dfc10d463624b044a104b514c3eaecf, type: 3}
+  audioTimer: 0
+  audioPlaying: 0
+  audioLength: 0
   stepCount: 0
   footStepTimer: 0
-  footStepInterval: 1.35000002
-  fieldOfViewAngle: 110
-  speed: 0
+  footStepInterval: 1.29999995
 --- !u!136 &13641846
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3084,7 +3257,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: footStepInterval
-      value: 1.35000002
+      value: 1.29999995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
