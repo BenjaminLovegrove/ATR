@@ -2602,24 +2602,24 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 35
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
-      value: 1
+    - time: .027116403
+      value: 1.00390077
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.14285719
       tangentMode: 0
-    - time: 1
+    - time: .992824256
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0
+      outSlope: -0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -2703,12 +2703,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2de43297807a47b4f9faf037c4b724a6, type: 3}
   - {fileID: 8300000, guid: 43814c9cf30a1d04fb8b6822dfc38484, type: 3}
   - {fileID: 8300000, guid: 3dfc10d463624b044a104b514c3eaecf, type: 3}
-  audioTimer: 0
-  audioPlaying: 0
-  audioLength: 0
   stepCount: 0
   footStepTimer: 0
   footStepInterval: 1.29999995
+  currentVelocity: 0
 --- !u!136 &13641846
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -3142,7 +3140,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outSlope
-      value: -1.05263162
+      value: -1.14285719
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
@@ -3154,11 +3152,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
-      value: -.237896442
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
-      value: -.237896442
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Volume
@@ -3195,6 +3193,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rolloffMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

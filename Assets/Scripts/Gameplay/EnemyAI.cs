@@ -28,8 +28,8 @@ public class EnemyAI : MonoBehaviour
 
     // Calculations
     Vector3 lastPosition = Vector3.zero;
-    private bool patrollingEnemy;    
-    private float speed;
+    private bool patrollingEnemy;
+    private float currentVelocity;
     private float shootAnimTimer;
     private float switchIdletimer;
     private bool playerInLineOfSight;
@@ -77,37 +77,41 @@ public class EnemyAI : MonoBehaviour
         playerCrouch = EventManager.inst.playerCrouch;
     }
 
-	void FixedUpdate ()
-	{
+    void Update()
+    {
+        CalculateVelocity();        
+    }
+
+    void FixedUpdate()
+    {
         RadioChatter();
         AnimationTriggers();
         PlayerDetection();
         PlayFootStepSFX();
-	}
-
-    void Update()
-    {
-        CalculateVelocity();
     }
 
     // Play footsteps SFX
     void PlayFootStepSFX()
     {
-        footStepTimer += Time.deltaTime * speed * 50;
+        // This normalises the velocity to approximately 1 while moving
+        if (currentVelocity > 0)
+        {
+            footStepTimer += Time.deltaTime * (currentVelocity + 0.95f);
+        }        
+
+        // Reset array when you reach the end
+        if (stepCount == footSteps.Length)
+        {
+            stepCount = 0;
+        }
         
+        // Play the sound
         if (footStepTimer > footStepInterval)
         {
-            if (footSteps.Length > 0)
-            {
-                footStepsSource.clip = footSteps[stepCount];
-                footStepsSource.Play();
-                stepCount++;
-                footStepTimer = 0;
-                if (stepCount == footSteps.Length)
-                {
-                    stepCount = 0;
-                }
-            }
+            footStepsSource.clip = footSteps[stepCount];
+            footStepsSource.Play();
+            stepCount++;
+            footStepTimer = 0;
         }
     }
     
@@ -141,7 +145,7 @@ public class EnemyAI : MonoBehaviour
     // A velocity to determine which animation should be played
     void CalculateVelocity()
     {
-        speed = (transform.position - lastPosition).magnitude;
+        currentVelocity = (transform.position - lastPosition).magnitude;
         if (Time.frameCount % 5 == 0)
         {
             lastPosition = transform.position;
@@ -152,7 +156,7 @@ public class EnemyAI : MonoBehaviour
     void AnimationTriggers()
     {
         // Idle state
-        if (speed < 0.011f && !playerDead)
+        if (currentVelocity < 0.011f && !playerDead)
         {
             anim.SetBool("stopping", true);
             anim.SetBool("walking", false);
@@ -173,7 +177,7 @@ public class EnemyAI : MonoBehaviour
         }
 
         // Walk state
-        if (speed > 0.011f && !playerDead)
+        if (currentVelocity > 0.011f && !playerDead)
         {
             anim.SetBool("stopping", false);
             if (anim.GetBool("walking") == false)
