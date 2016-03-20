@@ -14,8 +14,7 @@ public class EventManager : MonoBehaviour
     public Transform[] playerCheckPoints;
     public Transform flashSpawn;
 	public GameObject playerObj;
-    public GameObject pauseMenuButtons;
-    public RawImage fadeToBlack;
+    public GameObject pauseMenuButtons;    
 
     [Header("Player States")]
 	public bool playerCrouch;
@@ -46,10 +45,12 @@ public class EventManager : MonoBehaviour
 
     // Temp vals and keys
     private float lookSensTemp;
+    private RawImage fadeToBlack;
 
     // Set a small delay before the player is granted control
-    IEnumerator ControlDisableCoRoutine()
+    IEnumerator FadeInCoRoutine()
     {
+        print("Fade In");
         controlsDisabled = true;
         fadeToBlack.CrossFadeAlpha(0, 3, false);
         yield return new WaitForSeconds (1f);
@@ -58,6 +59,7 @@ public class EventManager : MonoBehaviour
 
 	void Awake ()
 	{
+        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         developerMode = true; // *** Disable for release builds ***
         //developerMode = false;
         
@@ -72,7 +74,7 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        //StartCoroutine("ControlDisableCoRoutine"); // Uncomment this when playing a level directly in the editor, or manually untoggle controlsDisabled in the inspector
+        StartCoroutine("FadeInCoRoutine"); // Uncomment this when playing a level directly in the editor
 
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
@@ -101,8 +103,6 @@ public class EventManager : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-
-
         LevelResetCheck();
 
         AudioListener.volume = masterVolume;
@@ -136,7 +136,8 @@ public class EventManager : MonoBehaviour
     // Populate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
-        StartCoroutine("ControlDisableCoRoutine");
+        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
+        StartCoroutine("FadeInCoRoutine");
         InitialiseValues();
         Invoke("MovePlayer", 0.05f); // This delay is required so the way point data can be fetched first
     }
