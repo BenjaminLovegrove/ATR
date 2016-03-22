@@ -57,6 +57,7 @@ public class EventManager : MonoBehaviour
 
 	void Awake ()
 	{
+        Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         developerMode = true; // *** Disable for release builds ***
         //developerMode = false;
