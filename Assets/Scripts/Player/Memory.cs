@@ -36,6 +36,7 @@ public class Memory : MonoBehaviour
     private float bgmMaxVol;
     private float bgmLerp = 0;
     private float delayTimer;
+    private bool memorySkip;
 
     // Components
     private AudioClip newBGM;
@@ -51,6 +52,7 @@ public class Memory : MonoBehaviour
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
     {
+        memorySkip = false;
         EventManager.inst.memoryPlaying = true;
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2f);
@@ -63,7 +65,7 @@ public class Memory : MonoBehaviour
 
     // Skip memory coroutine
     IEnumerator SkipMemory()
-    {
+    {        
         memoryPlaying = false;
         memoryLength = 2;
         dialogueAudio.Stop();
@@ -109,7 +111,7 @@ public class Memory : MonoBehaviour
     // Skip memory
     void SkipMemoryCheck()
     {
-        if (EventManager.inst.memoryPlaying)
+        if (EventManager.inst.memoryPlaying && memorySkip)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -122,6 +124,7 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
+        memorySkip = true;
         // Disable controls toggle
         if (disableControls)
         {
