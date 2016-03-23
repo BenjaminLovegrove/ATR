@@ -8,7 +8,10 @@ using UnityStandardAssets.Water;
 
 public class Memory : MonoBehaviour
 {
-    [Header("Visual Effects")]      
+    [Header("Memory Options")]
+    public bool disableControls;
+
+    [Header("Visual Effects")]
     public bool nightTime = false;
     public float fadeTime = 4f;
     public float flashDelay;
@@ -95,26 +98,37 @@ public class Memory : MonoBehaviour
         startBloom = bloom.bloomIntensity;
         startFog = fog.heightDensity;
     }
-  
-	void FixedUpdate ()
+
+	void FixedUpdate()
     {
         MemoryTimer();
         MemoryTest(); // *** Disable this for release builds ***
+        SkipMemoryCheck();
+    }
 
-        // Skip memory
-        if (Input.GetKeyDown(KeyCode.Escape))
+    // Skip memory
+    void SkipMemoryCheck()
+    {
+        if (EventManager.inst.memoryPlaying)
         {
-            StopCoroutine("InstantiateMemFlash");
-            if (EventManager.inst.memoryPlaying)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
+                StopCoroutine("InstantiateMemFlash");
                 StartCoroutine("SkipMemory");
-            }            
+            }
         }
     }
 
     // Begin memory
     void StartMemory()
     {
+        // Disable controls toggle
+        if (disableControls)
+        {
+            EventManager.inst.memoryLookScalar = 0; // This is less than ideal, but over writes occur in EventManager
+            EventManager.inst.memoryMoveScalar = 0;
+        }
+
         // Enable water reflection
         if (waterObjs != null)
         {
@@ -129,6 +143,7 @@ public class Memory : MonoBehaviour
         {
             myTerrain.treeDistance = 150;
         }
+
         // Switch active/inactive objects
         if (switchMe != null)
         {
@@ -144,6 +159,7 @@ public class Memory : MonoBehaviour
                 }
             }
         }
+
         // Change scene lighting if night time
         if (nightTime)
         {
@@ -158,9 +174,15 @@ public class Memory : MonoBehaviour
     // End memory
     void EndMemory()
     {
+        disableControls = false;
+        EventManager.inst.memoryLookScalar = 0.05f;
+        EventManager.inst.memoryMoveScalar = 0.25f;
         EventManager.inst.memoryPlaying = false;
+
+        // Resume music
         bgmSource.Play();
         bgmLerp = 1;
+
         if (newBGM != null)
         {
             bgmSource.clip = newBGM;
@@ -175,11 +197,13 @@ public class Memory : MonoBehaviour
                 w.WaterReflections(false);
             }
         }
+
         // Reduce tree density
         if (myTerrain != null)
         {
             myTerrain.treeDistance = 100;
         }
+
         // Switch back active/inactive objects
         if (switchMe != null)
         {
@@ -195,6 +219,7 @@ public class Memory : MonoBehaviour
                 }
             }
         }
+
         // Return the lightning to normal if night
         if (nightTime)
         {
@@ -316,6 +341,12 @@ public class Memory : MonoBehaviour
     void ExtraDim(bool check)
     {
         extraDiminish = true;
+    }
+
+    void DisableControls(bool disable)
+    {
+
+        disableControls = disable;
     }
     #endregion
 }

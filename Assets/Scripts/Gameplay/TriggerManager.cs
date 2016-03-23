@@ -19,19 +19,20 @@ public class TriggerManager : MonoBehaviour
     // ...to the length of the corresponding dialogue audio.
     // The unique memory encounter is set via the int.
     // The int values will be unique to each scene.
-    [Header("Memory Trigger")]
+    [Header("Memory")]
     public bool memory;
-    private float memoryDuration;
-    public int memoryEventNumber;
-    public AudioClip[] memoryDialogue;
-    public GameObject memoryObj;
-    public float objFadeTimer;
-	public GameObject[] switchObjects;
-    private bool startTimer = false;
+    public bool disableControls;
     public bool nightTime = false;
-    public AudioClip newBGM;
     public bool extraDiminish = false;
+    public int memoryEventNumber;
+    public float objFadeTimer;
+    public AudioClip[] memoryDialogue;
+    public GameObject memoryObj;    
+	public GameObject[] switchObjects;    
+    public AudioClip newBGM;      
+    private float memoryDuration;
     private AudioSource dialogueAudio;
+    private bool startTimer = false;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -40,7 +41,7 @@ public class TriggerManager : MonoBehaviour
     private float startFog;
     private float fogLerp = 1;
 
-    [Header("Enemy Patrol Start Trigger")]
+    [Header("Enemy Patrol Start")]
     public bool enemyTrigger;
     public GameObject enemy;
 
@@ -54,6 +55,7 @@ public class TriggerManager : MonoBehaviour
     public GameObject loadScreenUI;
     private string setLevel;
 
+    // Load next scene and display load screen UI
     IEnumerator LoadNextScene()
     {
         loadScreenUI.SetActive(true);
@@ -65,16 +67,10 @@ public class TriggerManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
-        
-        //Disable enemies to be later enabled
-        if (enemy != null)
-        {
-            enemy.SetActive(false);
-        }
 
         // Assign string value for each level
         switch (levelSelect)
@@ -90,6 +86,15 @@ public class TriggerManager : MonoBehaviour
             case LevelSelect.THREE:
                 setLevel = "Coast Ending";
                 break;
+        }
+    }
+
+    void Start()
+    {        
+        //Disable enemies to be later enabled
+        if (enemy != null)
+        {
+            enemy.SetActive(false);
         }
     }
 
@@ -111,6 +116,12 @@ public class TriggerManager : MonoBehaviour
                 col.BroadcastMessage("NightCheck", nightTime);
                 col.BroadcastMessage("SetSwitch", switchObjects);
                 col.BroadcastMessage("ExtraDim", extraDiminish);
+
+                if (disableControls)
+                {
+                    col.BroadcastMessage("DisableControls", true);
+                }
+
                 if (newBGM != null)
                 {
                     col.BroadcastMessage("SetBGM", newBGM);

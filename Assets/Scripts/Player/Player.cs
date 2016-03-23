@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         // Scale walk speed during a memory
         if (EventManager.inst.memoryPlaying)
         {
-            walkSpeed = tempWalkSpeed;
+            walkSpeed = EventManager.inst.memoryMoveScalar;
         }
         else walkSpeed = 3f * hackMoveSpeed;
 

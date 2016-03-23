@@ -2543,6 +2543,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 0
   fogChange: 1
   targFog: 1.5
   enemyTrigger: 0
@@ -6811,6 +6812,7 @@ MonoBehaviour:
   nightTime: 1
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -9485,6 +9487,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 8300000, guid: 6734743d99e18f441b66d3b921c01609, type: 3}
   extraDiminish: 1
+  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -10036,7 +10039,6 @@ MonoBehaviour:
   audio: {fileID: 1503609360}
   setActiveObjects:
   - {fileID: 1855450679}
-  playersTrans: {fileID: 456036161}
 --- !u!23 &1013322450
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11196,6 +11198,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -13181,6 +13184,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -13684,6 +13688,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 1
@@ -15107,6 +15112,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 1
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -16185,6 +16191,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -17860,6 +17867,7 @@ MonoBehaviour:
   nightTime: 0
   newBGM: {fileID: 0}
   extraDiminish: 0
+  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
