@@ -8,45 +8,44 @@ using UnityStandardAssets.Water;
 
 public class Memory : MonoBehaviour
 {
-    private GameObject[] waterObjs;
-    private Water[] water;
-    private BloomAndFlares bloom;
-    private GlobalFog fog;
-    public Terrain myTerrain;
-    private AudioSource dialogueAudio;
-
-    private float startBloom;
-    public float memoryBloom = 1f;
-    private float startFog;
-    float memoryFog;
-    public float fogDiminishAmount = 0.1f;
-    private bool extraDiminish = false;
-
+    [Header("Visual Effects")]      
+    public bool nightTime = false;
     public float fadeTime = 4f;
+    public float flashDelay;
+    public float memoryFog;
+    public float fogDiminishAmount = 0.1f;
+    public float memoryBloom = 1f;
 
+    [Header("Memory Objects")]
+    public AudioClip[] memoryDialogue;  
+    public GameObject[] switchMe;
+    public Terrain myTerrain;
+    public Light sceneLighting;
+
+    // Protected variables
+    private float startBloom;
+    private float startFog;
+    private bool extraDiminish = false;
     private float fadeTimer;
     private float memoryTotalLength = 0f;
     private float memoryLength = 0f;
-
     private bool memoryPlaying = false;
-	public GameObject[] switchMe;
-
-    public AudioClip[] memoryDialogue;
-    private AudioSource bgmSource;
-    private AudioClip newBGM;
     private float bgmMaxVol;
     private float bgmLerp = 0;
-
     private float delayTimer;
-    public Image memoryFlashObj;
-    public float flashDelay;
 
-    bool nightTime = false;
-    GameObject skySphere;
-    Light sceneLighting;
-
-
-    // Spawn memory flash game obj co-routine
+    // Components
+    private AudioClip newBGM;
+    private AudioSource bgmSource;
+    private AudioSource dialogueAudio;
+    private BloomAndFlares bloom;
+    private GameObject[] waterObjs;
+    private GameObject skySphere;    
+    private GlobalFog fog;        
+    private Image memoryFlashObj;
+    private Water[] water;    
+    
+    // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
     {
         EventManager.inst.memoryPlaying = true;
@@ -59,6 +58,7 @@ public class Memory : MonoBehaviour
         EndMemory();
     }
 
+    // Skip memory coroutine
     IEnumerator SkipMemory()
     {
         memoryPlaying = false;
@@ -69,94 +69,9 @@ public class Memory : MonoBehaviour
         EndMemory();
     }
 
-    void StartMemory()
+    void Awake()
     {
-        if (waterObjs != null)
-        {
-            foreach (Water w in water)
-            {
-                w.WaterReflections(true);
-            }
-        }
-
-        if (myTerrain != null)
-        {
-            myTerrain.treeDistance = 150;
-        }
-        if (switchMe != null)
-        {
-            foreach (GameObject obj in switchMe)
-            {
-                if (obj.activeSelf)
-                {
-                    obj.SetActive(false);
-                }
-                else
-                {
-                    obj.SetActive(true);
-                }
-            }
-        }
-        if (nightTime)
-        {
-            sceneLighting.intensity = sceneLighting.intensity * 0.25f;
-            RenderSettings.fog = false;
-            skySphere.SetActive(false);
-        }
-
-        memoryFlashObj.CrossFadeAlpha(0, 1, false);
-    }
-
-    void EndMemory()
-    {
-        EventManager.inst.memoryPlaying = false;
-        bgmSource.Play();
-        bgmLerp = 1;
-        if (newBGM != null)
-        {
-            bgmSource.clip = newBGM;
-            newBGM = null;
-        }
-
-        if (waterObjs != null)
-        {
-            foreach (Water w in water)
-            {
-                w.WaterReflections(false);
-            }
-        }
-        if (myTerrain != null)
-        {
-            myTerrain.treeDistance = 100;
-        }
-        if (switchMe != null)
-        {
-            foreach (GameObject obj in switchMe)
-            {
-                if (obj.activeSelf)
-                {
-                    obj.SetActive(false);
-                }
-                else
-                {
-                    obj.SetActive(true);
-                }
-            }
-        }
-        if (nightTime)
-        {
-            sceneLighting.intensity = sceneLighting.intensity / 0.25f;
-            RenderSettings.fog = true;
-            skySphere.SetActive(true);
-        }
-
-
-        memoryFlashObj.CrossFadeAlpha(0, 1, false);
-    }
-
-    void Start()
-    {
-        //Get all water objects
+        // Get all water objects
         waterObjs = GameObject.FindGameObjectsWithTag("Water");
         if (waterObjs != null)
         {
@@ -167,7 +82,7 @@ public class Memory : MonoBehaviour
             }
         }
 
-        //Get stuff
+        // Getters and setters
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
         bgmMaxVol = bgmSource.volume;
@@ -180,23 +95,115 @@ public class Memory : MonoBehaviour
         startBloom = bloom.bloomIntensity;
         startFog = fog.heightDensity;
     }
-
-    void NightCheck(bool check)
-    {
-        nightTime = check;
-    }
-    
+  
 	void FixedUpdate ()
     {
         MemoryTimer();
-        MemoryTest(); // *** Comment this out of release builds ***
+        MemoryTest(); // *** Disable this for release builds ***
 
-        //Skip memory
+        // Skip memory
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             StopCoroutine("InstantiateMemFlash");
-            StartCoroutine("SkipMemory");
+            if (EventManager.inst.memoryPlaying)
+            {
+                StartCoroutine("SkipMemory");
+            }            
         }
+    }
+
+    // Begin memory
+    void StartMemory()
+    {
+        // Enable water reflection
+        if (waterObjs != null)
+        {
+            foreach (Water w in water)
+            {
+                w.WaterReflections(true);
+            }
+        }
+
+        // Increase tree density
+        if (myTerrain != null)
+        {
+            myTerrain.treeDistance = 150;
+        }
+        // Switch active/inactive objects
+        if (switchMe != null)
+        {
+            foreach (GameObject obj in switchMe)
+            {
+                if (obj.activeSelf)
+                {
+                    obj.SetActive(false);
+                }
+                else
+                {
+                    obj.SetActive(true);
+                }
+            }
+        }
+        // Change scene lighting if night time
+        if (nightTime)
+        {
+            sceneLighting.intensity = sceneLighting.intensity * 0.25f;
+            RenderSettings.fog = false;
+            skySphere.SetActive(false);
+        }
+
+        memoryFlashObj.CrossFadeAlpha(0, 1, false);
+    }
+
+    // End memory
+    void EndMemory()
+    {
+        EventManager.inst.memoryPlaying = false;
+        bgmSource.Play();
+        bgmLerp = 1;
+        if (newBGM != null)
+        {
+            bgmSource.clip = newBGM;
+            newBGM = null;
+        }
+
+        // Turn off water reflection
+        if (waterObjs != null)
+        {
+            foreach (Water w in water)
+            {
+                w.WaterReflections(false);
+            }
+        }
+        // Reduce tree density
+        if (myTerrain != null)
+        {
+            myTerrain.treeDistance = 100;
+        }
+        // Switch back active/inactive objects
+        if (switchMe != null)
+        {
+            foreach (GameObject obj in switchMe)
+            {
+                if (obj.activeSelf)
+                {
+                    obj.SetActive(false);
+                }
+                else
+                {
+                    obj.SetActive(true);
+                }
+            }
+        }
+        // Return the lightning to normal if night
+        if (nightTime)
+        {
+            sceneLighting.intensity = sceneLighting.intensity / 0.25f;
+            RenderSettings.fog = true;
+            skySphere.SetActive(true);
+        }
+
+        memoryFlashObj.CrossFadeAlpha(0, 1, false);
     }
 
     // Hack to test memories
@@ -217,7 +224,6 @@ public class Memory : MonoBehaviour
             MemoryLerp();
         }
 
-        // Exit memory
         if (memoryLength < 0 && bloom.bloomIntensity > startBloom)
         {
             ExitMemory();
@@ -226,19 +232,21 @@ public class Memory : MonoBehaviour
 
     // Sendmessage receiver to externally activate a memory
     // The float will determine the length of the memory
+    // TriggerManager script will activate this function
     void EnterMemory (float duration)
     {
         flashDelay = duration;
-        StartCoroutine("InstantiateMemFlash");
-        
+        StartCoroutine("InstantiateMemFlash");        
         startFog = fog.heightDensity;
 
         if (!extraDiminish)
         {
             memoryFog = fog.heightDensity * fogDiminishAmount;
-        } else
+        }
+        
+        else
         {
-            memoryFog = fog.heightDensity * (fogDiminishAmount * 1.5f) ;
+            memoryFog = fog.heightDensity * (fogDiminishAmount * 1.5f);
             extraDiminish = false;
         }
 
@@ -248,10 +256,7 @@ public class Memory : MonoBehaviour
         memoryTotalLength = duration;
     }
 
-	void SetSwitches(GameObject[] switchObjects){
-		switchMe = switchObjects;
-	}
-
+    // Transition fog and bloom density
     void MemoryLerp()
     {
         if (fadeTimer < 1)
@@ -287,6 +292,17 @@ public class Memory : MonoBehaviour
         }
     }
 
+    #region Simple Functions
+    void SetSwitches(GameObject[] switchObjects)
+    {
+        switchMe = switchObjects;
+    }
+
+    void NightCheck(bool check)
+    {
+        nightTime = check;
+    }
+
     void SetSwitch(GameObject[] switches)
     {
         switchMe = switches;
@@ -301,6 +317,8 @@ public class Memory : MonoBehaviour
     {
         extraDiminish = true;
     }
+    #endregion
 }
+
 
 

@@ -5,13 +5,13 @@ using System.Collections;
 
 public class FirstEncounter : MonoBehaviour
 {
-    public Transform cameraLookAtTarget;
-    private bool triggered;
+    public Transform cameraLookAtTarget;    
     public float encounterDuration;
     public float spawnObjectsDelay;
     public AudioSource audio;
     public GameObject[] setActiveObjects;
-    public Transform playersTrans;
+    private bool triggered;
+    private Transform playersTrans;
 
     void Awake()
     {
