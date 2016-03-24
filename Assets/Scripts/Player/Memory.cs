@@ -63,7 +63,6 @@ public class Memory : MonoBehaviour
     // Skip memory coroutine
     IEnumerator SkipMemory()
     {
-        EventManager.inst.memoryPlaying = false;
         memTimer = 2;
         dialogueAudio.Stop();
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
@@ -177,6 +176,7 @@ public class Memory : MonoBehaviour
     // End memory
     void EndMemory()
     {
+        EventManager.inst.memoryPlaying = false;
         disableControls = false;
         EventManager.inst.memoryLookScalar = 0.05f;
         EventManager.inst.memoryMoveScalar = 0.25f;
@@ -274,7 +274,7 @@ public class Memory : MonoBehaviour
     }
 
     // Exit memory
-    void ExitMemory()
+    void FadeOutMemory()
     {
         fadeTimer -= Time.deltaTime / fadeTime;
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
@@ -303,7 +303,7 @@ public class Memory : MonoBehaviour
 
         if (memTimer < 0 && bloom.bloomIntensity > startBloom)
         {
-            ExitMemory();
+            FadeOutMemory();
         }
     }
 
