@@ -8,9 +8,6 @@ using UnityStandardAssets.Water;
 
 public class Memory : MonoBehaviour
 {
-    [Header("Memory Options")]
-    public bool disableControls;
-
     [Header("Visual Effects")]
     public bool nightTime = false;
     public float fadeTime = 4f;
@@ -26,17 +23,17 @@ public class Memory : MonoBehaviour
     public Light sceneLighting;
 
     // Protected variables
+    private bool disableControls;
     private float startBloom;
     private float startFog;
     private bool extraDiminish = false;
     private float fadeTimer;
-    private float memoryTotalLength = 0f;
     private float memoryLength = 0f;
-    private bool memoryPlaying = false;
+    private float memTimer = 0f;
     private float bgmMaxVol;
     private float bgmLerp = 0;
     private float delayTimer;
-    private bool memorySkip;
+    private bool memorySkippable;
 
     // Components
     private AudioClip newBGM;
@@ -52,7 +49,7 @@ public class Memory : MonoBehaviour
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
     {
-        memorySkip = false;
+        memorySkippable = false;
         EventManager.inst.memoryPlaying = true;
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2f);
@@ -65,9 +62,9 @@ public class Memory : MonoBehaviour
 
     // Skip memory coroutine
     IEnumerator SkipMemory()
-    {        
-        memoryPlaying = false;
-        memoryLength = 2;
+    {
+        EventManager.inst.memoryPlaying = false;
+        memTimer = 2;
         dialogueAudio.Stop();
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2);
@@ -101,17 +98,20 @@ public class Memory : MonoBehaviour
         startFog = fog.heightDensity;
     }
 
+    void Update()
+    {
+        SkipMemoryCheck();
+    }
+
 	void FixedUpdate()
     {
-        MemoryTimer();
-        MemoryTest(); // *** Disable this for release builds ***
-        SkipMemoryCheck();
+        MemoryTimers();        
     }
 
     // Skip memory
     void SkipMemoryCheck()
     {
-        if (EventManager.inst.memoryPlaying && memorySkip)
+        if (EventManager.inst.memoryPlaying && memorySkippable)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -124,7 +124,7 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
-        memorySkip = true;
+        memorySkippable = true;
         // Disable controls toggle
         if (disableControls)
         {
@@ -234,30 +234,6 @@ public class Memory : MonoBehaviour
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
     }
 
-    // Hack to test memories
-    void MemoryTest()
-    {        
-        if (Input.GetKeyDown(KeyCode.M) && EventManager.inst.developerMode)
-        {
-            print("Memory Triggered");
-            memoryPlaying = true;
-            fadeTimer = 0;
-            memoryLength = 5f;
-            flashDelay = memoryLength;
-            StartCoroutine("InstantiateMemFlash");
-        }
-
-        if (memoryLength > 0)
-        {
-            MemoryLerp();
-        }
-
-        if (memoryLength < 0 && bloom.bloomIntensity > startBloom)
-        {
-            ExitMemory();
-        }
-    }
-
     // Sendmessage receiver to externally activate a memory
     // The float will determine the length of the memory
     // TriggerManager script will activate this function
@@ -278,10 +254,10 @@ public class Memory : MonoBehaviour
             extraDiminish = false;
         }
 
-        memoryPlaying = true;        
+        EventManager.inst.memoryPlaying = true;
         fadeTimer = 0;
+        memTimer = duration;
         memoryLength = duration;
-        memoryTotalLength = duration;
     }
 
     // Transition fog and bloom density
@@ -291,7 +267,7 @@ public class Memory : MonoBehaviour
         {
             fadeTimer += Time.deltaTime / fadeTime;
         }
-        memoryLength -= Time.deltaTime;
+        memTimer -= Time.deltaTime;
 
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
@@ -305,18 +281,29 @@ public class Memory : MonoBehaviour
         fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
     }
 
-    // Once the delay timer reaches the value of the memory length, the script will end
-    void MemoryTimer()
+    // Increment timers
+    void MemoryTimers()
     {
-        if (memoryPlaying)
+        if (EventManager.inst.memoryPlaying)
         {
             delayTimer += Time.fixedDeltaTime;
         }
 
-        if (delayTimer > memoryTotalLength)
+        // Once the delay timer reaches the value of the memory length, the script will end
+        if (delayTimer > memoryLength)
         {
             delayTimer = 0;
-            memoryPlaying = false;
+            EventManager.inst.memoryPlaying = true;
+        }
+
+        if (memTimer > 0)
+        {
+            MemoryLerp();
+        }
+
+        if (memTimer < 0 && bloom.bloomIntensity > startBloom)
+        {
+            ExitMemory();
         }
     }
 

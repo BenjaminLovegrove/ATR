@@ -2535,15 +2535,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 0
+  disableControls: 0
+  nightTime: 0
+  extraDiminish: 0
   memoryEventNumber: 0
+  objFadeTimer: 0
   memoryDialogue: []
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects: []
-  nightTime: 0
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 0
   fogChange: 1
   targFog: 1.5
   enemyTrigger: 0
@@ -6783,7 +6783,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  disableControls: 0
+  nightTime: 1
+  extraDiminish: 0
   memoryEventNumber: 1
+  objFadeTimer: 0
   memoryDialogue:
   - {fileID: 8300000, guid: 79f2bef4f18909942b12f4d236ae6c00, type: 3}
   - {fileID: 8300000, guid: c1e441e7865dd164e83a1c7e502e0b33, type: 3}
@@ -6791,7 +6795,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8006568d2248e724a876c34a9b11b878, type: 3}
   - {fileID: 8300000, guid: d14cd4e66d8d97642a8918dbc979f882, type: 3}
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects:
   - {fileID: 816951132}
   - {fileID: 737794293}
@@ -6809,10 +6812,7 @@ MonoBehaviour:
   - {fileID: 1047877719}
   - {fileID: 1743402367}
   - {fileID: 1763514969}
-  nightTime: 1
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -9469,7 +9469,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  disableControls: 0
+  nightTime: 0
+  extraDiminish: 1
   memoryEventNumber: 4
+  objFadeTimer: 0
   memoryDialogue:
   - {fileID: 8300000, guid: 79f2bef4f18909942b12f4d236ae6c00, type: 3}
   - {fileID: 8300000, guid: c1e441e7865dd164e83a1c7e502e0b33, type: 3}
@@ -9477,17 +9481,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8006568d2248e724a876c34a9b11b878, type: 3}
   - {fileID: 8300000, guid: d14cd4e66d8d97642a8918dbc979f882, type: 3}
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects:
   - {fileID: 862943378}
   - {fileID: 547468943}
   - {fileID: 1342427171}
   - {fileID: 167860278}
   - {fileID: 281664267}
-  nightTime: 0
   newBGM: {fileID: 8300000, guid: 6734743d99e18f441b66d3b921c01609, type: 3}
-  extraDiminish: 1
-  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -11190,15 +11190,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 0
+  disableControls: 0
+  nightTime: 0
+  extraDiminish: 0
   memoryEventNumber: 0
+  objFadeTimer: 0
   memoryDialogue: []
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects: []
-  nightTime: 0
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -13176,15 +13176,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 0
+  disableControls: 0
+  nightTime: 0
+  extraDiminish: 0
   memoryEventNumber: 0
+  objFadeTimer: 0
   memoryDialogue: []
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects: []
-  nightTime: 0
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -13680,15 +13680,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 0
+  disableControls: 0
+  nightTime: 0
+  extraDiminish: 0
   memoryEventNumber: 0
+  objFadeTimer: 0
   memoryDialogue: []
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects: []
-  nightTime: 0
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 1
@@ -15095,7 +15095,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  disableControls: 1
+  nightTime: 0
+  extraDiminish: 0
   memoryEventNumber: 0
+  objFadeTimer: 0
   memoryDialogue:
   - {fileID: 8300000, guid: 79f2bef4f18909942b12f4d236ae6c00, type: 3}
   - {fileID: 8300000, guid: c1e441e7865dd164e83a1c7e502e0b33, type: 3}
@@ -15103,16 +15107,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8006568d2248e724a876c34a9b11b878, type: 3}
   - {fileID: 8300000, guid: d14cd4e66d8d97642a8918dbc979f882, type: 3}
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects:
   - {fileID: 126268563}
   - {fileID: 1012939470}
   - {fileID: 140618338}
   - {fileID: 1105070033}
-  nightTime: 0
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 1
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -15883,6 +15883,10 @@ Prefab:
       propertyPath: fadeToBlack
       value: 
       objectReference: {fileID: 1380216572}
+    - target: {fileID: 11478530, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
+      propertyPath: controlsDisabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0eb990b813954524caf87842d836e3b4, type: 2}
   m_IsPrefabParent: 0
@@ -16172,7 +16176,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  disableControls: 0
+  nightTime: 0
+  extraDiminish: 0
   memoryEventNumber: 3
+  objFadeTimer: 0
   memoryDialogue:
   - {fileID: 8300000, guid: 79f2bef4f18909942b12f4d236ae6c00, type: 3}
   - {fileID: 8300000, guid: c1e441e7865dd164e83a1c7e502e0b33, type: 3}
@@ -16180,7 +16188,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8006568d2248e724a876c34a9b11b878, type: 3}
   - {fileID: 8300000, guid: d14cd4e66d8d97642a8918dbc979f882, type: 3}
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects:
   - {fileID: 1693713207}
   - {fileID: 862943378}
@@ -16188,10 +16195,7 @@ MonoBehaviour:
   - {fileID: 1342427171}
   - {fileID: 167860278}
   - {fileID: 281664267}
-  nightTime: 0
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
@@ -17854,7 +17858,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memory: 1
+  disableControls: 0
+  nightTime: 0
+  extraDiminish: 0
   memoryEventNumber: 2
+  objFadeTimer: 0
   memoryDialogue:
   - {fileID: 8300000, guid: 79f2bef4f18909942b12f4d236ae6c00, type: 3}
   - {fileID: 8300000, guid: c1e441e7865dd164e83a1c7e502e0b33, type: 3}
@@ -17862,12 +17870,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8006568d2248e724a876c34a9b11b878, type: 3}
   - {fileID: 8300000, guid: d14cd4e66d8d97642a8918dbc979f882, type: 3}
   memoryObj: {fileID: 0}
-  objFadeTimer: 0
   switchObjects: []
-  nightTime: 0
   newBGM: {fileID: 0}
-  extraDiminish: 0
-  disableControls: 0
   fogChange: 0
   targFog: 0
   enemyTrigger: 0
