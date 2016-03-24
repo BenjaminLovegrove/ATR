@@ -182,15 +182,15 @@ public class Memory : MonoBehaviour
         EventManager.inst.memoryMoveScalar = 0.25f;
         EventManager.inst.memoryPlaying = false;
 
-        // Resume music
-        bgmSource.Play();
-        bgmLerp = 1;
-
         if (newBGM != null)
         {
             bgmSource.clip = newBGM;
             newBGM = null;
         }
+
+        // Resume music
+        bgmSource.Play();
+        bgmLerp = 1;
 
         // Turn off water reflection
         if (waterObjs != null)
@@ -239,6 +239,7 @@ public class Memory : MonoBehaviour
     // TriggerManager script will activate this function
     void EnterMemory (float duration)
     {
+        bgmSource.Pause();
         flashDelay = duration;
         StartCoroutine("InstantiateMemFlash");        
         startFog = fog.heightDensity;

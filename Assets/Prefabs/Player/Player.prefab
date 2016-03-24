@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 443852}
   - 82: {fileID: 8284662}
+  - 114: {fileID: 11490584}
   m_Layer: 10
   m_Name: BackGroundMusicSource
   m_TagString: Untagged
@@ -672,7 +673,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bac6dfdc1c63d8546bea65bbbaa10ac0, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: .349999994
   m_Pitch: 1
   Loop: 1
@@ -1010,6 +1011,18 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b99b699b7f0056341bc1109713dc2868, type: 3}
   crouchSFX: {fileID: 8300000, guid: b9e4af86d38f70d4dba078211fde1b60, type: 3}
   standSFX: {fileID: 8300000, guid: fd7050fc403430642819c288cdc10a52, type: 3}
+--- !u!114 &11490584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2014f026444c3a6428991287ad1e4e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audio: {fileID: 8284662}
 --- !u!114 &11491664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1021,14 +1034,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ee98743366d6d41af393b29782c436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTerrain: {fileID: 0}
-  memoryBloom: 1
-  fogDiminishAmount: .119999997
+  nightTime: 0
   fadeTime: 2
-  switchMe: []
-  memoryDialogue: []
-  memoryFlashObj: {fileID: 0}
   flashDelay: 0
+  memoryFog: 0
+  fogDiminishAmount: .119999997
+  memoryBloom: 1
+  memoryDialogue: []
+  switchMe: []
+  myTerrain: {fileID: 0}
+  sceneLighting: {fileID: 0}
 --- !u!124 &12457054
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1091,6 +1106,14 @@ Prefab:
       propertyPath: m_Volume
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 8284662}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100828}
