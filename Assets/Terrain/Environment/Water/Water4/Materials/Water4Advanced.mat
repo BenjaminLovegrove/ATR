@@ -162,10 +162,6 @@ Material:
         second: 313.218384
       data:
         first:
-          name: _InvFade
-        second: .628782988
-      data:
-        first:
           name: _WaveScale
         second: .0462896563
       data:
@@ -176,6 +172,14 @@ Material:
         first:
           name: _RefrDistort
         second: 1.43932855
+      data:
+        first:
+          name: _InvFade
+        second: .628782988
+      data:
+        first:
+          name: _Speed
+        second: .413793087
       data:
         first:
           name: _FresnelScale
@@ -228,10 +232,6 @@ Material:
         first:
           name: _WaveCapsAmount
         second: .182758614
-      data:
-        first:
-          name: _Speed
-        second: .413793087
       data:
         first:
           name: _DisplacementTiling
@@ -291,16 +291,12 @@ Material:
         second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
-          name: _SpecularColor
-        second: {r: .917910457, g: .917910457, b: .917910457, a: 1}
+          name: _WaveScale4
+        second: {r: .100000001, g: .100000001, b: .00999999978, a: .00999999978}
       data:
         first:
           name: _WaveOffset
         second: {r: 1, g: 1, b: -.00999999978, a: -.00999999978}
-      data:
-        first:
-          name: _WaveScale4
-        second: {r: .100000001, g: .100000001, b: .00999999978, a: .00999999978}
       data:
         first:
           name: _DistortParams
@@ -335,12 +331,12 @@ Material:
         second: {r: .579416394, g: .684923828, b: .76119405, a: .431372553}
       data:
         first:
-          name: _WorldLightDir
-        second: {r: -.0303751379, g: -.201390833, b: -.979039967, a: 0}
+          name: _SpecularColor
+        second: {r: .917910457, g: .917910457, b: .917910457, a: 1}
       data:
         first:
-          name: _Foam
-        second: {r: .426666677, g: .486666679, b: 0, a: 0}
+          name: _WorldLightDir
+        second: {r: -.0303751379, g: -.201390833, b: -.979039967, a: 0}
       data:
         first:
           name: _GAmplitude
@@ -367,20 +363,24 @@ Material:
         second: {r: .70338881, g: -.679999888, b: .717573524, a: -.200000003}
       data:
         first:
-          name: _DepthColor
-        second: {r: .0275116973, g: .141791046, b: .132267773, a: .4627451}
-      data:
-        first:
-          name: _RefractionFog
-        second: {r: .505434752, g: .505434752, b: .505434752, a: .5}
-      data:
-        first:
           name: _Displacement
         second: {r: 6.6371665, g: 20.3539829, b: -1, a: -.681415975}
       data:
         first:
           name: _ShoreTiling
         second: {r: 1, g: 1, b: .100000001, a: .100000001}
+      data:
+        first:
+          name: _Foam
+        second: {r: .426666677, g: .486666679, b: 0, a: 0}
+      data:
+        first:
+          name: _DepthColor
+        second: {r: .0275116973, g: .141791046, b: .132267773, a: .4627451}
+      data:
+        first:
+          name: _RefractionFog
+        second: {r: .505434752, g: .505434752, b: .505434752, a: .5}
       data:
         first:
           name: _DisplacementXz

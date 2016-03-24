@@ -68,15 +68,15 @@ Material:
       data:
         first:
           name: _WaveScale
-        second: .063000001
+        second: .150000006
       data:
         first:
           name: _ReflDistort
-        second: .439999998
+        second: 1.051
       data:
         first:
           name: _RefrDistort
-        second: .400000006
+        second: 1.5
     m_Colors:
       data:
         first:
