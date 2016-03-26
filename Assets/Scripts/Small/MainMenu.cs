@@ -28,7 +28,6 @@ public class MainMenu : MonoBehaviour
     public Transform mainMenuPos;
     public Transform optionMenuPos;
     public Transform playPos;
-    public float cameraPanSpeed;
     private float cameraPanIncrement;
 
     public Slider volSlider;
@@ -72,28 +71,28 @@ public class MainMenu : MonoBehaviour
     IEnumerator OptionsCoRoutine()
     {
         HideMenuButtons();
-        yield return new WaitForSeconds(cameraPanSpeed / 100);        
+        yield return new WaitForSeconds(1.4f);        
         ShowOptionsButtons();
     }
 
     IEnumerator MenuCoRoutine()
     {
         HideOptionsButtons();
-        yield return new WaitForSeconds(cameraPanSpeed / 100);
+        yield return new WaitForSeconds(1.4f);
         ShowMenuButtons();
     }
 
     IEnumerator PlayCoRoutine()
     {
         HideMenuButtons();
-        yield return new WaitForSeconds(cameraPanSpeed / 100);
+        yield return new WaitForSeconds(1.4f);
         ShowPlayButtons();
     }
 
     IEnumerator CancelCoRoutine()
     {
         HidePlayButtons();
-        yield return new WaitForSeconds(cameraPanSpeed / 100);
+        yield return new WaitForSeconds(1.4f);
         ShowMenuButtons();
     }
 
@@ -120,7 +119,7 @@ public class MainMenu : MonoBehaviour
     }
 
     void FixedUpdate()
-    {        
+    {
         UpdateUIvalues();
         MenuTransitioning();
     }
@@ -248,26 +247,26 @@ public class MainMenu : MonoBehaviour
 
     void MenuTransitioning()
     {
-        // Increment camera movement between target positions
-        cameraPanIncrement += Time.deltaTime * cameraPanSpeed;
+        // Increment camera transition value
+        cameraPanIncrement += 0.015f;
 
         // Move the camera between target locations
         switch (menuToggle)
         {
             case MenuToggle.MAIN:
-                currentCamPos.position = Vector3.MoveTowards(optionMenuPos.position, mainMenuPos.position, cameraPanIncrement);
+                currentCamPos.position = Vector3.Lerp(optionMenuPos.position, mainMenuPos.position, cameraPanIncrement);
                 break;
 
             case MenuToggle.OPTIONS:
-                currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, optionMenuPos.position, cameraPanIncrement);
+                currentCamPos.position = Vector3.Lerp(mainMenuPos.position, optionMenuPos.position, cameraPanIncrement);
                 break;
 
             case MenuToggle.PLAY:
-                currentCamPos.position = Vector3.MoveTowards(mainMenuPos.position, playPos.position, cameraPanIncrement);
+                currentCamPos.position = Vector3.Lerp(mainMenuPos.position, playPos.position, cameraPanIncrement);
                 break;
 
             case MenuToggle.CANCEL:
-                currentCamPos.position = Vector3.MoveTowards(playPos.position, mainMenuPos.position, cameraPanIncrement);
+                currentCamPos.position = Vector3.Lerp(playPos.position, mainMenuPos.position, cameraPanIncrement);
                 break;
         } 
     }
@@ -342,6 +341,7 @@ public class MainMenu : MonoBehaviour
         if (screenResX != screenResXtemp || screenResY != screenResYtemp || fullScreen != fullScreenTemp)
         {
             Screen.SetResolution(screenResXtemp, screenResYtemp, fullScreenTemp);
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         // Reset audio config if there are any changes
