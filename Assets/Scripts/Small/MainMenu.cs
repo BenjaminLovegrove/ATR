@@ -341,7 +341,8 @@ public class MainMenu : MonoBehaviour
         if (screenResX != screenResXtemp || screenResY != screenResYtemp || fullScreen != fullScreenTemp)
         {
             Screen.SetResolution(screenResXtemp, screenResYtemp, fullScreenTemp);
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
+            Invoke("CursorConfine", 0.05f);
         }
 
         // Reset audio config if there are any changes
@@ -453,8 +454,14 @@ public class MainMenu : MonoBehaviour
         speakerConfig.speakerMode = speakerConfigList[val.value];
     }
 
+
+    #region simple functions
+    void CursorConfine()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+    }
+
     // Functions to show/hude UI groups
-    #region simple UI functions
     void ShowOptionsButtons()
     {
         for (int i = 0; i < optionMenuUI.Length; i++)
