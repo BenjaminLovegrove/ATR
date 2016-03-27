@@ -7,6 +7,8 @@ public class PauseBGM : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
+
         if (EventManager.inst.currentLevel == "City Outskirts")
         {
             audio.Pause();

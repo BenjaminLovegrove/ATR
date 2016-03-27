@@ -72,28 +72,28 @@ public class MainMenu : MonoBehaviour
     IEnumerator OptionsCoRoutine()
     {
         HideMenuButtons();
-        yield return new WaitForSeconds(1.4f);        
+        yield return new WaitForSeconds(1.1f);        
         ShowOptionsButtons();
     }
 
     IEnumerator MenuCoRoutine()
     {
         HideOptionsButtons();
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(1.1f);
         ShowMenuButtons();
     }
 
     IEnumerator PlayCoRoutine()
     {
         HideMenuButtons();
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(1.1f);
         ShowPlayButtons();
     }
 
     IEnumerator CancelCoRoutine()
     {
         HidePlayButtons();
-        yield return new WaitForSeconds(1.4f);
+        yield return new WaitForSeconds(1.1f);
         ShowMenuButtons();
     }
 
@@ -258,7 +258,7 @@ public class MainMenu : MonoBehaviour
     void MenuTransitioning()
     {
         // Increment camera transition value
-        cameraPanIncrement += 0.015f;
+        cameraPanIncrement += 0.020f;
 
         // Move the camera between target locations
         switch (menuToggle)
