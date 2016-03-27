@@ -5,7 +5,7 @@ public class PauseBGM : MonoBehaviour
 {
     public AudioSource audio;
 
-    void Awake()
+    void Start()
     {
         if (EventManager.inst.currentLevel == "City Outskirts")
         {

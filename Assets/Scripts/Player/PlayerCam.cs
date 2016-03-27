@@ -44,11 +44,14 @@ public class PlayerCam : MonoBehaviour
         currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
     }
 
-	void FixedUpdate ()
-	{
+    void Update()
+    {
         sensitivityX = EventManager.inst.lookSensitivity;
         sensitivityY = EventManager.inst.lookSensitivity;
+    }
 
+	void FixedUpdate ()
+	{
         if (EventManager.inst.memoryPlaying)
         {
             MemoryCam();

@@ -15,9 +15,9 @@ public class MainMenu : MonoBehaviour
 
     public MenuToggle menuToggle;
 
-    public List<int> screenResXlist = new List<int>();
-    public List<int> screenResYlist = new List<int>();
-    public List<AudioSpeakerMode> speakerConfigList = new List<AudioSpeakerMode>();
+    private List<int> screenResXlist = new List<int>();
+    private List<int> screenResYlist = new List<int>();
+    private List<AudioSpeakerMode> speakerConfigList = new List<AudioSpeakerMode>();
 
     public GameObject loadingScreenUI;
     public GameObject[] mainMenuUI;
@@ -111,17 +111,16 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         InitialiseSettings();
-
-        // Assign listeners for drop down UI menus
-        screenDropdown.onValueChanged.AddListener(delegate { ScreenResListener(screenDropdown); });
-        speakerDropdown.onValueChanged.AddListener(delegate { SpeakerConfigListener(speakerDropdown); });
         LoadSettings();
-        levelSelect = "City Outskirts";
+    }
+
+    void Update()
+    {
+        UpdateUIvalues();
     }
 
     void FixedUpdate()
     {
-        UpdateUIvalues();
         MenuTransitioning();
     }
 
@@ -172,15 +171,11 @@ public class MainMenu : MonoBehaviour
         EventManager.inst.currentLevel = levelSelect;
         EventManager.inst.currentCheckPoint = 0;
         StartCoroutine("LoadScreen");
-        screenDropdown.onValueChanged.RemoveAllListeners();
-        speakerDropdown.onValueChanged.RemoveAllListeners();
     }
 
     // Credits Button
     public void CreditsButton()
     {
-        screenDropdown.onValueChanged.RemoveAllListeners();
-        speakerDropdown.onValueChanged.RemoveAllListeners();
         Application.LoadLevel("Credits");
     }
 
@@ -375,6 +370,12 @@ public class MainMenu : MonoBehaviour
 
     void InitialiseSettings()
     {
+        levelSelect = "City Outskirts";
+
+        // Assign listeners for drop down UI menus
+        screenDropdown.onValueChanged.AddListener(delegate { ScreenResListener(screenDropdown); });
+        speakerDropdown.onValueChanged.AddListener(delegate { SpeakerConfigListener(speakerDropdown); });
+
         // Populate screen X resolutions list
         screenResXlist.Add(1024);
         screenResXlist.Add(1280);
@@ -523,6 +524,13 @@ public class MainMenu : MonoBehaviour
         {
             playMenuUI[i].SetActive(false);
         }
+    }
+
+    void OnDestroy()
+    {
+        // Remove listeners
+        screenDropdown.onValueChanged.RemoveAllListeners();
+        speakerDropdown.onValueChanged.RemoveAllListeners();
     }
     #endregion
 }

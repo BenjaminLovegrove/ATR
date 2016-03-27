@@ -72,7 +72,7 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("FadeInCoRoutine"); // Uncomment this when playing a level directly in the editor
+        StartCoroutine("FadeInCoRoutine");
 
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
@@ -83,6 +83,8 @@ public class EventManager : MonoBehaviour
 
     void Update()
     {
+        AudioListener.volume = masterVolume;
+
         if (playerDead)
         {
             controlsDisabled = true;
@@ -100,8 +102,6 @@ public class EventManager : MonoBehaviour
 	void FixedUpdate ()
 	{
         LevelResetCheck();
-
-        AudioListener.volume = masterVolume;
 	}
 
     // Check for external level reset
