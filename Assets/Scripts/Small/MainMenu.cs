@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
     public GameObject[] mainMenuUI;
     public GameObject[] optionMenuUI;
     public GameObject[] playMenuUI;
+    public GameObject confirmQuitUI;
 
     public Transform currentCamPos;
     public Transform mainMenuPos;
@@ -241,7 +242,21 @@ public class MainMenu : MonoBehaviour
     // Exit Button
     public void ExitButton()
     {
+        HideMenuButtons();
+        confirmQuitUI.SetActive(true);        
+    }
+
+    // Confirm Quit Yes
+    public void QuitYes()
+    {
         Application.Quit();
+    }
+
+    // Confirm Quit No
+    public void QuitNo()
+    {
+        confirmQuitUI.SetActive(false);
+        ShowMenuButtons();
     }
     #endregion
 
