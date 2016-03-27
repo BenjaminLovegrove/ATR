@@ -13,7 +13,6 @@ public class EventManager : MonoBehaviour
     public Transform enemyKillPos;
     public Transform[] playerCheckPoints;
 	public GameObject playerObj;
-    public GameObject pauseMenuButtons;    
 
     [Header("Player States")]
 	public bool playerCrouch;
@@ -103,11 +102,6 @@ public class EventManager : MonoBehaviour
         LevelResetCheck();
 
         AudioListener.volume = masterVolume;
-
-        if (!gamePaused && pauseMenuButtons != null)
-        {
-            pauseMenuButtons.SetActive(false);
-        }
 	}
 
     // Check for external level reset
@@ -151,7 +145,6 @@ public class EventManager : MonoBehaviour
         resetLevel = false;
         playerTrans = GameObject.Find("Player").GetComponent<Transform>();
         playerObj = GameObject.Find("Player");
-        pauseMenuButtons = GameObject.FindWithTag("PauseMenuObj");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
     }
 }

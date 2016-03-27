@@ -85,7 +85,6 @@ public class Player : MonoBehaviour
         }
         else walkSpeed = 3f * hackMoveSpeed;
 
-        PauseMenu();
         // *** Disable this for release builds ***
         Hacks();
     }
@@ -383,19 +382,6 @@ public class Player : MonoBehaviour
 		// for the character to reach at the apex.
 		return Mathf.Sqrt(2 * jumpHeight * gravity);
 	}
-
-    // In game pause function
-    void PauseMenu()
-    {       
-        if (Input.GetKey(KeyCode.Escape) && !EventManager.inst.gamePaused && !EventManager.inst.memoryPlaying)
-        {
-            print("Game paused");
-            Cursor.visible = true;
-            Time.timeScale = 0;
-            EventManager.inst.gamePaused = true;
-            EventManager.inst.pauseMenuButtons.SetActive(true);
-        }
-    }
 
     void OnLevelWasLoaded()
     {
