@@ -52,7 +52,7 @@ public class TriggerManager : MonoBehaviour
     [Header("End Level")]
     public bool endLevel;
     public LevelSelect levelSelect;
-    public GameObject loadScreenUI;
+    public GameObject loadScreenUI; // There is a load screen prefab
     private string setLevel;
 
     // Load next scene and display load screen UI
@@ -71,6 +71,7 @@ public class TriggerManager : MonoBehaviour
     {
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
+        //loadScreenUI = GameObject.Find("LoadScreenUI");
 
         // Assign string value for each level
         switch (levelSelect)
