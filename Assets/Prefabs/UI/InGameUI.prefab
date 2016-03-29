@@ -80,7 +80,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &105474
 GameObject:
   m_ObjectHideFlags: 1
@@ -2327,12 +2327,12 @@ MonoBehaviour:
   optionsMenuUI: {fileID: 131778}
   confirmExitUI: {fileID: 115876}
   confirmMainMenuUI: {fileID: 163450}
+  backGround: {fileID: 104860}
   volSlider: {fileID: 11475254}
   sensSlider: {fileID: 11437032}
   invertToggle: {fileID: 11448048}
   fullscreenToggle: {fileID: 11490574}
   screenDropdown: {fileID: 11497560}
-  pauseBackGround: {fileID: 11402194}
 --- !u!114 &11437032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5311,7 +5311,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.05175781e-05, y: -1.52587891e-05}
+  m_AnchoredPosition: {x: -9.15527344e-05, y: -4.57763672e-05}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22474772

@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject optionsMenuUI;
     public GameObject confirmExitUI;
     public GameObject confirmMainMenuUI;
+    public GameObject backGround;
 
     public Slider volSlider;
     public Slider sensSlider;
@@ -20,7 +21,6 @@ public class PauseMenu : MonoBehaviour
     public Toggle fullscreenToggle;
 
     public Dropdown screenDropdown;
-    public RawImage pauseBackGround;
 
     private int screenResY;
     private int screenResX;
@@ -43,7 +43,7 @@ public class PauseMenu : MonoBehaviour
     // Resume
     public void ResumeButton()
     {
-        pauseBackGround.CrossFadeAlpha(0, 0.3f, false);
+        backGround.SetActive(false);
         pauseMenuUI.SetActive(false);
         Cursor.visible = false;
         Time.timeScale = 1;
@@ -142,7 +142,6 @@ public class PauseMenu : MonoBehaviour
 
     void Awake()
     {
-        pauseBackGround.CrossFadeAlpha(0, 0, false);
         InitialiseSettings();
         LoadSettings();
     }
@@ -315,7 +314,7 @@ public class PauseMenu : MonoBehaviour
         {
             if (!EventManager.inst.gamePaused && !EventManager.inst.memoryPlaying)
             {
-                pauseBackGround.CrossFadeAlpha(100, 1, false);
+                backGround.SetActive(true);
                 Cursor.visible = true;
                 Time.timeScale = 0;
                 EventManager.inst.gamePaused = true;
