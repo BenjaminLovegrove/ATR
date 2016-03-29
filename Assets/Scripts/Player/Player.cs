@@ -163,6 +163,12 @@ public class Player : MonoBehaviour
     // Player movement on horizontal and vertical axis through player inputs
     void PlayerMovement()
     {
+        // Normalise strafe movespeed
+        if ((playerRigid.velocity.magnitude) > walkSpeed)
+        {
+            playerRigid.velocity = playerRigid.velocity.normalized * walkSpeed;
+        }
+
         // Raycast downward from the player to see if touching the ground
         RaycastHit hit;
 
