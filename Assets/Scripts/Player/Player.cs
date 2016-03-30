@@ -30,8 +30,7 @@ public class Player : MonoBehaviour
     // SFX
     private GameObject[] enemyList;
     private float backgroundMaxVol;
-    private int footStepCount = 2;
-    private float tempWalkSpeed;
+    private int footStepCount;
     private float hackMoveSpeed;
     private float footStepTimer;
     private int currentWalkVal;
@@ -65,7 +64,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         enemyList = GameObject.FindGameObjectsWithTag("Enemy");
-        tempWalkSpeed = walkSpeed * EventManager.inst.memoryMoveScalar;
     }
 
     // Jump co-routine
@@ -78,12 +76,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // Scale walk speed during a memory
-        if (EventManager.inst.memoryPlaying)
-        {
-            walkSpeed = 3 * EventManager.inst.memoryMoveScalar; // *** Hard coded move speed variable ***
-        }
-        else walkSpeed = 3f * hackMoveSpeed;
+        walkSpeed = 3 * EventManager.inst.memoryMoveScalar * hackMoveSpeed;
 
         // *** Disable this for release builds ***
         Hacks();

@@ -75,6 +75,10 @@ public class Memory : MonoBehaviour
 
     void Awake()
     {
+        // Apply regular controls
+        EventManager.inst.memoryLookScalar = 1;
+        EventManager.inst.memoryMoveScalar = 1;
+
         // Get all water objects
         waterObjs = GameObject.FindGameObjectsWithTag("Water");
         if (waterObjs != null)
@@ -127,11 +131,19 @@ public class Memory : MonoBehaviour
     void StartMemory()
     {
         memorySkippable = true;
+        
         // Disable controls toggle
         if (disableControls)
         {
-            EventManager.inst.memoryLookScalar = 0; // This is less than ideal, but over writes occur in EventManager
+            EventManager.inst.memoryLookScalar = 0;
             EventManager.inst.memoryMoveScalar = 0;
+        }
+
+        // Apply scalar if controls are to not be fully disabled
+        if (!disableControls)
+        {
+            EventManager.inst.memoryLookScalar = 0.05f;
+            EventManager.inst.memoryMoveScalar = 0.25f;
         }
 
         // Enable water reflection
@@ -186,10 +198,12 @@ public class Memory : MonoBehaviour
     void EndMemory()
     {
         EventManager.inst.memoryPlaying = false;
-        disableControls = false;
-        EventManager.inst.memoryLookScalar = 0.05f;
-        EventManager.inst.memoryMoveScalar = 0.25f;
         EventManager.inst.memoryPlaying = false;
+
+        // Set controls back to normal
+        disableControls = false;
+        EventManager.inst.memoryLookScalar = 1;
+        EventManager.inst.memoryMoveScalar = 1;
 
         if (newBGM != null)
         {

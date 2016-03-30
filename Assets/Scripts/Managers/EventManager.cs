@@ -89,14 +89,6 @@ public class EventManager : MonoBehaviour
         {
             controlsDisabled = true;
         }
-
-        // Scale look sensitivity during memories
-        // *** This can cause an over write of disabling controls ***
-        if (memoryPlaying)
-        {
-            lookSensitivity = lookSensTemp * memoryLookScalar;
-        }
-        else lookSensitivity = lookSensTemp;
     }
 
 	void FixedUpdate ()

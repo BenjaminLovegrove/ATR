@@ -8,8 +8,9 @@ public class PlayerCam : MonoBehaviour
 {
 	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
-	public float sensitivityX = 15F;
-	public float sensitivityY = 15F;
+    private float sensitivityX;
+    private float sensitivityY;
+    private float lookScalar;
     private float minimumX = -360F;
     private float maximumX = 360F;
     private float minimumY = -60F;
@@ -46,8 +47,14 @@ public class PlayerCam : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-        sensitivityX = EventManager.inst.lookSensitivity; // These need to be in Fixed in order to sync with the time scale
-        sensitivityY = EventManager.inst.lookSensitivity;
+        CameraSettings();
+	}
+
+    void CameraSettings()
+    {
+        sensitivityX = EventManager.inst.lookSensitivity; // No need to modify within this script
+        sensitivityY = EventManager.inst.lookSensitivity; // These need to be in Fixed in order to sync with the time scale
+        lookScalar = EventManager.inst.memoryLookScalar;
 
         if (EventManager.inst.memoryPlaying)
         {
@@ -64,7 +71,7 @@ public class PlayerCam : MonoBehaviour
             CameraMovement();
             MouseMovement();
         }
-	}
+    }
 
     void CameraMovement()
     {
@@ -129,17 +136,17 @@ public class PlayerCam : MonoBehaviour
             {
                 if (axes == RotationAxes.MouseXAndY)
                 {
-                    float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
+                    float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX * lookScalar;
 
                     // Invert Y if set to do so
                     if (EventManager.inst.invertY)
                     {
-                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * -1;
+                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar * -1;
                     }
                     // Otherwise Y is normal
                     if ((!EventManager.inst.invertY))
                     {
-                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar;
                     }
 
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
@@ -148,11 +155,11 @@ public class PlayerCam : MonoBehaviour
                 }
                 else if (axes == RotationAxes.MouseX)
                 {
-                    transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX, 0);
+                    transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX * lookScalar, 0);
                 }
                 else
                 {
-                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar;
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
                     transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
