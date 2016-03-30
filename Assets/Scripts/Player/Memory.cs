@@ -10,6 +10,7 @@ public class Memory : MonoBehaviour
 {
     [Header("Visual Effects")]
     public bool nightTime = false;
+    public bool switchSkyBox;
     public float fadeTime = 4f;
     public float flashDelay;
     public float memoryFog;
@@ -21,6 +22,8 @@ public class Memory : MonoBehaviour
     public GameObject[] switchMe;
     public Terrain myTerrain;
     public Light sceneLighting;
+    public Material originalSkyBox;
+    public Material alternateSkyBox;
 
     // Protected variables
     private bool disableControls;
@@ -162,6 +165,12 @@ public class Memory : MonoBehaviour
             }
         }
 
+        // Replace skybox material
+        if (switchSkyBox)
+        {
+            RenderSettings.skybox = alternateSkyBox;
+        }
+
         // Change scene lighting if night time
         if (nightTime)
         {
@@ -221,6 +230,12 @@ public class Memory : MonoBehaviour
                     obj.SetActive(true);
                 }
             }
+        }
+
+        // Return original skybox
+        if (switchSkyBox)
+        {
+            RenderSettings.skybox = originalSkyBox;
         }
 
         // Return the lightning to normal if night
