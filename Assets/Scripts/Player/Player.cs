@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private float currentSpeed;
     private float jumpTimer = 1.5f;
     private float nearestEnemyDistance;
-    private bool grounded = false;
+    private bool grounded;
     private bool touchingTerrain;
 
     // SFX
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
     void PlayerMovement()
     {
         // Normalise strafe movespeed
-        if ((playerRigid.velocity.magnitude) > walkSpeed)
+        if ((playerRigid.velocity.x + playerRigid.velocity.z) > walkSpeed)
         {
             playerRigid.velocity = playerRigid.velocity.normalized * walkSpeed;
         }
