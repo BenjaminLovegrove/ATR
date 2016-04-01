@@ -77,9 +77,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         walkSpeed = 3 * EventManager.inst.memoryMoveScalar * hackMoveSpeed;
-
-        // *** Disable this for release builds ***
-        Hacks();
+        Hacks(); // *** Disable this for release builds ***
     }
 
 	void FixedUpdate ()
@@ -242,7 +240,6 @@ public class Player : MonoBehaviour
                 {
                     if (touchingTerrain)
                     {
-
                         audio.PlayOneShot(jumpSFX[0]);
                     }
                     else audio.PlayOneShot(jumpSFX[1]);                  
@@ -260,18 +257,17 @@ public class Player : MonoBehaviour
                     currentSpeed = walkSpeed;
                 }
                 
-                // Play Crouch SFX
-                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1))
+                // Play Crouching SFX
+                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKey(KeyCode.LeftControl))
                 {
                     audio.PlayOneShot(crouchSFX);
                 }
 
-                // Play Crouch SFX
+                // Play Standing SFX
                 if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
                 {
                     audio.PlayOneShot(standSFX);
                 }
-
             }
         }
 
@@ -284,11 +280,20 @@ public class Player : MonoBehaviour
     // Play footsteps using a Vertical input to determine if moving
     void PlayFootStepSFX()
     {
-        if (!EventManager.inst.playerDead)
+        if (!EventManager.inst.playerDead && !EventManager.inst.memoryPlaying)
         {
-            footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
-            footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Horizontal"));
-
+            // Normalise the increment footstep timer if strafing
+            if ((Mathf.Abs(Input.GetAxis("Vertical")) > 0 && Mathf.Abs(Input.GetAxis("Horizontal")) > 0))
+            {
+                footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical")) * Mathf.Abs(Input.GetAxis("Horizontal"));
+            }
+            // Otherwise use a single axis
+            else
+            {
+                footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Vertical"));
+                footStepTimer += Time.deltaTime * Mathf.Abs(Input.GetAxis("Horizontal"));
+            }
+            
             // Reset walk array when you reach the end
             if (currentWalkVal == (standingWalkLeftHardSFX.Length))
             {
