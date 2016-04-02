@@ -31,6 +31,27 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _diffuse
+        second:
+          m_Texture: {fileID: 2800000, guid: fbc935d9c7bd92841b6bd60fccc492da, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _specular
+        second:
+          m_Texture: {fileID: 2800000, guid: a5fd67671195ef048876c03c13c62e79, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _normal
+        second:
+          m_Texture: {fileID: 2800000, guid: a5fd67671195ef048876c03c13c62e79, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _Cube
         second:
           m_Texture: {fileID: 0}
@@ -64,27 +85,6 @@ Material:
           m_Texture: {fileID: 2800000, guid: c40b2144e5a09d544a7b59ab556ce8fe, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _diffuse
-        second:
-          m_Texture: {fileID: 2800000, guid: fbc935d9c7bd92841b6bd60fccc492da, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _specular
-        second:
-          m_Texture: {fileID: 2800000, guid: a5fd67671195ef048876c03c13c62e79, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _normal
-        second:
-          m_Texture: {fileID: 2800000, guid: a5fd67671195ef048876c03c13c62e79, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -93,11 +93,23 @@ Material:
       data:
         first:
           name: _Shininess
-        second: 1
+        second: 0.073
       data:
         first:
           name: PixelSnap
         second: 0
+      data:
+        first:
+          name: _specular_power
+        second: 28.571428
+      data:
+        first:
+          name: _rim_power
+        second: 2.9
+      data:
+        first:
+          name: _glossiness_power
+        second: 0.30357143
       data:
         first:
           name: _InvFade
@@ -138,18 +150,6 @@ Material:
         first:
           name: _Speed
         second: 1.23
-      data:
-        first:
-          name: _specular_power
-        second: 28.571428
-      data:
-        first:
-          name: _rim_power
-        second: 2.9
-      data:
-        first:
-          name: _glossiness_power
-        second: 0.30357143
     m_Colors:
       data:
         first:
@@ -159,6 +159,18 @@ Material:
         first:
           name: _SpecColor
         second: {r: 0.058823526, g: 0.058823526, b: 0.058823526, a: 1}
+      data:
+        first:
+          name: _diffuse_color
+        second: {r: 1, g: 0.9701493, b: 0.9701493, a: 1}
+      data:
+        first:
+          name: _specular_color
+        second: {r: 0.3742918, g: 0.3555358, b: 0.4179105, a: 1}
+      data:
+        first:
+          name: _rim_color
+        second: {r: 0.06716418, g: 0.06716418, b: 0.06716418, a: 1}
       data:
         first:
           name: _TintColor
@@ -179,15 +191,3 @@ Material:
         first:
           name: _Specular
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _diffuse_color
-        second: {r: 1, g: 0.9701493, b: 0.9701493, a: 1}
-      data:
-        first:
-          name: _specular_color
-        second: {r: 0.3742918, g: 0.3555358, b: 0.4179105, a: 1}
-      data:
-        first:
-          name: _rim_color
-        second: {r: 0.06716418, g: 0.06716418, b: 0.06716418, a: 1}
