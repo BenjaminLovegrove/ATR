@@ -143,7 +143,7 @@ public class Memory : MonoBehaviour
         if (!disableControls)
         {
             EventManager.inst.memoryLookScalar = 0.05f;
-            EventManager.inst.memoryMoveScalar = 0.25f;
+            EventManager.inst.memoryMoveScalar = 0.075f;
         }
 
         // Enable water reflection
