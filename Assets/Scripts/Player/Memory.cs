@@ -177,11 +177,6 @@ public class Memory : MonoBehaviour
             }
         }
 
-        // Replace skybox material
-        if (switchSkyBox)
-        {
-            RenderSettings.skybox = alternateSkyBox;
-        }
 
         // Change scene lighting if night time
         if (nightTime)
@@ -246,10 +241,10 @@ public class Memory : MonoBehaviour
             }
         }
 
-        // Return original skybox
+        // Switch skybox
         if (switchSkyBox)
         {
-            RenderSettings.skybox = originalSkyBox;
+            RenderSettings.skybox = alternateSkyBox;
         }
 
         // Return the lightning to normal if night
