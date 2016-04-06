@@ -71,7 +71,6 @@ public class TriggerManager : MonoBehaviour
     {
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
-        //loadScreenUI = GameObject.Find("LoadScreenUI");
 
         // Assign string value for each level
         switch (levelSelect)

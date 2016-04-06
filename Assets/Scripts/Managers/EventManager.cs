@@ -41,8 +41,6 @@ public class EventManager : MonoBehaviour
     public int currentMemory;   // This value is automatically assigned when a memory is triggered
     public string currentLevel;
 
-    // Temp vals and keys
-    private float lookSensTemp;
     private RawImage fadeToBlack;
 
     // Set a small delay before the player is granted control
@@ -77,7 +75,6 @@ public class EventManager : MonoBehaviour
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
         lookSensitivity = PlayerPrefs.GetFloat("Mouse Sensitivity");
-        lookSensTemp = PlayerPrefs.GetFloat("Mouse Sensitivity") * 0.2f;
         Cursor.visible = true;        
     }
 
@@ -122,7 +119,7 @@ public class EventManager : MonoBehaviour
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         StartCoroutine("FadeInCoRoutine");
         InitialiseValues();
-        Invoke("MovePlayer", 0.05f); // This delay is required so the way point data can be fetched first
+        Invoke("MovePlayer", 0.05f); // This delay is required so the checkpoint data can be fetched first
     }
 
     // Move the player to the current checkpoint location
