@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
     
-    [Header("Jump")]
-	public float jumpHeight = 0.5f;
-    public float jumpDelay;
-    public float jumpCoolDown;	
+    //[Header("Jump")]
+    //public float jumpHeight = 0.5f;
+    //public float jumpDelay;
+    //public float jumpCoolDown;	
 
     // Calculations
     private float currentSpeed;
@@ -67,12 +67,12 @@ public class Player : MonoBehaviour
     }
 
     // Jump co-routine
-    IEnumerator Jump()
-    {
-        Vector3 velocity = playerRigid.velocity;
-        yield return new WaitForSeconds(jumpDelay);
-        playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-    }
+    //IEnumerator Jump()
+    //{
+    //    Vector3 velocity = playerRigid.velocity;
+    //    yield return new WaitForSeconds(jumpDelay);
+    //    playerRigid.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+    //}
 
     void Update()
     {
@@ -223,27 +223,27 @@ public class Player : MonoBehaviour
                 playerRigid.AddForce(velocityChange, ForceMode.VelocityChange);
 
                 // Jump
-                if (jumpTimer > 1.5f)
-                {
-                    //if (canJump && Input.GetButton("Jump"))
-                    if (Input.GetButton("Jump"))
-                    {
-                        footStepSFXSource.Play();
-                        EventManager.inst.playerJump = true;
-                        jumpTimer = 0;
-                        StartCoroutine("Jump");
-                    }
-                }
+                //if (jumpTimer > 1.5f)
+                //{
+                //    //if (canJump && Input.GetButton("Jump"))
+                //    if (Input.GetButton("Jump"))
+                //    {
+                //        footStepSFXSource.Play();
+                //        EventManager.inst.playerJump = true;
+                //        jumpTimer = 0;
+                //        StartCoroutine("Jump");
+                //    }
+                //}
 
-                // Play jump SFX
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    if (touchingTerrain)
-                    {
-                        audio.PlayOneShot(jumpSFX[0]);
-                    }
-                    else audio.PlayOneShot(jumpSFX[1]);                  
-                }
+                //// Play jump SFX
+                //if (Input.GetKeyDown(KeyCode.Space))
+                //{
+                //    if (touchingTerrain)
+                //    {
+                //        audio.PlayOneShot(jumpSFX[0]);
+                //    }
+                //    else audio.PlayOneShot(jumpSFX[1]);                  
+                //}
 
                 // Crouch
                 if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
@@ -379,13 +379,12 @@ public class Player : MonoBehaviour
             }
         }
     }
-		
-	float CalculateJumpVerticalSpeed ()
-	{
-		// From the jump height and gravity we deduce the upwards speed 
-		// for the character to reach at the apex.
-		return Mathf.Sqrt(2 * jumpHeight * gravity);
-	}
+	
+	// Calculate jump speed and height
+    //float CalculateJumpVerticalSpeed ()
+    //{
+    //    return Mathf.Sqrt(2 * jumpHeight * gravity);
+    //}
 
     void OnLevelWasLoaded()
     {
