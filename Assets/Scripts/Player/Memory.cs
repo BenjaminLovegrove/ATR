@@ -158,7 +158,7 @@ public class Memory : MonoBehaviour
         // Increase tree density
         if (myTerrain != null)
         {
-            myTerrain.treeDistance = 150;
+            myTerrain.treeDistance = 1500;
         }
 
         // Switch active/inactive objects
