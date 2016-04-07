@@ -156,9 +156,12 @@ public class Memory : MonoBehaviour
         }
 
         // Increase tree density
-        if (myTerrain != null)
+        if (myTerrain != null && EventManager.inst.currentLevel == "Coast Ending")
         {
             myTerrain.treeDistance = 1500;
+        } else
+        {
+            myTerrain.treeDistance = 200;
         }
 
         // Switch active/inactive objects
@@ -221,7 +224,7 @@ public class Memory : MonoBehaviour
         // Reduce tree density
         if (myTerrain != null)
         {
-            myTerrain.treeDistance = 100;
+            myTerrain.treeDistance = 150;
         }
 
         // Switch back active/inactive objects
