@@ -27,6 +27,7 @@ public class Memory : MonoBehaviour
 
     // Protected variables
     private bool disableControls;
+    private bool loadCredits;
     private float startBloom;
     private float startFog;
     private bool extraDiminish = false;
@@ -195,6 +196,11 @@ public class Memory : MonoBehaviour
     // End memory
     void EndMemory()
     {
+        if (loadCredits)
+        {
+            Application.LoadLevel("Credits");
+        }
+
         EventManager.inst.memoryPlaying = false;
 
         // Set controls back to normal
@@ -362,8 +368,12 @@ public class Memory : MonoBehaviour
 
     void DisableControls(bool disable)
     {
-
         disableControls = disable;
+    }
+
+    void LoadCredits(bool credits)
+    {
+        loadCredits = credits;
     }
     #endregion
 }

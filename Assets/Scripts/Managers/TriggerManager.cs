@@ -51,6 +51,7 @@ public class TriggerManager : MonoBehaviour
 
     [Header("End Level")]
     public bool endLevel;
+    public bool credits;
     public LevelSelect levelSelect;
     public GameObject loadScreenUI; // There is a load screen prefab
     private string setLevel;
@@ -122,6 +123,11 @@ public class TriggerManager : MonoBehaviour
                     col.BroadcastMessage("DisableControls", true);
                 }
 
+                if (credits)
+                {
+                    col.BroadcastMessage("LoadCredits", true);
+                }
+
                 if (newBGM != null)
                 {
                     col.BroadcastMessage("SetBGM", newBGM);
@@ -166,7 +172,8 @@ public class TriggerManager : MonoBehaviour
                 {
                     loadScreenUI.SetActive(true);
                 }
-                StartCoroutine("LoadNextScene");
+
+                StartCoroutine("LoadNextScene");               
             }
         }
 	}
