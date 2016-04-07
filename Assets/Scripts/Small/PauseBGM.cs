@@ -12,7 +12,6 @@ public class PauseBGM : MonoBehaviour
         if (EventManager.inst.currentLevel == "City Outskirts")
         {
             audio.Pause();
-        }
-        else print("No level set for current level");        
+        } 
     }
 }
