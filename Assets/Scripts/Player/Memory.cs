@@ -143,7 +143,7 @@ public class Memory : MonoBehaviour
         if (!disableControls)
         {
             EventManager.inst.memoryLookScalar = 0.05f;
-            EventManager.inst.memoryMoveScalar = 0.075f;
+            EventManager.inst.memoryMoveScalar = 0.2f;
         }
 
         // Enable water reflection
@@ -192,7 +192,6 @@ public class Memory : MonoBehaviour
     // End memory
     void EndMemory()
     {
-        EventManager.inst.memoryPlaying = false;
         EventManager.inst.memoryPlaying = false;
 
         // Set controls back to normal

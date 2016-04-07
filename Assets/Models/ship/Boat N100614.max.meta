@@ -4,7 +4,21 @@ timeCreated: 1459561115
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: _null_
+    100002: //RootNode
+    100004: Camera01
+    100006: Camera01.Target
+    100008: VRayPlane01
+    400000: _null_
+    400002: //RootNode
+    400004: Camera01
+    400006: Camera01.Target
+    400008: VRayPlane01
+    2300000: _null_
+    3300000: _null_
+    4300000: _null_
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
