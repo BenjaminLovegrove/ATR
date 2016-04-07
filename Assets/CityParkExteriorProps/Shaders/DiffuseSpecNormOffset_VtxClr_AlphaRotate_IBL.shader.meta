@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c94b3c90ffaa20b43a542ffefd23c903
+timeCreated: 1453877324
+licenseType: Store
+ShaderImporter:
+  defaultTextures:
+  - _DiffuseRGBSpecA: {fileID: 2800000, guid: 1bf200f67c0a38949b6f8c46f50cafa5, type: 3}
+  - _AlphaMapRGBRotate: {fileID: 2800000, guid: 28c7aad1372ff114b90d330f8a2dd938,
+      type: 3}
+  - _Normal: {fileID: 2800000, guid: 2dd3788f8589b40bf82a92d76ffc5091, type: 3}
+  - _DiffDistortionMapR: {fileID: 2800000, guid: d96dc913fb4167b4a9258348d23a1c92,
+      type: 3}
+  - _Normal02: {fileID: 2800000, guid: fb6566c21f717904f83743a5a76dd0b0, type: 3}
+  - _SpecularG: {fileID: 2800000, guid: 30e6d9574e2ea2a43972f3b69d00c69b, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
