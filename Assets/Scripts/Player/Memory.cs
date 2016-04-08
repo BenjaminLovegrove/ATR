@@ -157,7 +157,7 @@ public class Memory : MonoBehaviour
         }
 
         // Increase tree density
-        if (myTerrain != null && EventManager.inst.currentLevel == "3")
+        if (myTerrain != null && EventManager.inst.currentLevel == "Coast Ending")
         {
             myTerrain.treeDistance = 1500;
         } else if (myTerrain != null)
@@ -283,7 +283,7 @@ public class Memory : MonoBehaviour
         
         else
         {
-            memoryFog = fog.heightDensity * (fogDiminishAmount * 1.5f);
+            memoryFog = fog.heightDensity * (fogDiminishAmount * 2.5f);
             extraDiminish = false;
         }
 
