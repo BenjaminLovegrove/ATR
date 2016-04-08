@@ -283,7 +283,7 @@ public class Memory : MonoBehaviour
         
         else
         {
-            memoryFog = fog.heightDensity * (fogDiminishAmount * 2.5f);
+            memoryFog = fog.heightDensity * (fogDiminishAmount / 4.5f);
             extraDiminish = false;
         }
 
