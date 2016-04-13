@@ -49,6 +49,7 @@ public class Memory : MonoBehaviour
     private GameObject skySphere;    
     private GlobalFog fog;        
     private Image memoryFlashObj;
+    private RawImage fadeToBlack;
     private Water[] water;    
     
     // Display memory flash game obj coroutine
@@ -82,7 +83,8 @@ public class Memory : MonoBehaviour
         EventManager.inst.memoryLookScalar = 1;
         EventManager.inst.memoryMoveScalar = 1;
 
-        // Get all water objects
+        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
+
         waterObjs = GameObject.FindGameObjectsWithTag("Water");
         if (waterObjs != null)
         {
@@ -222,11 +224,6 @@ public class Memory : MonoBehaviour
     // End memory
     void EndMemory()
     {
-        if (loadCredits)
-        {
-            Application.LoadLevel("Credits");
-        }        
-
         // Set controls back to normal
         disableControls = false;
         EventManager.inst.memoryLookScalar = 1;
@@ -291,6 +288,13 @@ public class Memory : MonoBehaviour
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         Invoke("MemoryPlayingDelay", 1f);
+
+        // Load credits and fade out
+        if (loadCredits)
+        {
+            fadeToBlack.CrossFadeAlpha(1, 10, false);
+            Invoke("CutToCredits", 10f);
+        }
     }
 
     // Sendmessage receiver to externally activate a memory
@@ -407,6 +411,11 @@ public class Memory : MonoBehaviour
     void LoadCredits(bool credits)
     {
         loadCredits = credits;
+    }
+
+    void CutToCredits()
+    {
+        Application.LoadLevel("Credits");
     }
     #endregion
 }

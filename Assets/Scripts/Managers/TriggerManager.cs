@@ -110,7 +110,7 @@ public class TriggerManager : MonoBehaviour
             // Credits
             if (credits)
             {
-                col.BroadcastMessage("LoadCredits", true);
+                col.BroadcastMessage("LoadCredits", true);         
             }
 
             // Memory
@@ -200,6 +200,5 @@ public class TriggerManager : MonoBehaviour
                 memoryObj.SendMessage("FadeOutReceiver");
             }
         }
-
     }
 }
