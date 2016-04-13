@@ -9,13 +9,13 @@ using UnityStandardAssets.Water;
 public class Memory : MonoBehaviour
 {
     [Header("Visual Effects")]
-    public bool nightTime = false;
+    public bool nightTime;
     public bool switchSkyBox;
-    public float fadeTime = 4f;
+    public float fadeTime;
     public float flashDelay;
     public float memoryFog;
-    public float fogDiminishAmount = 0.1f;
-    public float memoryBloom = 1f;
+    public float fogDiminishAmount;
+    public float memoryBloom;
 
     [Header("Memory Objects")]
     public AudioClip[] memoryDialogue;  
@@ -30,14 +30,15 @@ public class Memory : MonoBehaviour
     private bool loadCredits;
     private float startBloom;
     private float startFog;
-    private bool extraDiminish = false;
+    private bool extraDiminish;
     private float fadeTimer;
-    private float memoryLength = 0f;
-    private float memTimer = 0f;
-    private float bgmMaxVol;
-    private float bgmLerp = 0;
+    private float memoryLength;
+    private float memTimer;
     private float delayTimer;
     private bool memorySkippable;
+    private bool musicFadeOut;
+    private bool musicFadeIn;
+    public float musicLerp;
 
     // Components
     private AudioClip newBGM;
@@ -57,6 +58,7 @@ public class Memory : MonoBehaviour
         EventManager.inst.memoryPlaying = true;
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2f);
+        bgmSource.Pause();
         StartMemory();
         yield return new WaitForSeconds(flashDelay - 1.5f);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
@@ -94,7 +96,6 @@ public class Memory : MonoBehaviour
         // Getters and setters
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
-        bgmMaxVol = bgmSource.volume;
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
@@ -112,7 +113,32 @@ public class Memory : MonoBehaviour
 
 	void FixedUpdate()
     {
+        FadeBGM();
         MemoryTimers();        
+    }
+    
+    // Music fade in/out for memories
+    void FadeBGM()
+    {
+        musicLerp += Time.deltaTime / 2;
+
+        if (musicFadeOut)
+        {
+            bgmSource.volume = Mathf.Lerp(0.35f, 0f, musicLerp);
+            if (musicLerp > 1)
+            {
+                musicFadeOut = false;
+            }
+        }
+
+        if (musicFadeIn)
+        {
+            bgmSource.volume = Mathf.Lerp(0f, 0.35f, musicLerp);
+            if (musicLerp > 1)
+            {
+                musicFadeIn = false;
+            }
+        }
     }
 
     // Skip memory
@@ -199,9 +225,7 @@ public class Memory : MonoBehaviour
         if (loadCredits)
         {
             Application.LoadLevel("Credits");
-        }
-
-        EventManager.inst.memoryPlaying = false;
+        }        
 
         // Set controls back to normal
         disableControls = false;
@@ -214,9 +238,11 @@ public class Memory : MonoBehaviour
             newBGM = null;
         }
 
-        // Resume music
+        // Resume music 
         bgmSource.Play();
-        bgmLerp = 1;
+        musicLerp = 0;
+        musicFadeIn = true;
+        
 
         // Turn off water reflection
         if (waterObjs != null)
@@ -264,6 +290,7 @@ public class Memory : MonoBehaviour
         }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
+        Invoke("MemoryPlayingDelay", 1f);
     }
 
     // Sendmessage receiver to externally activate a memory
@@ -271,7 +298,8 @@ public class Memory : MonoBehaviour
     // TriggerManager script will activate this function
     void EnterMemory (float duration)
     {
-        bgmSource.Pause();
+        musicLerp = 0;
+        musicFadeOut = true;
         flashDelay = duration;
         StartCoroutine("InstantiateMemFlash");        
         startFog = fog.heightDensity;
@@ -341,6 +369,11 @@ public class Memory : MonoBehaviour
     }
 
     #region Simple Functions
+    void MemoryPlayingDelay()
+    {
+        EventManager.inst.memoryPlaying = false;
+    }
+
     void SetSwitches(GameObject[] switchObjects)
     {
         switchMe = switchObjects;
