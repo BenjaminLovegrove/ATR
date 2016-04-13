@@ -209,7 +209,6 @@ public class Memory : MonoBehaviour
             }
         }
 
-
         // Change scene lighting if night time
         if (nightTime)
         {
@@ -288,6 +287,8 @@ public class Memory : MonoBehaviour
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         Invoke("MemoryPlayingDelay", 1f);
+        EventManager.inst.firstLoad = true;
+        EventManager.inst.controlsDisabled = false;
 
         // Load credits and fade out
         if (loadCredits)

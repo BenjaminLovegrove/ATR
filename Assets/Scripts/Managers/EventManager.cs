@@ -22,6 +22,7 @@ public class EventManager : MonoBehaviour
     public bool resetLevel;
     public bool controlsDisabled;
     public bool memoryPlaying;
+    public bool firstLoad = false;
     
     [Header("Settings")]
     public float lookSensitivity;
@@ -48,12 +49,13 @@ public class EventManager : MonoBehaviour
     {
         controlsDisabled = true;
         fadeToBlack.CrossFadeAlpha(0, 3, false);
-        yield return new WaitForSeconds (1f);
+        yield return new WaitForSeconds(1f);
         controlsDisabled = false;
     }
 
 	void Awake ()
 	{
+        firstLoad = false;
         Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         developerMode = true; // *** Disable for release builds ***
@@ -70,7 +72,10 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine("FadeInCoRoutine");
+        if (!firstLoad)
+        {
+            StartCoroutine("FadeInCoRoutine");
+        }        
 
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
@@ -117,7 +122,10 @@ public class EventManager : MonoBehaviour
     void OnLevelWasLoaded()
     {
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
-        StartCoroutine("FadeInCoRoutine");
+        //StartCoroutine("FadeInCoRoutine");
+        //controlsDisabled = true;
+        fadeToBlack.CrossFadeAlpha(0, 3, false);
+        controlsDisabled = false;
         InitialiseValues();
         Invoke("MovePlayer", 0.05f); // This delay is required so the checkpoint data can be fetched first
     }
