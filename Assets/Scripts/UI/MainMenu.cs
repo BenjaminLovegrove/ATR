@@ -58,10 +58,13 @@ public class MainMenu : MonoBehaviour
     private int invertYKey;
 
     private AudioConfiguration speakerConfig;
+    public AudioSource[] resumeAudio; // Place any objects with audio sources (within the scene) into this array
+    public AudioSource menuMusic;
+    private bool pressedPlay;
+    private float musicLerp;
     private int speakerKey;
     private int speakerTemp;
-    private int speakerInit;
-    public AudioSource[] resumeAudio; // Place any objects with audio sources (within the scene) into this array
+    private int speakerInit;    
 
     public GameObject Level1Highlight;
     public GameObject Level2Highlight;
@@ -121,6 +124,12 @@ public class MainMenu : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (pressedPlay)
+        {
+            musicLerp += Time.deltaTime;
+            menuMusic.volume = Mathf.Lerp(1f, 0f, musicLerp);
+        }
+        
         MenuTransitioning();
     }
 
@@ -168,6 +177,7 @@ public class MainMenu : MonoBehaviour
     public void PlayButton()
     {
         Cursor.visible = false;
+        pressedPlay = true;
         EventManager.inst.currentLevel = levelSelect;
         EventManager.inst.currentCheckPoint = 0;
         StartCoroutine("LoadScreen");
