@@ -293,15 +293,6 @@ public class MainMenu : MonoBehaviour
 
     void LoadSettings()
     {
-        // Load saved settings
-        speakerConfig = AudioSettings.GetConfiguration();
-        screenResKey = PlayerPrefs.GetInt("Screen Res");
-        speakerKey = PlayerPrefs.GetInt("Speaker Config");
-        fullScreenKey = PlayerPrefs.GetInt("Fullscreen");
-        invertYKey = PlayerPrefs.GetInt("Invert Toggle");
-        volSlider.value = PlayerPrefs.GetFloat("Master Volume");
-        sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
-
         // Set default values if there are no settings yet
         if (!PlayerPrefs.HasKey("Speaker Config"))
         {
@@ -321,6 +312,15 @@ public class MainMenu : MonoBehaviour
             PlayerPrefs.SetFloat("Master Volume", 1);
             volumeLevel = 1;
         }
+
+        // Load saved settings
+        speakerConfig = AudioSettings.GetConfiguration();
+        screenResKey = PlayerPrefs.GetInt("Screen Res");
+        speakerKey = PlayerPrefs.GetInt("Speaker Config");
+        fullScreenKey = PlayerPrefs.GetInt("Fullscreen");
+        invertYKey = PlayerPrefs.GetInt("Invert Toggle");
+        volSlider.value = PlayerPrefs.GetFloat("Master Volume");
+        sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
     }
 
     void ApplySettings()

@@ -22,7 +22,6 @@ public class EventManager : MonoBehaviour
     public bool resetLevel;
     public bool controlsDisabled;
     public bool memoryPlaying;
-    public bool firstLoad = false;
     
     [Header("Settings")]
     public float lookSensitivity;
@@ -30,6 +29,8 @@ public class EventManager : MonoBehaviour
     public bool invertY;
     public float memoryLookScalar;
     public float memoryMoveScalar;
+    public float prevLookScalar;
+    public float prevMoveScalar;
 
     [Header("Hacks")]
     public bool developerMode; // Toggle this to enable/disable cheats
@@ -50,7 +51,7 @@ public class EventManager : MonoBehaviour
     IEnumerator FadeInCoRoutine()
     {
         controlsDisabled = true;
-        fadeToBlack.CrossFadeAlpha(0, 3, false);
+        fadeToBlack.CrossFadeAlpha(0, 5, false);
         yield return new WaitForSeconds(1f);
         controlsDisabled = false;
     }
@@ -58,7 +59,6 @@ public class EventManager : MonoBehaviour
 	void Awake ()
 	{
         credits = false;
-        firstLoad = false;
         Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         developerMode = true; // *** Disable for release builds ***
@@ -75,11 +75,7 @@ public class EventManager : MonoBehaviour
 
     void Start()
     {
-        if (!firstLoad)
-        {
-            StartCoroutine("FadeInCoRoutine");
-        }        
-
+        StartCoroutine("FadeInCoRoutine");
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
         lookSensitivity = PlayerPrefs.GetFloat("Mouse Sensitivity");
@@ -88,6 +84,17 @@ public class EventManager : MonoBehaviour
 
     void Update()
     {
+        // Lerp look and move scalars between vals
+        if (prevLookScalar != memoryLookScalar)
+        {
+            prevLookScalar = Mathf.Lerp(prevLookScalar, memoryLookScalar, Time.deltaTime * 2);
+        }
+
+        if (prevMoveScalar != memoryMoveScalar)
+        {
+            prevMoveScalar = Mathf.Lerp(prevMoveScalar, memoryMoveScalar, Time.deltaTime * 2);
+        }
+
         AudioListener.volume = masterVolume;
 
         if (playerDead)

@@ -54,7 +54,7 @@ public class PlayerCam : MonoBehaviour
     {
         sensitivityX = EventManager.inst.lookSensitivity; // No need to modify within this script
         sensitivityY = EventManager.inst.lookSensitivity; // These need to be in Fixed in order to sync with the time scale
-        lookScalar = EventManager.inst.memoryLookScalar;
+        lookScalar = EventManager.inst.prevLookScalar;
 
         if (EventManager.inst.memoryPlaying || EventManager.inst.credits)
         {

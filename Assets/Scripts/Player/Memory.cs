@@ -174,8 +174,8 @@ public class Memory : MonoBehaviour
         {
             if (EventManager.inst.credits)
             {
-                EventManager.inst.memoryLookScalar = 0.015f;
-                EventManager.inst.memoryMoveScalar = 0.05f;
+                EventManager.inst.memoryLookScalar = 0;
+                EventManager.inst.memoryMoveScalar = 0;
             }
             else
             {
@@ -305,7 +305,6 @@ public class Memory : MonoBehaviour
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         Invoke("MemoryPlayingDelay", 1f);
-        EventManager.inst.firstLoad = true;
         EventManager.inst.controlsDisabled = false;
 
         // Load credits and fade out

@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        walkSpeed = 3 * EventManager.inst.memoryMoveScalar * hackMoveSpeed;
+        walkSpeed = 3 * EventManager.inst.prevMoveScalar * hackMoveSpeed;
         Hacks(); // *** Disable this for release builds ***
     }
 

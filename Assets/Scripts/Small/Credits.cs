@@ -18,6 +18,11 @@ public class Credits : MonoBehaviour
 
     void Start()
     {
+        // Reset vals to normal
+        EventManager.inst.credits = false;
+        EventManager.inst.atEndTerrain = false;
+        EventManager.inst.memoryLookScalar = 1;
+        EventManager.inst.memoryMoveScalar = 1;
         Cursor.visible = false;
     }
 
