@@ -41,6 +41,7 @@ public class EventManager : MonoBehaviour
     public int currentCheckPoint;
     public int currentMemory;   // This value is automatically assigned when a memory is triggered
     public string currentLevel;
+    public bool credits;
 
     private RawImage fadeToBlack;
 
