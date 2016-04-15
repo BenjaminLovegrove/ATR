@@ -24,6 +24,7 @@ public class Memory : MonoBehaviour
     public Light sceneLighting;
     public Material originalSkyBox;
     public Material alternateSkyBox;
+    public GameObject oilRigs;
 
     // Protected variables
     private bool disableControls;
@@ -148,7 +149,7 @@ public class Memory : MonoBehaviour
     {
         if (EventManager.inst.memoryPlaying && memorySkippable)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.inst.credits)
             {
                 StopCoroutine("InstantiateMemFlash");
                 StartCoroutine("SkipMemory");
@@ -171,8 +172,15 @@ public class Memory : MonoBehaviour
         // Apply scalar if controls are to not be fully disabled
         if (!disableControls)
         {
-            EventManager.inst.memoryLookScalar = 0.05f;
-            EventManager.inst.memoryMoveScalar = 0.2f;
+            if (EventManager.inst.credits)
+            {
+                EventManager.inst.memoryLookScalar = 0.02f;
+            }
+            else
+            {
+                EventManager.inst.memoryLookScalar = 0.05f;
+            }
+            EventManager.inst.memoryMoveScalar = 0.175f;
         }
 
         // Enable water reflection
@@ -225,8 +233,11 @@ public class Memory : MonoBehaviour
     {
         // Set controls back to normal
         disableControls = false;
-        EventManager.inst.memoryLookScalar = 1;
-        EventManager.inst.memoryMoveScalar = 1;
+        if (!EventManager.inst.credits)
+        {
+            EventManager.inst.memoryLookScalar = 1;
+            EventManager.inst.memoryMoveScalar = 1;
+        }
 
         if (newBGM != null)
         {
@@ -298,10 +309,11 @@ public class Memory : MonoBehaviour
         // Load credits and fade out
         if (loadCredits)
         {
+            oilRigs.SetActive(true);
+            RenderSettings.fogDensity = 0.001f;
+            fog.heightDensity = 0.7f;
             fadeToBlack.CrossFadeAlpha(1, 10, false);
             Invoke("CutToCredits", 10f);
-            RenderSettings.fogDensity = 0.003f;
-            fog.heightDensity = 0.15f;
         }
     }
 

@@ -56,6 +56,7 @@ public class EventManager : MonoBehaviour
 
 	void Awake ()
 	{
+        credits = false;
         firstLoad = false;
         Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
