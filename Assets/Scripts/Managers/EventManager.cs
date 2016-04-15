@@ -42,6 +42,7 @@ public class EventManager : MonoBehaviour
     public int currentMemory;   // This value is automatically assigned when a memory is triggered
     public string currentLevel;
     public bool credits;
+    public bool atEndTerrain;
 
     private RawImage fadeToBlack;
 

@@ -3,25 +3,43 @@ using System.Collections;
 
 public class Exhaustion : MonoBehaviour {
 
+    [Header("Breathing")]
+    public float lowestSpeed;
+    public float lowestSens;
+
+    [Header("BGM")]
+    public AudioSource BGM;
+
+    [Header("Breathing")]
     public AudioSource breathing;
-    public float totalDistance;
     public float maxVol;
+    public float startPitch;
+    public float endPitch;
+
+    [Header("Distance")]
+    public float totalDistance;
     public Transform endPoint;
     private float closestDist;
    
     void Start()
     {
+        //Set closest dist to be above maxdist
         closestDist = totalDistance;
     }
 
 	void Update () {
+        //Set closest distance
         if (Vector3.Distance (transform.position, endPoint.position) < closestDist)
         {
             closestDist = Vector3.Distance(transform.position, endPoint.position);
         }
 
-        print(Vector3.Distance(transform.position, endPoint.position));
-
+        //Lerp Values
         breathing.volume = Mathf.Lerp(maxVol, 0, (closestDist / totalDistance));
-	}
+        breathing.pitch = Mathf.Lerp(endPitch, startPitch, (closestDist / totalDistance));
+        BGM.volume = Mathf.Lerp(0, 1, (closestDist / totalDistance));
+        EventManager.inst.memoryMoveScalar = Mathf.Lerp(lowestSpeed, 1, (closestDist / totalDistance));
+        EventManager.inst.memoryLookScalar = Mathf.Lerp(lowestSens, 1, (closestDist / totalDistance));
+
+    }
 }

@@ -112,6 +112,7 @@ public class TriggerManager : MonoBehaviour
             // Credits
             if (credits)
             {
+                GameObject.Find("Exhaustion").gameObject.SetActive(false);
                 EventManager.inst.credits = true;
                 col.BroadcastMessage("LoadCredits", true);
                 endMemLerp.enabled = true;

@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
                 heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
                 heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
                 float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
-                if (!EventManager.inst.memoryPlaying)
+                if (!EventManager.inst.memoryPlaying && !EventManager.inst.atEndTerrain)
                 {
                     backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
                 }                
