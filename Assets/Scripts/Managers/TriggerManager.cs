@@ -57,7 +57,8 @@ public class TriggerManager : MonoBehaviour
 
     [Header("Credits")]
     public bool credits;
-    private scr_MemLookMovement endMemLerp;
+    public MemLookMovement endMemLerp;
+    private GameObject exhaustion;
 
     // Load next scene and display load screen UI
     IEnumerator LoadNextScene()
@@ -73,6 +74,12 @@ public class TriggerManager : MonoBehaviour
 
     void Awake()
     {
+        if (EventManager.inst.currentLevel == "Coast Ending")
+        {
+            exhaustion = GameObject.Find("Exhaustion");
+            endMemLerp = GameObject.Find("Memlookat").GetComponent<MemLookMovement>();
+        }
+        
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         fog = GameObject.Find("Player").GetComponentInChildren<GlobalFog>();
 
@@ -95,7 +102,8 @@ public class TriggerManager : MonoBehaviour
 
     void Start()
     {
-        endMemLerp = GameObject.Find("Memlookat").GetComponent<scr_MemLookMovement>();
+
+        
         //Disable enemies to be later enabled
         if (enemy != null)
         {
@@ -112,7 +120,7 @@ public class TriggerManager : MonoBehaviour
             // Credits
             if (credits)
             {
-                GameObject.Find("Exhaustion").gameObject.SetActive(false);
+                exhaustion.SetActive(false);
                 EventManager.inst.credits = true;
                 col.BroadcastMessage("LoadCredits", true);
                 endMemLerp.enabled = true;

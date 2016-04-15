@@ -174,13 +174,15 @@ public class Memory : MonoBehaviour
         {
             if (EventManager.inst.credits)
             {
-                EventManager.inst.memoryLookScalar = 0.02f;
+                EventManager.inst.memoryLookScalar = 0.015f;
+                EventManager.inst.memoryMoveScalar = 0.05f;
             }
             else
             {
                 EventManager.inst.memoryLookScalar = 0.05f;
+                EventManager.inst.memoryMoveScalar = 0.175f;
             }
-            EventManager.inst.memoryMoveScalar = 0.175f;
+
         }
 
         // Enable water reflection
