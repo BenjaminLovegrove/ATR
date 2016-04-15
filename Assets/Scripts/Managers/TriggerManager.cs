@@ -57,6 +57,7 @@ public class TriggerManager : MonoBehaviour
 
     [Header("Credits")]
     public bool credits;
+    private scr_MemLookMovement endMemLerp;
 
     // Load next scene and display load screen UI
     IEnumerator LoadNextScene()
@@ -93,7 +94,8 @@ public class TriggerManager : MonoBehaviour
     }
 
     void Start()
-    {        
+    {
+        endMemLerp = GameObject.Find("Memlookat").GetComponent<scr_MemLookMovement>();
         //Disable enemies to be later enabled
         if (enemy != null)
         {
@@ -110,7 +112,8 @@ public class TriggerManager : MonoBehaviour
             // Credits
             if (credits)
             {
-                col.BroadcastMessage("LoadCredits", true);  
+                col.BroadcastMessage("LoadCredits", true);
+                endMemLerp.enabled = true;
             }
 
             // Memory
@@ -141,6 +144,7 @@ public class TriggerManager : MonoBehaviour
                     memoryObj.SetActive(true);
                     startTimer = true;
                 }
+
              }
 
             // Checkpoint

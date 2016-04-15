@@ -295,6 +295,8 @@ public class Memory : MonoBehaviour
         {
             fadeToBlack.CrossFadeAlpha(1, 10, false);
             Invoke("CutToCredits", 10f);
+            RenderSettings.fogDensity = 0.003f;
+            fog.heightDensity = 0.15f;
         }
     }
 
