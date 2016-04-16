@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
     public GameObject[] optionMenuUI;
     public GameObject[] playMenuUI;
     public GameObject confirmQuitUI;
+    private AudioSource audio;
+    public AudioClip playSFX;
 
     public Transform currentCamPos;
     public Transform mainMenuPos;
@@ -113,6 +115,7 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
+        audio = GetComponent<AudioSource>();
         InitialiseSettings();
         LoadSettings();
     }
@@ -170,7 +173,7 @@ public class MainMenu : MonoBehaviour
     {
         cameraPanIncrement = 0;
         menuToggle = MenuToggle.PLAY;
-        StartCoroutine("PlayCoRoutine");        
+        StartCoroutine("PlayCoRoutine");   
     }
 
     // Play Button
@@ -178,8 +181,10 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.visible = false;
         pressedPlay = true;
+        audio.PlayOneShot(playSFX);
         EventManager.inst.currentLevel = levelSelect;
         EventManager.inst.currentCheckPoint = 0;
+        
         StartCoroutine("LoadScreen");
     }
 
