@@ -19,6 +19,10 @@ public class MainMenu : MonoBehaviour
     private List<int> screenResYlist = new List<int>();
     private List<AudioSpeakerMode> speakerConfigList = new List<AudioSpeakerMode>();
 
+    public GameObject normalLevelIcons;
+    public GameObject memoryLevelIcons;
+    private float levelIconDelay;
+
     public GameObject loadingScreenUI;
     public GameObject[] mainMenuUI;
     public GameObject[] optionMenuUI;
@@ -90,6 +94,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator PlayCoRoutine()
     {
+        levelIconDelay = 1.1f;
         HideMenuButtons();
         yield return new WaitForSeconds(1.1f);
         ShowPlayButtons();
@@ -122,6 +127,33 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
+        levelIconDelay -= Time.deltaTime;
+
+        if (levelIconDelay < 0)
+        {
+            if (menuToggle == MenuToggle.PLAY)
+            {
+                if (EventManager.inst.memoryPlaying)
+                {
+                    memoryLevelIcons.SetActive(true);
+                    normalLevelIcons.SetActive(false);
+                }
+
+                if (!EventManager.inst.memoryPlaying)
+                {
+                    normalLevelIcons.SetActive(true);
+                    memoryLevelIcons.SetActive(false);
+                }
+            }
+            else
+            {
+                normalLevelIcons.SetActive(false);
+                memoryLevelIcons.SetActive(false);
+            }
+        }
+
+
+
         UpdateUIvalues();
     }
 
