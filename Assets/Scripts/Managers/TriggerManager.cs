@@ -101,9 +101,7 @@ public class TriggerManager : MonoBehaviour
     }
 
     void Start()
-    {
-
-        
+    {        
         //Disable enemies to be later enabled
         if (enemy != null)
         {
@@ -130,7 +128,6 @@ public class TriggerManager : MonoBehaviour
             if (memory)
             {
                 EventManager.inst.currentMemory = memoryEventNumber;
-
                 dialogueAudio.clip = memoryDialogue;
                 dialogueAudio.Play();
                 memoryDuration = memoryDialogue.length;
@@ -154,7 +151,6 @@ public class TriggerManager : MonoBehaviour
                     memoryObj.SetActive(true);
                     startTimer = true;
                 }
-
              }
 
             // Checkpoint

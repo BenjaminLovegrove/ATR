@@ -30,7 +30,6 @@ public class RotateObject : MonoBehaviour
         {
             objToRotate = this.gameObject;
         }
-        else print("Error Assigning Game Obj");
     }
 	
 	void FixedUpdate ()

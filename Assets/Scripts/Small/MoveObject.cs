@@ -18,7 +18,6 @@ public class MoveObject : MonoBehaviour
         {
             objToMove = this.gameObject;
         }
-        else print("Error Assigning Game Obj");
     }
 
 	void Update ()
