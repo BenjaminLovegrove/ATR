@@ -51,7 +51,8 @@ public class Memory : MonoBehaviour
     private GlobalFog fog;        
     private Image memoryFlashObj;
     private RawImage fadeToBlack;
-    private Water[] water;    
+    private Water[] water;
+    private float dialogueVolume;    
     
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -105,6 +106,7 @@ public class Memory : MonoBehaviour
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
 
+        dialogueVolume = dialogueAudio.volume;
         startBloom = bloom.bloomIntensity;
         startFog = fog.heightDensity;
     }
@@ -123,7 +125,7 @@ public class Memory : MonoBehaviour
     // Music fade in/out for memories
     void FadeBGM()
     {
-        musicLerp += Time.deltaTime / 3;
+        musicLerp += Time.deltaTime / 2;
 
         if (musicFadeOut)
         {
@@ -137,6 +139,7 @@ public class Memory : MonoBehaviour
         if (musicFadeIn)
         {
             bgmSource.volume = Mathf.Lerp(0f, 0.35f, musicLerp);
+            dialogueAudio.volume = Mathf.Lerp(dialogueVolume, 0, musicLerp);
             if (musicLerp > 1)
             {
                 musicFadeIn = false;
@@ -160,6 +163,7 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
+        dialogueAudio.volume = dialogueVolume;
         memorySkippable = true;
         
         // Disable controls toggle

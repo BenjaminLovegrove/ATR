@@ -31,10 +31,18 @@ public class FirstEncounter : MonoBehaviour
         if (triggered)
         {
             //Disable controls after a small reaction time
-            if (encounterDuration < totalDuration - 1.5f)
+            if (encounterDuration < totalDuration - 0.5f)
             {
                 EventManager.inst.controlsDisabled = true;
                 playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
+
+                // When sequence ends (added only once so it doesnt keep turning the music up)
+                if (!triggered && !onlyPlayOnce)
+                {
+                    memScript.musicLerp = 0;
+                    memScript.musicFadeIn = true;
+                    onlyPlayOnce = true;
+                }
             }
             
             encounterDuration -= Time.deltaTime;
@@ -53,19 +61,11 @@ public class FirstEncounter : MonoBehaviour
         // When timer expires
         if (encounterDuration <= 0)
         {
+            EventManager.inst.controlsDisabled = false;
             triggered = false;
             setActiveObjects[0].SetActive(false);
         }
-
-        // When sequence ends
-        if (!triggered && !onlyPlayOnce)
-        {
-            EventManager.inst.controlsDisabled = false;
-            memScript.musicLerp = 0;
-            memScript.musicFadeIn = true;
-            onlyPlayOnce = true;
-        }
-	}
+    }
 
     // Trigger sequence
     void OnTriggerEnter(Collider col)
