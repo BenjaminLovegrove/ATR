@@ -44,6 +44,7 @@ public class EventManager : MonoBehaviour
     public string currentLevel;
     public bool credits;
     public bool atEndTerrain;
+    public bool firstEncounter;
 
     private RawImage fadeToBlack;
 
@@ -59,6 +60,7 @@ public class EventManager : MonoBehaviour
 	void Awake ()
 	{
         credits = false;
+        firstEncounter = false;
         Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         developerMode = true; // *** Disable for release builds ***

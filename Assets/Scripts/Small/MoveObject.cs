@@ -20,7 +20,7 @@ public class MoveObject : MonoBehaviour
         }
     }
 
-	void Update ()
+	void FixedUpdate ()
     {
         switch (moveDirection)
         {

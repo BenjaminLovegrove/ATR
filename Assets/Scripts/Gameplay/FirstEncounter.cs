@@ -14,13 +14,17 @@ public class FirstEncounter : MonoBehaviour
     public GameObject[] setActiveObjects;
     private bool triggered;
     private Transform playersTrans;
-    private bool onlyPlayOnce;
+    private bool musicResumed;
+    private bool crouched;
     private float totalDuration;
-
+    public AudioSource crouchSFXSource;
+    public AudioClip crouchSFX;
+    public AudioClip standSFX;
 
     void Awake()
     {
-        onlyPlayOnce = false;
+        musicResumed = false;
+        crouched = false;
         playersTrans = GameObject.FindGameObjectWithTag("Player").transform;
         totalDuration = encounterDuration;
     }
@@ -33,6 +37,13 @@ public class FirstEncounter : MonoBehaviour
             //Disable controls after a small reaction time
             if (encounterDuration < totalDuration - 0.5f)
             {
+                EventManager.inst.playerCrouch = true;
+                if (!crouched)
+                {
+                    crouchSFXSource.PlayOneShot(crouchSFX);
+                    crouched = true;
+                }
+
                 EventManager.inst.controlsDisabled = true;
                 playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
             }
@@ -60,11 +71,14 @@ public class FirstEncounter : MonoBehaviour
 
 
         // When sequence ends (added only once so it doesnt keep turning the music up)
-        if (!triggered && !onlyPlayOnce && encounterDuration < 0)
+        if (!triggered && !musicResumed && encounterDuration < 0)
         {
+            EventManager.inst.firstEncounter = false;
+            EventManager.inst.playerCrouch = false;
+            crouchSFXSource.PlayOneShot(standSFX);
             memScript.musicLerp = 0;
             memScript.musicFadeIn = true;
-            onlyPlayOnce = true;
+            musicResumed = true;
         }
     }
 
@@ -73,6 +87,7 @@ public class FirstEncounter : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            EventManager.inst.firstEncounter = true;
             print("Encounter Triggered");
             audio.Play();
             triggered = true;

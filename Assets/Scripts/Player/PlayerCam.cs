@@ -22,6 +22,7 @@ public class PlayerCam : MonoBehaviour
     public Transform cameraPosNeutral;
     public Transform cameraPosCrouch;
     public Transform cameraPosHeadBob;
+    public Transform cameraPosFE;
     public Transform currentPos;
     public Transform cameraDead;
     
@@ -70,6 +71,12 @@ public class PlayerCam : MonoBehaviour
         {
             CameraMovement();
             MouseMovement();
+        }
+
+        if (EventManager.inst.firstEncounter)
+        {
+            // Lerp camera to a slightly crouching pos during first memory
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosFE.position, Time.deltaTime * 3);
         }
     }
 
