@@ -86,12 +86,17 @@ public class Player : MonoBehaviour
 	{
         PlayFootStepSFX();
         PlayerMovement();
-        PlayHeartBeatSFX();
+
+        if (nearestEnemyDistance < 50)
+        {
+            PlayHeartBeatSFX();
+        }
 	}
 
     // Play the heartbeat SFX based on distance of the nearest enemy
     void PlayHeartBeatSFX()
     {
+
         if (!EventManager.inst.controlsDisabled)
         {
             if (!EventManager.inst.playerDead)
