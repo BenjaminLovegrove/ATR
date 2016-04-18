@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     public AudioClip crouchSFX;
     public AudioClip standSFX;
     private Rigidbody playerRigid;
+    private float walkingVolume;
 
 	void Awake ()
 	{
@@ -58,7 +59,8 @@ public class Player : MonoBehaviour
         audio = GetComponent<AudioSource>();    
         hackMoveSpeed = 1f;
         backgroundMaxVol = backGroundMusic.volume;
-        playerRigid.freezeRotation = true;            
+        playerRigid.freezeRotation = true;
+        walkingVolume = footStepSFXSource.volume;           
 	}
 
     void Start()
@@ -324,6 +326,7 @@ public class Player : MonoBehaviour
             {
                 if (!EventManager.inst.playerCrouch)
                 {
+                    footStepSFXSource.volume = walkingVolume;
                     // Cycle between left and right footstep SFX arrays
                     if (footStepCount % 2 == 0)
                     {
@@ -363,6 +366,48 @@ public class Player : MonoBehaviour
                 // Play crouching footstep if not standing
                 else
                 {
+                    //change to lower vol for crouched
+                    footStepSFXSource.volume = walkingVolume * 0.75f;
+
+                    // Cycle between left and right footstep SFX arrays
+                    if (footStepCount % 2 == 0)
+                    {
+                        // Left step
+                        if (!touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkLeftHardSFX[currentWalkVal];
+                        }
+
+                        if (touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkLeftSoftSFX[currentWalkVal];
+                        }
+
+                        footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
+                        footStepSFXSource.Play();
+                    }
+                    else
+                    {
+                        // Right step
+                        if (!touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkRightHardSFX[currentWalkVal];
+                        }
+
+                        if (touchingTerrain)
+                        {
+                            footStepSFXSource.clip = standingWalkRightSoftSFX[currentWalkVal];
+                        }
+
+                        footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
+                        footStepSFXSource.Play();
+                    }
+                    currentWalkVal++;
+                    footStepCount++;
+
+
+                    //Below is when we had edited seperate footsteps for crouched. Use the same ones at a lower volume now.
+                    /*
                     if (footStepCount % 2 == 0)
                     {
                         footStepSFXSource.clip = crouchWalkLeftSFX[currentWalkVal];
@@ -376,7 +421,7 @@ public class Player : MonoBehaviour
                         footStepSFXSource.Play();
                     }
                     currentWalkVal++;
-                    footStepCount++;
+                    footStepCount++;*/
                 }
                 footStepTimer = 0;
             }

@@ -9,6 +9,7 @@ public class Exhaustion : MonoBehaviour {
 
     [Header("BGM")]
     public AudioSource BGM;
+    public EndingTrigger audioSwitcher;
 
     [Header("Breathing")]
     public AudioSource breathing;
@@ -35,9 +36,12 @@ public class Exhaustion : MonoBehaviour {
         }
 
         //Lerp Values
-        breathing.volume = Mathf.Lerp(maxVol, 0, (closestDist / totalDistance));
+        breathing.volume = Mathf.Lerp(maxVol, -0.15f, (closestDist / totalDistance));
         breathing.pitch = Mathf.Lerp(endPitch, startPitch, (closestDist / totalDistance));
-        BGM.volume = Mathf.Lerp(0, 1, (closestDist / totalDistance));
+        if (audioSwitcher.switchedTrack)
+        {
+            BGM.volume = Mathf.Lerp(0, 0.45f, (closestDist / totalDistance));
+        }
         EventManager.inst.memoryMoveScalar = Mathf.Lerp(lowestSpeed, 1, (closestDist / totalDistance));
         EventManager.inst.memoryLookScalar = Mathf.Lerp(lowestSens, 1, (closestDist / totalDistance));
 
