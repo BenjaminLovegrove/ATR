@@ -5,6 +5,8 @@ using System.Collections;
 
 public class FirstEncounter : MonoBehaviour
 {
+    public Memory memScript;
+    public AudioSource memDialogue;
     public Transform cameraLookAtTarget;    
     public float encounterDuration;
     public float spawnObjectsDelay;
@@ -12,10 +14,15 @@ public class FirstEncounter : MonoBehaviour
     public GameObject[] setActiveObjects;
     private bool triggered;
     private Transform playersTrans;
+    private bool onlyPlayOnce;
+    private float totalDuration;
+
 
     void Awake()
     {
+        onlyPlayOnce = false;
         playersTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        totalDuration = encounterDuration;
     }
 
 	void FixedUpdate ()
@@ -23,9 +30,15 @@ public class FirstEncounter : MonoBehaviour
         // When sequence begins
         if (triggered)
         {
-            EventManager.inst.controlsDisabled = true;
-            playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
+            //Disable controls after a small reaction time
+            if (encounterDuration < totalDuration - 1.5f)
+            {
+                EventManager.inst.controlsDisabled = true;
+                playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
+            }
+            
             encounterDuration -= Time.deltaTime;
+            memDialogue.Stop();
 
             // Delay before guard is activated
             if (encounterDuration < spawnObjectsDelay)
@@ -45,9 +58,12 @@ public class FirstEncounter : MonoBehaviour
         }
 
         // When sequence ends
-        if (!triggered)
+        if (!triggered && !onlyPlayOnce)
         {
             EventManager.inst.controlsDisabled = false;
+            memScript.musicLerp = 0;
+            memScript.musicFadeIn = true;
+            onlyPlayOnce = true;
         }
 	}
 
@@ -59,6 +75,8 @@ public class FirstEncounter : MonoBehaviour
             print("Encounter Triggered");
             audio.Play();
             triggered = true;
+            memScript.musicLerp = 0;
+            memScript.musicFadeOut = true;
         }
     }
 }

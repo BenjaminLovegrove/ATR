@@ -29,7 +29,8 @@ public class TriggerManager : MonoBehaviour
     public AudioClip memoryDialogue;
     public GameObject memoryObj;    
 	public GameObject[] switchObjects;    
-    public AudioClip newBGM;      
+    public AudioClip newBGM;
+    public float endEarlyTimer;
     private float memoryDuration;
     private AudioSource dialogueAudio;
     private bool startTimer = false;
@@ -130,7 +131,7 @@ public class TriggerManager : MonoBehaviour
                 EventManager.inst.currentMemory = memoryEventNumber;
                 dialogueAudio.clip = memoryDialogue;
                 dialogueAudio.Play();
-                memoryDuration = memoryDialogue.length;
+                memoryDuration = memoryDialogue.length - endEarlyTimer;
                 col.BroadcastMessage("EnterMemory", memoryDuration);
                 col.BroadcastMessage("NightCheck", nightTime);
                 col.BroadcastMessage("SetSwitch", switchObjects);

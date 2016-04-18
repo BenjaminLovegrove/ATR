@@ -18,7 +18,7 @@ public class Memory : MonoBehaviour
     public float memoryBloom;
 
     [Header("Memory Objects")]
-    public AudioClip[] memoryDialogue;  
+    public AudioClip[] memoryDialogue;
     public GameObject[] switchMe;
     public Terrain myTerrain;
     public Light sceneLighting;
@@ -37,8 +37,8 @@ public class Memory : MonoBehaviour
     private float memTimer;
     private float delayTimer;
     private bool memorySkippable;
-    private bool musicFadeOut;
-    private bool musicFadeIn;
+    public bool musicFadeOut;
+    public bool musicFadeIn;
     public float musicLerp;
 
     // Components
@@ -72,7 +72,7 @@ public class Memory : MonoBehaviour
     IEnumerator SkipMemory()
     {
         memTimer = 2;
-        dialogueAudio.Stop();
+        //dialogueAudio.Stop();
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2);
         EndMemory();
@@ -123,7 +123,7 @@ public class Memory : MonoBehaviour
     // Music fade in/out for memories
     void FadeBGM()
     {
-        musicLerp += Time.deltaTime / 2;
+        musicLerp += Time.deltaTime / 3;
 
         if (musicFadeOut)
         {
@@ -314,7 +314,7 @@ public class Memory : MonoBehaviour
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
             fadeToBlack.CrossFadeAlpha(1, 10, false);
-            Invoke("CutToCredits", 10f);
+            Invoke("CutToCredits", 30f);
         }
     }
 

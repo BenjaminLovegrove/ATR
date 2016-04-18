@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
     private int footStepCount;
     private float hackMoveSpeed;
     private float footStepTimer;
-    private int currentWalkVal;
-    private int currentCrouchVal;
+    public int currentWalkVal;
+    public int currentCrouchVal;
 
     // Components
     private AudioSource audio;
@@ -401,9 +401,10 @@ public class Player : MonoBehaviour
 
                         footStepSFXSource.pitch = Random.Range(0.8f, 1.15f);
                         footStepSFXSource.Play();
+                        currentWalkVal++;
+                        footStepCount++;
                     }
-                    currentWalkVal++;
-                    footStepCount++;
+
 
 
                     //Below is when we had edited seperate footsteps for crouched. Use the same ones at a lower volume now.
