@@ -123,6 +123,13 @@ public class MainMenu : MonoBehaviour
         audio = GetComponent<AudioSource>();
         InitialiseSettings();
         LoadSettings();
+
+        EventManager.inst.credits = false;
+        EventManager.inst.atEndTerrain = false;
+        EventManager.inst.memoryPlaying = false;
+        EventManager.inst.currentCheckPoint = 0;
+        EventManager.inst.memoryLookScalar = 1;
+        EventManager.inst.memoryMoveScalar = 1;
     }
 
     void Update()
