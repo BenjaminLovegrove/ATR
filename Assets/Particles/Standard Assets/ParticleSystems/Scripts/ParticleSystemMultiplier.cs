@@ -12,6 +12,7 @@ namespace UnityStandardAssets.Effects
 
         private void Start()
         {
+
             var systems = GetComponentsInChildren<ParticleSystem>();
             foreach (ParticleSystem system in systems)
             {

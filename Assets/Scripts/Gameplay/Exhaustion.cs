@@ -42,7 +42,6 @@ public class Exhaustion : MonoBehaviour {
             closestDist = Vector3.Distance(transform.position, endPoint.position);
         }
 
-        print(closestDist);
         //Lerp Values
         float lerpValue = (closestDist / totalDistance);
         targBreathingVol = Mathf.Lerp(maxVol, -0.15f, lerpValue);

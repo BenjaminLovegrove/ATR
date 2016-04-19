@@ -116,7 +116,7 @@ public class MainMenu : MonoBehaviour
         while (!async.isDone)
         {
             yield return null;
-        } 
+        }
     }
 
     void Awake()

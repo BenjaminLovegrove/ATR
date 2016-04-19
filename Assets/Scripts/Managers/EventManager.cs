@@ -136,6 +136,7 @@ public class EventManager : MonoBehaviour
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         //StartCoroutine("FadeInCoRoutine");
         //controlsDisabled = true;
+        memoryPlaying = false;
         fadeToBlack.CrossFadeAlpha(0, 3, false);
         controlsDisabled = false;
         InitialiseValues();

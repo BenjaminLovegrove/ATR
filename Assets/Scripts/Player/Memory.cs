@@ -55,7 +55,8 @@ public class Memory : MonoBehaviour
     private Water[] water;
     private float dialogueVolume;
     private float bgmMaxVolume;
-    private float breathingMaxVolume;   
+    private float breathingMaxVolume;
+    private GameObject[] endSmokes;
     
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -109,6 +110,7 @@ public class Memory : MonoBehaviour
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
+        endSmokes = GameObject.FindGameObjectsWithTag("Smoke");
 
         bgmMaxVolume = bgmSource.volume;
         breathingMaxVolume = breathingSource.volume;
@@ -322,6 +324,10 @@ public class Memory : MonoBehaviour
         // Load credits and fade out
         if (loadCredits)
         {
+            foreach (GameObject smoke in endSmokes)
+            {
+                smoke.GetComponent<ParticleSystem>().enableEmission = true;
+            }
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
