@@ -4,8 +4,14 @@ using System.Collections;
 public class EndingTrigger : MonoBehaviour {
 
     public AudioSource BGM;
+    private float bgmMaxVol;
     public AudioClip precreditsAudio;
     public bool switchedTrack;
+
+    void Awake()
+    {
+        bgmMaxVol = BGM.volume;
+    }
 
 	void OnTriggerEnter (Collider col) {
 
@@ -33,7 +39,7 @@ public class EndingTrigger : MonoBehaviour {
             {
                 BGM.clip = precreditsAudio;
                 BGM.Play();
-                BGM.volume = 0.45f;
+                BGM.volume = bgmMaxVol;
                 switchedTrack = true;
             }
         }

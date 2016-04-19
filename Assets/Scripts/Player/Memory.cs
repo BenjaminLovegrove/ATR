@@ -45,6 +45,7 @@ public class Memory : MonoBehaviour
     private AudioClip newBGM;
     private AudioSource bgmSource;
     private AudioSource dialogueAudio;
+    private AudioSource breathingSource;
     private BloomAndFlares bloom;
     private GameObject[] waterObjs;
     private GameObject skySphere;    
@@ -52,7 +53,9 @@ public class Memory : MonoBehaviour
     private Image memoryFlashObj;
     private RawImage fadeToBlack;
     private Water[] water;
-    private float dialogueVolume;    
+    private float dialogueVolume;
+    private float bgmMaxVolume;
+    private float breathingMaxVolume;   
     
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -100,12 +103,15 @@ public class Memory : MonoBehaviour
         // Getters and setters
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
+        breathingSource = GameObject.Find("BreathingSFX").GetComponent<AudioSource>();
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
 
+        bgmMaxVolume = bgmSource.volume;
+        breathingMaxVolume = breathingSource.volume;
         dialogueVolume = dialogueAudio.volume;
         startBloom = bloom.bloomIntensity;
         startFog = fog.heightDensity;
@@ -125,11 +131,11 @@ public class Memory : MonoBehaviour
     // Music fade in/out for memories
     void FadeBGM()
     {
-        musicLerp += Time.deltaTime / 2;
-
         if (musicFadeOut)
         {
-            bgmSource.volume = Mathf.Lerp(0.35f, 0f, musicLerp);
+            musicLerp += Time.deltaTime;
+            bgmSource.volume = Mathf.Lerp(bgmMaxVolume, 0, musicLerp);
+            breathingSource.volume = Mathf.Lerp(breathingMaxVolume, 0, musicLerp);
             if (musicLerp > 1)
             {
                 musicFadeOut = false;
@@ -138,7 +144,9 @@ public class Memory : MonoBehaviour
 
         if (musicFadeIn)
         {
-            bgmSource.volume = Mathf.Lerp(0f, 0.35f, musicLerp);
+            musicLerp += Time.deltaTime / 4;
+            bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
+            breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
             dialogueAudio.volume = Mathf.Lerp(dialogueVolume, 0, musicLerp);
             if (musicLerp > 1)
             {

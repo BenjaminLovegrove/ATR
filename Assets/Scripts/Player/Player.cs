@@ -270,13 +270,13 @@ public class Player : MonoBehaviour
                 // Play Crouching SFX
                 if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.LeftControl))
                 {
-                    audio.PlayOneShot(crouchSFX);
+                    audio.PlayOneShot(crouchSFX, 0.15f);
                 }
 
                 // Play Standing SFX
                 if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
                 {
-                    audio.PlayOneShot(standSFX);
+                    audio.PlayOneShot(standSFX, 0.15f);
                 }
             }
         }
@@ -372,7 +372,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     //change to lower vol for crouched
-                    footStepSFXSource.volume = walkingVolume * 0.75f;
+                    footStepSFXSource.volume = walkingVolume * 0.6f;
 
                     // Cycle between left and right footstep SFX arrays
                     if (footStepCount % 2 == 0)

@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
         MAIN, OPTIONS, PLAY, CANCEL, NONE
     }
 
+    private AudioListener AL;
     public MenuToggle menuToggle;
 
     private List<int> screenResXlist = new List<int>();

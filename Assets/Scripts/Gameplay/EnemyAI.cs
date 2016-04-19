@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour
 
             audioLength = radioChatter[rand].length;
 
-            audio.PlayOneShot(radioChatter[rand], 0.5f);
+            audio.PlayOneShot(radioChatter[rand], 0.3f);
 
             audioPlaying = true;
         }
