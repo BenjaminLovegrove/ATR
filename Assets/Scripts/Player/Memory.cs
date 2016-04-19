@@ -56,7 +56,7 @@ public class Memory : MonoBehaviour
     private float dialogueVolume;
     private float bgmMaxVolume;
     private float breathingMaxVolume;
-    private GameObject[] endSmokes;
+    public GameObject[] endSmokes;
     
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -110,7 +110,7 @@ public class Memory : MonoBehaviour
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
-        endSmokes = GameObject.FindGameObjectsWithTag("Smoke");
+        //endSmokes = GameObject.FindGameObjectsWithTag("Smoke");
 
         bgmMaxVolume = bgmSource.volume;
         breathingMaxVolume = breathingSource.volume;
@@ -326,6 +326,7 @@ public class Memory : MonoBehaviour
         {
             foreach (GameObject smoke in endSmokes)
             {
+                smoke.SetActive(true);
                 smoke.GetComponent<ParticleSystem>().enableEmission = true;
             }
             oilRigs.SetActive(true);
