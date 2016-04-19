@@ -325,7 +325,7 @@ public class Memory : MonoBehaviour
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
-            fadeToBlack.CrossFadeAlpha(1, 10, false);
+            fadeToBlack.CrossFadeAlpha(1, 30, false);
             Invoke("CutToCredits", 30f);
         }
     }

@@ -87,10 +87,7 @@ public class Player : MonoBehaviour
         PlayFootStepSFX();
         PlayerMovement();
 
-        if (nearestEnemyDistance < 50)
-        {
-            PlayHeartBeatSFX();
-        }
+        PlayHeartBeatSFX();
 	}
 
     // Play the heartbeat SFX based on distance of the nearest enemy
@@ -113,13 +110,16 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                float distanceMod = (10 / nearestEnemyDistance);
-                heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
-                heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
-                float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
-                if (!EventManager.inst.memoryPlaying && !EventManager.inst.atEndTerrain)
+                if (nearestEnemyDistance < 50)
                 {
-                    backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
+                    float distanceMod = (10 / nearestEnemyDistance);
+                    heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
+                    heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
+                    float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
+                    if (!EventManager.inst.memoryPlaying && !EventManager.inst.atEndTerrain)
+                    {
+                        backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
+                    }
                 }                
             }
             else heartBeatSFX.volume = 0;

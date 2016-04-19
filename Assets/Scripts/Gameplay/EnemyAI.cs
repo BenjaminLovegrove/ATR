@@ -118,7 +118,7 @@ public class EnemyAI : MonoBehaviour
     void RadioChatter()
     {
         // Reset radio chat status upon completion
-        if (audioTimer >= audioLength + 1)
+        if (audioTimer >= audioLength + 3)
         {
             audioPlaying = false;
             audioTimer = 0;
@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour
 
             audioLength = radioChatter[rand].length;
 
-            audio.PlayOneShot(radioChatter[rand], 0.3f);
+            audio.PlayOneShot(radioChatter[rand], 0.175f);
 
             audioPlaying = true;
         }
