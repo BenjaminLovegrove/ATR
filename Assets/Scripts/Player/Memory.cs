@@ -25,8 +25,11 @@ public class Memory : MonoBehaviour
     public Material originalSkyBox;
     public Material alternateSkyBox;
     public GameObject oilRigs;
-
-    // Protected variables
+    private Text subUI1;
+    private Text subUI2;
+    public string subString1;
+    public string subString2;
+    
     private bool disableControls;
     private bool loadCredits;
     private float startBloom;
@@ -41,7 +44,6 @@ public class Memory : MonoBehaviour
     public bool musicFadeIn;
     public float musicLerp;
 
-    // Components
     private AudioClip newBGM;
     private AudioSource bgmSource;
     private AudioSource dialogueAudio;
@@ -85,7 +87,6 @@ public class Memory : MonoBehaviour
 
     void Awake()
     {
-        // Apply regular controls
         EventManager.inst.memoryLookScalar = 1;
         EventManager.inst.memoryMoveScalar = 1;
 
@@ -101,7 +102,8 @@ public class Memory : MonoBehaviour
             }
         }
 
-        // Getters and setters
+        subUI1 = GameObject.Find("Subtitles1").GetComponent<Text>();
+        subUI2 = GameObject.Find("Subtitles2").GetComponent<Text>();
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
         bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
         breathingSource = GameObject.Find("BreathingSFX").GetComponent<AudioSource>();
@@ -110,7 +112,6 @@ public class Memory : MonoBehaviour
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
-        //endSmokes = GameObject.FindGameObjectsWithTag("Smoke");
 
         bgmMaxVolume = bgmSource.volume;
         breathingMaxVolume = breathingSource.volume;
@@ -173,6 +174,8 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
+        StartCoroutine("Subtitles" + EventManager.inst.currentMemory);
+
         dialogueAudio.volume = dialogueVolume;
         memorySkippable = true;
         
@@ -457,7 +460,540 @@ public class Memory : MonoBehaviour
     {
         Application.LoadLevel("Credits");
     }
+
+    void FadeTextIn1(float duration)
+    {
+        subUI1.CrossFadeAlpha(255, duration, false);
+    }
+
+    void FadeTextOut1(float duration)
+    {
+        subUI1.CrossFadeAlpha(0, duration, false);
+    }
+
+    void FadeTextIn2(float duration)
+    {
+        subUI2.CrossFadeAlpha(255, duration, false);
+    }
+
+    void FadeTextOut2(float duration)
+    {
+        subUI2.CrossFadeAlpha(0, duration, false);
+    }
     #endregion
+
+    public IEnumerator Subtitles1()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Hey";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "...Hey you";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Going for a swim?";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "Haha! yeah, it’s totally not freezing right now or anything";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "You're brave! I'll help you in";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "Haha! Stop! Hey John...?";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Yeah?";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "Isn't it amazing here?";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(1f);
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "I know what you mean, and Marcy clearly loves it";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(2f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "Sure does... What a place to grow up";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+    }
+
+    public IEnumerator Subtitles2()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "Hey";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Ah, you're still up";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "You must be pretty busy, it's really late";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "I know, same as always";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "So.. the doctors today..";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "apparently she’s getting worse, pretty quickl.. um..";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        subString2 = "it would be nice if you could be around a bit.. she wan..";
+        subUI2.text = subString2;        
+        yield return new WaitForSeconds(3f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "I know.. I'll try, but work again";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "John..  listen to her…. I was thinking..";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "Maybe we could move somewhere! Away from the city!..";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        subString2 = "Somewhere on the the coast? The air would be cleaner… maybe that would help";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "What?? We can’t right now! Everything we have is here…";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(3f);
+        subString1 = "You know what, I’m really tired, I’m heading to bed";
+        subUI1.text = subString1;
+        yield return new WaitForSeconds(2f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Subtitles3()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Alex, talk to me";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "I... Uh...";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "It’s been months like this… We can’t stay this way";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "It’s been months? I’m not going to forget about everything,";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "our daughter, because it’s been months .. I just.. I need a while..";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(2f);
+        subString2 = "you wouldn’t really understand";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "SHE... I loved her just as much as you did, that’s why I always...";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(3f);
+        subString1 = "you know what.. forget it";
+        subUI1.text = subString1;
+        yield return new WaitForSeconds(1f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Subtitles4()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "John... I’ve been thinking.. I’m gonna leave.. you know, with everyone else.. I need change";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(4f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "What?! Who’s just willing to move on now?";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(2f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "John...";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "I thought we said we wouldn’t, we said a long time ago we wanted to stay here,";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(3.5f);
+        subString1 = "this is where our life and all our memories are...";
+        subUI1.text = subString1;
+        yield return new WaitForSeconds(2f);
+        subString1 = "I don’t want to just leave here";
+        subUI1.text = subString1;
+        yield return new WaitForSeconds(2f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "I... wasn’t really asking... We both need a change,";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "I think it’s best if, just I go for now... alone... ";
+        subUI2.text = subString2;        
+        yield return new WaitForSeconds(3f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);        
+    }
+
+    public IEnumerator Subtitles5()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "So.. she just left?";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Yeah.. it’s for best though.. She deserved a fresh start";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(3f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "So, are you planning to go? Maybe you could still fix things?";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "I don’t know.. eventually I guess..";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(2f);
+        subString1 = "Maybe I just need a bit more time.. and honestly,";
+        subUI1.text = subString1;
+        yield return new WaitForSeconds(3f);
+        subString1 = "I’m not sure anything could take things back to how they were";
+        subUI1.text = subString1;
+        yield return new WaitForSeconds(3f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "Well.. don’t spend too long thinking about it...";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "Just.. who knows what’s going to happen in the next couple of years?";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        subString2 = "At this rate, everyone will be gone soon enough. I’m just saying,";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        subString2 = "you can’t rely on time to fix things, time really just makes you, accept how things are";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3.5f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Subtitles6()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "God, it’s even worse in the city, I can’t see shit.. It hasn’t even been that long";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(4f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Well I guess when no one’s around it’s easy to not care any more..";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(3f);
+        subString1 = "It’s amazing how empty it suddenly is";
+        subUI1.text = subString1;
+        yield return new WaitForSeconds(2f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "Honestly, I think something needs to change real soon";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(2.5f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Yeah, easier said than done though. What difference could we make";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(3f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "This smog.. They really must just not care about the people here,";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "or even trying to save what’s left.. If this keeps up we’ll have to try something..";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(4f);
+        subString2 = "and who’s going to stop us?";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Subtitles7()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "Shh.. Look at these guys, what the hell is happening?";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "There’s no chance of leaving now";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(2f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // John
+        subString1 = "Do you think anyone knows what’s going on? Can’t stop us can they?";
+        subUI1.text = subString1;
+        FadeTextIn1(1);
+        yield return new WaitForSeconds(3f);
+        FadeTextOut1(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Guard
+        subString2 = "*Hey you there!*";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(1.5f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+
+        // Guy
+        subString2 = "Run!";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(1f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Subtitles8()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Subtitles9()
+    {
+        yield return new WaitForSeconds(1f);
+
+        // Alex
+        subString2 = "Hey, so you made it. What do you think?";
+        subUI2.text = subString2;
+        FadeTextIn2(1);
+        yield return new WaitForSeconds(3f);
+        subString2 = "Think things could be different?";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        subString2 = "Do you think you could be happy?";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        subString2 = "Are you thinking about all the things you wish you could go back and change?";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(5f);
+        subString2 = "You can’t spend forever thinking about the past...";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(4f);
+        subString2 = "You just have to do what you can now...";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        subString2 = "We have to accept our mistakes, learn from them...";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(4f);
+        subString2 = "Be better because of them";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(3f);
+        FadeTextOut2(1);
+
+        yield return new WaitForSeconds(1f);
+    }
+
 }
 
 
