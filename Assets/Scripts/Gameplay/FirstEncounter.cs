@@ -69,6 +69,11 @@ public class FirstEncounter : MonoBehaviour
             setActiveObjects[0].SetActive(false);
         }
 
+        if (!EventManager.inst.firstEncounter && !EventManager.inst.memoryPlaying)
+        {
+            EventManager.inst.controlsDisabled = false;
+        }
+
 
         // When sequence ends (added only once so it doesnt keep turning the music up)
         if (!triggered && !musicResumed && encounterDuration < 0)
