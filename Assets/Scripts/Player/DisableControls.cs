@@ -3,9 +3,18 @@ using System.Collections;
 
 public class DisableControls : MonoBehaviour
 {
+    public float getIntoMem;
+
     void Update()
     {
+        getIntoMem += Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Destroy(this);
+        }
+
+        if (!EventManager.inst.memoryPlaying && getIntoMem > 10)
         {
             Destroy(this);
         }
@@ -18,4 +27,11 @@ public class DisableControls : MonoBehaviour
             EventManager.inst.controlsDisabled = true;
         }
     }
+
+    void OnDestroy()
+    {
+        EventManager.inst.controlsDisabled = false;
+    }
+
+
 }

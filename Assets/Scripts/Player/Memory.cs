@@ -136,7 +136,7 @@ public class Memory : MonoBehaviour
     {
         if (musicFadeOut)
         {
-            musicLerp += Time.deltaTime;
+            musicLerp += Time.deltaTime / 2;
             bgmSource.volume = Mathf.Lerp(bgmMaxVolume, 0, musicLerp);
             breathingSource.volume = Mathf.Lerp(breathingMaxVolume, 0, musicLerp);
             if (musicLerp > 1)
@@ -174,7 +174,7 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
-        StartCoroutine("Subtitles" + EventManager.inst.currentMemory);
+        StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
 
         dialogueAudio.volume = dialogueVolume;
         memorySkippable = true;
@@ -244,7 +244,7 @@ public class Memory : MonoBehaviour
             skySphere.SetActive(false);
         }
 
-        memoryFlashObj.CrossFadeAlpha(0, 1, false);
+        memoryFlashObj.CrossFadeAlpha(0, 2, false);
     }
 
     // End memory
@@ -463,7 +463,7 @@ public class Memory : MonoBehaviour
 
     void FadeTextIn1(float duration)
     {
-        subUI1.CrossFadeAlpha(255, duration, false);
+        subUI1.CrossFadeAlpha(1, duration / 3, false);
     }
 
     void FadeTextOut1(float duration)
@@ -473,7 +473,7 @@ public class Memory : MonoBehaviour
 
     void FadeTextIn2(float duration)
     {
-        subUI2.CrossFadeAlpha(255, duration, false);
+        subUI2.CrossFadeAlpha(1, duration / 3, false);
     }
 
     void FadeTextOut2(float duration)
@@ -485,6 +485,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles1()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // John
         subString1 = "Hey";
@@ -579,6 +581,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles2()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // Alex
         subString2 = "Hey";
@@ -671,6 +675,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles3()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // John
         subString1 = "Alex, talk to me";
@@ -730,6 +736,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles4()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // Alex
         subString2 = "John... I’ve been thinking.. I’m gonna leave.. you know, with everyone else.. I need change";
@@ -789,6 +797,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles5()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // Guy
         subString2 = "So.. she just left?";
@@ -854,6 +864,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles6()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // Guy
         subString2 = "God, it’s even worse in the city, I can’t see shit.. It hasn’t even been that long";
@@ -913,6 +925,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles7()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // Guy
         subString2 = "Shh.. Look at these guys, what the hell is happening?";
@@ -962,6 +976,8 @@ public class Memory : MonoBehaviour
     public IEnumerator Subtitles9()
     {
         yield return new WaitForSeconds(1f);
+        FadeTextOut1(0);
+        FadeTextOut2(0);
 
         // Alex
         subString2 = "Hey, so you made it. What do you think?";

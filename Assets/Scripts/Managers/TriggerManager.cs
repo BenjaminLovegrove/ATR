@@ -20,6 +20,7 @@ public class TriggerManager : MonoBehaviour
     // The unique memory encounter is set via the int.
     // The int values will be unique to each scene.
     [Header("Memory")]
+    public int subtitleNum;
     public bool memory;
     public bool disableControls;
     public bool nightTime = false;
@@ -129,6 +130,7 @@ public class TriggerManager : MonoBehaviour
             if (memory)
             {
                 EventManager.inst.currentMemory = memoryEventNumber;
+                EventManager.inst.subtitleNum = subtitleNum;
                 dialogueAudio.clip = memoryDialogue;
                 dialogueAudio.Play();
                 memoryDuration = memoryDialogue.length - endEarlyTimer;
