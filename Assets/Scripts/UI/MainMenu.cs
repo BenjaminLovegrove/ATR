@@ -126,6 +126,7 @@ public class MainMenu : MonoBehaviour
         InitialiseSettings();
         LoadSettings();
 
+        EventManager.inst.currentLevel = "MainMenu";
         EventManager.inst.credits = false;
         EventManager.inst.atEndTerrain = false;
         EventManager.inst.memoryPlaying = false;

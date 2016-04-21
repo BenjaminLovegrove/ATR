@@ -369,7 +369,10 @@ public class Memory : MonoBehaviour
     // TriggerManager script will activate this function
     void EnterMemory (float duration)
     {
-        StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
+        if (EventManager.inst.currentLevel != "MainMenu")
+        {
+            StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
+        }        
         musicLerp = 0;
         musicFadeOut = true;
         flashDelay = duration;
@@ -507,6 +510,7 @@ public class Memory : MonoBehaviour
     }
     #endregion
 
+    #region Subtitles
     public IEnumerator Subtitles1()
     {
         yield return new WaitForSeconds(3.5f);
@@ -1123,7 +1127,7 @@ public class Memory : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
     }
-
+    #endregion
 }
 
 
