@@ -568,7 +568,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // John
-        subString1 = "I know what you mean, and it seems like Marcy loves it.";
+        subString1 = "I know what you mean, it seems like Marcy loves it.";
         subUI1.text = subString1;
         FadeTextIn1(0.25f);
         yield return new WaitForSeconds(1.5f);
