@@ -122,6 +122,7 @@ public class MainMenu : MonoBehaviour
     void Awake()
     {
         audio = GetComponent<AudioSource>();
+        GameObject.Find("EventManager").GetComponent<AudioSource>().Stop();
         InitialiseSettings();
         LoadSettings();
 
@@ -221,7 +222,7 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.visible = false;
         pressedPlay = true;
-        audio.PlayOneShot(playSFX);
+        audio.PlayOneShot(playSFX, 0.15f);
         EventManager.inst.currentLevel = levelSelect;
         EventManager.inst.currentCheckPoint = 0;
         

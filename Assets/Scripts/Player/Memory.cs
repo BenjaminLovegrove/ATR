@@ -29,6 +29,7 @@ public class Memory : MonoBehaviour
     private Text subUI2;
     public string subString1;
     public string subString2;
+    private Camera gameCam;
     
     private bool disableControls;
     private bool loadCredits;
@@ -59,6 +60,7 @@ public class Memory : MonoBehaviour
     private float bgmMaxVolume;
     private float breathingMaxVolume;
     public GameObject[] endSmokes;
+    private AudioSource endMusic;
     
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -69,7 +71,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(2f);
         bgmSource.Pause();
         StartMemory();
-        yield return new WaitForSeconds(flashDelay - 1.5f);
+        yield return new WaitForSeconds(flashDelay - 3f);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2);
         EndMemory();
@@ -110,6 +112,8 @@ public class Memory : MonoBehaviour
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
+        endMusic = GameObject.Find("EventManager").GetComponent<AudioSource>();
+        gameCam = GameObject.Find("Camera").GetComponent<Camera>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
 
@@ -123,6 +127,7 @@ public class Memory : MonoBehaviour
     void Update()
     {
         SkipMemoryCheck();
+        FadeFOV();
     }
 
 	void FixedUpdate()
@@ -136,7 +141,13 @@ public class Memory : MonoBehaviour
     {
         if (musicFadeOut)
         {
-            musicLerp += Time.deltaTime / 2;
+            if (!EventManager.inst.credits)
+            {
+                musicLerp += Time.deltaTime / 2;
+            } else
+            {
+                musicLerp += Time.deltaTime / 5;
+            }
             bgmSource.volume = Mathf.Lerp(bgmMaxVolume, 0, musicLerp);
             breathingSource.volume = Mathf.Lerp(breathingMaxVolume, 0, musicLerp);
             if (musicLerp > 1)
@@ -145,7 +156,7 @@ public class Memory : MonoBehaviour
             }
         }
 
-        if (musicFadeIn)
+        if (musicFadeIn && !EventManager.inst.credits)
         {
             musicLerp += Time.deltaTime / 4;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
@@ -155,6 +166,15 @@ public class Memory : MonoBehaviour
             {
                 musicFadeIn = false;
             }
+        }
+    }
+
+    // Fade fov in mems
+    void FadeFOV()
+    {
+        if (EventManager.inst.memoryPlaying && delayTimer != 0)
+        {
+            gameCam.fieldOfView = Mathf.Lerp(60, 75, delayTimer / memoryLength);
         }
     }
 
@@ -254,6 +274,7 @@ public class Memory : MonoBehaviour
     {
         // Set controls back to normal
         disableControls = false;
+        gameCam.ResetFieldOfView();
         if (!EventManager.inst.credits)
         {
             EventManager.inst.memoryLookScalar = 1;
@@ -334,6 +355,7 @@ public class Memory : MonoBehaviour
                 smoke.SetActive(true);
                 smoke.GetComponent<ParticleSystem>().enableEmission = true;
             }
+            endMusic.Play();
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
@@ -404,7 +426,7 @@ public class Memory : MonoBehaviour
         if (delayTimer > memoryLength)
         {
             delayTimer = 0;
-            EventManager.inst.memoryPlaying = true;
+            EventManager.inst.memoryPlaying = false;
         }
 
         if (memTimer > 0)
@@ -487,7 +509,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles1()
     {
-        yield return new WaitForSeconds(3.75f);
+        yield return new WaitForSeconds(3.5f);
         FadeTextOut1(0);
         FadeTextOut2(0);
 
@@ -513,7 +535,7 @@ public class Memory : MonoBehaviour
         subString1 = "Going for a swim?";
         subUI1.text = subString1;
         FadeTextIn1(0.25f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         FadeTextOut1(1);
 
         yield return new WaitForSeconds(1f);
@@ -522,7 +544,7 @@ public class Memory : MonoBehaviour
         subString2 = "Haha! yeah, it’s totally not freezing right now or anything!";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.75f);
         FadeTextOut2(1);
 
         yield return new WaitForSeconds(1f);
@@ -531,16 +553,16 @@ public class Memory : MonoBehaviour
         subString1 = "You're brave! I'll help you in!";
         subUI1.text = subString1;
         FadeTextIn1(0.25f);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         FadeTextOut1(0.5f);
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
 
         // Alex
         subString2 = "Haha! Stop!";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.75f);
         subString2 = "Hey John...?";
         subUI2.text = subString2;
         yield return new WaitForSeconds(0.25f);
@@ -562,7 +584,7 @@ public class Memory : MonoBehaviour
         subUI2.text = subString2;
         yield return new WaitForSeconds(1f);
         FadeTextIn2(0.25f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         FadeTextOut2(1);
 
         yield return new WaitForSeconds(0.5f);
@@ -571,16 +593,16 @@ public class Memory : MonoBehaviour
         subString1 = "I know what you mean, and it seems like Marcy loves it.";
         subUI1.text = subString1;
         FadeTextIn1(0.25f);
-        yield return new WaitForSeconds(1.5f);
-        FadeTextOut1(1);
+        yield return new WaitForSeconds(1.75f);
+        FadeTextOut1(1.75f);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         // Alex
         subString2 = "Sure does...";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         subString2 = "I mean.. What a place to grow up.";
         subUI2.text = subString2;
         yield return new WaitForSeconds(1f);
@@ -654,13 +676,16 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(2.75f);
 
         // Alex
-        subString2 = "John..  listen to her... I was thinking..";
+        subString2 = "John..  listen to her...";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
-        yield return new WaitForSeconds(7.15f);
-        subString2 = "Maybe we could move somewhere! Away from the city!..";
+        yield return new WaitForSeconds(4.75f);
+        subString2 = "I was thinking..";
         subUI2.text = subString2;
         yield return new WaitForSeconds(2.6f);
+        subString2 = "Maybe we could move somewhere! Away from the city!..";
+        subUI2.text = subString2;
+        yield return new WaitForSeconds(2.75f);
         subString2 = "Somewhere on the the coast! The air would be cleaner… maybe that would help?";
         subUI2.text = subString2;
         yield return new WaitForSeconds(3f);
