@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.ImageEffects;
 
 // One off script for the first enemy encounter in the game
 
@@ -20,9 +21,13 @@ public class FirstEncounter : MonoBehaviour
     public AudioSource crouchSFXSource;
     public AudioClip crouchSFX;
     public AudioClip standSFX;
+    public VignetteAndChromaticAberration vignette;
+    public float startVignetteIntensity;
 
     void Awake()
     {
+        vignette = GameObject.Find("Camera").GetComponent<VignetteAndChromaticAberration>();
+        startVignetteIntensity = vignette.intensity;
         musicResumed = false;
         crouched = false;
         playersTrans = GameObject.FindGameObjectWithTag("Player").transform;
@@ -37,6 +42,7 @@ public class FirstEncounter : MonoBehaviour
             //Disable controls after a small reaction time
             if (encounterDuration < totalDuration - 0.5f)
             {
+                vignette.intensity = Mathf.Lerp(vignette.intensity, 6, Time.deltaTime);
                 EventManager.inst.playerCrouch = true;
                 if (!crouched)
                 {
@@ -64,6 +70,7 @@ public class FirstEncounter : MonoBehaviour
         // When timer expires
         if (encounterDuration <= 0)
         {
+            vignette.intensity = Mathf.Lerp(vignette.intensity, startVignetteIntensity, Time.deltaTime / 4);
             EventManager.inst.controlsDisabled = false;
             triggered = false;
             setActiveObjects[0].SetActive(false);

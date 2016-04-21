@@ -178,7 +178,6 @@ public class Memory : MonoBehaviour
     void StartMemory()
     {
 
-
         dialogueAudio.volume = dialogueVolume;
         memorySkippable = true;
         
@@ -488,7 +487,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles1()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3.75f);
         FadeTextOut1(0);
         FadeTextOut2(0);
 
@@ -508,7 +507,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         FadeTextOut2(1);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
 
         // John
         subString1 = "Going for a swim?";
@@ -892,10 +891,10 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         subString2 = "time really just makes you..";
         subUI2.text = subString2;
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.75f);
         subString2 = "accept how things are.";
         subUI2.text = subString2;
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3.5f);
         FadeTextOut2(1.5f);
 
         yield return new WaitForSeconds(1f);
