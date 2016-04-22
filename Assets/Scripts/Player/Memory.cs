@@ -45,6 +45,7 @@ public class Memory : MonoBehaviour
     public bool musicFadeIn;
     public float musicLerp;
 
+    private AudioSource dyingSFX;
     private AudioClip newBGM;
     private AudioSource bgmSource;
     private AudioSource dialogueAudio;
@@ -104,6 +105,7 @@ public class Memory : MonoBehaviour
             }
         }
 
+        dyingSFX = GameObject.Find("DyingSFX").GetComponent<AudioSource>();
         subUI1 = GameObject.Find("Subtitles1").GetComponent<Text>();
         subUI2 = GameObject.Find("Subtitles2").GetComponent<Text>();
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
@@ -356,6 +358,7 @@ public class Memory : MonoBehaviour
                 smoke.GetComponent<ParticleSystem>().enableEmission = true;
             }
             endMusic.Play();
+            dyingSFX.Play();
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
