@@ -360,6 +360,11 @@ public class MainMenu : MonoBehaviour
             volumeLevel = 1;
         }
 
+        if (!PlayerPrefs.HasKey("Fullscreen"))
+        {
+            fullscreenToggle.isOn = true;
+        }
+
         // Load saved settings
         speakerConfig = AudioSettings.GetConfiguration();
         screenResKey = PlayerPrefs.GetInt("Screen Res");
