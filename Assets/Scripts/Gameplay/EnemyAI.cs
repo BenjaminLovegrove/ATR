@@ -108,7 +108,7 @@ public class EnemyAI : MonoBehaviour
         // Play the sound
         if (footStepTimer > footStepInterval)
         {
-            print("playing sfx");
+            //print("playing sfx");
             footStepsSource.clip = footSteps[stepCount];
             footStepsSource.Play();
             stepCount++;

@@ -36,15 +36,17 @@ public class Exhaustion : MonoBehaviour {
     }
 
 	void Update () {
+
         //Set closest distance
         if (Vector3.Distance (transform.position, endPoint.position) < closestDist)
         {
             closestDist = Vector3.Distance(transform.position, endPoint.position);
         }
 
+        print(closestDist);
         //Lerp Values
         float lerpValue = (closestDist / totalDistance);
-        targBreathingVol = Mathf.Lerp(maxVol, -0.15f, lerpValue);
+        targBreathingVol = Mathf.Lerp(maxVol, 0f, lerpValue);
 
         if (targBreathingVol > ambientBreathingVol)
         {
@@ -56,7 +58,7 @@ public class Exhaustion : MonoBehaviour {
 
         if (audioSwitcher.switchedTrack)
         {
-            BGM.volume = Mathf.Lerp(0.15f, bgmMaxVol, lerpValue);
+            BGM.volume = Mathf.Lerp(0f, bgmMaxVol, lerpValue);
             EventManager.inst.memoryMoveScalar = Mathf.Lerp(lowestSpeed, 1, lerpValue);
             EventManager.inst.memoryLookScalar = Mathf.Lerp(lowestSens, 1, lerpValue);
         }
