@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class EndFlashbacks : MonoBehaviour
 {
     public AudioClip flashbackClip;
-    private AudioSource flashbackSFX;
+    private AudioSource flashbackEndSFX;
     private Image flashObject;
     private bool triggered;
 
@@ -21,7 +21,7 @@ public class EndFlashbacks : MonoBehaviour
 	void Awake ()
     {
         triggered = false;
-        flashbackSFX = GameObject.Find("FlashbackSFX").GetComponent<AudioSource>();
+        flashbackEndSFX = GameObject.Find("FlashbackSFX").GetComponent<AudioSource>();
         flashObject = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
 	}
 	
@@ -33,8 +33,8 @@ public class EndFlashbacks : MonoBehaviour
             StartCoroutine("FlashbackCo");
             if (flashbackClip != null)
             {
-                flashbackSFX.clip = flashbackClip;
-                flashbackSFX.Play();
+                flashbackEndSFX.clip = flashbackClip;
+                flashbackEndSFX.Play();
             }
             else print("Missing flashback SFX");
         }

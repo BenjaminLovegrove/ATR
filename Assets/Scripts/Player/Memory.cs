@@ -105,7 +105,10 @@ public class Memory : MonoBehaviour
             }
         }
 
-        dyingSFX = GameObject.Find("DyingSFX").GetComponent<AudioSource>();
+        if (EventManager.inst.currentLevel == "Coast Ending")
+        {
+            dyingSFX = GameObject.Find("DyingSFX").GetComponent<AudioSource>();
+        }
         subUI1 = GameObject.Find("Subtitles1").GetComponent<Text>();
         subUI2 = GameObject.Find("Subtitles2").GetComponent<Text>();
         dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
