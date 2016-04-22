@@ -119,6 +119,11 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        Cursor.visible = true;
+    }
+
     void Awake()
     {
         audio = GetComponent<AudioSource>();
@@ -161,9 +166,6 @@ public class MainMenu : MonoBehaviour
                 memoryLevelIcons.SetActive(false);
             }
         }
-
-
-
         UpdateUIvalues();
     }
 
@@ -487,7 +489,7 @@ public class MainMenu : MonoBehaviour
         else invertToggle.isOn = true;
 
         menuToggle = MenuToggle.NONE;
-        Cursor.visible = true;
+        Cursor.visible = false;
         screenDropdown.value = screenResKey;
         speakerDropdown.value = speakerKey;
         levelSelect = "City Outskirts";
