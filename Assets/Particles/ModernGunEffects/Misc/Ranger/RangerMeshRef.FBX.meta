@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: adaa0a497c79b034f848f119637af7d0
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Torso_Ranger
+    100002: B_Spine01
+    100004: B_Spine
+    100006: B_Left_Foot
+    100008: //RootNode
+    100010: B_Pelvis
+    100012: B_Left_UpLeg
+    100014: B_RForeTwist1
+    100016: B_Right_UpLeg
+    100018: B_Left_Shoulder
+    100020: B_Left_UpArm
+    100022: B_LForeTwist1
+    100024: B_Right_Shoulder
+    100026: B_Left_Hand
+    100028: B_LForeTwist
+    100030: Legs_Ranger
+    100032: B_Neck
+    100034: B_Right_ForeArm
+    100036: B_Left_ForeArm
+    100038: B_Hips
+    100040: Hat_Ranger
+    100042: B_Right_UpArm
+    100044: B_Right_Leg
+    100046: Hair_Ranger
+    100048: Face_Ranger
+    100050: B_Head
+    100052: B_Right_Foot
+    100054: B_Spine02
+    100056: B_RForeTwist
+    100058: B_Left_Leg
+    100060: B_Right_Hand
+    400000: Torso_Ranger
+    400002: B_Spine01
+    400004: B_Spine
+    400006: B_Left_Foot
+    400008: //RootNode
+    400010: B_Pelvis
+    400012: B_Left_UpLeg
+    400014: B_RForeTwist1
+    400016: B_Right_UpLeg
+    400018: B_Left_Shoulder
+    400020: B_Left_UpArm
+    400022: B_LForeTwist1
+    400024: B_Right_Shoulder
+    400026: B_Left_Hand
+    400028: B_LForeTwist
+    400030: Legs_Ranger
+    400032: B_Neck
+    400034: B_Right_ForeArm
+    400036: B_Left_ForeArm
+    400038: B_Hips
+    400040: Hat_Ranger
+    400042: B_Right_UpArm
+    400044: B_Right_Leg
+    400046: Hair_Ranger
+    400048: Face_Ranger
+    400050: B_Head
+    400052: B_Right_Foot
+    400054: B_Spine02
+    400056: B_RForeTwist
+    400058: B_Left_Leg
+    400060: B_Right_Hand
+    4300000: Legs_Ranger
+    4300002: Torso_Ranger
+    4300004: Face_Ranger
+    4300006: Hair_Ranger
+    4300008: Hat_Ranger
+    11100000: //RootNode
+    13700000: Torso_Ranger
+    13700002: Legs_Ranger
+    13700004: Hat_Ranger
+    13700006: Hair_Ranger
+    13700008: Face_Ranger
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.01
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
