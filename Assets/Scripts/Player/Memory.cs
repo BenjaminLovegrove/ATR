@@ -361,7 +361,7 @@ public class Memory : MonoBehaviour
                 smoke.GetComponent<ParticleSystem>().enableEmission = true;
             }
             endMusic.Play();
-            dyingSFX.Play();
+            //dyingSFX.Play();
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
