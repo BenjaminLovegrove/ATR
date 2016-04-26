@@ -5,6 +5,7 @@ public class BumpObjSFX : MonoBehaviour {
 
     public AudioClip touchWood;
     public AudioClip touchMetal;
+    public AudioClip metalFence;
 
 	void OnTriggerEnter (Collider col) {
         if (col.gameObject.tag == "Terrain" || col.gameObject.tag == "Wood")
