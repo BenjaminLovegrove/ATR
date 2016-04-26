@@ -30,6 +30,7 @@ public class Memory : MonoBehaviour
     public string subString1;
     public string subString2;
     private Camera gameCam;
+    private float skipLerp;
     
     private bool disableControls;
     private bool loadCredits;
@@ -127,6 +128,7 @@ public class Memory : MonoBehaviour
         dialogueVolume = dialogueAudio.volume;
         startBloom = bloom.bloomIntensity;
         startFog = fog.heightDensity;
+        skipLerp = 5;
     }
 
     void Update()
@@ -166,11 +168,16 @@ public class Memory : MonoBehaviour
             musicLerp += Time.deltaTime / 4;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
-            dialogueAudio.volume = Mathf.Lerp(dialogueVolume, 0, musicLerp);
             if (musicLerp > 1)
             {
                 musicFadeIn = false;
             }
+        }
+
+        if (skipLerp < 1)
+        {
+            skipLerp += Time.deltaTime / 4;
+            dialogueAudio.volume = Mathf.Lerp(dialogueVolume, 0, skipLerp);
         }
     }
 
@@ -190,6 +197,7 @@ public class Memory : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.inst.credits)
             {
+                skipLerp = 0;
                 StopCoroutine("InstantiateMemFlash");
                 StartCoroutine("SkipMemory");
                 StopCoroutine("Subtitles" + EventManager.inst.subtitleNum);
