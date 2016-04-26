@@ -101,10 +101,18 @@ public class FirstEncounter : MonoBehaviour
         {
             EventManager.inst.firstEncounter = true;
             print("Encounter Triggered");
-            audio.Play();
+            if (!triggered)
+            {
+                PlaySFX();
+            }
             triggered = true;
-            memScript.musicLerp = 0;
-            memScript.musicFadeOut = true;
         }
+    }
+
+    void PlaySFX()
+    {
+        audio.Play();
+        memScript.musicLerp = 0;
+        memScript.musicFadeOut = true;
     }
 }
