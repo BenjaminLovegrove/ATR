@@ -13,7 +13,7 @@ public class ButtonSFX : MonoBehaviour {
     }
 
 	public void MouseOver () {
-        buttonSource.PlayOneShot(mouseOver);
+        buttonSource.PlayOneShot(mouseOver, 0.5f);
 	}
 	
 	public void MouseDown () {
