@@ -31,6 +31,7 @@ public class Memory : MonoBehaviour
     public string subString2;
     private Camera gameCam;
     private float skipLerp;
+    private GameObject whiteVignette;
     
     private bool disableControls;
     private bool loadCredits;
@@ -122,6 +123,8 @@ public class Memory : MonoBehaviour
         gameCam = GameObject.Find("Camera").GetComponent<Camera>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
+        whiteVignette = GameObject.Find("WhiteVignette");
+        whiteVignette.SetActive(false);
 
         bgmMaxVolume = bgmSource.volume;
         breathingMaxVolume = breathingSource.volume;
@@ -237,6 +240,8 @@ public class Memory : MonoBehaviour
 
         }
 
+        whiteVignette.SetActive(true);
+
         // Enable water reflection
         if (waterObjs != null)
         {
@@ -293,6 +298,8 @@ public class Memory : MonoBehaviour
             EventManager.inst.memoryLookScalar = 1;
             EventManager.inst.memoryMoveScalar = 1;
         }
+
+        whiteVignette.SetActive(false);
 
         if (newBGM != null)
         {
@@ -629,7 +636,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles2()
     {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(7.25f);
         FadeTextOut1(0);
         FadeTextOut2(0);
 
@@ -658,16 +665,16 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(2f);
         FadeTextOut2(1);
 
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.6f);
 
         // John
-        subString1 = "I know, same as always.";
+        subString1 = "I know.";
         subUI1.text = subString1;
         FadeTextIn1(0.25f);
         yield return new WaitForSeconds(1f);
         FadeTextOut1(1);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.25f);
 
         // Alex
         subString2 = "So.. the doctors today..";
@@ -697,7 +704,7 @@ public class Memory : MonoBehaviour
         subString2 = "John..  listen to her...";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
-        yield return new WaitForSeconds(4.75f);
+        yield return new WaitForSeconds(4.5f);
         subString2 = "I was thinking..";
         subUI2.text = subString2;
         yield return new WaitForSeconds(2.6f);
