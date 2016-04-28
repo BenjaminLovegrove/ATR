@@ -33,7 +33,7 @@ public class EndingTrigger : MonoBehaviour {
     {
         if (!switchedTrack && EventManager.inst.atEndTerrain)
         {
-            BGM.volume = Mathf.Lerp(BGM.volume, 0, Time.deltaTime / 2);
+            BGM.volume = Mathf.Lerp(BGM.volume, 0, Time.deltaTime / 4);
 
             if (BGM.volume < 0.05f)
             {
