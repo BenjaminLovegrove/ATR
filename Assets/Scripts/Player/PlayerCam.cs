@@ -6,6 +6,7 @@ using System.Collections;
 
 public class PlayerCam : MonoBehaviour
 {
+    private Camera playerCam;
 	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
     private float sensitivityX;
@@ -35,6 +36,7 @@ public class PlayerCam : MonoBehaviour
 
     void Awake()
     {
+        playerCam = gameObject.GetComponentInChildren<Camera>();
         fog = gameObject.GetComponentInChildren<GlobalFog>();
     }
 
@@ -158,7 +160,8 @@ public class PlayerCam : MonoBehaviour
 
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
-                    transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
+                    transform.localEulerAngles = new Vector3(0, rotationX, 0);
+                    playerCam.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
                 }
                 else if (axes == RotationAxes.MouseX)
                 {
@@ -169,7 +172,8 @@ public class PlayerCam : MonoBehaviour
                     rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar;
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
-                    transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+                    //transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+                    playerCam.transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
                 }
             }
         }
@@ -190,6 +194,6 @@ public class PlayerCam : MonoBehaviour
 
     void MemoryCam()
     {
-        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+        playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
     }
 }

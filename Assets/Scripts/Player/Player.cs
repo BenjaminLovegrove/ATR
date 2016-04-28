@@ -219,8 +219,43 @@ public class Player : MonoBehaviour
                     jumpTimer += Time.deltaTime;
                 }
 
+
+                float newHor = Input.GetAxis("Horizontal");
+                float newVir = Input.GetAxis("Vertical");
+
+                //Stop player climbing walls
+                if (newVir < 0)
+                {
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), -transform.forward, 1f))
+                    {
+                        newVir = 0;
+                    }
+                }
+                else if (newVir > 0)
+                {
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), transform.forward, 1f))
+                    {
+                        newVir = 0;
+                    }
+                }
+
+                if (newHor < 0)
+                {
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), -transform.right, 1f))
+                    {
+                        newHor = 0;
+                    }
+                }
+                else if (newHor > 0)
+                {
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), transform.right, 1f))
+                    {
+                        newHor = 0;
+                    }
+                }
+
                 // Calculate how fast we should be moving
-                Vector3 targetVelocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                Vector3 targetVelocity = new Vector3(newHor, 0, newVir);
                 targetVelocity = transform.TransformDirection(targetVelocity);
                 targetVelocity *= currentSpeed;
 
@@ -230,6 +265,12 @@ public class Player : MonoBehaviour
                 velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
                 velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
                 velocityChange.y = 0;
+
+                Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.35f, transform.position.z), transform.forward, Color.red);
+                Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.35f, transform.position.z), -transform.forward, Color.blue);
+                Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.35f, transform.position.z), transform.right);
+                Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.35f, transform.position.z), -transform.right, Color.yellow);
+
                 playerRigid.AddForce(velocityChange, ForceMode.VelocityChange);
 
                 // Jump

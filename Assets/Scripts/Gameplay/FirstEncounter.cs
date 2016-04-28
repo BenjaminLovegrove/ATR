@@ -30,7 +30,7 @@ public class FirstEncounter : MonoBehaviour
         startVignetteIntensity = vignette.intensity;
         musicResumed = false;
         crouched = false;
-        playersTrans = GameObject.FindGameObjectWithTag("Player").transform;
+        playersTrans = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>().transform;
         totalDuration = encounterDuration;
     }
 
