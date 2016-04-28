@@ -147,6 +147,8 @@ public class EventManager : MonoBehaviour
     void MovePlayer()
     {        
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
+        playerTrans.rotation = playerCheckPoints[currentCheckPoint].rotation;
+
     }
 
     void InitialiseValues()
