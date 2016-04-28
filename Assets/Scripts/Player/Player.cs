@@ -256,27 +256,30 @@ public class Player : MonoBehaviour
                 //}
 
                 // Crouch
-                if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
+                if (!EventManager.inst.memoryPlaying)
                 {
-                    currentSpeed = crouchSpeed;
-                    EventManager.inst.playerCrouch = true;
-                }
-                else if (!EventManager.inst.firstEncounter)
-                {
-                    EventManager.inst.playerCrouch = false;
-                    currentSpeed = walkSpeed;
-                }
-                
-                // Play Crouching SFX
-                if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.LeftControl))
-                {
-                    audio.PlayOneShot(crouchSFX, 0.1f);
-                }
+                    if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
+                    {
+                        currentSpeed = crouchSpeed;
+                        EventManager.inst.playerCrouch = true;
+                    }
+                    else if (!EventManager.inst.firstEncounter)
+                    {
+                        EventManager.inst.playerCrouch = false;
+                        currentSpeed = walkSpeed;
+                    }
 
-                // Play Standing SFX
-                if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
-                {
-                    audio.PlayOneShot(standSFX, 0.1f);
+                    // Play Crouching SFX
+                    if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.LeftControl))
+                    {
+                        audio.PlayOneShot(crouchSFX, 0.1f);
+                    }
+
+                    // Play Standing SFX
+                    if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
+                    {
+                        audio.PlayOneShot(standSFX, 0.1f);
+                    }
                 }
             }
         }

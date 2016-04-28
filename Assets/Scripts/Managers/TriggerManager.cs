@@ -120,7 +120,7 @@ public class TriggerManager : MonoBehaviour
             // Credits
             if (credits)
             {
-                exhaustion.SetActive(false);
+                exhaustion.GetComponent<Exhaustion>().enabled = false;
                 EventManager.inst.credits = true;
                 col.BroadcastMessage("LoadCredits", true);
                 endMemLerp.enabled = true;

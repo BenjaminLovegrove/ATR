@@ -64,7 +64,9 @@ public class Memory : MonoBehaviour
     private float breathingMaxVolume;
     public GameObject[] endSmokes;
     private AudioSource endMusic;
-    
+    public AudioSource exhaustionAudio;
+    public float exhaustionMaxVol;
+
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
     {
@@ -124,7 +126,10 @@ public class Memory : MonoBehaviour
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
         whiteVignette = GameObject.Find("WhiteVignette");
-        whiteVignette.SetActive(false);
+        if (whiteVignette != null)
+        {
+            whiteVignette.SetActive(false);
+        }
 
         bgmMaxVolume = bgmSource.volume;
         breathingMaxVolume = breathingSource.volume;
@@ -132,6 +137,10 @@ public class Memory : MonoBehaviour
         startBloom = bloom.bloomIntensity;
         startFog = fog.heightDensity;
         skipLerp = 5;
+        if (exhaustionAudio != null)
+        {
+            exhaustionMaxVol = exhaustionAudio.gameObject.GetComponent<Exhaustion>().maxVol;
+        }
     }
 
     void Update()
@@ -156,7 +165,8 @@ public class Memory : MonoBehaviour
                 musicLerp += Time.deltaTime / 2;
             } else
             {
-                musicLerp += Time.deltaTime / 5;
+                musicLerp += Time.deltaTime / 3;
+                exhaustionAudio.volume = Mathf.Lerp(exhaustionMaxVol, exhaustionMaxVol * 0.43f, musicLerp);
             }
             bgmSource.volume = Mathf.Lerp(bgmMaxVolume, 0, musicLerp);
             breathingSource.volume = Mathf.Lerp(breathingMaxVolume, 0, musicLerp);
@@ -240,7 +250,10 @@ public class Memory : MonoBehaviour
 
         }
 
-        whiteVignette.SetActive(true);
+        if (whiteVignette != null)
+        {
+            whiteVignette.SetActive(true);
+        }
 
         // Enable water reflection
         if (waterObjs != null)
@@ -299,7 +312,10 @@ public class Memory : MonoBehaviour
             EventManager.inst.memoryMoveScalar = 1;
         }
 
-        whiteVignette.SetActive(false);
+        if (whiteVignette != null)
+        {
+            whiteVignette.SetActive(false);
+        }
 
         if (newBGM != null)
         {
@@ -370,6 +386,8 @@ public class Memory : MonoBehaviour
         // Load credits and fade out
         if (loadCredits)
         {
+            exhaustionAudio.Stop();
+            breathingSource.Stop();
             foreach (GameObject smoke in endSmokes)
             {
                 smoke.SetActive(true);
@@ -380,7 +398,7 @@ public class Memory : MonoBehaviour
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
-            fadeToBlack.CrossFadeAlpha(1, 27, false);
+            fadeToBlack.CrossFadeAlpha(1, 25, false);
             Invoke("CutToCredits", 30f);
         }
     }
