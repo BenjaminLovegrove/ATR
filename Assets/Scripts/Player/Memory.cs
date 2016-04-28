@@ -1069,13 +1069,13 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(2f);
         FadeTextOut1(1);
 
-        yield return new WaitForSeconds(1.75f);
+        yield return new WaitForSeconds(2f);
 
         // Guy
         subString2 = "Run!";
         subUI2.text = subString2;
         FadeTextIn2(0);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.75f);
         FadeTextOut2(2);
 
         yield return new WaitForSeconds(1f);

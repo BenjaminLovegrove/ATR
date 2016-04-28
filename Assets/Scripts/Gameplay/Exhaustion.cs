@@ -6,6 +6,9 @@ public class Exhaustion : MonoBehaviour {
     [Header("Player Slowing")]
     public float lowestSpeed;
     public float lowestSens;
+    public PlayerCam playerCamScr;
+    public float headBobMod;
+    private float startHeadBob;
 
     [Header("BGM")]
     public AudioSource BGM;
@@ -33,6 +36,7 @@ public class Exhaustion : MonoBehaviour {
         ambientBreathingVol = ambientBreathing.volume;
         closestDist = totalDistance;
         bgmMaxVol = BGM.volume;
+        startHeadBob = playerCamScr.headBobInterval;
     }
 
 	void Update () {
@@ -54,6 +58,7 @@ public class Exhaustion : MonoBehaviour {
         }
 
         breathing.pitch = Mathf.Lerp(endPitch, startPitch, lerpValue);
+        playerCamScr.headBobInterval = Mathf.Lerp(playerCamScr.headBobInterval * headBobMod, playerCamScr.headBobInterval, lerpValue);
 
         if (audioSwitcher.switchedTrack)
         {
