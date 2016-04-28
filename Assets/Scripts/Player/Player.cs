@@ -198,7 +198,9 @@ public class Player : MonoBehaviour
                 grounded = true;
                 EventManager.inst.playerJump = false;
             }
-        } else if (Physics.Raycast(ray2, Vector3.down, out hit))
+        }
+
+        if (Physics.Raycast(ray2, Vector3.down, out hit))
         {
             // If the raycast hits the ground
             if (hit.distance < 3f)
