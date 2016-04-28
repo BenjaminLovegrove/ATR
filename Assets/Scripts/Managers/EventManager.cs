@@ -128,7 +128,7 @@ public class EventManager : MonoBehaviour
     {
         playerDead = false;
         resetLevel = false;
-        Application.LoadLevel(currentLevel);
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     // Populate EventManager data upon loading a scene
