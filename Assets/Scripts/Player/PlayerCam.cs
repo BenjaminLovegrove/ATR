@@ -6,7 +6,7 @@ using System.Collections;
 
 public class PlayerCam : MonoBehaviour
 {
-    private Camera playerCam;
+    public Camera playerCam;
 	public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
 	public RotationAxes axes = RotationAxes.MouseXAndY;
     private float sensitivityX;
@@ -194,6 +194,8 @@ public class PlayerCam : MonoBehaviour
 
     void MemoryCam()
     {
-        playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+        //print("Current memory" + EventManager.inst.currentMemory);
+        //playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.transform.position), Time.deltaTime * 1f);
+        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
     }
 }
