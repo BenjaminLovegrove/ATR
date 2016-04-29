@@ -78,17 +78,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        walkSpeed = 3 * EventManager.inst.prevMoveScalar * hackMoveSpeed;
-        Hacks(); // *** Disable this for release builds ***
-    }
-
-	void FixedUpdate ()
-	{
         PlayFootStepSFX();
         PlayerMovement();
-
         PlayHeartBeatSFX();
-	}
+        Hacks(); // *** Disable this for release builds (EventManager)***
+    }
 
     // Play the heartbeat SFX based on distance of the nearest enemy
     void PlayHeartBeatSFX()
@@ -164,6 +158,9 @@ public class Player : MonoBehaviour
     // Player movement on horizontal and vertical axis through player inputs
     void PlayerMovement()
     {
+        // Update and scale the player move speed when vals are changed externally
+        walkSpeed = 3 * EventManager.inst.prevMoveScalar * hackMoveSpeed;
+
         // Normalise strafe movespeed
         if ((playerRigid.velocity.x + playerRigid.velocity.z) > walkSpeed)
         {
