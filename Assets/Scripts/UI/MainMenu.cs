@@ -196,7 +196,7 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.visible = false;
         pressedPlay = true;
-        audio.PlayOneShot(playSFX, 0.15f);
+        audio.PlayOneShot(playSFX, 1f);
         EventManager.inst.currentLevel = levelSelect;
         EventManager.inst.currentCheckPoint = 0;
         EventManager.inst.firstPlay = true;

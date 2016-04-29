@@ -5,6 +5,7 @@ public class ButtonSFX : MonoBehaviour {
 
     public AudioClip mouseOver;
     public AudioClip mouseDown;
+    public AudioClip whoosh;
     private AudioSource buttonSource;
 
     void Start()
@@ -13,10 +14,15 @@ public class ButtonSFX : MonoBehaviour {
     }
 
 	public void MouseOver () {
-        buttonSource.PlayOneShot(mouseOver, 0.5f);
+        buttonSource.PlayOneShot(mouseOver, 1f);
 	}
 	
 	public void MouseDown () {
         buttonSource.PlayOneShot(mouseDown);
+    }
+
+    public void WhooshSFX()
+    {
+        buttonSource.PlayOneShot(whoosh);
     }
 }

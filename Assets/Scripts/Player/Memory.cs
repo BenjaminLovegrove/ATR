@@ -16,6 +16,7 @@ public class Memory : MonoBehaviour
     public float memoryFog;
     public float fogDiminishAmount;
     public float memoryBloom;
+    private AudioSource fadingSource;
 
     [Header("Memory Objects")]
     public AudioClip[] memoryDialogue;
@@ -126,6 +127,7 @@ public class Memory : MonoBehaviour
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
         whiteVignette = GameObject.Find("WhiteVignette");
+        fadingSource = gameObject.GetComponent<AudioSource>();
         if (whiteVignette != null)
         {
             whiteVignette.SetActive(false);
@@ -162,7 +164,7 @@ public class Memory : MonoBehaviour
         {
             if (!EventManager.inst.credits)
             {
-                musicLerp += Time.deltaTime / 2;
+                musicLerp += Time.deltaTime / 3;
             } else
             {
                 musicLerp += Time.deltaTime / 3;
@@ -420,6 +422,7 @@ public class Memory : MonoBehaviour
         }        
         musicLerp = 0;
         musicFadeOut = true;
+        fadingSource.Play();
         flashDelay = duration;
         StartCoroutine("InstantiateMemFlash");        
         startFog = fog.heightDensity;
