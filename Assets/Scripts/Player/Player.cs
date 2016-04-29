@@ -221,38 +221,50 @@ public class Player : MonoBehaviour
                     jumpTimer += Time.deltaTime;
                 }
 
-
                 float newHor = Input.GetAxis("Horizontal");
                 float newVir = Input.GetAxis("Vertical");
+                RaycastHit hit2;
 
                 //Stop player climbing walls
                 if (newVir < 0)
                 {
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), -transform.forward, 1f))
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), -transform.forward, out hit2, 1f))
                     {
-                        newVir = 0;
+                        if (hit2.collider.tag == "Terrain")
+                        {
+                            newVir = 0;
+                        }                        
                     }
                 }
                 else if (newVir > 0)
                 {
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), transform.forward, 1f))
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), transform.forward, out hit2, 1f))
                     {
-                        newVir = 0;
+                        if (hit2.collider.tag == "Terrain")
+                        {
+                            newVir = 0;
+                        }  
                     }
                 }
 
                 if (newHor < 0)
                 {
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), -transform.right, 1f))
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), -transform.right, out hit2, 1f))
                     {
-                        newHor = 0;
+                        if (hit2.collider.tag == "Terrain")
+                        {
+                            newHor = 0;
+                        }  
                     }
                 }
                 else if (newHor > 0)
                 {
-                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), transform.right, 1f))
+                    if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.2f, transform.position.z), transform.right, out hit2, 1f))
                     {
-                        newHor = 0;
+                        if (hit2.collider.tag == "Terrain")
+                        {
+                            newHor = 0;
+                        }
                     }
                 }
 
