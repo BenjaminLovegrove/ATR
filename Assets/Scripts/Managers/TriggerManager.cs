@@ -154,6 +154,8 @@ public class TriggerManager : MonoBehaviour
                     memoryObj.SetActive(true);
                     startTimer = true;
                 }
+
+                Invoke("DelayedMemoryPlaying", 2f);
              }
 
             // Checkpoint
@@ -213,5 +215,10 @@ public class TriggerManager : MonoBehaviour
                 memoryObj.SendMessage("FadeOutReceiver");
             }
         }
+    }
+
+    void DelayedMemoryPlaying()
+    {
+        EventManager.inst.memoryPlaying = true;
     }
 }
