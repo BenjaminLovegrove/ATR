@@ -13,8 +13,8 @@ public class EnemyAI : MonoBehaviour
 	public float patrolTimer = 0f;    
     public float fieldOfViewAngle = 110f;    
 
-    // SFX
     private AudioSource audio;
+    public GameObject muzzleFlash;
     public AudioSource footStepsSource;
     public AudioClip gunShot;
     public AudioClip[] radioChatter;
@@ -26,7 +26,6 @@ public class EnemyAI : MonoBehaviour
     private float footStepTimer;
     private float footStepInterval;
 
-    // Calculations
     Vector3 lastPosition = Vector3.zero;
     private bool patrollingEnemy;
     private float currentVelocity;
@@ -38,7 +37,6 @@ public class EnemyAI : MonoBehaviour
     private int wayPointIndex;
     private bool playerCrouch;
     
-    // Components
 	private NavMeshAgent nav;
 	private Transform playerTransform;
 	private Animator anim;	
@@ -48,6 +46,9 @@ public class EnemyAI : MonoBehaviour
 	{
         EventManager.inst.playerDead = true;
         EventManager.inst.enemyKillPos = this.gameObject.transform;
+        //muzzleFlash.Play();
+        muzzleFlash.SetActive(true);
+        //muzzleFlash.GetComponent<ParticleSystem>().enableEmission = true;
         yield return new WaitForSeconds(6f);
         EventManager.inst.resetLevel = true;
     }
@@ -56,7 +57,9 @@ public class EnemyAI : MonoBehaviour
 	{
         audio = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
-		nav = GetComponent<NavMeshAgent>();        
+		nav = GetComponent<NavMeshAgent>();
+        
+        //smoke.GetComponent<ParticleSystem>().enableEmission = true;
 	}
 
     void Start()
