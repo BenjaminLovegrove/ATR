@@ -78,10 +78,14 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        Hacks(); // *** Disable this for release builds (EventManager)***
+    }
+
+    void FixedUpdate()
+    {
         PlayFootStepSFX();
         PlayerMovement();
         PlayHeartBeatSFX();
-        Hacks(); // *** Disable this for release builds (EventManager)***
     }
 
     // Play the heartbeat SFX based on distance of the nearest enemy
