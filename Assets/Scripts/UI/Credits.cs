@@ -21,11 +21,11 @@ public class Credits : MonoBehaviour
     public Text huxRole0;
     public Text huxRole1;
     public Text huxWeb;
-    public Text huxCodeLeft;
-    public Text huxCodeRight;
-    public GameObject huxCodeLeftObj;
-    public GameObject huxCodeRightObj;
-    private bool huxActive;
+    //public Text huxCodeLeft;
+    //public Text huxCodeRight;
+    //public GameObject huxCodeLeftObj;
+    //public GameObject huxCodeRightObj;
+    //private bool huxActive;
     
     [Header("Jack")]
     public Text jackHeading;
@@ -98,41 +98,41 @@ public class Credits : MonoBehaviour
         huxRole1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         huxWeb.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(1f);
-        huxCodeLeft.text = BinaryCodeGenerator();
-        huxCodeRight.text = BinaryCodeGenerator();
-        huxCodeLeft.CrossFadeAlpha(1, 0, false);
-        huxCodeRight.CrossFadeAlpha(1, 0, false);
+        yield return new WaitForSeconds(7f);
+        //huxCodeLeft.text = BinaryCodeGenerator();
+        //huxCodeRight.text = BinaryCodeGenerator();
+        //huxCodeLeft.CrossFadeAlpha(1, 0, false);
+        //huxCodeRight.CrossFadeAlpha(1, 0, false);
 
-        huxActive = true;
-        yield return new WaitForSeconds(1f);
-        huxCodeLeft.text = BinaryCodeGenerator();
-        huxCodeRight.text = BinaryCodeGenerator();
-        yield return new WaitForSeconds(1f);
-        huxCodeLeft.text = BinaryCodeGenerator();
-        huxCodeRight.text = BinaryCodeGenerator();
-        yield return new WaitForSeconds(1f);
-        huxCodeLeft.text = BinaryCodeGenerator();
-        huxCodeRight.text = BinaryCodeGenerator();
-        yield return new WaitForSeconds(1f);
-        huxCodeLeft.text = BinaryCodeGenerator();
-        huxCodeRight.text = BinaryCodeGenerator();
-        yield return new WaitForSeconds(1f);
-        huxCodeLeft.text = BinaryCodeGenerator();
-        huxCodeRight.text = BinaryCodeGenerator();
-        yield return new WaitForSeconds(1f);
-        huxCodeLeft.text = BinaryCodeGenerator();
-        huxCodeRight.text = BinaryCodeGenerator();
+        //huxActive = true;
+        //yield return new WaitForSeconds(1f);
+        //huxCodeLeft.text = BinaryCodeGenerator();
+        //huxCodeRight.text = BinaryCodeGenerator();
+        //yield return new WaitForSeconds(1f);
+        //huxCodeLeft.text = BinaryCodeGenerator();
+        //huxCodeRight.text = BinaryCodeGenerator();
+        //yield return new WaitForSeconds(1f);
+        //huxCodeLeft.text = BinaryCodeGenerator();
+        //huxCodeRight.text = BinaryCodeGenerator();
+        //yield return new WaitForSeconds(1f);
+        //huxCodeLeft.text = BinaryCodeGenerator();
+        //huxCodeRight.text = BinaryCodeGenerator();
+        //yield return new WaitForSeconds(1f);
+        //huxCodeLeft.text = BinaryCodeGenerator();
+        //huxCodeRight.text = BinaryCodeGenerator();
+        //yield return new WaitForSeconds(1f);
+        //huxCodeLeft.text = BinaryCodeGenerator();
+        //huxCodeRight.text = BinaryCodeGenerator();
 
         //Fade out
         huxHeading.CrossFadeAlpha(0, 1, false);
         huxRole0.CrossFadeAlpha(0, 1, false);
         huxRole1.CrossFadeAlpha(0, 1, false);
         huxWeb.CrossFadeAlpha(0, 1, false);
-        huxCodeLeft.CrossFadeAlpha(0, 0, false);
-        huxCodeRight.CrossFadeAlpha(0, 0, false);
+        //huxCodeLeft.CrossFadeAlpha(0, 0, false);
+        //huxCodeRight.CrossFadeAlpha(0, 0, false);
         yield return new WaitForSeconds(1f);
-        huxActive = false;
+        //huxActive = false;
     }
     
     // JACKO - 10secs
@@ -226,11 +226,11 @@ public class Credits : MonoBehaviour
 
     void Update()
     {
-        if (huxActive)
-        {
-            huxCodeLeftObj.gameObject.transform.Translate(Vector3.down * Time.deltaTime * 30);
-            huxCodeRightObj.gameObject.transform.Translate(Vector3.up * Time.deltaTime * 30);
-        }
+        //if (huxActive)
+        //{
+        //    huxCodeLeftObj.gameObject.transform.Translate(Vector3.down * Time.deltaTime * 30);
+        //    huxCodeRightObj.gameObject.transform.Translate(Vector3.up * Time.deltaTime * 30);
+        //}
 
         timer += Time.deltaTime;
 
