@@ -228,6 +228,7 @@ public class MainMenu : MonoBehaviour
         audio.PlayOneShot(playSFX, 0.15f);
         EventManager.inst.currentLevel = levelSelect;
         EventManager.inst.currentCheckPoint = 0;
+        EventManager.inst.firstPlay = true;
         
         StartCoroutine("LoadScreen");
     }

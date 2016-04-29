@@ -46,6 +46,7 @@ public class EventManager : MonoBehaviour
     public bool credits;
     public bool atEndTerrain;
     public bool firstEncounter;
+    public bool firstPlay;
 
     private RawImage fadeToBlack;
 
@@ -62,6 +63,7 @@ public class EventManager : MonoBehaviour
 	{
         credits = false;
         firstEncounter = false;
+        firstPlay = true;
         Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         developerMode = true; // *** Disable for release builds ***
