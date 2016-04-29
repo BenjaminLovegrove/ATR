@@ -199,7 +199,13 @@ public class Memory : MonoBehaviour
     {
         if (EventManager.inst.memoryPlaying && delayTimer != 0)
         {
-            gameCam.fieldOfView = Mathf.Lerp(60, 75, delayTimer / memoryLength);
+            if (!EventManager.inst.credits)
+            {
+                gameCam.fieldOfView = Mathf.Lerp(60, 75, delayTimer / memoryLength);
+            } else
+            {
+                gameCam.fieldOfView = Mathf.Lerp(60, 85, delayTimer / memoryLength);
+            }
         }
     }
 
