@@ -12,7 +12,7 @@ public class Memory : MonoBehaviour
     public bool nightTime;
     public bool switchSkyBox;
     public float fadeTime;
-    public float flashDelay;
+    public float memoryDuration;
     public float memoryFog;
     public float fogDiminishAmount;
     public float memoryBloom;
@@ -70,17 +70,23 @@ public class Memory : MonoBehaviour
     private AudioSource ambienceAudio;
     private float ambienceAudioMaxVol;
     public AudioSource endingWind;
+    private GameObject whiteBackDrop;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
     {
         memorySkippable = false;
         EventManager.inst.memoryPlaying = true;
-        memoryFlashObj.CrossFadeAlpha(255, 1, false);
-        yield return new WaitForSeconds(2f);
+        memoryFlashObj.CrossFadeAlpha(255, 1.75f, false);
+        yield return new WaitForSeconds(1);
+        if (whiteBackDrop != null)
+        {
+            whiteBackDrop.SetActive(false);
+        }
+        yield return new WaitForSeconds(0.25f);
         bgmSource.Pause();
         StartMemory();
-        yield return new WaitForSeconds(flashDelay - 3f);
+        yield return new WaitForSeconds(memoryDuration - 3f);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2);
         EndMemory();
@@ -98,59 +104,7 @@ public class Memory : MonoBehaviour
 
     void Awake()
     {
-        EventManager.inst.memoryLookScalar = 1;
-        EventManager.inst.memoryMoveScalar = 1;
-
-        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
-
-        waterObjs = GameObject.FindGameObjectsWithTag("Water");
-        if (waterObjs != null)
-        {
-            water = new Water[waterObjs.Length];
-            for (int i = 0; i < waterObjs.Length; i++)
-            {
-                water[i] = waterObjs[i].GetComponent<Water>();
-            }
-        }
-
-        if (EventManager.inst.currentLevel == "Coast Ending")
-        {
-            dyingSFX = GameObject.Find("DyingSFX").GetComponent<AudioSource>();
-        }
-        subUI1 = GameObject.Find("Subtitles1").GetComponent<Text>();
-        subUI2 = GameObject.Find("Subtitles2").GetComponent<Text>();
-        dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
-        bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
-        breathingSource = GameObject.Find("BreathingSFX").GetComponent<AudioSource>();
-        sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
-        skySphere = GameObject.Find("skySphere");
-        memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
-        if (EventManager.inst.currentLevel == "Coast Ending")
-        {
-            endMusic = GameObject.Find("CreditsMusic").GetComponent<AudioSource>();
-        }        
-        gameCam = GameObject.Find("Camera").GetComponent<Camera>();
-        bloom = gameObject.GetComponent<BloomAndFlares>();
-        fog = gameObject.GetComponent<GlobalFog>();
-        whiteVignette = GameObject.Find("WhiteVignette");
-        //fadingSource = gameObject.GetComponent<AudioSource>();
-        if (whiteVignette != null)
-        {
-            whiteVignette.SetActive(false);
-        }
-        ambienceAudio = GameObject.Find("Ambience").GetComponent<AudioSource>();
-        ambienceAudioMaxVol = ambienceAudio.volume;
-
-        bgmMaxVolume = bgmSource.volume;
-        breathingMaxVolume = breathingSource.volume;
-        dialogueVolume = dialogueAudio.volume;
-        startBloom = bloom.bloomIntensity;
-        startFog = fog.heightDensity;
-        skipLerp = 5;
-        if (exhaustionAudio != null)
-        {
-            exhaustionMaxVol = exhaustionAudio.gameObject.GetComponent<Exhaustion>().maxVol;
-        }
+        InitialiseValues();
     }
 
     void Update()
@@ -427,15 +381,14 @@ public class Memory : MonoBehaviour
     // TriggerManager script will activate this function
     void EnterMemory (float duration)
     {
+        musicLerp = 0;
+        musicFadeOut = true;
+        memoryDuration = duration;
+        StartCoroutine("InstantiateMemFlash");
         if (EventManager.inst.currentLevel != "MainMenu")
         {
             StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
-        }        
-        musicLerp = 0;
-        musicFadeOut = true;
-        //fadingSource.Play();
-        flashDelay = duration;
-        StartCoroutine("InstantiateMemFlash");        
+        } 
         startFog = fog.heightDensity;
 
         if (!extraDiminish)
@@ -499,6 +452,72 @@ public class Memory : MonoBehaviour
         if (memTimer < 0 && bloom.bloomIntensity > startBloom)
         {
             FadeOutMemory();
+        }
+    }
+
+    void InitialiseValues()
+    {
+        EventManager.inst.memoryLookScalar = 1;
+        EventManager.inst.memoryMoveScalar = 1;
+
+        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
+
+        waterObjs = GameObject.FindGameObjectsWithTag("Water");
+
+        if (waterObjs != null)
+        {
+            water = new Water[waterObjs.Length];
+            for (int i = 0; i < waterObjs.Length; i++)
+            {
+                water[i] = waterObjs[i].GetComponent<Water>();
+            }
+        }
+
+        if (EventManager.inst.currentLevel == "Coast Ending")
+        {
+            dyingSFX = GameObject.Find("DyingSFX").GetComponent<AudioSource>();
+        }
+
+        subUI1 = GameObject.Find("Subtitles1").GetComponent<Text>();
+        subUI2 = GameObject.Find("Subtitles2").GetComponent<Text>();
+        dialogueAudio = GameObject.Find("MemoryDialogue").GetComponent<AudioSource>();
+        bgmSource = GameObject.Find("BackGroundMusicSource").GetComponent<AudioSource>();
+        breathingSource = GameObject.Find("BreathingSFX").GetComponent<AudioSource>();
+        sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
+        skySphere = GameObject.Find("skySphere");
+        memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
+
+        if (EventManager.inst.currentLevel == "Coast Ending")
+        {
+            endMusic = GameObject.Find("CreditsMusic").GetComponent<AudioSource>();
+        }
+
+        gameCam = GameObject.Find("Camera").GetComponent<Camera>();
+        bloom = gameObject.GetComponent<BloomAndFlares>();
+        fog = gameObject.GetComponent<GlobalFog>();
+        whiteVignette = GameObject.Find("WhiteVignette");
+
+        if (whiteVignette != null)
+        {
+            whiteVignette.SetActive(false);
+        }
+        ambienceAudio = GameObject.Find("Ambience").GetComponent<AudioSource>();
+        ambienceAudioMaxVol = ambienceAudio.volume;
+        bgmMaxVolume = bgmSource.volume;
+        breathingMaxVolume = breathingSource.volume;
+        dialogueVolume = dialogueAudio.volume;
+        startBloom = bloom.bloomIntensity;
+        startFog = fog.heightDensity;
+        skipLerp = 5;
+
+        if (exhaustionAudio != null)
+        {
+            exhaustionMaxVol = exhaustionAudio.gameObject.GetComponent<Exhaustion>().maxVol;
+        }
+
+        if (EventManager.inst.currentLevel == "City Outskirts")
+        {
+            whiteBackDrop = GameObject.Find("WhiteBackDrop");
         }
     }
 
@@ -572,7 +591,7 @@ public class Memory : MonoBehaviour
     #region Subtitles
     public IEnumerator Subtitles1()
     {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(3.2f);
         FadeTextOut1(0);
         FadeTextOut2(0);
 
