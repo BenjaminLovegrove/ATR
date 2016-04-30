@@ -122,7 +122,7 @@ public class Memory : MonoBehaviour
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
-        endMusic = GameObject.Find("EventManager").GetComponent<AudioSource>();
+        endMusic = GameObject.Find("CreditsMusic").GetComponent<AudioSource>();
         gameCam = GameObject.Find("Camera").GetComponent<Camera>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();

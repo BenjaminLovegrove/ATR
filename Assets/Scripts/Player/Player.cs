@@ -118,9 +118,11 @@ public class Player : MonoBehaviour
                     {
                         backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
                     }
+                } else
+                {
+                    heartBeatSFX.volume = 0;
                 }                
             }
-            else heartBeatSFX.volume = 0;
         }
     }
 
