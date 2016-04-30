@@ -31,7 +31,10 @@ public class Exhaustion : MonoBehaviour {
 
     [Header("Ambience")]
     public AudioSource ambientOcean;
-    public float ambientOceanMaxVol;
+    private float ambientOceanMaxVol;
+    public AudioSource endingWind;
+    public float endingWindMaxVol;
+    
    
     void Start()
     {
@@ -54,10 +57,11 @@ public class Exhaustion : MonoBehaviour {
 
         //Lerp Values
         float lerpValue = (closestDist / totalDistance);
-        targBreathingVol = Mathf.Lerp(maxVol, 0f, lerpValue);
+        targBreathingVol = Mathf.Lerp(maxVol, 0f, lerpValue * 1.5f);
         breathing.volume = targBreathingVol;
         ambientBreathing.volume = Mathf.Lerp(0f, ambientBreathingVol, lerpValue);
-        ambientOcean.volume = Mathf.Lerp(ambientOceanMaxVol * 1.3f, ambientOceanMaxVol, lerpValue);
+        ambientOcean.volume = Mathf.Lerp(ambientOceanMaxVol * 1.5f, ambientOceanMaxVol, lerpValue * 10);
+        endingWind.volume = Mathf.Lerp(maxVol, 0f, lerpValue * 1.5f);
 
 
         breathing.pitch = Mathf.Lerp(endPitch, startPitch, lerpValue);
