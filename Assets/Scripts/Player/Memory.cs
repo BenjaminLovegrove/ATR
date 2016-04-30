@@ -96,7 +96,6 @@ public class Memory : MonoBehaviour
     IEnumerator SkipMemory()
     {
         memTimer = 2;
-        //dialogueAudio.Stop();
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(2);
         EndMemory();
@@ -183,6 +182,7 @@ public class Memory : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.inst.credits)
             {
+                //Invoke("CurrentMemoryIncrement", 2f); // The delay is required otherwise the camera will target the next memory look at obj
                 skipLerp = 0;
                 StopCoroutine("InstantiateMemFlash");
                 StartCoroutine("SkipMemory");
@@ -196,7 +196,6 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
-
         dialogueAudio.volume = dialogueVolume;
         memorySkippable = true;
         
@@ -276,6 +275,8 @@ public class Memory : MonoBehaviour
     // End memory
     void EndMemory()
     {
+        Invoke("CurrentMemoryIncrement", 2f);
+
         // Set controls back to normal
         disableControls = false;
         gameCam.ResetFieldOfView();
@@ -522,6 +523,11 @@ public class Memory : MonoBehaviour
     }
 
     #region Simple Functions
+    void CurrentMemoryIncrement()
+    {
+        EventManager.inst.currentMemory++;
+    }
+
     void MemoryPlayingDelay()
     {
         EventManager.inst.memoryPlaying = false;

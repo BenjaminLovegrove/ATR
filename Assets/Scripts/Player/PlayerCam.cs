@@ -194,8 +194,6 @@ public class PlayerCam : MonoBehaviour
 
     void MemoryCam()
     {
-        //print("Current memory" + EventManager.inst.currentMemory);
-        //playerCam.transform.rotation = Quaternion.Lerp(playerCam.transform.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.transform.position), Time.deltaTime * 1f);
         transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
     }
 }

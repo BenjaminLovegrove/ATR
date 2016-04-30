@@ -115,7 +115,7 @@ public class TriggerManager : MonoBehaviour
     {
 	    if (col.gameObject.tag == "Player" && !triggered)
         {
-			triggered = true;
+            triggered = true;
 
             // Credits
             if (credits)
@@ -127,9 +127,8 @@ public class TriggerManager : MonoBehaviour
             }
 
             // Memory
-            if (memory)
+            if (memory && memoryEventNumber == EventManager.inst.currentMemory)
             {
-                EventManager.inst.currentMemory = memoryEventNumber;
                 EventManager.inst.subtitleNum = subtitleNum;
                 EventManager.inst.memoryPlaying = true;
                 dialogueAudio.clip = memoryDialogue;
@@ -157,14 +156,14 @@ public class TriggerManager : MonoBehaviour
                 }
 
                 Invoke("DelayedMemoryPlaying", 2f);
-             }
+            }
 
             // Checkpoint
-			if (checkpoint)
+            if (checkpoint)
             {
                 print("Checkpoint Triggered");
-				EventManager.inst.currentCheckPoint = checkpointNo;
-			}
+                EventManager.inst.currentCheckPoint = checkpointNo;
+            }
 
             // Enemy
             if (enemyTrigger)
@@ -192,7 +191,7 @@ public class TriggerManager : MonoBehaviour
                     loadScreenUI.SetActive(true);
                 }
 
-                StartCoroutine("LoadNextScene");               
+                StartCoroutine("LoadNextScene");
             }
         }
 	}

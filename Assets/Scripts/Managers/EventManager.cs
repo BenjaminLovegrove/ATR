@@ -61,7 +61,6 @@ public class EventManager : MonoBehaviour
 
 	void Awake ()
 	{
-        currentMemory = 1;
         credits = false;
         firstEncounter = false;
         firstPlay = true;
