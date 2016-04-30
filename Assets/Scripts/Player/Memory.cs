@@ -520,6 +520,11 @@ public class Memory : MonoBehaviour
         {
             whiteBackDrop = GameObject.Find("WhiteBackDrop").GetComponent<Image>();
         }
+
+        if (!EventManager.inst.firstPlay && whiteBackDrop != null)
+        {
+            whiteBackDrop.CrossFadeAlpha(0, 0.01f, false);
+        }
     }
 
     #region Simple Functions

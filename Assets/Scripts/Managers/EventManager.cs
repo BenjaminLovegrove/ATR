@@ -40,11 +40,12 @@ public class EventManager : MonoBehaviour
     [Header("Games States")]
     public bool gamePaused;
     public int currentCheckPoint;
-    public int currentMemory;   // This value is automatically assigned when a memory is triggered
+    public int currentMemory;
     public int subtitleNum;
     public string currentLevel;
     public bool credits;
     public bool atEndTerrain;
+    public bool firstEncounterPlaying;
     public bool firstEncounter;
     public bool firstPlay;
 
@@ -55,15 +56,16 @@ public class EventManager : MonoBehaviour
     {
         controlsDisabled = true;
         fadeToBlack.CrossFadeAlpha(0, 5, false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         controlsDisabled = false;
     }
 
 	void Awake ()
 	{
         credits = false;
-        firstEncounter = false;
+        firstEncounterPlaying = false;
         firstPlay = true;
+        firstEncounter = true;
         Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         developerMode = true; // *** Disable for release builds ***

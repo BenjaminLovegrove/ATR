@@ -75,7 +75,7 @@ public class PlayerCam : MonoBehaviour
             MouseMovement();
         }
 
-        if (EventManager.inst.firstEncounter)
+        if (EventManager.inst.firstEncounterPlaying)
         {
             // Lerp camera to a slightly crouching pos during first memory
             currentPos.position = Vector3.Lerp(currentPos.position, cameraPosFE.position, Time.deltaTime * 3);

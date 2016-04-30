@@ -76,7 +76,7 @@ public class FirstEncounter : MonoBehaviour
             setActiveObjects[0].SetActive(false);
         }
 
-        if (!EventManager.inst.firstEncounter && !EventManager.inst.memoryPlaying)
+        if (!EventManager.inst.firstEncounterPlaying && !EventManager.inst.memoryPlaying)
         {
             EventManager.inst.controlsDisabled = false;
         }
@@ -85,7 +85,7 @@ public class FirstEncounter : MonoBehaviour
         // When sequence ends (added only once so it doesnt keep turning the music up)
         if (!triggered && !musicResumed && encounterDuration < 0)
         {
-            EventManager.inst.firstEncounter = false;
+            EventManager.inst.firstEncounterPlaying = false;
             EventManager.inst.playerCrouch = false;
             crouchSFXSource.PlayOneShot(standSFX);
             musicResumed = true;
@@ -96,10 +96,11 @@ public class FirstEncounter : MonoBehaviour
     // Trigger sequence
     void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" && EventManager.inst.firstEncounter)
         {
-            EventManager.inst.firstEncounter = true;
-            print("Encounter Triggered");
+            EventManager.inst.firstEncounterPlaying = true;
+            EventManager.inst.firstEncounter = false;
+
             if (!triggered)
             {
                 PlaySFX();

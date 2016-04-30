@@ -322,7 +322,7 @@ public class Player : MonoBehaviour
                         currentSpeed = crouchSpeed;
                         EventManager.inst.playerCrouch = true;
                     }
-                    else if (!EventManager.inst.firstEncounter)
+                    else if (!EventManager.inst.firstEncounterPlaying)
                     {
                         EventManager.inst.playerCrouch = false;
                         currentSpeed = walkSpeed;
