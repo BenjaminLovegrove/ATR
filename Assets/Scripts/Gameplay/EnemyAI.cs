@@ -46,9 +46,7 @@ public class EnemyAI : MonoBehaviour
 	{
         EventManager.inst.playerDead = true;
         EventManager.inst.enemyKillPos = this.gameObject.transform;
-        //muzzleFlash.Play();
         muzzleFlash.SetActive(true);
-        //muzzleFlash.GetComponent<ParticleSystem>().enableEmission = true;
         yield return new WaitForSeconds(6f);
         EventManager.inst.resetLevel = true;
     }
@@ -58,8 +56,6 @@ public class EnemyAI : MonoBehaviour
         audio = GetComponent<AudioSource>();
 		anim = GetComponent<Animator>();
 		nav = GetComponent<NavMeshAgent>();
-        
-        //smoke.GetComponent<ParticleSystem>().enableEmission = true;
 	}
 
     void Start()
