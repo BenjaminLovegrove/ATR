@@ -131,6 +131,7 @@ public class TriggerManager : MonoBehaviour
             {
                 EventManager.inst.currentMemory = memoryEventNumber;
                 EventManager.inst.subtitleNum = subtitleNum;
+                EventManager.inst.memoryPlaying = true;
                 dialogueAudio.clip = memoryDialogue;
                 dialogueAudio.Play();
                 memoryDuration = memoryDialogue.length - endEarlyTimer;
