@@ -69,7 +69,7 @@ public class Exhaustion : MonoBehaviour {
 
         if (audioSwitcher.switchedTrack)
         {
-            BGM.volume = Mathf.Lerp(0f, bgmMaxVol + 0.5f, lerpValue);
+            BGM.volume = Mathf.Lerp(0f, bgmMaxVol + 0.2f, lerpValue);
             EventManager.inst.memoryMoveScalar = Mathf.Lerp(lowestSpeed, 1, lerpValue);
             EventManager.inst.memoryLookScalar = Mathf.Lerp(lowestSens, 1, lerpValue);
         }

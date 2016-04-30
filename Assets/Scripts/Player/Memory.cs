@@ -69,6 +69,7 @@ public class Memory : MonoBehaviour
     public float exhaustionMaxVol;
     private AudioSource ambienceAudio;
     private float ambienceAudioMaxVol;
+    public AudioSource endingWind;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -176,6 +177,7 @@ public class Memory : MonoBehaviour
             {
                 musicLerp += Time.deltaTime / 3;
                 exhaustionAudio.volume = Mathf.Lerp(exhaustionMaxVol, exhaustionMaxVol * 0.43f, musicLerp);
+                endingWind.volume = Mathf.Lerp(1, 0, musicLerp);
             }
             bgmSource.volume = Mathf.Lerp(bgmMaxVolume, 0, musicLerp);
             breathingSource.volume = Mathf.Lerp(breathingMaxVolume, 0, musicLerp);
