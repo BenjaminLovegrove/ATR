@@ -161,6 +161,7 @@ public class MainMenu : MonoBehaviour
         Level3Highlight.SetActive(false);
         levelSelect = "City Outskirts";
         levelText.text = levelSelect;
+        EventManager.inst.currentMemory = 1;
     }
 
     // Level 2 Select
@@ -171,6 +172,7 @@ public class MainMenu : MonoBehaviour
         Level3Highlight.SetActive(false);
         levelSelect = "City";
         levelText.text = levelSelect;
+        EventManager.inst.currentMemory = 6;
     }
 
     // Level 3 Select
@@ -181,6 +183,7 @@ public class MainMenu : MonoBehaviour
         Level3Highlight.SetActive(true);
         levelSelect = "Coast Ending";
         levelText.text = levelSelect;
+        EventManager.inst.currentMemory = 8;
     }
 
     // Play Main Menu Button
