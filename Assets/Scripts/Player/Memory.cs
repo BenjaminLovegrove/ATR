@@ -16,7 +16,7 @@ public class Memory : MonoBehaviour
     public float memoryFog;
     public float fogDiminishAmount;
     public float memoryBloom;
-    private AudioSource fadingSource;
+    //private AudioSource fadingSource;
 
     [Header("Memory Objects")]
     public AudioClip[] memoryDialogue;
@@ -122,12 +122,15 @@ public class Memory : MonoBehaviour
         sceneLighting = GameObject.Find("Directional Light").GetComponent<Light>();
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
-        endMusic = GameObject.Find("CreditsMusic").GetComponent<AudioSource>();
+        if (EventManager.inst.currentLevel == "Coast Ending")
+        {
+            endMusic = GameObject.Find("CreditsMusic").GetComponent<AudioSource>();
+        }        
         gameCam = GameObject.Find("Camera").GetComponent<Camera>();
         bloom = gameObject.GetComponent<BloomAndFlares>();
         fog = gameObject.GetComponent<GlobalFog>();
         whiteVignette = GameObject.Find("WhiteVignette");
-        fadingSource = gameObject.GetComponent<AudioSource>();
+        //fadingSource = gameObject.GetComponent<AudioSource>();
         if (whiteVignette != null)
         {
             whiteVignette.SetActive(false);
@@ -422,7 +425,7 @@ public class Memory : MonoBehaviour
         }        
         musicLerp = 0;
         musicFadeOut = true;
-        fadingSource.Play();
+        //fadingSource.Play();
         flashDelay = duration;
         StartCoroutine("InstantiateMemFlash");        
         startFog = fog.heightDensity;
