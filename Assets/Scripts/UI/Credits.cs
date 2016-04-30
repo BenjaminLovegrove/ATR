@@ -68,7 +68,7 @@ public class Credits : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    // BENNY - 10secs
+    // BENNY - 9secs
     public IEnumerator Sequence1()
     {
         benHeading.CrossFadeAlpha(1, 1, false);
@@ -78,7 +78,7 @@ public class Credits : MonoBehaviour
         benRole1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         benWeb.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(6f);
 
         //Fade out
         benHeading.CrossFadeAlpha(0, 1, false);
@@ -88,7 +88,7 @@ public class Credits : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
     
-    // HUX - 10secs
+    // HUX - 9secs
     public IEnumerator Sequence2()
     {
         huxHeading.CrossFadeAlpha(1, 1, false);
@@ -98,7 +98,7 @@ public class Credits : MonoBehaviour
         huxRole1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         huxWeb.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(6f);
         //huxCodeLeft.text = BinaryCodeGenerator();
         //huxCodeRight.text = BinaryCodeGenerator();
         //huxCodeLeft.CrossFadeAlpha(1, 0, false);
@@ -135,7 +135,7 @@ public class Credits : MonoBehaviour
         //huxActive = false;
     }
     
-    // JACKO - 10secs
+    // JACKO - 9secs
     public IEnumerator Sequence3()
     {
         jackHeading.CrossFadeAlpha(1, 1, false);
@@ -145,7 +145,7 @@ public class Credits : MonoBehaviour
         jackRole1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         jackRole2.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(6f);
 
         //Fade out
         jackHeading.CrossFadeAlpha(0, 1, false);
@@ -155,7 +155,7 @@ public class Credits : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
     
-    // JESS - 10secs
+    // JESS - 9secs
     public IEnumerator Sequence4()
     {
         jessHeading.CrossFadeAlpha(1, 1, false);
@@ -165,7 +165,7 @@ public class Credits : MonoBehaviour
         jessRole1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         jessRole2.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(6f);
 
         //Fade out
         jessHeading.CrossFadeAlpha(0, 1, false);
@@ -175,17 +175,17 @@ public class Credits : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    // VOICE ACTORS - 10secs
+    // VOICE ACTORS - 8secs
     public IEnumerator Sequence5()
     {
         voiceHeading.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(1f);
+        adrian.CrossFadeAlpha(1, 1, false);
+        yield return new WaitForSeconds(0.5f);
         christy.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         tony.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(0.5f);
-        adrian.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(5f);
 
         //Fade out
         voiceHeading.CrossFadeAlpha(0, 1, false);
