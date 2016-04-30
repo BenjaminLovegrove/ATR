@@ -32,19 +32,23 @@ public class Credits : MonoBehaviour
     public Text jackRole0;
     public Text jackRole1;
     public Text jackRole2;
+    public Text jackWeb;
    
     [Header("Jess")]
     public Text jessHeading;
     public Text jessRole0;
     public Text jessRole1;
     public Text jessRole2;
+    public Text jessWeb;
    
     [Header("Voice Actors")]
     public Text voiceHeading;
     public Text adrian;
     public Text christy;
     public Text tony;
-   
+    public Text adrian1;
+    public Text christy1;
+    public Text tony1;  
     [Header("Team")]
     public Text teamHeading;
     
@@ -57,13 +61,15 @@ public class Credits : MonoBehaviour
     private float autoExit;
     private float timer;
     private List<int> creditsOrder = new List<int>();
-  
+    private float extraDelay;
+    public AudioSource bgm;  
 
     // ATR 4 - 4secs
     public IEnumerator ATR()
     {
+        yield return new WaitForSeconds(extraDelay);
         atr.CrossFadeAlpha(1, 0.25f, false);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3f - extraDelay);
         atr.CrossFadeAlpha(0, 1f, false);
         yield return new WaitForSeconds(1f);
     }
@@ -145,13 +151,16 @@ public class Credits : MonoBehaviour
         jackRole1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         jackRole2.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(0.5f);
+        jackWeb.CrossFadeAlpha(1, 1, false);
+        yield return new WaitForSeconds(5.5f);
 
         //Fade out
         jackHeading.CrossFadeAlpha(0, 1, false);
         jackRole0.CrossFadeAlpha(0, 1, false);
         jackRole1.CrossFadeAlpha(0, 1, false);
         jackRole2.CrossFadeAlpha(0, 1, false);
+        jackWeb.CrossFadeAlpha(0, 1, false);
         yield return new WaitForSeconds(1f);
     }
     
@@ -165,9 +174,12 @@ public class Credits : MonoBehaviour
         jessRole1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         jessRole2.CrossFadeAlpha(1, 1, false);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(0.5f);
+        jessWeb.CrossFadeAlpha(1, 1, false);
+        yield return new WaitForSeconds(5.5f);
 
         //Fade out
+        jessWeb.CrossFadeAlpha(0, 1, false);
         jessHeading.CrossFadeAlpha(0, 1, false);
         jessRole0.CrossFadeAlpha(0, 1, false);
         jessRole1.CrossFadeAlpha(0, 1, false);
@@ -181,10 +193,13 @@ public class Credits : MonoBehaviour
         voiceHeading.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(1f);
         adrian.CrossFadeAlpha(1, 1, false);
+        adrian1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         christy.CrossFadeAlpha(1, 1, false);
+        christy1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(0.5f);
         tony.CrossFadeAlpha(1, 1, false);
+        tony1.CrossFadeAlpha(1, 1, false);
         yield return new WaitForSeconds(5f);
 
         //Fade out
@@ -192,6 +207,9 @@ public class Credits : MonoBehaviour
         adrian.CrossFadeAlpha(0, 1, false);
         christy.CrossFadeAlpha(0, 1, false);
         tony.CrossFadeAlpha(0, 1, false);
+        adrian1.CrossFadeAlpha(0, 1, false);
+        christy1.CrossFadeAlpha(0, 1, false);
+        tony1.CrossFadeAlpha(0, 1, false);
         yield return new WaitForSeconds(1f);
     }
 
@@ -206,12 +224,22 @@ public class Credits : MonoBehaviour
 
     void Awake()
     {
+        if (!EventManager.inst.credits)
+        {
+            extraDelay = 1.75f;
+        }
+        else extraDelay = 0f;
         InitialiseValues();
     }
 
     void Start()
     {
-        autoExit = 64;
+        if (!EventManager.inst.credits)
+        {
+            bgm.Play();
+        }
+
+        autoExit = 58;
         StartCoroutine("ATR");
 
         // Reset vals to normal
