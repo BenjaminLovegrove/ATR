@@ -276,7 +276,7 @@ public class PauseMenu : MonoBehaviour
         lookSensitivity = sensSlider.value;
         invertY = invertToggle;
 
-        //Real time update sens and volume
+        // Real time update sens and volume
         EventManager.inst.masterVolume = volumeLevel;
         EventManager.inst.lookSensitivity = sensSlider.value;
 
@@ -310,15 +310,29 @@ public class PauseMenu : MonoBehaviour
     // Check for Escape key press
     void PauseMenuCheck()
     {
-        if (Input.GetKey(KeyCode.Escape) && !EventManager.inst.gamePaused && !EventManager.inst.memoryPlaying)
+        // Pause or resume game when Esc key is hit
+        if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.inst.memoryPlaying)
         {
-            if (!EventManager.inst.gamePaused && !EventManager.inst.memoryPlaying)
+            if (!EventManager.inst.gamePaused)
             {
                 backGround.SetActive(true);
                 Cursor.visible = true;
                 Time.timeScale = 0;
                 EventManager.inst.gamePaused = true;
                 pauseMenuUI.SetActive(true);
+            }
+            else if (EventManager.inst.gamePaused)
+            {
+                {
+                    backGround.SetActive(false);
+                    pauseMenuUI.SetActive(false);
+                    optionsMenuUI.SetActive(false);
+                    confirmExitUI.SetActive(false);
+                    confirmMainMenuUI.SetActive(false);
+                    Cursor.visible = false;
+                    Time.timeScale = 1;
+                    EventManager.inst.gamePaused = false;
+                }
             }
         }
     }
