@@ -3,18 +3,18 @@ using System.Collections;
 
 public class DisableControls : MonoBehaviour
 {
-    public float getIntoMem;
+    private float delay;
 
     void Update()
     {
-        getIntoMem += Time.deltaTime;
+        delay += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && delay > 3f)
         {
             Destroy(this);
         }
 
-        if (!EventManager.inst.memoryPlaying && getIntoMem > 10)
+        if (!EventManager.inst.memoryPlaying)
         {
             Destroy(this);
         }
