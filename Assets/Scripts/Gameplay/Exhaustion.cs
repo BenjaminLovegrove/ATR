@@ -28,6 +28,10 @@ public class Exhaustion : MonoBehaviour {
     public float totalDistance;
     public Transform endPoint;
     private float closestDist;
+
+    [Header("Ambience")]
+    public AudioSource ambientOcean;
+    public float ambientOceanMaxVol;
    
     void Start()
     {
@@ -37,6 +41,7 @@ public class Exhaustion : MonoBehaviour {
         closestDist = totalDistance;
         bgmMaxVol = BGM.volume;
         startHeadBob = playerCamScr.headBobInterval;
+        ambientOceanMaxVol = ambientOcean.volume;
     }
 
 	void Update () {
@@ -50,19 +55,17 @@ public class Exhaustion : MonoBehaviour {
         //Lerp Values
         float lerpValue = (closestDist / totalDistance);
         targBreathingVol = Mathf.Lerp(maxVol, 0f, lerpValue);
+        breathing.volume = targBreathingVol;
+        ambientBreathing.volume = Mathf.Lerp(0f, ambientBreathingVol, lerpValue);
+        ambientOcean.volume = Mathf.Lerp(ambientOceanMaxVol * 1.3f, ambientOceanMaxVol, lerpValue);
 
-        if (targBreathingVol > ambientBreathingVol)
-        {
-            breathing.volume = targBreathingVol;
-            ambientBreathing.Pause();
-        }
 
         breathing.pitch = Mathf.Lerp(endPitch, startPitch, lerpValue);
         playerCamScr.headBobInterval = Mathf.Lerp(playerCamScr.headBobInterval * headBobMod, playerCamScr.headBobInterval, lerpValue);
 
         if (audioSwitcher.switchedTrack)
         {
-            BGM.volume = Mathf.Lerp(0f, bgmMaxVol, lerpValue);
+            BGM.volume = Mathf.Lerp(0f, bgmMaxVol + 0.5f, lerpValue);
             EventManager.inst.memoryMoveScalar = Mathf.Lerp(lowestSpeed, 1, lerpValue);
             EventManager.inst.memoryLookScalar = Mathf.Lerp(lowestSens, 1, lerpValue);
         }

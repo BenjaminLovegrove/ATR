@@ -67,6 +67,8 @@ public class Memory : MonoBehaviour
     private AudioSource endMusic;
     public AudioSource exhaustionAudio;
     public float exhaustionMaxVol;
+    private AudioSource ambienceAudio;
+    private float ambienceAudioMaxVol;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -132,6 +134,8 @@ public class Memory : MonoBehaviour
         {
             whiteVignette.SetActive(false);
         }
+        ambienceAudio = GameObject.Find("Ambience").GetComponent<AudioSource>();
+        ambienceAudioMaxVol = ambienceAudio.volume;
 
         bgmMaxVolume = bgmSource.volume;
         breathingMaxVolume = breathingSource.volume;
@@ -172,6 +176,7 @@ public class Memory : MonoBehaviour
             }
             bgmSource.volume = Mathf.Lerp(bgmMaxVolume, 0, musicLerp);
             breathingSource.volume = Mathf.Lerp(breathingMaxVolume, 0, musicLerp);
+            ambienceAudio.volume = Mathf.Lerp(ambienceAudioMaxVol, 0, musicLerp);
             if (musicLerp > 1)
             {
                 musicFadeOut = false;
@@ -183,6 +188,7 @@ public class Memory : MonoBehaviour
             musicLerp += Time.deltaTime / 4;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
+            ambienceAudio.volume = Mathf.Lerp(0, ambienceAudioMaxVol, musicLerp);
             if (musicLerp > 1)
             {
                 musicFadeIn = false;
