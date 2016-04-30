@@ -23,6 +23,6 @@ public class ButtonSFX : MonoBehaviour {
 
     public void WhooshSFX()
     {
-        buttonSource.PlayOneShot(whoosh);
+        buttonSource.PlayOneShot(whoosh, 0.7f);
     }
 }
