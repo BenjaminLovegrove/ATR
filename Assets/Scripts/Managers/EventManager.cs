@@ -137,6 +137,7 @@ public class EventManager : MonoBehaviour
     // Populate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
+        playerCrouch = false;
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         Cursor.visible = false;
         memoryPlaying = false;
