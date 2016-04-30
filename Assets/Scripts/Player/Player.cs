@@ -9,11 +9,11 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    public float footStepInterval = 0.4f; // To determine when SFX is played
-	public float walkSpeed = 3.0f;
-    public float crouchSpeed = 2.0f;
-	public float gravity = 10.0f;
-	public float maxVelocityChange = 10.0f;
+    public float footStepInterval; // To determine when SFX is played
+	public float walkSpeed;
+    public float crouchSpeed;
+	public float gravity;
+	public float maxVelocityChange;
     
     //[Header("Jump")]
     //public float jumpHeight = 0.5f;
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 
 	void Awake ()
 	{
+        walkSpeed = 3f;
         playerRigid = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();    
         hackMoveSpeed = 1f;
@@ -165,7 +166,7 @@ public class Player : MonoBehaviour
     void PlayerMovement()
     {
         // Update and scale the player move speed when vals are changed externally
-        walkSpeed = 3 * EventManager.inst.prevMoveScalar * hackMoveSpeed;
+        currentSpeed = walkSpeed * EventManager.inst.prevMoveScalar * hackMoveSpeed;
 
         // Normalise strafe movespeed
         if ((playerRigid.velocity.x + playerRigid.velocity.z) > walkSpeed)
@@ -470,8 +471,6 @@ public class Player : MonoBehaviour
                         currentWalkVal++;
                         footStepCount++;
                     }
-
-
 
                     //Below is when we had edited seperate footsteps for crouched. Use the same ones at a lower volume now.
                     /*
