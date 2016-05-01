@@ -247,6 +247,7 @@ public class Credits : MonoBehaviour
         EventManager.inst.atEndTerrain = false;
         EventManager.inst.memoryPlaying = false;
         EventManager.inst.currentCheckPoint = 0;
+        EventManager.inst.currentMemory = 1;
         EventManager.inst.memoryLookScalar = 1;
         EventManager.inst.memoryMoveScalar = 1;
         Cursor.visible = false;

@@ -62,22 +62,7 @@ public class EventManager : MonoBehaviour
 
 	void Awake ()
 	{
-        credits = false;
-        firstEncounterPlaying = false;
-        firstPlay = true;
-        firstEncounter = true;
-        Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
-        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
-        developerMode = true; // *** Disable for release builds ***
-        //developerMode = false;
-        
-        // Check singleton status
-		if (inst == null)
-		{
-			inst = this;
-			DontDestroyOnLoad(gameObject);
-		}
-		else Destroy(this.gameObject);
+        InitialiseValuesAwake();
 	}
 
     void Start()
@@ -91,23 +76,7 @@ public class EventManager : MonoBehaviour
 
     void Update()
     {
-        // Lerp look and move scalars between vals
-        if (prevLookScalar != memoryLookScalar)
-        {
-            prevLookScalar = Mathf.Lerp(prevLookScalar, memoryLookScalar, Time.deltaTime * 2);
-        }
-
-        if (prevMoveScalar != memoryMoveScalar)
-        {
-            prevMoveScalar = Mathf.Lerp(prevMoveScalar, memoryMoveScalar, Time.deltaTime * 2);
-        }
-
-        AudioListener.volume = masterVolume;
-
-        if (playerDead)
-        {
-            controlsDisabled = true;
-        }
+        UpdateGlobalVals();
     }
 
 	void FixedUpdate ()
@@ -145,7 +114,7 @@ public class EventManager : MonoBehaviour
         memoryPlaying = false;
         fadeToBlack.CrossFadeAlpha(0, 3, false);
         controlsDisabled = false;
-        InitialiseValues();
+        InitialiseValuesLevelLoad();
         Invoke("MovePlayer", 0.05f); // This delay is required so the checkpoint data can be fetched first
     }
 
@@ -157,12 +126,54 @@ public class EventManager : MonoBehaviour
 
     }
 
-    void InitialiseValues()
+    void InitialiseValuesLevelLoad()
     {
         playerDead = false;
         resetLevel = false;
         playerTrans = GameObject.Find("Player").GetComponent<Transform>();
         playerObj = GameObject.Find("Player");
         playerCheckPoints = GameObject.Find("PlayerCheckPoints").GetComponentsInChildren<Transform>();
+    }
+
+    void InitialiseValuesAwake()
+    {
+        currentMemory = 1;
+        credits = false;
+        firstEncounterPlaying = false;
+        firstPlay = true;
+        firstEncounter = true;
+        Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
+        fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
+        developerMode = true; // *** Disable for release builds ***
+        //developerMode = false;
+
+        // Check singleton status
+        if (inst == null)
+        {
+            inst = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(this.gameObject);
+    }
+
+    void UpdateGlobalVals()
+    {
+        // Lerp look and move scalars between vals
+        if (prevLookScalar != memoryLookScalar)
+        {
+            prevLookScalar = Mathf.Lerp(prevLookScalar, memoryLookScalar, Time.deltaTime * 2);
+        }
+
+        if (prevMoveScalar != memoryMoveScalar)
+        {
+            prevMoveScalar = Mathf.Lerp(prevMoveScalar, memoryMoveScalar, Time.deltaTime * 2);
+        }
+
+        AudioListener.volume = masterVolume;
+
+        if (playerDead)
+        {
+            controlsDisabled = true;
+        }
     }
 }
