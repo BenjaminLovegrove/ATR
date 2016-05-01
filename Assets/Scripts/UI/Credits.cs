@@ -59,7 +59,7 @@ public class Credits : MonoBehaviour
     public bool[] sequenceTriggered;    // Set elements to 6 (Inspector)
 
     private float autoExit;
-    private float timer;
+    public float timer;
     private List<int> creditsOrder = new List<int>();
     private float extraDelay;
     public AudioSource bgm;  
@@ -239,7 +239,7 @@ public class Credits : MonoBehaviour
             bgm.Play();
         }
 
-        autoExit = 58;
+        autoExit = 63;
         StartCoroutine("ATR");
 
         // Reset vals to normal

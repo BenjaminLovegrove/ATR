@@ -105,6 +105,7 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator LoadScreen()
     {
+        EventManager.inst.memoryPlaying = false;
         loadingScreenUI.SetActive(true);
         yield return new WaitForSeconds(1f);
         AsyncOperation async = Application.LoadLevelAsync(levelSelect);
