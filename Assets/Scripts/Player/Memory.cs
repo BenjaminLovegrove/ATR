@@ -76,7 +76,7 @@ public class Memory : MonoBehaviour
     {
         memorySkippable = false;
         EventManager.inst.memoryPlaying = true;
-        memoryFlashObj.CrossFadeAlpha(255, 1.75f, false);
+        memoryFlashObj.CrossFadeAlpha(255, 1f, false);
         yield return new WaitForSeconds(1);
         if (whiteBackDrop != null)
         {
@@ -181,7 +181,6 @@ public class Memory : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.inst.credits)
             {
-                //Invoke("CurrentMemoryIncrement", 2f); // The delay is required otherwise the camera will target the next memory look at obj
                 skipLerp = 0;
                 StopCoroutine("InstantiateMemFlash");
                 StartCoroutine("SkipMemory");
@@ -268,7 +267,7 @@ public class Memory : MonoBehaviour
             skySphere.SetActive(false);
         }
 
-        memoryFlashObj.CrossFadeAlpha(0, 2, false);
+        memoryFlashObj.CrossFadeAlpha(0, 1f, false);
     }
 
     // End memory
