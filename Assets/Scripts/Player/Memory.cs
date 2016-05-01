@@ -16,7 +16,6 @@ public class Memory : MonoBehaviour
     public float memoryFog;
     public float fogDiminishAmount;
     public float memoryBloom;
-    //private AudioSource fadingSource;
 
     [Header("Memory Objects")]
     public AudioClip[] memoryDialogue;
@@ -1107,15 +1106,12 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(1f);
         FadeTextOut2(1);
 
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1f);
 
         // John
-        subString1 = "Do you think anyone knows what’s going on?";
-        subUI1.text = subString1;
-        FadeTextIn1(0.25f);
-        yield return new WaitForSeconds(2.5f);
         subString1 = "They can’t stop us can they?";
         subUI1.text = subString1;
+        FadeTextIn1(0.25f);
         yield return new WaitForSeconds(2f);
         FadeTextOut1(1);
 
