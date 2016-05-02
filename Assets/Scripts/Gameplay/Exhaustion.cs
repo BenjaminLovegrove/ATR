@@ -65,7 +65,7 @@ public class Exhaustion : MonoBehaviour {
 
 
         breathing.pitch = Mathf.Lerp(endPitch, startPitch, lerpValue);
-        playerCamScr.headBobInterval = Mathf.Lerp(playerCamScr.headBobInterval * headBobMod, playerCamScr.headBobInterval, lerpValue);
+        playerCamScr.headBobInterval = Mathf.Lerp(playerCamScr.headBobInterval * headBobMod, startHeadBob, lerpValue);
 
         if (audioSwitcher.switchedTrack)
         {
