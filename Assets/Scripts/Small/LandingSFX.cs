@@ -11,7 +11,10 @@ public class LandingSFX : MonoBehaviour {
         if (col.gameObject.tag == "Player" && !triggered)
         {
             triggered = true;
-            AudioSource.PlayClipAtPoint(sfx, col.transform.position, 0.6f);
+            if (EventManager.inst.currentMemory != 8)
+            {
+                AudioSource.PlayClipAtPoint(sfx, col.transform.position, 0.6f);
+            }
         }
     }
 }
