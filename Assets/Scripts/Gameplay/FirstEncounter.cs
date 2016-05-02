@@ -108,6 +108,7 @@ public class FirstEncounter : MonoBehaviour
                 PlaySFX();
             }
             triggeredCheck = true;
+            triggered = true;
         }
     }
 

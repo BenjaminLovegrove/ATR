@@ -600,7 +600,7 @@ public class Memory : MonoBehaviour
     #region Subtitles
     public IEnumerator Subtitles1()
     {
-        yield return new WaitForSeconds(3.2f);
+        yield return new WaitForSeconds(4.15f);
         FadeTextOut1(0);
         FadeTextOut2(0);
 
