@@ -614,7 +614,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
 
         // Alex
-        subString2 = "...Hey you";
+        subString2 = "..Hey you";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(0.25f);
@@ -654,7 +654,7 @@ public class Memory : MonoBehaviour
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(2.75f);
-        subString2 = "Hey John...?";
+        subString2 = "Hey John..?";
         subUI2.text = subString2;
         yield return new WaitForSeconds(0.25f);
         FadeTextOut2(1.5f);
@@ -690,7 +690,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         // Alex
-        subString2 = "Sure does...";
+        subString2 = "Sure does..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(1.5f);
@@ -767,14 +767,14 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(2.75f);
 
         // Alex
-        subString2 = "John..  listen to her...";
+        subString2 = "John..  listen to her..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(4.5f);
         subString2 = "I was thinking..";
         subUI2.text = subString2;
         yield return new WaitForSeconds(2.6f);
-        subString2 = "Maybe we could move somewhere! Away from the city!..";
+        subString2 = "Maybe we could move somewhere! Away from the city!";
         subUI2.text = subString2;
         yield return new WaitForSeconds(2.75f);
         subString2 = "Somewhere on the the coast! The air would be cleaner… maybe that would help?";
@@ -813,7 +813,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Alex
-        subString2 = "I... Uh...";
+        subString2 = "I.. Uh..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(2f);
@@ -849,7 +849,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // John
-        subString1 = "SHE... I loved her just as much as you did.. that’s why I always..";
+        subString1 = "SHE.. I loved her just as much as you did.. that’s why I always..";
         subUI1.text = subString1;
         FadeTextIn1(0.25f);
         yield return new WaitForSeconds(8f);
@@ -868,7 +868,7 @@ public class Memory : MonoBehaviour
         FadeTextOut2(0);
 
         // Alex
-        subString2 = "John...";
+        subString2 = "John..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(2.5f);
@@ -895,7 +895,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // Alex
-        subString2 = "John...";
+        subString2 = "John..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(1f);
@@ -923,10 +923,10 @@ public class Memory : MonoBehaviour
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(3.5f);
-        subString2 = "I think it’s best if, just I go for now...";
+        subString2 = "I think it’s best if just, I go for now..";
         subUI2.text = subString2;
         yield return new WaitForSeconds(5.25f);
-        subString2 = "Alone... ";
+        subString2 = "Alone.. ";
         subUI2.text = subString2;
         yield return new WaitForSeconds(3f);
         FadeTextOut2(1);
@@ -987,7 +987,7 @@ public class Memory : MonoBehaviour
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(1.5f);
-        subString2 = "don’t spend too long thinking about it...";
+        subString2 = "don’t spend too long thinking about it..";
         subUI2.text = subString2;
         yield return new WaitForSeconds(1.75f);
         subString2 = "Just.. ";
@@ -1178,13 +1178,13 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         FadeTextOut2(5.25f);
         yield return new WaitForSeconds(5.25f);
-        subString2 = "You can’t spend forever thinking about the past...";
+        subString2 = "You can’t spend forever thinking about the past..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(0.25f);
         FadeTextOut2(3f);
         yield return new WaitForSeconds(3f);
-        subString2 = "You just have to do what you can now...";
+        subString2 = "You just have to do what you can now..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(0.25f);
@@ -1196,7 +1196,7 @@ public class Memory : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         FadeTextOut2(1.75f);
         yield return new WaitForSeconds(1.75f);
-        subString2 = "Learn from them...";
+        subString2 = "Learn from them..";
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(0.25f);

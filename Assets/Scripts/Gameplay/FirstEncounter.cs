@@ -14,6 +14,7 @@ public class FirstEncounter : MonoBehaviour
     public AudioSource audio;
     public GameObject[] setActiveObjects;
     private bool triggered;
+    private bool triggeredCheck;
     private Transform playersTrans;
     private bool musicResumed;
     private bool crouched;
@@ -26,6 +27,7 @@ public class FirstEncounter : MonoBehaviour
 
     void Awake()
     {
+        triggeredCheck = false;
         vignette = GameObject.Find("Camera").GetComponent<VignetteAndChromaticAberration>();
         startVignetteIntensity = vignette.intensity;
         musicResumed = false;
@@ -89,7 +91,7 @@ public class FirstEncounter : MonoBehaviour
             EventManager.inst.playerCrouch = false;
             crouchSFXSource.PlayOneShot(standSFX);
             musicResumed = true;
-            Invoke("FadeInSFX", 10f);
+            Invoke("FadeInSFX", 55f);
         }
     }
 
@@ -101,11 +103,11 @@ public class FirstEncounter : MonoBehaviour
             EventManager.inst.firstEncounterPlaying = true;
             EventManager.inst.firstEncounter = false;
 
-            if (!triggered)
+            if (!triggeredCheck)
             {
                 PlaySFX();
             }
-            triggered = true;
+            triggeredCheck = true;
         }
     }
 

@@ -189,7 +189,7 @@ public class PlayerCam : MonoBehaviour
 
         // Face the enemy that killed the player
         Vector3 enemyDirection = EventManager.inst.enemyKillPos.position - transform.position;
-        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(enemyDirection), Time.deltaTime * 1.5f);    
+        playerCam.transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(enemyDirection), Time.deltaTime * 1.5f);    
     }
 
     void MemoryCam()
