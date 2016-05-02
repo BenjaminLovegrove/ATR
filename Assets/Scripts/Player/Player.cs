@@ -9,7 +9,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     [Header("Movement")]
-    public float footStepInterval; // To determine when SFX is played
+    public float footStepInterval;
 	public float walkSpeed;
     public float crouchSpeed;
 	public float gravity;
@@ -20,23 +20,21 @@ public class Player : MonoBehaviour
     //public float jumpDelay;
     //public float jumpCoolDown;	
 
-    // Calculations
     private float currentSpeed;
     private float jumpTimer = 1.5f;
     private float nearestEnemyDistance;
     private bool grounded;
     private bool touchingTerrain;
 
-    // SFX
     private GameObject[] enemyList;
     private float backgroundMaxVol;
     private int footStepCount;
     private float hackMoveSpeed;
     private float footStepTimer;
-    public int currentWalkVal;
-    public int currentCrouchVal;
+    private int currentWalkVal;
+    private int currentCrouchVal;
+    private float walkingVolume;
 
-    // Components
     private AudioSource audio;
     public AudioSource footStepSFXSource;
     public AudioSource heartBeatSFX;
@@ -51,11 +49,11 @@ public class Player : MonoBehaviour
     public AudioClip crouchSFX;
     public AudioClip standSFX;
     private Rigidbody playerRigid;
-    private float walkingVolume;
 
 	void Awake ()
 	{
         walkSpeed = 3f;
+        crouchSpeed = 1f;
         playerRigid = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();    
         hackMoveSpeed = 1f;
@@ -319,13 +317,13 @@ public class Player : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
                     {
-                        currentSpeed = crouchSpeed;
+                        walkSpeed = crouchSpeed;
                         EventManager.inst.playerCrouch = true;
                     }
                     else if (!EventManager.inst.firstEncounterPlaying)
                     {
                         EventManager.inst.playerCrouch = false;
-                        currentSpeed = walkSpeed;
+                        walkSpeed = 3f;
                     }
 
                     // Play Crouching SFX
