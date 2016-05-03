@@ -39,7 +39,7 @@ public class EndingTrigger : MonoBehaviour {
             {
                 BGM.clip = precreditsAudio;
                 BGM.Play();
-                BGM.volume = bgmMaxVol;
+                BGM.volume = bgmMaxVol * 1.5f;
                 switchedTrack = true;
             }
         }
