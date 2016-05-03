@@ -86,7 +86,7 @@ public class EnemyAI : MonoBehaviour
         RadioChatter();
         AnimationTriggers();
         PlayerDetection();
-        PlayFootStepSFX();
+        //PlayFootStepSFX(); // Bugged, requires revision
     }
 
     // Play footsteps SFX
