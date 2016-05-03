@@ -196,6 +196,7 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
+        EventManager.inst.playerCrouch = false;
         dialogueAudio.volume = dialogueVolume;
         memorySkippable = true;
         
