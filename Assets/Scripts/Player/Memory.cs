@@ -77,7 +77,7 @@ public class Memory : MonoBehaviour
         memorySkippable = false;
         EventManager.inst.memoryPlaying = true;
         memoryFlashObj.CrossFadeAlpha(255, 1f, false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         if (whiteBackDrop != null)
         {
             whiteBackDrop.CrossFadeAlpha(0, 2f, false);
@@ -144,7 +144,7 @@ public class Memory : MonoBehaviour
         if (musicFadeIn && !EventManager.inst.credits)
         {
             bgmSource.Play();
-            musicLerp += Time.deltaTime / 8;
+            musicLerp += Time.deltaTime / 4;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
             ambienceAudio.volume = Mathf.Lerp(0, ambienceAudioMaxVol, musicLerp);
