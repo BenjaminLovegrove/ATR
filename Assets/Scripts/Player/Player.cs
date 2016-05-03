@@ -320,11 +320,31 @@ public class Player : MonoBehaviour
                         walkSpeed = crouchSpeed;
                         EventManager.inst.playerCrouch = true;
                     }
-                    else if (!EventManager.inst.firstEncounterPlaying)
+                    else
                     {
-                        EventManager.inst.playerCrouch = false;
                         walkSpeed = 3f;
+                        EventManager.inst.playerCrouch = false;
                     }
+
+                    // Fail safe for not crouching
+                    if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
+                    {
+                        walkSpeed = 3f;
+                        EventManager.inst.playerCrouch = false;
+                    }
+
+                    //// Over write for during memory
+                    //if (EventManager.inst.memoryPlaying)
+                    //{
+                    //    walkSpeed = 3f;
+                    //    EventManager.inst.playerCrouch = false;
+                    //}
+                    
+                    //if (!EventManager.inst.firstEncounterPlaying)
+                    //{
+                    //    EventManager.inst.playerCrouch = false;
+                    //    walkSpeed = 3f;
+                    //}
 
                     // Play Crouching SFX
                     if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.LeftControl))

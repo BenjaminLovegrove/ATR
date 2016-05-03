@@ -523,11 +523,19 @@ public class Memory : MonoBehaviour
 
         if (EventManager.inst.firstPlay && EventManager.inst.currentLevel == "City Outskirts")
         {
-            whiteBackDrop.CrossFadeAlpha(0, 0.01f, false);
+            whiteBackDrop.CrossFadeAlpha(0, 3.5f, false);
         }
     }
 
     #region Simple Functions
+    void OnLevelWasLoaded()
+    {
+        if (!EventManager.inst.firstPlay && EventManager.inst.currentLevel == "City Outskirts")
+        {
+            whiteBackDrop.CrossFadeAlpha(0, 0.01f, false);
+        }
+    }
+
     void CurrentMemoryIncrement()
     {
         EventManager.inst.currentMemory++;
