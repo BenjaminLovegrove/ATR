@@ -14,7 +14,7 @@ public class DisableControls : MonoBehaviour
             Destroy(this);
         }
 
-        if (delay > 35f)
+        if (delay > 31.4f)
         {
             Destroy(this);
         }

@@ -183,7 +183,7 @@ public class MainMenu : MonoBehaviour
         Level1Highlight.SetActive(false);
         Level2Highlight.SetActive(false);
         Level3Highlight.SetActive(true);
-        levelSelect = "Coast Ending";
+        levelSelect = "Coast";
         levelText.text = levelSelect;
         EventManager.inst.currentMemory = 8;
     }

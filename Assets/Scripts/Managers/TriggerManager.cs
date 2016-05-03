@@ -97,7 +97,7 @@ public class TriggerManager : MonoBehaviour
                 break;
 
             case LevelSelect.THREE:
-                setLevel = "Coast Ending";
+                setLevel = "Coast";
                 break;
         }
     }
