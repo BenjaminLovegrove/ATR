@@ -110,6 +110,10 @@ public class EventManager : MonoBehaviour
     // Populate EventManager data upon loading a scene
     void OnLevelWasLoaded()
     {
+        if (currentLevel == "Coast")
+        {
+            currentMemory = 8;
+        }
         playerCrouch = false;
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
         StartCoroutine("FadeInCoRoutine");

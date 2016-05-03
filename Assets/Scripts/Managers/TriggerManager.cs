@@ -76,7 +76,7 @@ public class TriggerManager : MonoBehaviour
 
     void Awake()
     {
-        if (EventManager.inst.currentLevel == "Coast Ending")
+        if (EventManager.inst.currentLevel == "Coast")
         {
             exhaustion = GameObject.Find("Exhaustion");
             endMemLerp = GameObject.Find("Memlookat").GetComponent<MemLookMovement>();
