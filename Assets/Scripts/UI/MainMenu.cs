@@ -105,6 +105,8 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator LoadScreen()
     {
+        EventManager.inst.firstPlay = true;
+        EventManager.inst.firstEncounter = true;
         EventManager.inst.memoryPlaying = false;
         loadingScreenUI.SetActive(true);
         yield return new WaitForSeconds(1f);
@@ -127,6 +129,8 @@ public class MainMenu : MonoBehaviour
         InitialiseSettings();
         LoadSettings();
 
+        EventManager.inst.firstEncounterPlaying = false;
+        EventManager.inst.firstPlay = true;
         EventManager.inst.currentMemory = 1;
         EventManager.inst.currentLevel = "MainMenu";
         EventManager.inst.credits = false;
