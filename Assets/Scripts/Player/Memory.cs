@@ -49,7 +49,7 @@ public class Memory : MonoBehaviour
 
     private AudioSource dyingSFX;
     private AudioClip newBGM;
-    private AudioSource bgmSource;
+    public AudioSource bgmSource;
     private AudioSource dialogueAudio;
     private AudioSource breathingSource;
     private BloomAndFlares bloom;
@@ -83,7 +83,7 @@ public class Memory : MonoBehaviour
             whiteBackDrop.CrossFadeAlpha(0, 2f, false);
         }
         yield return new WaitForSeconds(0.25f);
-        bgmSource.Pause();
+
         StartMemory();
         yield return new WaitForSeconds(memoryDuration - 3f);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
@@ -136,13 +136,15 @@ public class Memory : MonoBehaviour
             ambienceAudio.volume = Mathf.Lerp(ambienceAudioMaxVol, 0, musicLerp);
             if (musicLerp > 1)
             {
+                bgmSource.Pause();
                 musicFadeOut = false;
             }
         }
 
         if (musicFadeIn && !EventManager.inst.credits)
         {
-            musicLerp += Time.deltaTime / 4;
+            bgmSource.Play();
+            musicLerp += Time.deltaTime / 8;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
             ambienceAudio.volume = Mathf.Lerp(0, ambienceAudioMaxVol, musicLerp);
@@ -698,6 +700,8 @@ public class Memory : MonoBehaviour
         subUI2.text = subString2;
         yield return new WaitForSeconds(1f);
         FadeTextOut2(2);
+
+        yield return new WaitForSeconds(1.5f);
     }
 
     public IEnumerator Subtitles2()
