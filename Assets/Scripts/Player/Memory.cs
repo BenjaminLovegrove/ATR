@@ -237,7 +237,7 @@ public class Memory : MonoBehaviour
         }
 
         // Increase tree density
-        if (myTerrain != null && EventManager.inst.currentLevel == "Coast Ending")
+        if (myTerrain != null && EventManager.inst.currentLevel == "Coast")
         {
             myTerrain.treeDistance = 1500;
         } else if (myTerrain != null)
@@ -314,7 +314,7 @@ public class Memory : MonoBehaviour
 
         // Reduce tree density
         // Increase tree density
-        if (myTerrain != null && EventManager.inst.currentLevel == "Coast Ending")
+        if (myTerrain != null && EventManager.inst.currentLevel == "Coast")
         {
             myTerrain.treeDistance = 100;
         }
@@ -479,7 +479,7 @@ public class Memory : MonoBehaviour
             }
         }
 
-        if (EventManager.inst.currentLevel == "Coast Ending")
+        if (EventManager.inst.currentLevel == "Coast")
         {
             dyingSFX = GameObject.Find("DyingSFX").GetComponent<AudioSource>();
         }
@@ -493,7 +493,7 @@ public class Memory : MonoBehaviour
         skySphere = GameObject.Find("skySphere");
         memoryFlashObj = GameObject.Find("MemoryFlashObj").GetComponent<Image>();
 
-        if (EventManager.inst.currentLevel == "Coast Ending")
+        if (EventManager.inst.currentLevel == "Coast")
         {
             endMusic = GameObject.Find("CreditsMusic").GetComponent<AudioSource>();
         }
