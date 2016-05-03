@@ -69,7 +69,7 @@ public class Memory : MonoBehaviour
     private AudioSource ambienceAudio;
     private float ambienceAudioMaxVol;
     public AudioSource endingWind;
-    private Image whiteBackDrop;
+    public Image whiteBackDrop;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -440,7 +440,7 @@ public class Memory : MonoBehaviour
         if (delayTimer > memoryLength)
         {
             delayTimer = 0;
-            EventManager.inst.memoryPlaying = false;
+            //EventManager.inst.memoryPlaying = false;
         }
 
         if (memTimer > 0)
@@ -456,6 +456,11 @@ public class Memory : MonoBehaviour
 
     void InitialiseValues()
     {
+        //if (EventManager.inst.currentLevel == "City Outskirts")
+        //{
+        //    whiteBackDrop = GameObject.Find("WhiteBackDrop").GetComponent<Image>();
+        //}
+
         EventManager.inst.memoryLookScalar = 1;
         EventManager.inst.memoryMoveScalar = 1;
 
@@ -514,12 +519,7 @@ public class Memory : MonoBehaviour
             exhaustionMaxVol = exhaustionAudio.gameObject.GetComponent<Exhaustion>().maxVol;
         }
 
-        if (EventManager.inst.currentLevel == "City Outskirts")
-        {
-            whiteBackDrop = GameObject.Find("WhiteBackDrop").GetComponent<Image>();
-        }
-
-        if (!EventManager.inst.firstPlay && whiteBackDrop != null)
+        if (EventManager.inst.firstPlay && EventManager.inst.currentLevel == "City Outskirts")
         {
             whiteBackDrop.CrossFadeAlpha(0, 0.01f, false);
         }

@@ -14,7 +14,7 @@ public class DisableControls : MonoBehaviour
             Destroy(this);
         }
 
-        if (!EventManager.inst.memoryPlaying)
+        if (delay > 35f)
         {
             Destroy(this);
         }
