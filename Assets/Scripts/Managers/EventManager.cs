@@ -48,6 +48,7 @@ public class EventManager : MonoBehaviour
     public bool firstEncounterPlaying;
     public bool firstEncounter;
     public bool firstPlay;
+    public bool hasDied; //for playing the respawn sfx
 
     private RawImage fadeToBlack;
 
@@ -71,7 +72,8 @@ public class EventManager : MonoBehaviour
         // Load option settings
         masterVolume = PlayerPrefs.GetFloat("Master Volume");
         lookSensitivity = PlayerPrefs.GetFloat("Mouse Sensitivity");
-        Cursor.visible = true;        
+        Cursor.visible = true;
+        hasDied = false;
     }
 
     void Update()
@@ -99,6 +101,7 @@ public class EventManager : MonoBehaviour
     // Use triggers to set the value of the last achieved checkpoint - (currentCheckPoint).
     void ResetPlayer()
     {
+        hasDied = true;
         playerDead = false;
         resetLevel = false;
         Application.LoadLevel(Application.loadedLevel);

@@ -70,7 +70,6 @@ public class Memory : MonoBehaviour
     private float ambienceAudioMaxVol;
     public AudioSource endingWind;
     private Image whiteBackDrop;
-    public GameObject lvl1Inhale;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -84,7 +83,7 @@ public class Memory : MonoBehaviour
             whiteBackDrop.CrossFadeAlpha(0, 2f, false);
         }
         yield return new WaitForSeconds(0.25f);
-        bgmSource.Pause();
+
         StartMemory();
         yield return new WaitForSeconds(memoryDuration - 3f);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
@@ -137,12 +136,14 @@ public class Memory : MonoBehaviour
             ambienceAudio.volume = Mathf.Lerp(ambienceAudioMaxVol, 0, musicLerp);
             if (musicLerp > 1)
             {
+                bgmSource.Pause();
                 musicFadeOut = false;
             }
         }
 
         if (musicFadeIn && !EventManager.inst.credits)
         {
+            bgmSource.Play();
             musicLerp += Time.deltaTime / 8;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
@@ -701,7 +702,6 @@ public class Memory : MonoBehaviour
         FadeTextOut2(2);
 
         yield return new WaitForSeconds(1.5f);
-        lvl1Inhale.SetActive(true);
     }
 
     public IEnumerator Subtitles2()

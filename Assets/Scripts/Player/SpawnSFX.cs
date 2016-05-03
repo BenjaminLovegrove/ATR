@@ -9,7 +9,11 @@ public class SpawnSFX : MonoBehaviour {
     private bool started;
 
 	void Start () {
-	    
+	    if (EventManager.inst.hasDied)
+        {
+            spawnSFX.Play();
+            EventManager.inst.hasDied = false;
+        }
 	}
 	
 	void Update () {
