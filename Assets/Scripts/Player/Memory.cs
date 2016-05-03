@@ -49,7 +49,7 @@ public class Memory : MonoBehaviour
 
     private AudioSource dyingSFX;
     private AudioClip newBGM;
-    private AudioSource bgmSource;
+    public AudioSource bgmSource;
     private AudioSource dialogueAudio;
     private AudioSource breathingSource;
     private BloomAndFlares bloom;
@@ -70,6 +70,7 @@ public class Memory : MonoBehaviour
     private float ambienceAudioMaxVol;
     public AudioSource endingWind;
     private Image whiteBackDrop;
+    public GameObject lvl1Inhale;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -142,7 +143,7 @@ public class Memory : MonoBehaviour
 
         if (musicFadeIn && !EventManager.inst.credits)
         {
-            musicLerp += Time.deltaTime / 4;
+            musicLerp += Time.deltaTime / 8;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
             ambienceAudio.volume = Mathf.Lerp(0, ambienceAudioMaxVol, musicLerp);
@@ -698,6 +699,9 @@ public class Memory : MonoBehaviour
         subUI2.text = subString2;
         yield return new WaitForSeconds(1f);
         FadeTextOut2(2);
+
+        yield return new WaitForSeconds(1.5f);
+        lvl1Inhale.SetActive(true);
     }
 
     public IEnumerator Subtitles2()

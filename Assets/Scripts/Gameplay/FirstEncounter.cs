@@ -91,7 +91,7 @@ public class FirstEncounter : MonoBehaviour
             EventManager.inst.playerCrouch = false;
             crouchSFXSource.PlayOneShot(standSFX);
             musicResumed = true;
-            Invoke("FadeInSFX", 55f);
+            Invoke("FadeInSFX", 60f);
         }
     }
 
@@ -115,6 +115,7 @@ public class FirstEncounter : MonoBehaviour
     void PlaySFX()
     {
         audio.Play();
+        memScript.bgmSource.Pause();
         memScript.musicLerp = 0;
         memScript.musicFadeOut = true;
     }
@@ -123,5 +124,6 @@ public class FirstEncounter : MonoBehaviour
     {
         memScript.musicLerp = 0;
         memScript.musicFadeIn = true;
+        memScript.bgmSource.Play();
     }
 }
