@@ -199,6 +199,7 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
+        print("started mem");
         delayTimer = 0;
         EventManager.inst.playerCrouch = false;
         dialogueAudio.volume = dialogueVolume;
@@ -387,6 +388,7 @@ public class Memory : MonoBehaviour
     // TriggerManager script will activate this function
     void EnterMemory (float duration)
     {
+        print("entered memory");
         musicLerp = 0;
         musicFadeOut = true;
         memoryDuration = duration;

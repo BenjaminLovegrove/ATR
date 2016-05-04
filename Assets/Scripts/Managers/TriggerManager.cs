@@ -115,6 +115,7 @@ public class TriggerManager : MonoBehaviour
     {
 	    if (col.gameObject.tag == "Player" && !triggered)
         {
+            print("triggered");
             triggered = true;
 
             // Credits
