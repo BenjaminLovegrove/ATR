@@ -143,7 +143,10 @@ public class Memory : MonoBehaviour
 
         if (musicFadeIn && !EventManager.inst.credits)
         {
-            bgmSource.Play();
+            if (!bgmSource.isPlaying)
+            {
+                bgmSource.Play();
+            }
             musicLerp += Time.deltaTime / 4;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
@@ -164,7 +167,7 @@ public class Memory : MonoBehaviour
     // Fade fov in mems
     void FadeFOV()
     {
-        if (EventManager.inst.memoryPlaying && delayTimer != 0)
+        if (delayTimer >= 0 && delayTimer < memoryLength)
         {
             if (!EventManager.inst.credits)
             {
@@ -196,6 +199,7 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
+        delayTimer = 0;
         EventManager.inst.playerCrouch = false;
         dialogueAudio.volume = dialogueVolume;
         memorySkippable = true;
