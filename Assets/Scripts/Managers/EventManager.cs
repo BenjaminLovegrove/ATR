@@ -49,7 +49,6 @@ public class EventManager : MonoBehaviour
     public bool firstEncounter;
     public bool firstPlay;
     public bool hasDied; //for playing the respawn sfx
-    public bool enemyNear;
 
     private RawImage fadeToBlack;
 
