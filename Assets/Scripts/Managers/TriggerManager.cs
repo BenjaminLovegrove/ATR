@@ -111,11 +111,10 @@ public class TriggerManager : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter (Collider col)
+    void OnTriggerStay (Collider col)
     {
 	    if (col.gameObject.tag == "Player" && !triggered)
         {
-            print("triggered");
             triggered = true;
 
             // Credits
@@ -173,14 +172,6 @@ public class TriggerManager : MonoBehaviour
                 enemy.SetActive(true);
             }
 
-            // Fog
-            if (fogChange)
-            {
-                print("Fog Triggered");
-                startFog = fog.heightDensity;
-                fogLerp = 0;
-            }
-
             // End Level
             if (endLevel)
             {
@@ -196,6 +187,20 @@ public class TriggerManager : MonoBehaviour
             }
         }
 	}
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            // Fog
+            if (fogChange)
+            {
+                print("Fog Triggered");
+                startFog = fog.heightDensity;
+                fogLerp = 0;
+            }
+        }
+    }
 
     void FixedUpdate()
     {

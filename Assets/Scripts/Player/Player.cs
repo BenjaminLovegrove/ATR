@@ -113,9 +113,13 @@ public class Player : MonoBehaviour
                     heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
                     heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
                     float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);
+                    float targBgm = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
                     if (!EventManager.inst.memoryPlaying && !EventManager.inst.atEndTerrain)
                     {
-                        backGroundMusic.volume = (Mathf.Lerp(backgroundMaxVol, 0, bgmMod));
+                        if (backGroundMusic.volume > targBgm * 0.95f && backGroundMusic.volume < targBgm * 1.05f) //only lerp volume if the volume hasnt recently been changed by something else
+                        {
+                            backGroundMusic.volume = targBgm;
+                        }
                     }
                 } else
                 {

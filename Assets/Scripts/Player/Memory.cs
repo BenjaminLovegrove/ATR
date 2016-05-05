@@ -147,7 +147,7 @@ public class Memory : MonoBehaviour
             {
                 bgmSource.Play();
             }
-            musicLerp += Time.deltaTime / 4;
+            musicLerp += Time.deltaTime / 6;
             bgmSource.volume = Mathf.Lerp(0, bgmMaxVolume, musicLerp);
             breathingSource.volume = Mathf.Lerp(0, breathingMaxVolume, musicLerp);
             ambienceAudio.volume = Mathf.Lerp(0, ambienceAudioMaxVol, musicLerp);
@@ -286,7 +286,8 @@ public class Memory : MonoBehaviour
 
         // Set controls back to normal
         disableControls = false;
-        gameCam.ResetFieldOfView();
+        delayTimer = 0;
+        gameCam.fieldOfView = 60;
         if (!EventManager.inst.credits)
         {
             EventManager.inst.memoryLookScalar = 1;
@@ -446,12 +447,13 @@ public class Memory : MonoBehaviour
             delayTimer += Time.fixedDeltaTime;
         }
 
+        /*
         // Once the delay timer reaches the value of the memory length, the script will end
         if (delayTimer > memoryLength)
         {
             delayTimer = 0;
             //EventManager.inst.memoryPlaying = false;
-        }
+        }*/
 
         if (memTimer > 0)
         {
