@@ -63,6 +63,7 @@ public class MainMenu : MonoBehaviour
     private AudioConfiguration speakerConfig;
     public AudioSource[] resumeAudio; // Place any objects with audio sources (within the scene) into this array
     public AudioSource menuMusic;
+    private float menuMusicMax;
     private bool pressedPlay;
     private float musicLerp;
     private int speakerKey;
@@ -120,6 +121,7 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         Cursor.visible = true;
+        menuMusicMax = menuMusic.volume;
     }
 
     void Awake()
@@ -151,7 +153,7 @@ public class MainMenu : MonoBehaviour
         if (pressedPlay)
         {
             musicLerp += Time.deltaTime;
-            menuMusic.volume = Mathf.Lerp(1f, 0f, musicLerp);
+            menuMusic.volume = Mathf.Lerp(menuMusicMax, 0f, musicLerp);
         }
         
         MenuTransitioning();
@@ -338,9 +340,9 @@ public class MainMenu : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Master Volume"))
         {
-            EventManager.inst.masterVolume = 1;
-            PlayerPrefs.SetFloat("Master Volume", 1);
-            volumeLevel = 1;
+            EventManager.inst.masterVolume = 0.8f;
+            PlayerPrefs.SetFloat("Master Volume", 0.8f);
+            volumeLevel = 0.8f;
         }
 
         if (!PlayerPrefs.HasKey("Fullscreen"))

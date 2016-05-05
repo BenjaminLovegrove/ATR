@@ -186,6 +186,7 @@ public class Memory : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.inst.credits)
             {
+                memorySkippable = false;
                 skipLerp = 0;
                 StopCoroutine("InstantiateMemFlash");
                 StartCoroutine("SkipMemory");
