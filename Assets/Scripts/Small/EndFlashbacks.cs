@@ -36,7 +36,6 @@ public class EndFlashbacks : MonoBehaviour
                 flashbackEndSFX.clip = flashbackClip;
                 flashbackEndSFX.Play();
             }
-            else print("Missing flashback SFX");
         }
     }
 }

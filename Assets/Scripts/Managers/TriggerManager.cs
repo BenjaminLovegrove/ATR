@@ -161,21 +161,18 @@ public class TriggerManager : MonoBehaviour
             // Checkpoint
             if (checkpoint)
             {
-                print("Checkpoint Triggered");
                 EventManager.inst.currentCheckPoint = checkpointNo;
             }
 
             // Enemy
             if (enemyTrigger)
             {
-                print("Enemy Triggered");
                 enemy.SetActive(true);
             }
 
             // End Level
             if (endLevel)
             {
-                print("Level Complete");
                 EventManager.inst.currentLevel = setLevel;
                 EventManager.inst.currentCheckPoint = 0;
                 if (loadScreenUI != null)
@@ -195,7 +192,6 @@ public class TriggerManager : MonoBehaviour
             // Fog
             if (fogChange)
             {
-                print("Fog Triggered");
                 startFog = fog.heightDensity;
                 fogLerp = 0;
             }

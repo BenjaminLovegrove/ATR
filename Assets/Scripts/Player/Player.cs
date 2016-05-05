@@ -49,6 +49,9 @@ public class Player : MonoBehaviour
     public AudioClip crouchSFX;
     public AudioClip standSFX;
     private Rigidbody playerRigid;
+    public AudioClip[] stepOnStick;
+    public int stickChance;
+    public float stickVol;
 
 	void Awake ()
 	{
@@ -427,6 +430,10 @@ public class Player : MonoBehaviour
                         
                         if (touchingTerrain)
                         {
+                            if (Random.Range(1, stickChance) == 1)
+                            {
+                                AudioSource.PlayClipAtPoint(stepOnStick[Random.Range(0, stepOnStick.Length)], transform.position, stickVol);
+                            }
                             footStepSFXSource.clip = standingWalkLeftSoftSFX[currentWalkVal];
                         }
                         
@@ -443,6 +450,10 @@ public class Player : MonoBehaviour
 
                         if (touchingTerrain)
                         {
+                            if (Random.Range(1, stickChance) == 1)
+                            {
+                                AudioSource.PlayClipAtPoint(stepOnStick[Random.Range(0, stepOnStick.Length)], transform.position, stickVol);
+                            }
                             footStepSFXSource.clip = standingWalkRightSoftSFX[currentWalkVal];
                         }
 
@@ -469,6 +480,10 @@ public class Player : MonoBehaviour
 
                         if (touchingTerrain)
                         {
+                            if (Random.Range(1, stickChance) == 1)
+                            {
+                                AudioSource.PlayClipAtPoint(stepOnStick[Random.Range(0, stepOnStick.Length)], transform.position, stickVol);
+                            }
                             footStepSFXSource.clip = standingWalkLeftSoftSFX[currentWalkVal];
                         }
 
@@ -485,6 +500,10 @@ public class Player : MonoBehaviour
 
                         if (touchingTerrain)
                         {
+                            if (Random.Range(1, stickChance) == 1)
+                            {
+                                AudioSource.PlayClipAtPoint(stepOnStick[Random.Range(0, stepOnStick.Length)], transform.position, stickVol);
+                            }
                             footStepSFXSource.clip = standingWalkRightSoftSFX[currentWalkVal];
                         }
 

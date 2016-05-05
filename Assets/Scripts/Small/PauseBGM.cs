@@ -11,7 +11,6 @@ public class PauseBGM : MonoBehaviour
 
         if (EventManager.inst.currentLevel == "City Outskirts")
         {
-            print("Paused BGM");
             audio.Pause();
         } 
     }

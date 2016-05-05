@@ -63,7 +63,6 @@ public class EnemyAI : MonoBehaviour
         // Fallback if the Enemy isn't assigned any waypoints
         if (patrolWayPoints[0] == null && patrollingEnemy)
         {
-            print("Enemy AI assigned to static");
             patrollingEnemy = false;
         }
 

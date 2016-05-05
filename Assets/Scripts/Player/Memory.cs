@@ -70,6 +70,7 @@ public class Memory : MonoBehaviour
     private float ambienceAudioMaxVol;
     public AudioSource endingWind;
     public Image whiteBackDrop;
+    private Rigidbody playerRigid;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -103,6 +104,7 @@ public class Memory : MonoBehaviour
     void Awake()
     {
         InitialiseValues();
+        playerRigid = GameObject.Find("Player").GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -187,6 +189,11 @@ public class Memory : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape) && !EventManager.inst.credits)
             {
                 memorySkippable = false;
+                disableControls = false;
+                EventManager.inst.memoryLookScalar = 1;
+                EventManager.inst.memoryMoveScalar = 1;
+                playerRigid.isKinematic = false;
+                playerRigid.useGravity = true;
                 skipLerp = 0;
                 StopCoroutine("InstantiateMemFlash");
                 StartCoroutine("SkipMemory");
@@ -200,7 +207,6 @@ public class Memory : MonoBehaviour
     // Begin memory
     void StartMemory()
     {
-        print("started mem");
         delayTimer = 0;
         EventManager.inst.playerCrouch = false;
         dialogueAudio.volume = dialogueVolume;
@@ -286,6 +292,8 @@ public class Memory : MonoBehaviour
 
         // Set controls back to normal
         disableControls = false;
+        playerRigid.isKinematic = false;
+        playerRigid.useGravity = true;
         delayTimer = 0;
         gameCam.fieldOfView = 60;
         if (!EventManager.inst.credits)
@@ -390,7 +398,6 @@ public class Memory : MonoBehaviour
     // TriggerManager script will activate this function
     void EnterMemory (float duration)
     {
-        print("entered memory");
         musicLerp = 0;
         musicFadeOut = true;
         memoryDuration = duration;
@@ -620,7 +627,7 @@ public class Memory : MonoBehaviour
     #region Subtitles
     public IEnumerator Subtitles1()
     {
-        yield return new WaitForSeconds(4.15f);
+        yield return new WaitForSeconds(4f);
         FadeTextOut1(0);
         FadeTextOut2(0);
 
@@ -664,10 +671,10 @@ public class Memory : MonoBehaviour
         subString1 = "You're brave! I'll help you in!";
         subUI1.text = subString1;
         FadeTextIn1(0.25f);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.90f);
         FadeTextOut1(0.5f);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.65f);
 
         // Alex
         subString2 = "Haha! Stop!";
@@ -1100,7 +1107,7 @@ public class Memory : MonoBehaviour
         subString2 = "or even trying to save what’s left..";
         subUI2.text = subString2;
         yield return new WaitForSeconds(2f);
-        subString2 = "If this keeps up we’ll have to try something!..";
+        subString2 = "If this keeps up we’ll have to try something!";
         subUI2.text = subString2;
         yield return new WaitForSeconds(2.75f);
         subString2 = "..and who’s going to stop us?";

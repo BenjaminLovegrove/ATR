@@ -151,8 +151,8 @@ public class EventManager : MonoBehaviour
         firstEncounter = true;
         Cursor.lockState = CursorLockMode.Confined; // Keeps the cursor bound to the game window
         fadeToBlack = GameObject.Find("FadeToBlack").GetComponent<RawImage>();
-        developerMode = true; // *** Disable for release builds ***
-        //developerMode = false;
+        //developerMode = true; // *** Disable for release builds ***
+        developerMode = false;
 
         // Check singleton status
         if (inst == null)
