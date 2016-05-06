@@ -72,6 +72,10 @@ public class Memory : MonoBehaviour
     public Image whiteBackDrop;
     private Rigidbody playerRigid;
 
+    private bool whiteFlashTriggered;
+    private float recallMemory = 2f;
+    public TriggerManager firstTrigger;
+
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
     {
@@ -103,12 +107,26 @@ public class Memory : MonoBehaviour
 
     void Awake()
     {
+        whiteFlashTriggered = false;
         InitialiseValues();
         playerRigid = GameObject.Find("Player").GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        recallMemory -= Time.deltaTime;
+        if (EventManager.inst.firstPlay && EventManager.inst.currentLevel == "City Outskirts" && !whiteFlashTriggered)
+        {
+            if (EventManager.inst.memoryPlaying)
+            {
+                whiteBackDrop.CrossFadeAlpha(0, 3.5f, false);
+                whiteFlashTriggered = true;
+            } else if (recallMemory < 0f && !whiteFlashTriggered)
+            {
+                firstTrigger.RecallMemory();
+            }
+        }
+
         SkipMemoryCheck();
         FadeFOV();
     }
@@ -384,7 +402,7 @@ public class Memory : MonoBehaviour
                 smoke.GetComponent<ParticleSystem>().enableEmission = true;
             }
             endMusic.Play();
-            Invoke("CutToCredits", 29.5f);
+            Invoke("CutToCredits", 31.5f);
             //dyingSFX.Play();
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
@@ -536,11 +554,6 @@ public class Memory : MonoBehaviour
         if (exhaustionAudio != null)
         {
             exhaustionMaxVol = exhaustionAudio.gameObject.GetComponent<Exhaustion>().maxVol;
-        }
-
-        if (EventManager.inst.firstPlay && EventManager.inst.currentLevel == "City Outskirts")
-        {
-            whiteBackDrop.CrossFadeAlpha(0, 3.5f, false);
         }
     }
 
@@ -1022,7 +1035,7 @@ public class Memory : MonoBehaviour
         subString2 = "Just.. ";
         subUI2.text = subString2;
         yield return new WaitForSeconds(1.75f);
-        subString2 = "who knows what’s going to happen in the next couple of years?";
+        subString2 = "who knows what’s gonna happen in the next couple of years?";
         subUI2.text = subString2;
         yield return new WaitForSeconds(3.5f);
         subString2 = "At this rate, everyone will be gone soon enough.";
@@ -1101,7 +1114,7 @@ public class Memory : MonoBehaviour
         subUI2.text = subString2;
         FadeTextIn2(0.25f);
         yield return new WaitForSeconds(1.75f);
-        subString2 = "They really must just not care about the people here..";
+        subString2 = "They really must not care about the people here..";
         subUI2.text = subString2;
         yield return new WaitForSeconds(2.75f);
         subString2 = "or even trying to save what’s left..";

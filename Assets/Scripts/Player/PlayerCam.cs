@@ -16,9 +16,9 @@ public class PlayerCam : MonoBehaviour
     private float maximumX = 360F;
     private float minimumY = -60F;
     private float maximumY = 60F;
-    private float rotationY = 0F;
     private float crouch = 2;
     private GlobalFog fog;
+    private float rotationY;
 
     public Transform cameraPosNeutral;
     public Transform cameraPosCrouch;
@@ -202,17 +202,19 @@ public class PlayerCam : MonoBehaviour
     //}
     void MemoryCam()
     {
+        
         Vector3 dir = memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position;
         dir.Normalize();
         float pitch = Mathf.Asin(dir.y) * Mathf.Rad2Deg;
         float yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
 
-        //transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
         float et = transform.localEulerAngles.y;
-        float ep = playerCam.transform.localEulerAngles.x;
-        et = Mathf.MoveTowardsAngle(et, yaw, Time.deltaTime * 4f);
+        //float ep = playerCam.transform.localEulerAngles.x;
+        et = Mathf.MoveTowardsAngle(et, yaw, Time.deltaTime * 1f);
         //et = Mathf.Lerp(ep, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position).eulerAngles.x, Time.deltaTime);
-        rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 4f);
+        rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 1f);
         transform.localEulerAngles = new Vector3(0, et, 0);
+
+        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
     }
 }

@@ -223,4 +223,36 @@ public class TriggerManager : MonoBehaviour
     {
         EventManager.inst.memoryPlaying = true;
     }
+
+    public void RecallMemory()
+    {
+        EventManager.inst.subtitleNum = subtitleNum;
+        EventManager.inst.memoryPlaying = true;
+        dialogueAudio.clip = memoryDialogue;
+        dialogueAudio.Play();
+        memoryDuration = memoryDialogue.length - endEarlyTimer;
+        GameObject getPlayer = GameObject.Find("Player");
+        getPlayer.BroadcastMessage("EnterMemory", memoryDuration);
+        getPlayer.BroadcastMessage("NightCheck", nightTime);
+        getPlayer.BroadcastMessage("SetSwitch", switchObjects);
+        getPlayer.BroadcastMessage("ExtraDim", extraDiminish);
+
+        if (disableControls)
+        {
+            getPlayer.BroadcastMessage("DisableControls", true);
+        }
+
+        if (newBGM != null)
+        {
+            getPlayer.BroadcastMessage("SetBGM", newBGM);
+        }
+
+        if (memoryObj != null)
+        {
+            memoryObj.SetActive(true);
+            startTimer = true;
+        }
+
+        Invoke("DelayedMemoryPlaying", 2f);
+    }
 }
