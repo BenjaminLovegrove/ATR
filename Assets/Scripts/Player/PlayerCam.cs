@@ -202,16 +202,17 @@ public class PlayerCam : MonoBehaviour
     //}
     void MemoryCam()
     {
-            Vector3 dir = memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position;
-            dir.Normalize();
-            float pitch = Mathf.Asin(dir.y) * Mathf.Rad2Deg;
-            float yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+        Vector3 dir = memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position;
+        dir.Normalize();
+        float pitch = Mathf.Asin(dir.y) * Mathf.Rad2Deg;
+        float yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
 
-            //transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
-            float et = transform.localEulerAngles.y;
-            float ep = playerCam.transform.localEulerAngles.x;
-            et = Mathf.MoveTowardsAngle(et, yaw, Time.deltaTime * 10.0f);
-            rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 1.0f);
-            transform.localEulerAngles = new Vector3(0, et, 0);
+        //transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+        float et = transform.localEulerAngles.y;
+        float ep = playerCam.transform.localEulerAngles.x;
+        et = Mathf.MoveTowardsAngle(et, yaw, Time.deltaTime * 3f);
+        //et = Mathf.Lerp(ep, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position).eulerAngles.x, Time.deltaTime);
+        rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 3f);
+        transform.localEulerAngles = new Vector3(0, et, 0);
     }
 }
