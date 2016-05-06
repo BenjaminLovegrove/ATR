@@ -191,9 +191,27 @@ public class PlayerCam : MonoBehaviour
         Vector3 enemyDirection = EventManager.inst.enemyKillPos.position - transform.position;
         playerCam.transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(enemyDirection), Time.deltaTime * 1.5f);    
     }
-
+    //public void SetDirection(Vector3 directionVector, Boolean setYaw, Boolean setPitch)
+    //{
+    //    Vector3 d = directionVector.NormalisedCopy;
+    //    if (setPitch)
+    //        mPitch = Math.ASin(d.y);
+    //    if (setYaw)
+    //        mYaw = Math.ATan2(-d.x, -d.z);//+Math.PI/2.0;
+    //    mChanged = setYaw || setPitch;
+    //}
     void MemoryCam()
     {
-        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+            Vector3 dir = memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position;
+            dir.Normalize();
+            float pitch = Mathf.Asin(dir.y) * Mathf.Rad2Deg;
+            float yaw = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
+
+            //transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+            float et = transform.localEulerAngles.y;
+            float ep = playerCam.transform.localEulerAngles.x;
+            et = Mathf.MoveTowardsAngle(et, yaw, Time.deltaTime * 10.0f);
+            rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 1.0f);
+            transform.localEulerAngles = new Vector3(0, et, 0);
     }
 }

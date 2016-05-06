@@ -57,7 +57,7 @@ public class Exhaustion : MonoBehaviour {
 
         //Lerp Values
         float lerpValue = (closestDist / totalDistance);
-        targBreathingVol = Mathf.Lerp(maxVol, 0f, lerpValue * 1.5f);
+        targBreathingVol = Mathf.Lerp(maxVol + 0.2f, 0f, lerpValue * 1.5f);
         breathing.volume = targBreathingVol;
         ambientBreathing.volume = Mathf.Lerp(0f, ambientBreathingVol, lerpValue);
         ambientOcean.volume = Mathf.Lerp(ambientOceanMaxVol * 1.5f, ambientOceanMaxVol, lerpValue * 10);
