@@ -72,9 +72,16 @@ public class Memory : MonoBehaviour
     public Image whiteBackDrop;
     private Rigidbody playerRigid;
 
+    //Trying to force fix first mem
     private bool whiteFlashTriggered;
     private float recallMemory = 2f;
     public TriggerManager firstTrigger;
+
+    //In game credits
+    public GameObject inGameUI;
+    public GameObject creditsUI;
+    public Camera playerCam;
+    public 
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -332,9 +339,12 @@ public class Memory : MonoBehaviour
         }
 
         // Resume music 
-        bgmSource.Play();
-        musicLerp = 0;
-        musicFadeIn = true;
+        if (!EventManager.inst.credits)
+        {
+            bgmSource.Play();
+            musicLerp = 0;
+            musicFadeIn = true;
+        }
         
 
         // Turn off water reflection
@@ -402,7 +412,7 @@ public class Memory : MonoBehaviour
                 smoke.GetComponent<ParticleSystem>().enableEmission = true;
             }
             endMusic.Play();
-            Invoke("CutToCredits", 31.5f);
+            Invoke("CutToCredits", 31.25f);
             //dyingSFX.Play();
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
@@ -613,7 +623,9 @@ public class Memory : MonoBehaviour
 
     void CutToCredits()
     {
-        Application.LoadLevel("Credits");
+        playerCam.farClipPlane = 30;
+        inGameUI.SetActive(false);
+        creditsUI.SetActive(true);
     }
 
     void FadeTextIn1(float duration)

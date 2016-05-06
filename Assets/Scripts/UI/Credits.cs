@@ -234,7 +234,7 @@ public class Credits : MonoBehaviour
 
     void Start()
     {
-        if (!EventManager.inst.credits)
+        if (EventManager.inst.currentLevel != "Coast")
         {
             bgm.Play();
         }
