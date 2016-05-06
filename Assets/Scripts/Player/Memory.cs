@@ -121,7 +121,10 @@ public class Memory : MonoBehaviour
 
     void Update()
     {
-        recallMemory -= Time.deltaTime;
+        if (EventManager.inst.currentLevel == "City Outskirts")
+        {
+            recallMemory -= Time.deltaTime;
+        }
         if (EventManager.inst.firstPlay && EventManager.inst.currentLevel == "City Outskirts" && !whiteFlashTriggered)
         {
             if (EventManager.inst.memoryPlaying)
@@ -130,7 +133,9 @@ public class Memory : MonoBehaviour
                 whiteFlashTriggered = true;
             } else if (recallMemory < 0f && !whiteFlashTriggered)
             {
+
                 firstTrigger.RecallMemory();
+                recallMemory = 0.5f;
             }
         }
 

@@ -33,7 +33,7 @@ public class TriggerManager : MonoBehaviour
     public AudioClip newBGM;
     public float endEarlyTimer;
     private float memoryDuration;
-    private AudioSource dialogueAudio;
+    public AudioSource dialogueAudio;
     private bool startTimer = false;
 
     [Header("Fog Change")]
@@ -111,7 +111,7 @@ public class TriggerManager : MonoBehaviour
         }
     }
 
-    void OnTriggerStay (Collider col)
+    void OnTriggerEnter (Collider col)
     {
 	    if (col.gameObject.tag == "Player" && !triggered)
         {
@@ -127,35 +127,38 @@ public class TriggerManager : MonoBehaviour
             }
 
             // Memory
-            if (memory && memoryEventNumber == EventManager.inst.currentMemory)
+            if (memory)
             {
-                EventManager.inst.subtitleNum = subtitleNum;
-                EventManager.inst.memoryPlaying = true;
-                dialogueAudio.clip = memoryDialogue;
-                dialogueAudio.Play();
-                memoryDuration = memoryDialogue.length - endEarlyTimer;
-                col.BroadcastMessage("EnterMemory", memoryDuration);
-                col.BroadcastMessage("NightCheck", nightTime);
-                col.BroadcastMessage("SetSwitch", switchObjects);
-                col.BroadcastMessage("ExtraDim", extraDiminish);
-
-                if (disableControls)
+                if (memoryEventNumber == EventManager.inst.currentMemory || memoryEventNumber <= 1)
                 {
-                    col.BroadcastMessage("DisableControls", true);
-                }
+                    EventManager.inst.subtitleNum = subtitleNum;
+                    EventManager.inst.memoryPlaying = true;
+                    dialogueAudio.clip = memoryDialogue;
+                    dialogueAudio.Play();
+                    memoryDuration = memoryDialogue.length - endEarlyTimer;
+                    col.BroadcastMessage("EnterMemory", memoryDuration);
+                    col.BroadcastMessage("NightCheck", nightTime);
+                    col.BroadcastMessage("SetSwitch", switchObjects);
+                    col.BroadcastMessage("ExtraDim", extraDiminish);
 
-                if (newBGM != null)
-                {
-                    col.BroadcastMessage("SetBGM", newBGM);
-                }
+                    if (disableControls)
+                    {
+                        col.BroadcastMessage("DisableControls", true);
+                    }
 
-                if (memoryObj != null)
-                {
-                    memoryObj.SetActive(true);
-                    startTimer = true;
-                }
+                    if (newBGM != null)
+                    {
+                        col.BroadcastMessage("SetBGM", newBGM);
+                    }
 
-                Invoke("DelayedMemoryPlaying", 2f);
+                    if (memoryObj != null)
+                    {
+                        memoryObj.SetActive(true);
+                        startTimer = true;
+                    }
+
+                    Invoke("DelayedMemoryPlaying", 2f);
+                }
             }
 
             // Checkpoint
@@ -182,10 +185,12 @@ public class TriggerManager : MonoBehaviour
 
                 StartCoroutine("LoadNextScene");
             }
+            
         }
+
 	}
 
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
         if (col.gameObject.tag == "Player")
         {

@@ -64,6 +64,7 @@ public class EventManager : MonoBehaviour
 	void Awake ()
 	{
         InitialiseValuesAwake();
+        firstPlay = true;
 	}
 
     void Start()
