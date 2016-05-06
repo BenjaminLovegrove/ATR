@@ -67,8 +67,9 @@ public class Credits : MonoBehaviour
     // ATR 4 - 4secs
     public IEnumerator ATR()
     {
+        yield return new WaitForSeconds(2f);
         yield return new WaitForSeconds(extraDelay);
-        atr.CrossFadeAlpha(1, 0.25f, false);
+        atr.CrossFadeAlpha(1, 0f, false);
         yield return new WaitForSeconds(3f - extraDelay);
         atr.CrossFadeAlpha(0, 1f, false);
         yield return new WaitForSeconds(1f);

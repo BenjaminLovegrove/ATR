@@ -384,12 +384,12 @@ public class Memory : MonoBehaviour
                 smoke.GetComponent<ParticleSystem>().enableEmission = true;
             }
             endMusic.Play();
+            Invoke("CutToCredits", 29.5f);
             //dyingSFX.Play();
             oilRigs.SetActive(true);
             RenderSettings.fogDensity = 0.001f;
             fog.heightDensity = 0.7f;
             fadeToBlack.CrossFadeAlpha(1, 25, false);
-            Invoke("CutToCredits", 31.5f);
         }
     }
 
