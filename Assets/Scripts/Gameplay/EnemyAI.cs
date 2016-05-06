@@ -46,8 +46,9 @@ public class EnemyAI : MonoBehaviour
 	{
         EventManager.inst.playerDead = true;
         EventManager.inst.enemyKillPos = this.gameObject.transform;
+        yield return new WaitForSeconds(0.3f);
         muzzleFlash.SetActive(true);
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(5.7f);
         EventManager.inst.resetLevel = true;
     }
 
