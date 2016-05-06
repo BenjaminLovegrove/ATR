@@ -210,9 +210,9 @@ public class PlayerCam : MonoBehaviour
         //transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
         float et = transform.localEulerAngles.y;
         float ep = playerCam.transform.localEulerAngles.x;
-        et = Mathf.MoveTowardsAngle(et, yaw, Time.deltaTime * 3f);
+        et = Mathf.MoveTowardsAngle(et, yaw, Time.deltaTime * 4f);
         //et = Mathf.Lerp(ep, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position).eulerAngles.x, Time.deltaTime);
-        rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 3f);
+        rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 4f);
         transform.localEulerAngles = new Vector3(0, et, 0);
     }
 }

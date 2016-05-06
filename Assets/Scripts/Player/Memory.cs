@@ -818,7 +818,7 @@ public class Memory : MonoBehaviour
         subUI1.text = subString1;
         FadeTextIn1(0.05f);
         yield return new WaitForSeconds(4.9f);
-        subString1 = "You know what, I’m really tired, I’m heading to bed.";
+        subString1 = "You know what, I’m really tired. I’m heading to bed.";
         subUI1.text = subString1;
         yield return new WaitForSeconds(2f);
         FadeTextOut1(1);

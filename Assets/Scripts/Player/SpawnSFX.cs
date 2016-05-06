@@ -11,7 +11,7 @@ public class SpawnSFX : MonoBehaviour {
 	void Start () {
 	    if (EventManager.inst.hasDied)
         {
-            spawnSFX.Play();
+            //spawnSFX.Play();
             EventManager.inst.hasDied = false;
         }
 	}
