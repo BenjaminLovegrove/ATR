@@ -50,11 +50,11 @@ public class Memory : MonoBehaviour
     private AudioSource dyingSFX;
     private AudioClip newBGM;
     public AudioSource bgmSource;
-    private AudioSource dialogueAudio;
-    private AudioSource breathingSource;
+    public AudioSource dialogueAudio;
+    public AudioSource breathingSource;
     private BloomAndFlares bloom;
     private GameObject[] waterObjs;
-    private GameObject skySphere;    
+    public GameObject skySphere;    
     private GlobalFog fog;        
     private Image memoryFlashObj;
     private RawImage fadeToBlack;
@@ -99,7 +99,9 @@ public class Memory : MonoBehaviour
         StartMemory();
         yield return new WaitForSeconds(memoryDuration - 3f);
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
+        EventManager.inst.memoryPlaying = false;
+        yield return new WaitForSeconds(1);
         EndMemory();
     }
 
@@ -175,7 +177,7 @@ public class Memory : MonoBehaviour
 
         if (musicFadeIn && !EventManager.inst.credits)
         {
-            if (!bgmSource.isPlaying)
+            if (!bgmSource.isPlaying && EventManager.inst.timeSinceFirstEnc <= 0)
             {
                 bgmSource.Play();
             }

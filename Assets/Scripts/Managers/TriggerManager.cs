@@ -35,6 +35,8 @@ public class TriggerManager : MonoBehaviour
     private float memoryDuration;
     public AudioSource dialogueAudio;
     private bool startTimer = false;
+    private float memoryRetrigger = 0f;
+    private bool thisMemTriggered = false;
 
     [Header("Fog Change")]
     public bool fogChange;
@@ -126,41 +128,6 @@ public class TriggerManager : MonoBehaviour
                 endMemLerp.enabled = true;
             }
 
-            // Memory
-            if (memory)
-            {
-                if (memoryEventNumber == EventManager.inst.currentMemory || memoryEventNumber <= 1)
-                {
-                    EventManager.inst.subtitleNum = subtitleNum;
-                    EventManager.inst.memoryPlaying = true;
-                    dialogueAudio.clip = memoryDialogue;
-                    dialogueAudio.Play();
-                    memoryDuration = memoryDialogue.length - endEarlyTimer;
-                    col.BroadcastMessage("EnterMemory", memoryDuration);
-                    col.BroadcastMessage("NightCheck", nightTime);
-                    col.BroadcastMessage("SetSwitch", switchObjects);
-                    col.BroadcastMessage("ExtraDim", extraDiminish);
-
-                    if (disableControls)
-                    {
-                        col.BroadcastMessage("DisableControls", true);
-                    }
-
-                    if (newBGM != null)
-                    {
-                        col.BroadcastMessage("SetBGM", newBGM);
-                    }
-
-                    if (memoryObj != null)
-                    {
-                        memoryObj.SetActive(true);
-                        startTimer = true;
-                    }
-
-                    Invoke("DelayedMemoryPlaying", 2f);
-                }
-            }
-
             // Checkpoint
             if (checkpoint)
             {
@@ -200,6 +167,50 @@ public class TriggerManager : MonoBehaviour
                 startFog = fog.heightDensity;
                 fogLerp = 0;
             }
+        }
+
+        // Memory
+        if (memory && memoryRetrigger <= 0 && !thisMemTriggered)
+        {
+            if (memoryEventNumber == EventManager.inst.currentMemory || memoryEventNumber <= 1)
+            {
+                EventManager.inst.subtitleNum = subtitleNum;
+                EventManager.inst.memoryPlaying = true;
+                dialogueAudio.clip = memoryDialogue;
+                dialogueAudio.Play();
+                memoryDuration = memoryDialogue.length - endEarlyTimer;
+                col.BroadcastMessage("EnterMemory", memoryDuration);
+                col.BroadcastMessage("NightCheck", nightTime);
+                col.BroadcastMessage("SetSwitch", switchObjects);
+                col.BroadcastMessage("ExtraDim", extraDiminish);
+
+                if (disableControls)
+                {
+                    col.BroadcastMessage("DisableControls", true);
+                }
+
+                if (newBGM != null)
+                {
+                    col.BroadcastMessage("SetBGM", newBGM);
+                }
+
+                if (memoryObj != null)
+                {
+                    memoryObj.SetActive(true);
+                    startTimer = true;
+                }
+
+                Invoke("DelayedMemoryPlaying", 2f);
+
+                memoryRetrigger = 1f;
+            }
+        }
+
+        if (!EventManager.inst.memoryPlaying) {
+            memoryRetrigger -= Time.deltaTime;
+        } else
+        {
+            thisMemTriggered = true;
         }
     }
 

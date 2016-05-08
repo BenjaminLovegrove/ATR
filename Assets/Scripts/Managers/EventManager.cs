@@ -49,6 +49,9 @@ public class EventManager : MonoBehaviour
     public bool firstEncounter;
     public bool firstPlay;
     public bool hasDied; //for playing the respawn sfx
+    public float timeSinceFirstEnc = 0;
+    public bool keepAudioOff = false;
+    public bool firstLoad = true;
 
     private RawImage fadeToBlack;
 
@@ -65,6 +68,7 @@ public class EventManager : MonoBehaviour
 	{
         InitialiseValuesAwake();
         firstPlay = true;
+        firstLoad = true;
 	}
 
     void Start()
@@ -80,6 +84,7 @@ public class EventManager : MonoBehaviour
     void Update()
     {
         UpdateGlobalVals();
+        timeSinceFirstEnc -= Time.deltaTime;
     }
 
 	void FixedUpdate ()
@@ -177,7 +182,10 @@ public class EventManager : MonoBehaviour
             prevMoveScalar = Mathf.Lerp(prevMoveScalar, memoryMoveScalar, Time.deltaTime * 2);
         }
 
-        AudioListener.volume = masterVolume;
+        if (!keepAudioOff)
+        {
+            AudioListener.volume = masterVolume;
+        }
 
         if (playerDead)
         {

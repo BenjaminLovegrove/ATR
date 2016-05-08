@@ -106,6 +106,7 @@ public class FirstEncounter : MonoBehaviour
             if (!triggeredCheck)
             {
                 PlaySFX();
+                EventManager.inst.timeSinceFirstEnc = 15f;
             }
             triggeredCheck = true;
             triggered = true;

@@ -356,13 +356,13 @@ public class Player : MonoBehaviour
                     // Play Crouching SFX
                     if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.LeftControl))
                     {
-                        audio.PlayOneShot(crouchSFX, 0.4f);
+                        audio.PlayOneShot(crouchSFX, 0.25f);
                     }
 
                     // Play Standing SFX
                     if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.C) || Input.GetKeyUp(KeyCode.Mouse0) || Input.GetKeyUp(KeyCode.Mouse1))
                     {
-                        audio.PlayOneShot(standSFX, 0.4f);
+                        audio.PlayOneShot(standSFX, 0.25f);
                     }
                 }
             }
