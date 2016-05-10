@@ -136,6 +136,12 @@ public class EventManager : MonoBehaviour
     {        
         playerTrans.position = playerCheckPoints[currentCheckPoint].position;
         playerTrans.rotation = playerCheckPoints[currentCheckPoint].rotation;
+        if (currentMemory != 0)
+        {
+            playerObj.GetComponent<Rigidbody>().isKinematic = false;
+            playerObj.GetComponent<Rigidbody>().useGravity = true;
+
+        }
 
     }
 
