@@ -13,11 +13,11 @@ public class MainMenu : MonoBehaviour
         MAIN, OPTIONS, PLAY, CANCEL, NONE
     }
 
+    Resolution[] resolutions;
+
     private AudioListener AL;
     public MenuToggle menuToggle;
 
-    private List<int> screenResXlist = new List<int>();
-    private List<int> screenResYlist = new List<int>();
     private List<AudioSpeakerMode> speakerConfigList = new List<AudioSpeakerMode>();
 
     public GameObject loadingScreenUI;
@@ -61,7 +61,7 @@ public class MainMenu : MonoBehaviour
     private int invertYKey;
 
     private AudioConfiguration speakerConfig;
-    public AudioSource[] resumeAudio; // Place any objects with audio sources (within the scene) into this array
+    public AudioSource[] resumeAudio; // Place any objects with audio sources into this array
     public AudioSource menuMusic;
     private float menuMusicMax;
     private bool pressedPlay;
@@ -76,10 +76,47 @@ public class MainMenu : MonoBehaviour
     public Text levelText;
     private string levelSelect;
 
+    void Awake()
+    {
+        resolutions = Screen.resolutions;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            screenDropdown.options.Add(new Dropdown.OptionData(ResToString(resolutions[i])));
+            screenDropdown.value = i;
+            //screenDropdown.onValueChanged.AddListener(delegate { Screen.SetResolution(resolutions[screenDropdown.value].width, resolutions[screenDropdown.value].height, true); });
+        }
+
+        InitialiseSettings();
+        LoadSettings();
+    }
+
+    void Start()
+    {
+        Cursor.visible = true;
+        menuMusicMax = menuMusic.volume;
+    }
+
+    void Update()
+    {
+        UpdateUIvalues();
+    }
+
+    void FixedUpdate()
+    {
+        if (pressedPlay)
+        {
+            musicLerp += Time.deltaTime;
+            menuMusic.volume = Mathf.Lerp(menuMusicMax, 0f, musicLerp);
+        }
+        
+        MenuTransitioning();
+    }
+
     IEnumerator OptionsCoRoutine()
     {
         HideMenuButtons();
-        yield return new WaitForSeconds(1.1f);        
+        yield return new WaitForSeconds(1.1f);
         ShowOptionsButtons();
     }
 
@@ -116,47 +153,6 @@ public class MainMenu : MonoBehaviour
         {
             yield return null;
         }
-    }
-
-    void Start()
-    {
-        Cursor.visible = true;
-        menuMusicMax = menuMusic.volume;
-    }
-
-    void Awake()
-    {
-        audio = GetComponent<AudioSource>();
-        GameObject.Find("EventManager").GetComponent<AudioSource>().Stop();
-        InitialiseSettings();
-        LoadSettings();
-
-        EventManager.inst.firstEncounterPlaying = false;
-        EventManager.inst.firstPlay = true;
-        EventManager.inst.currentMemory = 1;
-        EventManager.inst.currentLevel = "MainMenu";
-        EventManager.inst.credits = false;
-        EventManager.inst.atEndTerrain = false;
-        EventManager.inst.memoryPlaying = false;
-        EventManager.inst.currentCheckPoint = 0;
-        EventManager.inst.memoryLookScalar = 1;
-        EventManager.inst.memoryMoveScalar = 1;
-    }
-
-    void Update()
-    {
-        UpdateUIvalues();
-    }
-
-    void FixedUpdate()
-    {
-        if (pressedPlay)
-        {
-            musicLerp += Time.deltaTime;
-            menuMusic.volume = Mathf.Lerp(menuMusicMax, 0f, musicLerp);
-        }
-        
-        MenuTransitioning();
     }
 
     #region UI Buttons
@@ -417,45 +413,31 @@ public class MainMenu : MonoBehaviour
 
     void InitialiseSettings()
     {
+        audio = GetComponent<AudioSource>();
+        GameObject.Find("EventManager").GetComponent<AudioSource>().Stop();
+
+        EventManager.inst.firstEncounterPlaying = false;
+        EventManager.inst.firstPlay = true;
+        EventManager.inst.currentMemory = 1;
+        EventManager.inst.currentLevel = "MainMenu";
+        EventManager.inst.credits = false;
+        EventManager.inst.atEndTerrain = false;
+        EventManager.inst.memoryPlaying = false;
+        EventManager.inst.currentCheckPoint = 0;
+        EventManager.inst.memoryLookScalar = 1;
+        EventManager.inst.memoryMoveScalar = 1;
+
         levelSelect = "City Outskirts";
 
         // Assign listeners for drop down UI menus
         screenDropdown.onValueChanged.AddListener(delegate { ScreenResListener(screenDropdown); });
         speakerDropdown.onValueChanged.AddListener(delegate { SpeakerConfigListener(speakerDropdown); });
 
-        // Populate screen X resolutions list
-        screenResXlist.Add(1024);
-        screenResXlist.Add(1280);
-        screenResXlist.Add(1280);
-        screenResXlist.Add(1280);
-        screenResXlist.Add(1280);
-        screenResXlist.Add(1360);
-        screenResXlist.Add(1366);
-        screenResXlist.Add(1680);
-        screenResXlist.Add(1920);
-        screenResXlist.Add(2175);
-        //screenResXlist.Add(PlayerPrefs.GetInt("Default X"));
-
-        // Populate screen Y resolutions list
-        screenResYlist.Add(768);
-        screenResYlist.Add(720);
-        screenResYlist.Add(768);
-        screenResYlist.Add(800);
-        screenResYlist.Add(1024);
-        screenResYlist.Add(768);
-        screenResYlist.Add(768);
-        screenResYlist.Add(1050);
-        screenResYlist.Add(1080);
-        screenResYlist.Add(1527);
-        //screenResYlist.Add(PlayerPrefs.GetInt("Default Y"));
-
         // Populate speaker config modes
         speakerConfigList.Add(AudioSpeakerMode.Stereo);
         speakerConfigList.Add(AudioSpeakerMode.Stereo);
         speakerConfigList.Add(AudioSpeakerMode.Mode5point1);
         speakerConfigList.Add(AudioSpeakerMode.Mode7point1);
-
-        //screenDrop.options.Add(new Dropdown.OptionData((PlayerPrefs.GetInt("Default X") +  (PlayerPrefs.GetInt("Default Y")"));
 
         // Fullscreen val
         if (fullScreenKey == 0)
@@ -506,9 +488,10 @@ public class MainMenu : MonoBehaviour
 
     void ScreenResListener(Dropdown val)
     {
+        //screenDropdown.onValueChanged.AddListener(delegate { Screen.SetResolution(resolutions[screenDropdown.value].width, resolutions[screenDropdown.value].height, true); });
         screenResKey = val.value;
-        screenResXtemp = screenResXlist[val.value];
-        screenResYtemp = screenResYlist[val.value];
+        screenResXtemp = resolutions[screenDropdown.value].width;
+        screenResYtemp = resolutions[screenDropdown.value].height;
     }
 
     void SpeakerConfigListener(Dropdown val)
@@ -517,8 +500,12 @@ public class MainMenu : MonoBehaviour
         speakerConfig.speakerMode = speakerConfigList[val.value];
     }
 
-
     #region simple functions
+    string ResToString(Resolution res)
+    {
+        return res.width + " x " + res.height;
+    }
+
     void CursorConfine()
     {
         Cursor.lockState = CursorLockMode.Confined;
