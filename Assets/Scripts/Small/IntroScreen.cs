@@ -11,11 +11,6 @@ public class IntroScreen : MonoBehaviour
     public GameObject light;
     public GameObject light2;
 
-    void Start()
-    {
-        Cursor.visible = false;
-    }
-
 	void FixedUpdate ()
     {
         timer += Time.deltaTime;

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Collections.Generic;
 
-// Script for the UI buttons used in the main menu
+// Script for the UI buttons and options/settings used in the main menu
 
 public class MainMenu : MonoBehaviour
 {
@@ -52,6 +52,7 @@ public class MainMenu : MonoBehaviour
     private bool fullScreen;
     private bool fullScreenTemp;
     private int fullScreenKey;
+    private bool fullScreenVal;
 
     private float volumeLevel;
     private float lookSensitivity;
@@ -78,23 +79,8 @@ public class MainMenu : MonoBehaviour
 
     void Awake()
     {
-        resolutions = Screen.resolutions;
-
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            screenDropdown.options.Add(new Dropdown.OptionData(ResToString(resolutions[i])));
-            screenDropdown.value = i;
-            //screenDropdown.onValueChanged.AddListener(delegate { Screen.SetResolution(resolutions[screenDropdown.value].width, resolutions[screenDropdown.value].height, true); });
-        }
-
         InitialiseSettings();
         LoadSettings();
-    }
-
-    void Start()
-    {
-        Cursor.visible = true;
-        menuMusicMax = menuMusic.volume;
     }
 
     void Update()
@@ -104,197 +90,17 @@ public class MainMenu : MonoBehaviour
 
     void FixedUpdate()
     {
+        MenuTransitioning();
+    }
+
+    void MenuTransitioning()
+    {
         if (pressedPlay)
         {
             musicLerp += Time.deltaTime;
             menuMusic.volume = Mathf.Lerp(menuMusicMax, 0f, musicLerp);
         }
-        
-        MenuTransitioning();
-    }
 
-    IEnumerator OptionsCoRoutine()
-    {
-        HideMenuButtons();
-        yield return new WaitForSeconds(1.1f);
-        ShowOptionsButtons();
-    }
-
-    IEnumerator MenuCoRoutine()
-    {
-        HideOptionsButtons();
-        yield return new WaitForSeconds(1.1f);
-        ShowMenuButtons();
-    }
-
-    IEnumerator PlayCoRoutine()
-    {
-        HideMenuButtons();
-        yield return new WaitForSeconds(1.1f);
-        ShowPlayButtons();
-    }
-
-    IEnumerator CancelCoRoutine()
-    {
-        HidePlayButtons();
-        yield return new WaitForSeconds(1.1f);
-        ShowMenuButtons();
-    }
-
-    IEnumerator LoadScreen()
-    {
-        EventManager.inst.firstPlay = true;
-        EventManager.inst.firstEncounter = true;
-        EventManager.inst.memoryPlaying = false;
-        loadingScreenUI.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        AsyncOperation async = Application.LoadLevelAsync(levelSelect);
-        while (!async.isDone)
-        {
-            yield return null;
-        }
-    }
-
-    #region UI Buttons
-
-    // Level 1 Select
-    public void LevelOneButton()
-    {
-        Level1Highlight.SetActive(true);
-        Level2Highlight.SetActive(false);
-        Level3Highlight.SetActive(false);
-        levelSelect = "City Outskirts";
-        levelText.text = levelSelect;
-        EventManager.inst.currentMemory = 1;
-    }
-
-    // Level 2 Select
-    public void LevelTwoButton()
-    {
-        Level1Highlight.SetActive(false);
-        Level2Highlight.SetActive(true);
-        Level3Highlight.SetActive(false);
-        levelSelect = "City";
-        levelText.text = levelSelect;
-        EventManager.inst.currentMemory = 6;
-    }
-
-    // Level 3 Select
-    public void LevelThreeButton()
-    {
-        Level1Highlight.SetActive(false);
-        Level2Highlight.SetActive(false);
-        Level3Highlight.SetActive(true);
-        levelSelect = "Coast";
-        levelText.text = levelSelect;
-        EventManager.inst.currentMemory = 8;
-    }
-
-    // Play Main Menu Button
-    public void PlayMainButton()
-    {
-        cameraPanIncrement = 0;
-        menuToggle = MenuToggle.PLAY;
-        StartCoroutine("PlayCoRoutine");   
-    }
-
-    // Play Button
-    public void PlayButton()
-    {
-        Cursor.visible = false;
-        pressedPlay = true;
-        audio.PlayOneShot(playSFX, 1f);
-        EventManager.inst.currentLevel = levelSelect;
-        EventManager.inst.currentCheckPoint = 0;
-        EventManager.inst.firstPlay = true;
-        
-        StartCoroutine("LoadScreen");
-    }
-
-    // Credits Button
-    public void CreditsButton()
-    {
-        Application.LoadLevel("Credits");
-    }
-
-    // Options Button
-    public void OptionsButton()
-    {
-        cameraPanIncrement = 0;
-        menuToggle = MenuToggle.OPTIONS;
-
-        // Set initial values
-        volSlider.value = PlayerPrefs.GetFloat("Master Volume");
-        sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
-        invertY = EventManager.inst.invertY;
-
-        if (PlayerPrefs.GetInt("Fullscreen") == 0)
-        {
-            fullscreenToggle.isOn = false;
-        }
-        else fullscreenToggle.isOn = true;
-
-        speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
-        screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
-        StartCoroutine("OptionsCoRoutine");
-    }
-
-    // Apply Button
-    public void ApplyButton()
-    {
-        ApplySettings();      
-    }
-
-    // Accept Button
-    public void AcceptButton()
-    {
-        cameraPanIncrement = 0;
-        menuToggle = MenuToggle.MAIN;
-        ApplySettings();
-        StartCoroutine("MenuCoRoutine");
-    }
-
-    // Cancel Options Button
-    public void CancelOptionsButton()
-    {
-        cameraPanIncrement = 0;
-        PlayerPrefs.SetFloat("Master Volume", volSlider.value);
-        PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
-        menuToggle = MenuToggle.MAIN;     
-        StartCoroutine("MenuCoRoutine");
-    }
-
-    // Cancel Play Button
-    public void CancelPlayButton()
-    {
-        cameraPanIncrement = 0;
-        menuToggle = MenuToggle.CANCEL;
-        StartCoroutine("CancelCoRoutine");
-    }
-
-    // Exit Button
-    public void ExitButton()
-    {
-        HideMenuButtons();
-        confirmQuitUI.SetActive(true);        
-    }
-
-    // Confirm Quit Yes
-    public void QuitYes()
-    {
-        Application.Quit();
-    }
-
-    // Confirm Quit No
-    public void QuitNo()
-    {
-        confirmQuitUI.SetActive(false);
-        ShowMenuButtons();
-    }
-    #endregion
-
-    void MenuTransitioning()
-    {
         // Increment camera transition value
         cameraPanIncrement += 0.020f;
 
@@ -354,11 +160,12 @@ public class MainMenu : MonoBehaviour
         invertYKey = PlayerPrefs.GetInt("Invert Toggle");
         volSlider.value = PlayerPrefs.GetFloat("Master Volume");
         sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
+
+        Invoke("FullScreenCheck", 0.01f);
     }
 
     void ApplySettings()
     {
-        // Assign global variables
         EventManager.inst.invertY = invertY;
 
         // Save values to player prefs
@@ -370,21 +177,21 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
 
         // Switch between windowed and full screen mode
-        if (fullscreenToggle.isOn == false)
+        if (!fullscreenToggle.isOn)
         {
             PlayerPrefs.SetInt("Fullscreen", 0);
         }
         else PlayerPrefs.SetInt("Fullscreen", 1);
 
         // Apply invert Y toggle
-        if (invertToggle.isOn == false)
+        if (!invertToggle.isOn)
         {
             EventManager.inst.invertY = false;
             PlayerPrefs.SetInt("Invert Toggle", 0);
         }
 
         // Remove invert Y toggle
-        if (invertToggle.isOn == true)
+        if (invertToggle.isOn)
         {
             EventManager.inst.invertY = true;
             PlayerPrefs.SetInt("Invert Toggle", 1);
@@ -395,6 +202,8 @@ public class MainMenu : MonoBehaviour
         {
             Screen.SetResolution(screenResXtemp, screenResYtemp, fullScreenTemp);
             Cursor.lockState = CursorLockMode.None;
+            PlayerPrefs.SetInt("ScreenResX", resolutions[screenDropdown.value].width);
+            PlayerPrefs.SetInt("ScreenResY", resolutions[screenDropdown.value].height);
             Invoke("CursorConfine", 0.05f);
         }
 
@@ -413,6 +222,14 @@ public class MainMenu : MonoBehaviour
 
     void InitialiseSettings()
     {
+        resolutions = Screen.resolutions;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            screenDropdown.options.Add(new Dropdown.OptionData(ResToString(resolutions[i])));
+            screenDropdown.value = i;
+        }
+
         audio = GetComponent<AudioSource>();
         GameObject.Find("EventManager").GetComponent<AudioSource>().Stop();
 
@@ -459,6 +276,8 @@ public class MainMenu : MonoBehaviour
         speakerDropdown.value = speakerKey;
         levelSelect = "City Outskirts";
         levelText.text = levelSelect;
+        Cursor.visible = true;
+        menuMusicMax = menuMusic.volume; 
     }
 
     void UpdateUIvalues()
@@ -486,9 +305,200 @@ public class MainMenu : MonoBehaviour
         else invertYTemp = false;
     }
 
+    #region UI Buttons
+    // Level 1 Select
+    public void LevelOneButton()
+    {
+        Level1Highlight.SetActive(true);
+        Level2Highlight.SetActive(false);
+        Level3Highlight.SetActive(false);
+        levelSelect = "City Outskirts";
+        levelText.text = levelSelect;
+        EventManager.inst.currentMemory = 1;
+    }
+
+    // Level 2 Select
+    public void LevelTwoButton()
+    {
+        Level1Highlight.SetActive(false);
+        Level2Highlight.SetActive(true);
+        Level3Highlight.SetActive(false);
+        levelSelect = "City";
+        levelText.text = levelSelect;
+        EventManager.inst.currentMemory = 6;
+    }
+
+    // Level 3 Select
+    public void LevelThreeButton()
+    {
+        Level1Highlight.SetActive(false);
+        Level2Highlight.SetActive(false);
+        Level3Highlight.SetActive(true);
+        levelSelect = "Coast";
+        levelText.text = levelSelect;
+        EventManager.inst.currentMemory = 8;
+    }
+
+    // Play Main Menu Button
+    public void PlayMainButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.PLAY;
+        StartCoroutine("PlayCoRoutine");
+    }
+
+    // Play Button
+    public void PlayButton()
+    {
+        Cursor.visible = false;
+        pressedPlay = true;
+        audio.PlayOneShot(playSFX, 1f);
+        EventManager.inst.currentLevel = levelSelect;
+        EventManager.inst.currentCheckPoint = 0;
+        EventManager.inst.firstPlay = true;
+
+        StartCoroutine("LoadScreen");
+    }
+
+    // Credits Button
+    public void CreditsButton()
+    {
+        Application.LoadLevel("Credits");
+    }
+
+    // Options Button
+    public void OptionsButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.OPTIONS;
+
+        // Set initial values
+        volSlider.value = PlayerPrefs.GetFloat("Master Volume");
+        sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
+        invertY = EventManager.inst.invertY;
+
+        if (PlayerPrefs.GetInt("Fullscreen") == 0)
+        {
+            fullscreenToggle.isOn = false;
+        }
+        else fullscreenToggle.isOn = true;
+
+        speakerDropdown.value = PlayerPrefs.GetInt("Speaker Config");
+        screenDropdown.value = PlayerPrefs.GetInt("Screen Res");
+        StartCoroutine("OptionsCoRoutine");
+    }
+
+    // Apply Button
+    public void ApplyButton()
+    {
+        ApplySettings();
+    }
+
+    // Accept Button
+    public void AcceptButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.MAIN;
+        ApplySettings();
+        StartCoroutine("MenuCoRoutine");
+    }
+
+    // Cancel Options Button
+    public void CancelOptionsButton()
+    {
+        cameraPanIncrement = 0;
+        PlayerPrefs.SetFloat("Master Volume", volSlider.value);
+        PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
+        menuToggle = MenuToggle.MAIN;
+        StartCoroutine("MenuCoRoutine");
+    }
+
+    // Cancel Play Button
+    public void CancelPlayButton()
+    {
+        cameraPanIncrement = 0;
+        menuToggle = MenuToggle.CANCEL;
+        StartCoroutine("CancelCoRoutine");
+    }
+
+    // Exit Button
+    public void ExitButton()
+    {
+        HideMenuButtons();
+        confirmQuitUI.SetActive(true);
+    }
+
+    // Confirm Quit Yes
+    public void QuitYes()
+    {
+        Application.Quit();
+    }
+
+    // Confirm Quit No
+    public void QuitNo()
+    {
+        confirmQuitUI.SetActive(false);
+        ShowMenuButtons();
+    }
+    #endregion
+
+    #region simple functions
+    void FullScreenCheck()
+    {
+        if (!Screen.fullScreen)
+        {
+            if (PlayerPrefs.GetInt("Fullscreen") == 1)
+            {
+                Screen.SetResolution(Screen.width, Screen.height, true);
+            }
+            else Screen.SetResolution(Screen.width, Screen.height, false);
+        }
+    }
+
+    IEnumerator LoadScreen()
+    {
+        EventManager.inst.firstPlay = true;
+        EventManager.inst.firstEncounter = true;
+        EventManager.inst.memoryPlaying = false;
+        loadingScreenUI.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        AsyncOperation async = Application.LoadLevelAsync(levelSelect);
+        while (!async.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    IEnumerator OptionsCoRoutine()
+    {
+        HideMenuButtons();
+        yield return new WaitForSeconds(1.1f);
+        ShowOptionsButtons();
+    }
+
+    IEnumerator MenuCoRoutine()
+    {
+        HideOptionsButtons();
+        yield return new WaitForSeconds(1.1f);
+        ShowMenuButtons();
+    }
+
+    IEnumerator PlayCoRoutine()
+    {
+        HideMenuButtons();
+        yield return new WaitForSeconds(1.1f);
+        ShowPlayButtons();
+    }
+
+    IEnumerator CancelCoRoutine()
+    {
+        HidePlayButtons();
+        yield return new WaitForSeconds(1.1f);
+        ShowMenuButtons();
+    }
+
     void ScreenResListener(Dropdown val)
     {
-        //screenDropdown.onValueChanged.AddListener(delegate { Screen.SetResolution(resolutions[screenDropdown.value].width, resolutions[screenDropdown.value].height, true); });
         screenResKey = val.value;
         screenResXtemp = resolutions[screenDropdown.value].width;
         screenResYtemp = resolutions[screenDropdown.value].height;
@@ -500,18 +510,11 @@ public class MainMenu : MonoBehaviour
         speakerConfig.speakerMode = speakerConfigList[val.value];
     }
 
-    #region simple functions
     string ResToString(Resolution res)
     {
         return res.width + " x " + res.height;
     }
 
-    void CursorConfine()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-    }
-
-    // Functions to show/hude UI groups
     void ShowOptionsButtons()
     {
         for (int i = 0; i < optionMenuUI.Length; i++)
@@ -562,7 +565,6 @@ public class MainMenu : MonoBehaviour
 
     void OnDestroy()
     {
-        // Remove listeners
         screenDropdown.onValueChanged.RemoveAllListeners();
         speakerDropdown.onValueChanged.RemoveAllListeners();
     }
