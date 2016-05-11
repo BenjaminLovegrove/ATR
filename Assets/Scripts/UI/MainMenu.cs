@@ -271,7 +271,6 @@ public class MainMenu : MonoBehaviour
         else invertToggle.isOn = true;
 
         menuToggle = MenuToggle.NONE;
-        Cursor.visible = false;
         screenDropdown.value = screenResKey;
         speakerDropdown.value = speakerKey;
         levelSelect = "City Outskirts";
