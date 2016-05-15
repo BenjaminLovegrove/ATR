@@ -11,7 +11,14 @@ public class InitialiseScreenRes : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Confined;
 
+        if (!PlayerPrefs.HasKey("Fullscreen"))
+        {
+            PlayerPrefs.SetInt("Fullscreen", 1);
+        }
+    }
 
+    void Start()
+    {
         if (PlayerPrefs.GetInt("FullScreen") == 1)
         {
             fullScreenVal = true;
