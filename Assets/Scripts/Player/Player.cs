@@ -55,8 +55,6 @@ public class Player : MonoBehaviour
 
 	void Awake ()
 	{
-        walkSpeed = 3f;
-        crouchSpeed = 1f;
         playerRigid = GetComponent<Rigidbody>();
         audio = GetComponent<AudioSource>();    
         hackMoveSpeed = 1f;

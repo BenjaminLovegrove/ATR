@@ -33,6 +33,7 @@ public class PlayerCam : MonoBehaviour
     private float headBobTimer;    
     private bool headBobbed;
     private bool inMemory = false;
+    private float deathDelay = 0;
 
     void Awake()
     {
@@ -181,15 +182,21 @@ public class PlayerCam : MonoBehaviour
 
     // Face enemy that killed the player
     void DeathCamera()
-    {     
-        // Lower the camera
-        currentPos.position = Vector3.Lerp(currentPos.position, cameraDead.position, Time.deltaTime * 2);
+    {
+        deathDelay += Time.deltaTime;
 
-        fog.heightDensity = Mathf.Lerp(fog.heightDensity, 5, Time.deltaTime);
+        if (deathDelay > 0.6f)
+        {
+            // Lower the camera
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraDead.position, Time.deltaTime * 2);
+
+            fog.heightDensity = Mathf.Lerp(fog.heightDensity, 5, Time.deltaTime);
+        }
+
 
         // Face the enemy that killed the player
         Vector3 enemyDirection = EventManager.inst.enemyKillPos.position - transform.position;
-        playerCam.transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(enemyDirection), Time.deltaTime * 1.5f);    
+        playerCam.transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(enemyDirection), Time.deltaTime * 1.5f);
     }
     //public void SetDirection(Vector3 directionVector, Boolean setYaw, Boolean setPitch)
     //{
