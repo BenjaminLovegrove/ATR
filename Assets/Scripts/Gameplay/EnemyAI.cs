@@ -259,7 +259,10 @@ public class EnemyAI : MonoBehaviour
                 patrolTimer = 0;
 
             // Set the destination to the patrolWayPoint.
-            nav.destination = patrolWayPoints[wayPointIndex].position;
+            if (patrolWayPoints[wayPointIndex] != null)
+            {
+                nav.destination = patrolWayPoints[wayPointIndex].position;
+            }
         }
 	}
     
