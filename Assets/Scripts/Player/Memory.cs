@@ -46,6 +46,7 @@ public class Memory : MonoBehaviour
     public bool musicFadeOut;
     public bool musicFadeIn;
     public float musicLerp;
+    private bool subStart = false;
 
     private AudioSource dyingSFX;
     private AudioClip newBGM;
@@ -123,6 +124,12 @@ public class Memory : MonoBehaviour
 
     void Update()
     {
+        if (subStart && dialogueAudio.isPlaying)
+        {
+            subStart = false;
+            StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
+        }
+
         if (EventManager.inst.currentLevel == "City Outskirts")
         {
             recallMemory -= Time.deltaTime;
@@ -443,7 +450,7 @@ public class Memory : MonoBehaviour
         StartCoroutine("InstantiateMemFlash");
         if (EventManager.inst.currentLevel != "MainMenu")
         {
-            StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
+            subStart = true;
         } 
         startFog = fog.heightDensity;
 
