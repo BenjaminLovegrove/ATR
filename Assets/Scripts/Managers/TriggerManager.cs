@@ -217,7 +217,7 @@ public class TriggerManager : MonoBehaviour
     void FixedUpdate()
     {
         // Change fog
-        if (fogLerp < 1)
+        if (fogLerp < 1 && !dialogueAudio.isPlaying)
         {
             fogLerp += Time.deltaTime / 4;
             fog.heightDensity = Mathf.Lerp(startFog, targFog, fogLerp);

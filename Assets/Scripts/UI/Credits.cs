@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Credits : MonoBehaviour
 {
     [Header("ATR")]
-    public Text atr;
+    public Image atr;
     
     [Header("Ben")]
     public Text benHeading;
@@ -68,7 +68,7 @@ public class Credits : MonoBehaviour
     public IEnumerator ATR()
     {
         yield return new WaitForSeconds(extraDelay);
-        atr.CrossFadeAlpha(1, 0f, false);
+        atr.color = (Color.white);
         yield return new WaitForSeconds(3f - extraDelay);
         atr.CrossFadeAlpha(0, 1f, false);
         yield return new WaitForSeconds(1f);
@@ -267,6 +267,7 @@ public class Credits : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
         {
+            Cursor.visible = true;
             Application.LoadLevel("MainMenu");
         }
     }
@@ -345,6 +346,7 @@ public class Credits : MonoBehaviour
 
         if (timer > autoExit)
         {
+            Cursor.visible = true;
             Application.LoadLevel("MainMenu");
         }
     }

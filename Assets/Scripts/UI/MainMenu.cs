@@ -76,11 +76,14 @@ public class MainMenu : MonoBehaviour
     public GameObject Level3Highlight;
     public Text levelText;
     private string levelSelect;
+    public GameObject resumePanel;
 
     void Awake()
     {
         InitialiseSettings();
         LoadSettings();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void Update()
@@ -349,6 +352,38 @@ public class MainMenu : MonoBehaviour
     // Play Button
     public void PlayButton()
     {
+        EventManager.inst.currentLevel = levelSelect;
+
+        if (levelSelect == "City Outskirts"){
+            EventManager.inst.firstPlay = true;
+            Cursor.visible = false;
+            EventManager.inst.currentCheckPoint = 0;
+            pressedPlay = true;
+            audio.PlayOneShot(playSFX, 1f);
+            StartCoroutine("LoadScreen");
+        } else
+        {
+            resumePanel.SetActive(true);
+        }
+    }
+
+    // Go from the start
+    public void ResumeStart()
+    {
+        Cursor.visible = false;
+        pressedPlay = true;
+        audio.PlayOneShot(playSFX, 1f);
+        EventManager.inst.currentLevel = "City Outskirts";
+        levelSelect = "City Outskirts";
+        EventManager.inst.currentCheckPoint = 0;
+        EventManager.inst.firstPlay = true;
+
+        StartCoroutine("LoadScreen");
+
+    }
+    // Resume from level x
+    public void ResumeFromPoint()
+    {
         Cursor.visible = false;
         pressedPlay = true;
         audio.PlayOneShot(playSFX, 1f);
@@ -358,6 +393,7 @@ public class MainMenu : MonoBehaviour
 
         StartCoroutine("LoadScreen");
     }
+
 
     // Credits Button
     public void CreditsButton()
