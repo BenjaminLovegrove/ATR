@@ -177,7 +177,6 @@ public class TriggerManager : MonoBehaviour
                 EventManager.inst.subtitleNum = subtitleNum;
                 EventManager.inst.memoryPlaying = true;
                 dialogueAudio.clip = memoryDialogue;
-                dialogueAudio.Play();
                 memoryDuration = memoryDialogue.length - endEarlyTimer;
                 col.BroadcastMessage("EnterMemory", memoryDuration);
                 col.BroadcastMessage("NightCheck", nightTime);

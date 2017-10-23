@@ -124,7 +124,7 @@ public class Memory : MonoBehaviour
 
     void Update()
     {
-        if (subStart && dialogueAudio.isPlaying)
+        if (subStart)
         {
             subStart = false;
             StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
@@ -670,6 +670,7 @@ public class Memory : MonoBehaviour
     #region Subtitles
     public IEnumerator Subtitles1()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(4f);
         FadeTextOut1(0);
         FadeTextOut2(0);
@@ -774,6 +775,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles2()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(7.25f);
         FadeTextOut1(0);
         FadeTextOut2(0);
@@ -871,6 +873,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles3()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(4.25f);
         FadeTextOut1(0);
         FadeTextOut2(0);
@@ -935,6 +938,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles4()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(5.5f);
         FadeTextOut1(0);
         FadeTextOut2(0);
@@ -1008,6 +1012,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles5()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(3.5f);
         FadeTextOut1(0);
         FadeTextOut2(0);
@@ -1090,6 +1095,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles6()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(3.5f);
         FadeTextOut1(0);
         FadeTextOut2(0);
@@ -1163,6 +1169,7 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles7()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(11.75f);
         FadeTextOut1(0);
         FadeTextOut2(0);
@@ -1200,11 +1207,13 @@ public class Memory : MonoBehaviour
 
     public IEnumerator Subtitles8()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(1f);
     }
 
     public IEnumerator Subtitles9()
     {
+        dialogueAudio.Play();
         yield return new WaitForSeconds(4f);
         FadeTextOut1(0);
         FadeTextOut2(0);
