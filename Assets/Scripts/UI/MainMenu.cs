@@ -54,8 +54,8 @@ public class MainMenu : MonoBehaviour
     private int fullScreenKey;
     private bool fullScreenVal;
 
-    private float volumeLevel;
-    private float lookSensitivity;
+    private float volumeLevel = 0.4f;
+    private float lookSensitivity = 4f;
     
     private bool invertY;
     private bool invertYTemp;
@@ -138,16 +138,16 @@ public class MainMenu : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Mouse Sensitivity"))
         {
-            EventManager.inst.lookSensitivity = 5;
-            PlayerPrefs.SetFloat("Mouse Sensitivity", 5);
-            lookSensitivity = 5;
+            EventManager.inst.lookSensitivity = 4;
+            PlayerPrefs.SetFloat("Mouse Sensitivity", 4);
+            lookSensitivity = 4;
         }
 
         if (!PlayerPrefs.HasKey("Master Volume"))
         {
-            EventManager.inst.masterVolume = 0.8f;
-            PlayerPrefs.SetFloat("Master Volume", 0.8f);
-            volumeLevel = 0.8f;
+            EventManager.inst.masterVolume = 0.4f;
+            PlayerPrefs.SetFloat("Master Volume", 0.4f);
+            volumeLevel = 0.4f;
         }
 
         if (!PlayerPrefs.HasKey("Fullscreen"))
@@ -177,7 +177,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("Screen Res", screenDropdown.value);
         PlayerPrefs.SetInt("Speaker Config", speakerDropdown.value);
         PlayerPrefs.SetFloat("Master Volume", volSlider.value);
-        PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
+        PlayerPrefs.SetFloat("Look Sensitivity", sensSlider.value);
 
         // Switch between windowed and full screen mode
         if (!fullscreenToggle.isOn)
@@ -443,7 +443,7 @@ public class MainMenu : MonoBehaviour
     {
         cameraPanIncrement = 0;
         PlayerPrefs.SetFloat("Master Volume", volSlider.value);
-        PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
+        PlayerPrefs.SetFloat("Look Sensitivity", sensSlider.value);
         menuToggle = MenuToggle.MAIN;
         StartCoroutine("MenuCoRoutine");
     }

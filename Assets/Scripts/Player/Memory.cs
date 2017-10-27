@@ -145,10 +145,16 @@ public class Memory : MonoBehaviour
         if (subStart)
         {
             subStart = false;
-            StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
+            if (EventManager.inst.subtitleNum <= 0)
+            {
+                StartCoroutine("Subtitles1");
+            } else
+            {
+                StartCoroutine("Subtitles" + EventManager.inst.subtitleNum);
+            }
         }
 
-        if (EventManager.inst.currentLevel == "City Outskirts")
+        /*if (EventManager.inst.currentLevel == "City Outskirts")
         {
             recallMemory -= Time.deltaTime;
         }
@@ -158,13 +164,13 @@ public class Memory : MonoBehaviour
             {
                 whiteBackDrop.CrossFadeAlpha(0, 3.5f, false);
                 whiteFlashTriggered = true;
-            } else if (recallMemory < 0f && !whiteFlashTriggered)
+            } else if (recallMemory < 0f && !whiteFlashTriggered && firstTrigger != null)
             {
 
                 firstTrigger.RecallMemory();
                 recallMemory = 0.5f;
             }
-        }
+        }*/
 
         SkipMemoryCheck();
         FadeFOV();
@@ -476,7 +482,7 @@ public class Memory : MonoBehaviour
         }
 
         // Switch skybox
-        if (switchSkyBox)
+        if (switchSkyBox && alternateSkyBox != null)
         {
             RenderSettings.skybox = alternateSkyBox;
         }

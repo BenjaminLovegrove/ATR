@@ -7,19 +7,19 @@ public class InitialiseScreenRes : MonoBehaviour
 
     void Awake()
     {
-        Cursor.visible = false;
+        /*Cursor.visible = false;
 
         Cursor.lockState = CursorLockMode.Confined;
 
         if (!PlayerPrefs.HasKey("Fullscreen"))
         {
             PlayerPrefs.SetInt("Fullscreen", 1);
-        }
+        }*/
     }
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("FullScreen") == 1)
+        /*if (PlayerPrefs.GetInt("FullScreen") == 1)
         {
             fullScreenVal = true;
         }
@@ -29,7 +29,7 @@ public class InitialiseScreenRes : MonoBehaviour
         {
             Screen.SetResolution(PlayerPrefs.GetInt("ScreenResX"), PlayerPrefs.GetInt("ScreenResY"), fullScreenVal);
         }
-        else Screen.fullScreen = fullScreenVal;
+        else Screen.fullScreen = fullScreenVal;*/
 
         Application.LoadLevel("MainMenu");
     }

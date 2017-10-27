@@ -164,16 +164,16 @@ public class PauseMenu : MonoBehaviour
         // Set default values if there are no settings yet
         if (!PlayerPrefs.HasKey("Mouse Sensitivity"))
         {
-            EventManager.inst.lookSensitivity = 5;
-            PlayerPrefs.SetFloat("Mouse Sensitivity", 5);
-            lookSensitivity = 5;
+            EventManager.inst.lookSensitivity = 4;
+            PlayerPrefs.SetFloat("Mouse Sensitivity", 4);
+            lookSensitivity = 4;
         }
 
         if (!PlayerPrefs.HasKey("Master Volume"))
         {
-            EventManager.inst.masterVolume = 1;
-            PlayerPrefs.SetFloat("Master Volume", 1);
-            volumeLevel = 1;
+            EventManager.inst.masterVolume = 0.4f;
+            PlayerPrefs.SetFloat("Master Volume", 0.4f);
+            volumeLevel = 0.4f;
         }
     }
 

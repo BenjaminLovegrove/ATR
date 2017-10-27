@@ -7,7 +7,7 @@ public class DirtyDoubleLoadFix : MonoBehaviour {
 
 	void Start () {
         //PlayerPrefs.DeleteAll();
-	    if (EventManager.inst.firstLoad || !PlayerPrefs.HasKey("FirstLoad"))
+	    if (EventManager.inst.firstLoad)
         {
             EventManager.inst.firstLoad = false;
             print("Scene was loaded twice");
