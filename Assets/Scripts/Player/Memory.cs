@@ -8,6 +8,8 @@ using UnityStandardAssets.Water;
 
 public class Memory : MonoBehaviour
 {
+    public int qualityValue;
+
     [Header("Visual Effects")]
     public bool nightTime;
     public bool switchSkyBox;
@@ -90,15 +92,29 @@ public class Memory : MonoBehaviour
         memorySkippable = false;
         EventManager.inst.memoryPlaying = true;
         memoryFlashObj.CrossFadeAlpha(255, 1f, false);
-        yield return new WaitForSeconds(1.5f);
+        if (EventManager.inst.subtitleNum == 1)
+        {
+            yield return new WaitForSeconds(5.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(1.5f);
+        }
         if (whiteBackDrop != null)
         {
-            whiteBackDrop.CrossFadeAlpha(0, 2f, false);
+            whiteBackDrop.CrossFadeAlpha(0, 3f, false);
         }
         yield return new WaitForSeconds(0.25f);
 
         StartMemory();
-        yield return new WaitForSeconds(memoryDuration - 3f);
+        if (EventManager.inst.subtitleNum == 1)
+        {
+            yield return new WaitForSeconds(memoryDuration - 7.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(memoryDuration - 3f);
+        }
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1);
         EventManager.inst.memoryPlaying = false;
@@ -117,6 +133,8 @@ public class Memory : MonoBehaviour
 
     void Awake()
     {
+        qualityValue = QualitySettings.GetQualityLevel();
+        print(qualityValue.ToString());
         whiteFlashTriggered = false;
         InitialiseValues();
         playerRigid = GameObject.Find("Player").GetComponent<Rigidbody>();
@@ -291,10 +309,39 @@ public class Memory : MonoBehaviour
         // Increase tree density
         if (myTerrain != null && EventManager.inst.currentLevel == "Coast")
         {
-            myTerrain.treeDistance = 1500;
-            myTerrain.detailObjectDensity = 1F;
+            switch (qualityValue)
+            {
+                case 0:
+                    myTerrain.treeDistance = 1000;
+                    myTerrain.detailObjectDensity = 0.75F;
+                    break;
+                case 1:
+                    myTerrain.treeDistance = 1200;
+                    myTerrain.detailObjectDensity = 1F;
+                    break;
+                case 2:
+                    myTerrain.treeDistance = 1500;
+                    myTerrain.detailObjectDensity = 1F;
+                    break;
+            }
+            
         } else if (myTerrain != null)
         {
+            switch (qualityValue)
+            {
+                case 0:
+                    myTerrain.treeDistance = 150;
+                    myTerrain.detailObjectDensity = 0.75F;
+                    break;
+                case 1:
+                    myTerrain.treeDistance = 180;
+                    myTerrain.detailObjectDensity = 1F;
+                    break;
+                case 2:
+                    myTerrain.treeDistance = 250;
+                    myTerrain.detailObjectDensity = 1F;
+                    break;
+            }
             myTerrain.treeDistance = 200;
             myTerrain.detailObjectDensity = 1F;
         }
@@ -376,13 +423,40 @@ public class Memory : MonoBehaviour
         // Increase tree density
         if (myTerrain != null && EventManager.inst.currentLevel == "Coast")
         {
-            myTerrain.detailObjectDensity = 0.2F;
-            myTerrain.treeDistance = 100;
+            switch (qualityValue)
+            {
+                case 0:
+                    myTerrain.treeDistance = 80;
+                    myTerrain.detailObjectDensity = 0.2F;
+                    break;
+                case 1:
+                    myTerrain.treeDistance = 100;
+                    myTerrain.detailObjectDensity = 0.4F;
+                    break;
+                case 2:
+                    myTerrain.treeDistance = 120;
+                    myTerrain.detailObjectDensity = 0.8F;
+                    break;
+            }
+            
         }
         else if (myTerrain != null)
         {
-            myTerrain.detailObjectDensity = 0.2F;
-            myTerrain.treeDistance = 150;
+            switch (qualityValue)
+            {
+                case 0:
+                    myTerrain.treeDistance = 120;
+                    myTerrain.detailObjectDensity = 0.2F;
+                    break;
+                case 1:
+                    myTerrain.treeDistance = 150;
+                    myTerrain.detailObjectDensity = 0.4F;
+                    break;
+                case 2:
+                    myTerrain.treeDistance = 170;
+                    myTerrain.detailObjectDensity = 0.8F;
+                    break;
+            }
         }
 
         // Switch back active/inactive objects
