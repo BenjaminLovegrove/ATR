@@ -1,3 +1,17 @@
+New trailer
+Make sure sound and mouse sens are defaulting right 
+Remove extra bloom? (or just lower)
+New font
+Menu environment art
+Volumetric lighting
+Terrain tree LOD
+Medium grass
+
+
+
+
+
+
 Live as if you were to die tomorrow.
 Learn as if you were to live forever. Mahatma Gandhi
 
@@ -5,8 +19,3 @@ The earth is what we all have in common. Wendell Berry
 
 We never know the worth of water till the well is dry. Thomas fuller
 
-
-
-New trailer
-Lower lowest sens
-Start sound lower
