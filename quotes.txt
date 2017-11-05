@@ -1,11 +1,7 @@
 New trailer
 Make sure sound and mouse sens are defaulting right 
-Remove extra bloom? (or just lower)
 New font
-Menu environment art
-Volumetric lighting
-Terrain tree LOD
-Medium grass
+Do something about first encounter. Look away? Walk further?
 
 
 
