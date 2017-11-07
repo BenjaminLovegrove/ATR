@@ -8,7 +8,8 @@ public class FirstEncounter : MonoBehaviour
 {
     public Memory memScript;
     public AudioSource memDialogue;
-    public Transform cameraLookAtTarget;    
+    public Transform cameraLookAtTarget;
+    public Transform cameraLookAtTarget2;
     public float encounterDuration;
     public float spawnObjectsDelay;
     public AudioSource audio;
@@ -24,6 +25,7 @@ public class FirstEncounter : MonoBehaviour
     public AudioClip standSFX;
     public VignetteAndChromaticAberration vignette;
     public float startVignetteIntensity;
+    public bool audioNotTriggered = true;
 
     void Awake()
     {
@@ -44,7 +46,7 @@ public class FirstEncounter : MonoBehaviour
             //Disable controls after a small reaction time
             if (encounterDuration < totalDuration - 0.5f)
             {
-                vignette.intensity = Mathf.Lerp(vignette.intensity, 6, Time.deltaTime);
+                vignette.intensity = Mathf.Lerp(vignette.intensity, 13, Time.deltaTime);
                 EventManager.inst.playerCrouch = true;
                 if (!crouched)
                 {
@@ -53,7 +55,19 @@ public class FirstEncounter : MonoBehaviour
                 }
 
                 EventManager.inst.controlsDisabled = true;
-                playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
+
+                if (encounterDuration > totalDuration * 0.1f)
+                {
+                    playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
+                } else
+                {
+                    playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget2.position - playersTrans.transform.position), Time.deltaTime * 3f);
+
+                    if (audioNotTriggered)
+                    {
+
+                    }
+                }
             }
             
             encounterDuration -= Time.deltaTime;

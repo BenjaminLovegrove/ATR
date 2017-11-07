@@ -493,6 +493,10 @@ public class Memory : MonoBehaviour
             sceneLighting.intensity = sceneLighting.intensity / 0.25f;
             RenderSettings.fog = true;
             skySphere.SetActive(true);
+            if (!bloom.enabled)
+            {
+                bloom.enabled = true;
+            }
         }
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
