@@ -583,7 +583,14 @@ public class Memory : MonoBehaviour
         memTimer -= Time.deltaTime;
 
         bloom.bloomIntensity = Mathf.Lerp(startBloom, memoryBloom, fadeTimer);
-        fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
+        if (EventManager.inst.subtitleNum == 5)
+        {
+            fog.heightDensity = Mathf.Lerp(startFog, memoryFog * 0.5f, fadeTimer);
+        } else
+        {
+            fog.heightDensity = Mathf.Lerp(startFog, memoryFog, fadeTimer);
+        }
+        
     }
 
     // Exit memory
