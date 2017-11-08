@@ -19,6 +19,8 @@ public class PlayerCam : MonoBehaviour
     private float crouch = 2;
     private GlobalFog fog;
     public float rotationY;
+    private float lerpY;
+    private float lerpX;
 
     public Transform cameraPosNeutral;
     public Transform cameraPosCrouch;
@@ -37,17 +39,28 @@ public class PlayerCam : MonoBehaviour
     public float rotationX;
     public bool startOff = false;
 
+    public float xLerpSpeed = 15;
+    public float yLerpSpeed = 3;
+    public float xScale = 15;
+
     void Awake()
     {
         
         playerCam = gameObject.GetComponentInChildren<Camera>();
         rotationY = 5;
+        lerpY = -rotationY;
         fog = gameObject.GetComponentInChildren<GlobalFog>();
 
         if (EventManager.inst.currentLevel == "City Outskirts" && EventManager.inst.firstPlay)
         {
             //startOff = true;
         }
+    }
+
+    private void Start()
+    {
+        lerpX = rotationX;
+        lerpY = 5;
     }
 
     // PreJump cam movement co-routine
@@ -161,23 +174,25 @@ public class PlayerCam : MonoBehaviour
             {
                 if (axes == RotationAxes.MouseXAndY)
                 {
-                    rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX * lookScalar;
+                    rotationX = transform.localEulerAngles.y + ((Input.GetAxis("Mouse X") * sensitivityX * lookScalar) * Time.deltaTime) * 35;
 
                     // Invert Y if set to do so
                     if (EventManager.inst.invertY)
                     {
-                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar * -1;
+                        rotationY += (Input.GetAxis("Mouse Y")) * sensitivityY * lookScalar * -1;
                     }
                     // Otherwise Y is normal
                     if ((!EventManager.inst.invertY))
                     {
-                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar;
+                        rotationY += (Input.GetAxis("Mouse Y")) * sensitivityY * lookScalar;
                     }
 
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
-                    transform.localEulerAngles = new Vector3(0, rotationX, 0);
-                    playerCam.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
+                    lerpY = Mathf.LerpAngle(lerpY, -rotationY, Time.deltaTime * 10);
+                    lerpX = Mathf.LerpAngle(lerpX, rotationX, Time.deltaTime * xLerpSpeed);
+                    //transform.localEulerAngles = new Vector3(0, lerpX, 0);
+                    //playerCam.transform.localEulerAngles = new Vector3(-lerpY, 0, 0);
                 }
                 else if (axes == RotationAxes.MouseX)
                 {
@@ -185,13 +200,17 @@ public class PlayerCam : MonoBehaviour
                 }
                 else
                 {
-                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar * -1;
+                    rotationY += (Input.GetAxis("Mouse Y")) * sensitivityY * lookScalar * -1;
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
                     //transform.Rotate(0, Input.GetAxis("Mouse Y") * sensitivityY * lookScalar, 0);
                     //transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
-                    playerCam.transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
+                    lerpY = Mathf.LerpAngle(lerpY, -rotationY, Time.deltaTime * 10);
+                    //playerCam.transform.localEulerAngles = new Vector3(-lerpY, transform.localEulerAngles.y, 0);
                 }
+
+                transform.localEulerAngles = new Vector3(0, rotationX, 0);
+                playerCam.transform.localEulerAngles = new Vector3(lerpY, 0, 0);
             }
         }
     }
@@ -200,12 +219,14 @@ public class PlayerCam : MonoBehaviour
     void HackyMouseMovement()
     {
         rotationX = transform.localEulerAngles.y;
+        lerpX = rotationX;
         //rotationY = playerCam.transform.rotation.eulerAngles.x;
     }
 
     void HackyMouseMovement2()
     {
         rotationX = transform.localEulerAngles.y;
+        lerpX = rotationX;
         //rotationY = playerCam.transform.rotation.eulerAngles.x;
     }
 

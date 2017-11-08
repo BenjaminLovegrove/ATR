@@ -57,7 +57,7 @@ public class PauseMenu : MonoBehaviour
         
         // Set initial values
         volSlider.value = PlayerPrefs.GetFloat("Master Volume");
-        sensSlider.value = PlayerPrefs.GetInt("Look Sensitivity");
+        sensSlider.value = PlayerPrefs.GetFloat("Look Sensitivity");
         invertY = EventManager.inst.invertY;
 
         //if (PlayerPrefs.GetInt("Fullscreen") == 0)
@@ -187,7 +187,7 @@ public class PauseMenu : MonoBehaviour
         PlayerPrefs.SetFloat("Mouse Sensitivity", lookSensitivity);
         //PlayerPrefs.SetInt("Screen Res", screenDropdown.value);
         PlayerPrefs.SetFloat("Master Volume", volSlider.value);
-        PlayerPrefs.SetInt("Look Sensitivity", Mathf.FloorToInt(sensSlider.value));
+        PlayerPrefs.SetFloat("Look Sensitivity", sensSlider.value);
 
         // Switch between windowed and full screen mode
         //if (fullscreenToggle.isOn == false)
