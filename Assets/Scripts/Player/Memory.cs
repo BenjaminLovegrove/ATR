@@ -111,6 +111,7 @@ public class Memory : MonoBehaviour
         if (EventManager.inst.subtitleNum == 1)
         {
             yield return new WaitForSeconds(memoryDuration - 7.5f);
+            playerCamScr.startOff = false;
         }
         else
         {
@@ -144,7 +145,6 @@ public class Memory : MonoBehaviour
     {
         ambientLightStart = RenderSettings.ambientIntensity;
         qualityValue = QualitySettings.GetQualityLevel();
-        print(qualityValue.ToString());
         whiteFlashTriggered = false;
         InitialiseValues();
         playerRigid = GameObject.Find("Player").GetComponent<Rigidbody>();
@@ -246,10 +246,12 @@ public class Memory : MonoBehaviour
         {
             if (!EventManager.inst.credits)
             {
-                gameCam.fieldOfView = Mathf.Lerp(60, 75, delayTimer / memoryLength);
+                float targFOV = Mathf.Lerp(60, 75, delayTimer / memoryLength);
+                gameCam.fieldOfView = Mathf.Lerp(gameCam.fieldOfView, targFOV, Time.deltaTime * 5);
             } else
             {
-                gameCam.fieldOfView = Mathf.Lerp(60, 85, delayTimer / memoryLength);
+                float targFOV = Mathf.Lerp(60, 85, delayTimer / memoryLength);
+                gameCam.fieldOfView = Mathf.Lerp(gameCam.fieldOfView, targFOV, Time.deltaTime * 5);
             }
         }
     }

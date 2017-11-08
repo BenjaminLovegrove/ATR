@@ -53,7 +53,7 @@ public class PlayerCam : MonoBehaviour
 
         if (EventManager.inst.currentLevel == "City Outskirts" && EventManager.inst.firstPlay)
         {
-            //startOff = true;
+            startOff = true;
         }
     }
 
@@ -179,12 +179,12 @@ public class PlayerCam : MonoBehaviour
                     // Invert Y if set to do so
                     if (EventManager.inst.invertY)
                     {
-                        rotationY += (Input.GetAxis("Mouse Y")) * sensitivityY * lookScalar * -1;
+                        rotationY += (((Input.GetAxis("Mouse Y") * sensitivityY * lookScalar * -1) * Time.deltaTime) * 35);
                     }
                     // Otherwise Y is normal
                     if ((!EventManager.inst.invertY))
                     {
-                        rotationY += (Input.GetAxis("Mouse Y")) * sensitivityY * lookScalar;
+                        rotationY += (((Input.GetAxis("Mouse Y") * sensitivityY * lookScalar) *Time.deltaTime) * 35);
                     }
 
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
@@ -200,7 +200,7 @@ public class PlayerCam : MonoBehaviour
                 }
                 else
                 {
-                    rotationY += (Input.GetAxis("Mouse Y")) * sensitivityY * lookScalar * -1;
+                    rotationY += (((Input.GetAxis("Mouse Y") * sensitivityY * lookScalar * -1) *Time.deltaTime) *35);
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
                     //transform.Rotate(0, Input.GetAxis("Mouse Y") * sensitivityY * lookScalar, 0);
@@ -210,7 +210,7 @@ public class PlayerCam : MonoBehaviour
                 }
 
                 transform.localEulerAngles = new Vector3(0, rotationX, 0);
-                playerCam.transform.localEulerAngles = new Vector3(lerpY, 0, 0);
+                playerCam.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
             }
         }
     }
@@ -220,6 +220,7 @@ public class PlayerCam : MonoBehaviour
     {
         rotationX = transform.localEulerAngles.y;
         lerpX = rotationX;
+        lerpY = rotationY;
         //rotationY = playerCam.transform.rotation.eulerAngles.x;
     }
 
@@ -227,6 +228,7 @@ public class PlayerCam : MonoBehaviour
     {
         rotationX = transform.localEulerAngles.y;
         lerpX = rotationX;
+        lerpY = rotationY;
         //rotationY = playerCam.transform.rotation.eulerAngles.x;
     }
 
@@ -272,6 +274,8 @@ public class PlayerCam : MonoBehaviour
         rotationY = Mathf.MoveTowardsAngle(rotationY, pitch, Time.deltaTime * 1f);
         transform.localEulerAngles = new Vector3(0, et, 0);
 
-        transform.rotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+        Quaternion memRotation = Quaternion.Lerp(currentPos.rotation, Quaternion.LookRotation(memoryCameraEnd[EventManager.inst.currentMemory].position - currentPos.position), Time.deltaTime * 1f);
+        transform.localEulerAngles = new Vector3(0, memRotation.eulerAngles.y, 0);
+        playerCam.transform.localEulerAngles = new Vector3(memRotation.eulerAngles.x, 0, 0);
     }
 }
