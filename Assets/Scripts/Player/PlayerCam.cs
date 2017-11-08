@@ -18,7 +18,7 @@ public class PlayerCam : MonoBehaviour
     private float maximumY = 60F;
     private float crouch = 2;
     private GlobalFog fog;
-    private float rotationY;
+    public float rotationY;
 
     public Transform cameraPosNeutral;
     public Transform cameraPosCrouch;
@@ -30,15 +30,24 @@ public class PlayerCam : MonoBehaviour
     public Transform[] memoryCameraEnd;
 
     public float headBobInterval;
-    private float headBobTimer;    
+    private float headBobTimer;
     private bool headBobbed;
     private bool inMemory = false;
     private float deathDelay = 0;
+    public float rotationX;
+    public bool startOff = false;
 
     void Awake()
     {
+        
         playerCam = gameObject.GetComponentInChildren<Camera>();
+        rotationY = 5;
         fog = gameObject.GetComponentInChildren<GlobalFog>();
+
+        if (EventManager.inst.currentLevel == "City Outskirts" && EventManager.inst.firstPlay)
+        {
+            //startOff = true;
+        }
     }
 
     // PreJump cam movement co-routine
@@ -70,10 +79,13 @@ public class PlayerCam : MonoBehaviour
             DeathCamera();
         }
 
-        if (!EventManager.inst.controlsDisabled)
+        if (!EventManager.inst.controlsDisabled && !startOff)
         {
             CameraMovement();
             MouseMovement();
+        } else if (EventManager.inst.firstEncounterPlaying)
+        {
+            HackyMouseMovement2();
         } else
         {
             HackyMouseMovement();
@@ -132,11 +144,11 @@ public class PlayerCam : MonoBehaviour
         // Lerp camera for player crouch
         if (EventManager.inst.playerCrouch)
         {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime * 3);
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosCrouch.position, Time.deltaTime);
         }
         else
         {
-            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 3);
+            currentPos.position = Vector3.Lerp(currentPos.position, cameraPosNeutral.position, Time.deltaTime * 0.2f);
         }
     }
 
@@ -149,7 +161,7 @@ public class PlayerCam : MonoBehaviour
             {
                 if (axes == RotationAxes.MouseXAndY)
                 {
-                    float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX * lookScalar;
+                    rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX * lookScalar;
 
                     // Invert Y if set to do so
                     if (EventManager.inst.invertY)
@@ -173,9 +185,10 @@ public class PlayerCam : MonoBehaviour
                 }
                 else
                 {
-                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar;
+                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar * -1;
                     rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
 
+                    //transform.Rotate(0, Input.GetAxis("Mouse Y") * sensitivityY * lookScalar, 0);
                     //transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
                     playerCam.transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
                 }
@@ -186,41 +199,14 @@ public class PlayerCam : MonoBehaviour
     // Keep updating rotations but dont move cam
     void HackyMouseMovement()
     {
-        if (EventManager.inst.controlsDisabled)
-        {
-            if (!EventManager.inst.playerDead)
-            {
-                if (axes == RotationAxes.MouseXAndY)
-                {
-                    float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX * lookScalar;
+        rotationX = transform.localEulerAngles.y;
+        //rotationY = playerCam.transform.rotation.eulerAngles.x;
+    }
 
-                    // Invert Y if set to do so
-                    if (EventManager.inst.invertY)
-                    {
-                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar * -1;
-                    }
-                    // Otherwise Y is normal
-                    if ((!EventManager.inst.invertY))
-                    {
-                        rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar;
-                    }
-
-                    rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-
-                }
-                else if (axes == RotationAxes.MouseX)
-                {
-                    transform.Rotate(0, Input.GetAxis("Mouse X") * sensitivityX * lookScalar, 0);
-                }
-                else
-                {
-                    rotationY += Input.GetAxis("Mouse Y") * sensitivityY * lookScalar;
-                    rotationY = Mathf.Clamp(rotationY, minimumY, maximumY);
-
-
-                }
-            }
-        }
+    void HackyMouseMovement2()
+    {
+        rotationX = transform.localEulerAngles.y;
+        //rotationY = playerCam.transform.rotation.eulerAngles.x;
     }
 
     // Face enemy that killed the player

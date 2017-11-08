@@ -108,9 +108,9 @@ public class Player : MonoBehaviour
                     }
                 }
 
-                if (nearestEnemyDistance < 50 && !EventManager.inst.memoryPlaying)
+                if (nearestEnemyDistance < 70 && !EventManager.inst.memoryPlaying)
                 {
-                    float distanceMod = (10 / nearestEnemyDistance);
+                    float distanceMod = (25 / nearestEnemyDistance);
                     heartBeatSFX.volume = (Mathf.Lerp(0, 1, distanceMod));
                     heartBeatSFX.pitch = Mathf.Lerp(0, 1, distanceMod);
                     float bgmMod = (((nearestEnemyDistance - 18) / 8) * -1);

@@ -17,6 +17,7 @@ public class FirstEncounter : MonoBehaviour
     private bool triggered;
     private bool triggeredCheck;
     private Transform playersTrans;
+    private Transform playersTrans2;
     private bool musicResumed;
     private bool crouched;
     private float totalDuration;
@@ -26,6 +27,9 @@ public class FirstEncounter : MonoBehaviour
     public VignetteAndChromaticAberration vignette;
     public float startVignetteIntensity;
     public bool audioNotTriggered = true;
+    public PlayerCam playerCamScr;
+    public AudioSource crunchsfx;
+
 
     void Awake()
     {
@@ -35,6 +39,7 @@ public class FirstEncounter : MonoBehaviour
         musicResumed = false;
         crouched = false;
         playersTrans = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Camera>().transform;
+        playersTrans2 = GameObject.FindGameObjectWithTag("Player").transform;
         totalDuration = encounterDuration;
     }
 
@@ -57,17 +62,26 @@ public class FirstEncounter : MonoBehaviour
                 EventManager.inst.controlsDisabled = true;
 
                 if (encounterDuration > totalDuration * 0.1f)
-                {
-                    playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
+                {                  
+                    Quaternion newDir = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget.position - playersTrans.transform.position), Time.deltaTime * 1f);
+                    //playersTrans.transform.localEulerAngles = (new Vector3(newDir.eulerAngles.x, 0, 0));
+                    playersTrans2.transform.localEulerAngles = (new Vector3(0, newDir.eulerAngles.y, 0));
                 } else
                 {
-                    playersTrans.transform.rotation = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget2.position - playersTrans.transform.position), Time.deltaTime * 3f);
+                    Quaternion newDir = Quaternion.Lerp(playersTrans.transform.rotation, Quaternion.LookRotation(cameraLookAtTarget2.position - playersTrans.transform.position), Time.deltaTime * 3f);
+                    //playersTrans.transform.localEulerAngles = (new Vector3(newDir.eulerAngles.x, 0, 0));
+                    playersTrans2.transform.localEulerAngles = (new Vector3(0, newDir.eulerAngles.y, 0));
 
-                    if (audioNotTriggered)
-                    {
-
-                    }
+                   
                 }
+
+                if (audioNotTriggered && encounterDuration < totalDuration * 0.12f)
+                {
+                    audioNotTriggered = false;
+                    crunchsfx.Play();
+                }
+
+                playerCamScr.rotationY = Mathf.Lerp(playerCamScr.rotationY, 5, Time.deltaTime * 5);
             }
             
             encounterDuration -= Time.deltaTime;

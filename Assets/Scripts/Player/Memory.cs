@@ -18,6 +18,7 @@ public class Memory : MonoBehaviour
     public float memoryFog;
     public float fogDiminishAmount;
     public float memoryBloom;
+    public float ambientLightStart;
 
     [Header("Memory Objects")]
     public AudioClip[] memoryDialogue;
@@ -84,7 +85,7 @@ public class Memory : MonoBehaviour
     public GameObject inGameUI;
     public GameObject creditsUI;
     public Camera playerCam;
-    public 
+    public PlayerCam playerCamScr;
 
     // Display memory flash game obj coroutine
     IEnumerator InstantiateMemFlash()
@@ -117,6 +118,10 @@ public class Memory : MonoBehaviour
         }
         memoryFlashObj.CrossFadeAlpha(255, 1, false);
         yield return new WaitForSeconds(1);
+        if (playerCamScr != null)
+        {
+            playerCamScr.startOff = false;
+        }
         EventManager.inst.memoryPlaying = false;
         yield return new WaitForSeconds(1);
         EndMemory();
@@ -126,13 +131,18 @@ public class Memory : MonoBehaviour
     IEnumerator SkipMemory()
     {
         memTimer = 2;
-        memoryFlashObj.CrossFadeAlpha(255, 1, false);
-        yield return new WaitForSeconds(2);
+        memoryFlashObj.CrossFadeAlpha(255, 2, false);
+        yield return new WaitForSeconds(2.75f);
+        if (playerCamScr != null)
+        {
+            playerCamScr.startOff = false;
+        }
         EndMemory();
     }
 
     void Awake()
     {
+        ambientLightStart = RenderSettings.ambientIntensity;
         qualityValue = QualitySettings.GetQualityLevel();
         print(qualityValue.ToString());
         whiteFlashTriggered = false;
@@ -376,12 +386,18 @@ public class Memory : MonoBehaviour
             skySphere.SetActive(false);
         }
 
+        if (EventManager.inst.subtitleNum == 1)
+        {
+            RenderSettings.ambientIntensity = 4;
+        }
+
         memoryFlashObj.CrossFadeAlpha(0, 1f, false);
     }
 
     // End memory
     void EndMemory()
     {
+       
         Invoke("CurrentMemoryIncrement", 2f);
 
         // Set controls back to normal
@@ -498,6 +514,8 @@ public class Memory : MonoBehaviour
                 bloom.enabled = true;
             }
         }
+
+        RenderSettings.ambientIntensity = ambientLightStart;
 
         memoryFlashObj.CrossFadeAlpha(0, 1, false);
         Invoke("MemoryPlayingDelay", 1f);
